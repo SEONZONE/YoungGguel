@@ -10,6 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       VALUES(#{USER_ID},#{USER_PW},#{USER_NAME},#{USER_GENDER},#{USER_TEL},#{USER_BIRTH},#{USER_EMAIL}) 
 	</insert>
 	
+	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT USER_ID FROM USER_INFO WHERE USER_ID=#{ID}
+	</select>
 	
 </mapper>
 
