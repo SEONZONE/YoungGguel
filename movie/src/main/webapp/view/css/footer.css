@@ -1,0 +1,19 @@
+.footer{
+    height: 150px;
+    background-color: #191919;
+} /* 푸터영역 150 / 색상지정 */
+.footer > .wrapping{
+    background-color: #191919;
+} /* 푸터랩핑 생상지정 */
+.footercontent{
+    position: relative;
+    top: 50px;
+    right: 40%;
+} /* 푸터 로고 위치조정 */
+.footer > .wrapping > p{
+    position: relative;
+    left: 20%;
+    margin:0;
+    color: #9c9c9c;
+    text-align: left;
+} /* 푸터 텍스트 위치조정 */

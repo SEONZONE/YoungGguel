@@ -1,0 +1,412 @@
+/* 공통 */
+body{
+    width: 1260px;
+    height: 620px;
+    margin: 10px;
+    background-color: olive;
+}
+div{
+    margin: 0; 
+    padding: 0;
+}
+/* 공통 */
+/* 선택되면 불들어오는곳 */
+.select_check{
+    width: 700px;
+    height: 60px;
+    background-color: #282934;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+.select_check > span{
+    margin: 0px 10px;
+}
+.click{
+    color: white;
+}
+.hidden{
+    display: none;
+}
+/* 선택되면 불들어오는곳 끝 */
+
+/* 예약메인세팅 */
+.booking_main{
+    width: 1260px;
+    height: 540px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+/* 현재시각 */
+.booking_current_time{
+    width: 1260px;
+    height: 98px;
+    background-color: #eff5fa;
+    text-align: center;
+    color: #265396;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.booking_current_time > div , .booking_current_time > b {
+    position: relative;
+    top: 20%;
+    font-size: 15px;
+    font-weight: 900;
+}
+.booking_current_time > b{
+    font-size: 200%;
+    letter-spacing: -2px;
+}
+/* 현재시각끝 */
+/* 영역나누기 */
+.booking_date{
+    float: left;
+    width: 194px;
+    height: 442px;
+    border-right: #f1f1f1 1px solid;
+}
+.booking_movie{
+    float: left;
+    width: 265px;
+    height: 442px;
+    border-right: #f1f1f1 1px solid  ;
+}
+.booking_theater{
+    float: left;
+    width: 140px;
+    height: 442px;
+}
+.booking_time{
+    float: left;
+    width: 430px;
+    height: 442px;
+    position: relative;
+    left: 60px;
+    border-left: #f1f1f1 1px solid  ;
+}
+/* 영역나누기끝 */
+/* 중간영역 세팅 */
+.middle_field{
+    overflow:auto;
+    width: 85%;
+    height: 80%;
+    position: relative;
+    top: 5%;
+    left: 8%;
+}
+.middle_field::-webkit-scrollbar, .middle_field_2_1::-webkit-scrollbar, .middle_field_2_2::-webkit-scrollbar{
+    width: 3px;
+    background: #ffffff;
+}
+.middle_field::-webkit-scrollbar-thumb,.middle_field_2_1::-webkit-scrollbar-thumb, .middle_field_2_2::-webkit-scrollbar-thumb{
+    border-radius: 3.5px;
+    background-color: #adadad;
+}
+.middle_field::-webkit-scrollbar-track,.middle_field_2_1::-webkit-scrollbar-track,.middle_field_2_2::-webkit-scrollbar-track{
+    background-color: #eaeaea;
+}
+.middle_field_2_1, .middle_field_2_2{
+    overflow:auto;
+    width: 100%;
+    max-height: 70%;
+    position: relative;
+    top: 5%;
+    left: 15%;
+}
+.middle_field_2_1{
+    background-color: #f6f6f6;
+}
+.middle_field_2_1 > .selecter_name{
+    background-color: white;
+}
+/* 중간영역 세팅끝 */
+/* 중간영역내부 머리말 */
+.selecter_name{
+    font-weight: bold;
+    font-size: 20px;
+}
+/* 중간영역내부 머리말끝 */
+/* 중간영역내부 ul속성지정 */
+.list > ul{
+    margin-top: 5px;
+    list-style: none;
+    padding: 0;
+}
+/* 중간영역내부 ul속성지정 끝 */
+/* 중간영역내부 버튼 속성지정 */
+.btn{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+.btn:hover{
+    color: white;
+    background-color: #7186a6;
+}/*호버*/
+.btn_on{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    background-color: #265396;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+/* 중간영역내부 버튼 속성지정끝 */
+/* 극장선택 버튼속성지정 */
+.btn_on2{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    background-color: #4e87db;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+/* 극장선택 버튼속성지정끝 */
+/* 영화선택 내부 이미지 속성변경 */
+.btn > span > img , .btn_on > span >img{
+    width: 15px;
+    position: relative;
+    top: 1px;
+}
+/* 영화선택 내부 이미지 속성변경끝 */
+/* 극장선택 내부 속성변경 */
+.middle_field_2_2 > .list > .btn{
+    width: 80%;
+}
+.middle_field_2_2 > .list > .btn_on{
+    width: 80%;
+}
+/* 극장선택 내부 속성변경 */
+/* 시간선택 내부 속성변경 */
+.time{
+    font-size: 17px;
+    float: left;
+    font-weight: 300;
+    line-height: 21px;
+}
+.theater{
+    float: left;
+    margin-left: 5px;
+}
+.possible_now{
+    font-weight: bold;
+    font-size: 13px;
+}
+.all{
+    font-size: 10px;
+    color: #a4a4a4;
+}
+/* 시간선택 내부 속성변경 */
+/* 시간선택 버튼 속성변경 */
+.time_btn{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: right;
+    padding: 0;
+    color: #282934;
+    font-weight: 600;
+}
+.time_btn:hover{
+    color: black;
+    background-color: #b9c1cc;
+}/*호버*/
+.time_btn.on{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    background-color: #265396;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    padding: 0;
+}
+/* 시간선택 버튼 속성변경끝 */
+/* 부킹 셀렉터 시작 */
+.seat_info{
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    margin-top: 10px;
+}
+.ghost_box{
+    float: left;
+    height: 400px;
+    width: 100px;
+    background-color: white;
+}
+.choice_box{
+    background-color: #eff5fa;
+    width: 650px;
+    height: 350px;
+    border-radius: 10px;
+    margin-top: 50px;
+    float: left;
+}
+.choice_person{
+    background-color: #eaeaea;
+    height: 60px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+.choice_old{
+    display: inline-block;
+    position: relative;
+    bottom: 10px;  
+    margin-left: 40px;
+    font-weight: bold;
+}
+/*카운트 버튼 시작*/
+.down{
+    float: left;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    background-color: #ffffff;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.now{
+    float: left;
+    width: 42px;
+    height: 32px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border-width: 1px 0;
+}
+.up{
+    float: left;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+    background-color: #ffffff;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.count{
+    display: inline-block;
+    width: 106px;
+    margin-top: 15px;
+    
+}
+/*카운트 버튼 끝*/
+.choice_seat{
+    width: 500px;
+    height: 250px;
+    margin-left: 90px;
+    margin-top: 20px;
+}
+#screen{
+    width: 500px;
+    background-color: #d3e2ef;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+/*좌석 시작*/
+.seat_row{
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+}
+.seat_row:hover{
+    background-color: #b5b5b5;
+}
+.seat_number{
+    position:absolute;
+    left: 200px;
+    width: 25px;
+    height: 25px;
+    background-color: #b1bbc3;
+    border: 0px;
+}
+.common{
+    cursor: pointer;
+}
+.common:hover{
+    background-color: #265396;
+}
+.choice{
+    background-color: #d92121;
+    cursor: pointer;
+}
+.finish{
+    background-color: #777777;
+    font-size: 20px;
+}
+/*좌석 끝*/
+/*쇼박스 시작*/
+.show_box{
+    background-color: #282934;
+    float: left;
+    width: 400px;
+    height: 350px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.show_box_left{
+    width: 200px;
+    display: inline-block;
+}
+.show_box_right{
+    position: relative;
+    bottom: 30px;
+    display: inline-block;
+}
+#pay_btn{
+    position: relative;
+    top: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #265396;
+    height: 60px;
+    width: 200px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 60px;
+    cursor: pointer;
+}
+#rollback_btn{
+    position: relative;
+    bottom: 50px;
+    left: 200px;
+    border-bottom-right-radius: 10px;
+    background-color: #21222f;
+    height: 60px;
+    width: 200px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 60px;
+    cursor: pointer;
+}
+/*쇼박스 끝*/
+
+
+
+

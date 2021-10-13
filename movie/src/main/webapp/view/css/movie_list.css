@@ -1,0 +1,102 @@
+.select {
+
+	max-width: 1200px;
+	padding-top: 50px;
+	text-align: center;
+	margin: auto;
+}
+.list_button button {
+	height: 30px; 
+	width: 150px; 
+	font-size: 15px; 
+	text-align: center; 
+	border-radius: 5px; 
+	background-color: #f3f3f3;
+	font-weight: bold; 
+	color: #939796;
+	border: 1px solid white;
+	box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+.align-button {
+    text-align: right;
+}
+.align-button img{
+    width: 6%;
+    height: 6%;
+}
+.inner-wrap {
+    position: relative;
+}
+.movie-list ol li .movie-list-info img {
+    width: 170px;
+    height: 250px;
+}
+.movie-list ol li #fleft {
+    float: left;
+}
+.inner-wrap {
+    width: 1200px;
+    margin: 0 auto;
+}
+.movie-list ol li {
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 300px;
+    padding-bottom: 20px;
+}
+.movie-list-info {
+    padding-right: 5%;
+}
+.movie-list .reserve {
+	height: 40px; 
+	width: 150px;
+	color:white;
+	font-weight: bold;
+	background-color: #191d36;
+	border-radius: 5px;
+}
+.movie-list {
+    font-weight: bold;
+}
+.movie-list .rate {
+    background-color:cornflowerblue;
+    color: #f3f3f3;
+	font-weight: bold;
+    border-radius: 10px; 
+}
+.movie-list .runningtime {
+    color: #002b6c;
+}
+.movie-list .cont {
+    color: darkgray;
+}
+.movie-list .list .tit-area {
+    padding-bottom: 5px;
+}
+.title {
+    border-right: 3px
+}
+.movie-list .list .detail-area .release {
+    padding-bottom: 5px;
+}
+.movie-list .list .detail-area .genre {
+    padding-bottom: 10px;
+}
+.detail-area {
+    height: 170px;
+    width: 680px;
+    padding-bottom: 12px;
+}
+.content {
+    height: 2800px;
+}
+.btn-area img {
+    width: 3%;
+    height: 3%;
+}
+.list {
+    margin-top: 3%;
+    margin-left: 12%;
+}

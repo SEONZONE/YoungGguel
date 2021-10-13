@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="../css/set.css" />
+    <!--메인 CSS-->
+    <link rel="stylesheet" href="../css/store.css" />
+  </head>
+  <body>
+    <!-- gnb 시작-->
+    <div class="gnb">
+      <div class="wrapping">
+        <div class="gnblogo" id="gnblogoid">
+          <a href="/">
+            <img src="../img/logo.png" />
+          </a>
+          <ul>
+            <li><img src="../img/loginbutton.png" onclick="loginpopup()" /></li>
+            <li>
+              <a href="../html/join.html"><img src="../img/joinbutton.png" /></a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu">
+          <ul>
+            <li>영화</li>
+            <li>상영시간표</li>
+            <li onclick="wow()">
+              <img
+                src="../img/gnbbutton.png"
+                onmouseover="this.src='../img/gnbbutton_hover.png'"
+                onmouseout="this.src='../img/gnbbutton.png'" />
+            </li>
+            <li>스토어</li>
+            <li>고객센터</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- gnb 끝 -->
+    <!-- content -->
+    <div class="select">
+      <div class="list_button" style="height: 60px; margin: auto">
+        <button id="hot">인기상품</button>
+        <button id="ticket">티켓</button>
+        <button id="goods">팝콘 음료 굿즈</button>
+      </div>
+    <div class="store-wrap">
+      <div class="store-list">
+        <div class="store-menu">
+          <img src="../img/러브콤보패키지.PNG" />
+          <p id="title">러브콤보패키지</p>
+          <p id="contents">2D일반관람권2매+러브콤보[팝콘(L)1+탄산음료(R)2]</p>
+          <p id="price">30,000원</p>
+        </div>
+        <div class="store-menu">
+          <img src="../img/싱글패키지.PNG" />
+          <p id="title">싱글패키지</p>
+          <p id="contents">2D일반관람권1매+팝콘(R)1+탄산음료(R)1</p>
+          <p id="price">15,000원</p>
+        </div>
+        <div class="store-menu">
+          <img src="../img/아메리카노패키지.PNG" />
+          <p id="title">아메리카노패키지</p>
+          <p id="contents">2D일반관람권1매+아메리카노 1잔(HOT/ICE 택1)</p>
+          <p id="price">30,000원</p>
+        </div>
+        <div class="store-menu">
+          <img src="../img/패밀리패키지.PNG" />
+          <p id="title">패밀리패키지</p>
+          <p id="contents">2D일반관람권3매+팝콘(R)2+탄산음료(R)2</p>
+          <p id="price">43,000원</p>
+        </div>
+        <div class="store-menu">
+          <img src="../img/일반관람권.PNG" />
+          <p id="title">일반관람권</p>
+          <p id="contents">일반영화관람권(2D)</p>
+          <p id="price">20,000원</p>
+        </div>
+        <div class="store-menu">
+          <img src="../img/매직패키지.PNG" />
+          <p id="title">매직패키지</p>
+          <p id="contents">프리패스 관람권 2매(일반, 컴포트, MAX, 더부티크 가능)</p>
+          <p id="price">30,000원</p>
+        </div>
+        <div class="store-menu">
+          <img src="../img/탄산패키지.PNG" />
+          <p id="title">탄산패키지</p>
+          <p id="contents">2D일반관람권2매+러브콤보[팝콘(L)1+탄산음료(R)2</p>
+          <p id="price">30,000원</p>
+        </div>
+        <div class="store-menu">
+          <img src="../img/효도패키지.PNG" />
+          <p id="title">효도패키지</p>
+          <p id="contents">더부티크 스위트 2매+탄산음료L 2개</p>
+          <p id="price">30,000원</p>
+        </div>
+      </div>
+      </div>
+      
+      <!-- content -->
+    </div>
+  </body>
+</html>

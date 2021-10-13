@@ -1,0 +1,38 @@
+#contents_wrap{
+    padding-top: 50px;  max-width: 1200px; 
+    margin: 0px auto;
+    width: 1200px;
+    height: 1200px; 
+    
+}
+#myPage_btn{
+    width: 450px; height: 150px ; background-color: #265396; 
+    text-align: center; 
+     margin: 15px auto;
+     margin-left: 400px;
+}
+#myPage_div_img_active{
+    width:149px; height: 150px;  background-color: #265396; 
+    float: left;
+    border-right: 1px solid gray;
+}  
+#myPage_div_img{
+    width:149px; height: 150px;  background-color: #eef1f6; 
+    float: left;
+    margin: 0 auto;
+    border-right: 1px solid gray;
+
+} 
+#myPage_div:last-child{
+    border-right: none;
+    width: 150px;
+}
+.myPage_img{
+    width: 50%;
+    position: relative;
+    top:23%;
+    
+}
+
+
+

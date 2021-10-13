@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style type="text/css">
+    #wrap {
+        padding-top: 50px;
+        max-width: 1200px;
+        display: block;
+        margin: 0px auto;
+        width: 1200px;
+        height: 1400px;
+
+    }
+
+    #myPage_btn {
+        width: 450px;
+        height: 150px;
+        background-color: #265396;
+        text-align: center;
+        display: block;
+        margin: 0px auto;
+        align-content: center;
+    }
+
+    #myPage_div_active {
+        width: 149px;
+        height: 150px;
+        background-color: #265396;
+        float: left;
+        border-right: 1px solid gray;
+    }
+
+    #myPage_div_unactive {
+        width: 149px;
+        height: 150px;
+        background-color: #eef1f6;
+        float: left;
+        border-right: 1px solid gray;
+
+    }
+
+    #myPage_div:last-child {
+        border-right: none;
+        width: 150px;
+    }
+
+    .myPage_img {
+        width: 50%;
+        position: relative;
+        top: 23%;
+
+    }
+
+    #contents {
+        width: 900px;
+        height: 120px;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        line-height: 120px;
+
+
+    }
+
+    #contents>.search {
+        background-color: gray;
+        float: left;
+        width: 200px;
+        height: 120px;
+        font-size: 25px;
+        margin: 0 auto;
+        border: initial;
+    }
+
+    #contents>.search2 {
+        background-color: #f6f6f6;
+
+    }
+
+    .form_tap {
+        width: 1000PX;
+        padding-top: 20px;
+        
+    }
+
+    #actionform {
+        margin: 0 auto;
+        padding-top: 20px;
+        line-height: 0px;
+        width: 1000px;
+        height: 100px;
+        text-size-adjust: 30px;
+        margin-bottom: 50px;
+
+    }
+
+    #title_tap {
+        padding: 15px;
+        height: 60px;
+        border: 1px solid black;
+    }
+
+    #content_tap {
+        line-height: -100px;
+        border: 1px solid black;
+        padding: 15px;
+        height: 500px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+
+    }
+
+    .file_tap {
+        display: block;
+        margin: 0 auto;
+        padding-left: 20px;
+        border: 1px solid gray;
+        border-radius: 3px solid black;
+        font-size: 15px;
+        width: 970px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 20px;
+        margin-bottom: 50px;
+    }
+
+    .file_tap>input {
+        float: right;
+        text-align: center;
+        display: inline;
+        margin-top: 15px;
+        padding-right: 15px;
+
+    }
+
+    #btn_tap {
+        display: inline;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #btn_tap>.form_btn1 {
+        font-size: 20px;
+        color: white;
+        width: 450px;
+        height: 80px;
+        background-color: #265396;
+    }
+
+    #btn_tap>.form_btn2 {
+        font-size: 20px;
+        color: white;
+        width: 450px;
+        height: 80px;
+        background-color: #818181;
+    }
+
+
+    /* #wrap>#header >#myPage_btn{display: inline;} */
+</style>
+
+<body>
+
+    <div id="wrap">
+        <div id="myPage_btn">
+            <div id="myPage_div_active"><img src="/img/개인정보변경.png" class="myPage_img" onmouseover="
+                    this.style.cursor='pointer'"></div>
+            <div id="myPage_div_unactive"><img src="/img/문의하기.png" class="myPage_img" onmouseover="
+                    this.style.cursor='pointer'"></div>
+            <div id="myPage_div_unactive"><img src="/img/예매확인.png" class="myPage_img" onmouseover="
+                    this.style.cursor='pointer'"></div>
+        </div>
+        <!--버튼끝-->
+        <br><br>
+        <!--폼 시작-->
+        <form action="" method="POST" id="actionform">
+            <div> <input type="text" class="form_tap" id="title_tap" placeholder="제목을 입력하세요"></div>
+            <div> <textarea class="form_tap" id="content_tap" placeholder="내용을 입력하세요" ></textarea></div> <br>
+            <div class="file_tap">파일선택<input type="file"> </div>
+
+            <span id="btn_tap">
+                <input type="submit" value="확인" class="form_btn1">
+                <input type="button" value="취소" class="form_btn2">
+            </span>
+        </form>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
