@@ -1,0 +1,249 @@
+/* 
+* {
+    font-family: "Noto Sans KR", sans-serif;
+} */
+
+html, body, div, span, applet, object, iframe,
+p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,.glyphicon ,glyphicon-search {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    
+}
+ol, ul {
+	list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+/* HTML5 display-role reset for older browsers */
+
+/* GNB logo 영역*/
+.wrapping{
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: center;
+} /*랩핑 : 중간정렬 / 최대폭 1200px / 가운데정렬 */
+.gnb{
+    height: 160px;
+    background-color:#ffffff;
+    border-bottom: 1px solid #ebebeb;
+    box-sizing: content-box;
+} /*gnb : 영역 160px / 백그라운드 컬러 흰색 / 밑줄 1px 컬러지정 / 영역맞춰서 테두리적용 */
+.gnblogo {
+    padding-top: 37px;
+    /* position: relative;  일단보류 */
+} /*gnblogo : 패딩탑 37px  */
+.gnblogo ul{
+    position: absolute;
+    top: 40px;
+    right: 19%;
+} /*gnblogo ul : 절대영역지정 / top에서 40px이동 / 오른쪽에 붙이기 */
+.gnblogo ul li{
+    display: inline-block;
+} /*gnblogo ul li : 줄바꿈 없애기 */
+/* GNB logo 영역끝*/
+
+/* GNB 메뉴영역*/
+.menu > ul li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    letter-spacing : -2px;
+    position: relative;
+    top: 16.5px; 
+}/* 가로나열 / 폰트사이즈조절 / 볼드 / 폰트 / 글씨간격 / 위치조절 */
+.menu > ul li:nth-child(3) img {
+    position: relative;
+    bottom: -11px; 
+} /* 이미지 위치 맞추기 */
+.menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
+    margin-right: 90px;
+} /* 간격 맞추기 */
+.menu > ul li:nth-child(3) {
+    margin: 0 63px;
+} /* 간격 맞추기 */
+
+/* GNB 메뉴영역끝*/
+
+/* content 영역*/
+.content{
+    background-color: white;
+} /* 콘텐츠영역 810px / 백그라운드 배경색 지정 */
+.content > .black_bar{
+    height: 440px;
+    background-color: #191919;
+}
+.content > .black_bar > .wrapping > #on_img {
+    padding-left: 30px;
+
+}
+#blur_back_img{
+    height: 440px;
+    width: 1200px;
+    filter: opacity(0.3);
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+#on_img{
+    position:relative;
+    bottom: 400px;
+}
+#main_title{
+    text-align: left;
+    font-size: 40px;
+    color: white;
+    font-weight: 500;
+    margin-top: 15px;
+}
+#sub_title{
+    text-align: left;
+    font-size: 20px;
+    color: white;
+    margin-top: 15px;
+}
+#right_poster{
+    position: absolute;
+    right: 8px;
+    top: -15px;
+    width: 24%;
+}
+#right_button{
+    position: absolute;
+    width: 245px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    line-height: 50px;
+    right: 30px;
+    top: 360px;
+    background-color: #265396;
+    cursor: pointer;
+}
+
+#on_img > div > ul{
+    position: absolute;
+    top: 250px;
+}
+#on_img > div > ul >li{
+    float: left;
+    font-size: 20px;
+    color: white;
+    padding-right: 40px;
+}
+#on_img > div > ul >li > span{
+    font-size: 35px;
+    font-weight: bold;
+}
+.summary{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    max-height: 400px;
+    font-size: 15px;
+    text-align: left;
+}
+.review {
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.review > span{
+    font-weight: bold;
+    font-size: 21px;
+}
+.review_lnput{
+    padding: 20px 50px 20px 20px;
+    display: flex;
+}
+.review_lnput > input{
+    border: #d6e2ee 1px solid;
+    border-radius: 5px;
+    padding-left: 20px;
+    width: 800px;
+    height: 50px;
+}
+.review_lnput input:focus::-webkit-input-placeholder {
+    color:transparent;
+} /* 텍스트박스 클릭하면 텍스트 사라짐  */
+#review_button{
+    width: 130px;
+    height: 55px;
+    background-color: #466685;
+    margin-left: 10px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 58px;
+    color: white;
+    cursor: pointer;
+}
+.review_list{
+    padding: 20px 50px 20px 20px;
+    display: flex;
+}
+.review_lnput > input{
+    border: #d6e2ee 1px solid;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+#review_text{
+    width: 950px;
+    height: 50px;
+    background-color: #ecf1f6;
+    border-radius: 5px;
+    line-height: 50px;
+    padding-left: 20px;
+
+}
+
+
+/* content 영역끝*/
+
+
+/*푸터 영역*/
+.footer{
+    height: 150px;
+    background-color: #191919;
+} /* 푸터영역 150 / 색상지정 */
+.footer > .wrapping{
+    background-color: #191919;
+} /* 푸터랩핑 생상지정 */
+.footercontent{
+    position: relative;
+    top: 50px;
+    right: 40%;
+} /* 푸터 로고 위치조정 */
+.footer > .wrapping > p{
+    position: relative;
+    left: 20%;
+    margin:0;
+    color: #9c9c9c;
+    text-align: left;
+} /* 푸터 텍스트 위치조정 */
+
+
+
+
+
+
+
+
+
+
+
+
+

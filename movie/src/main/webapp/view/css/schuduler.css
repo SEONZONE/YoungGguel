@@ -1,0 +1,752 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,.glyphicon ,glyphicon-search {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    
+}
+ol, ul {
+	list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+/* HTML5 display-role reset for older browsers */
+
+/* GNB logo 영역*/
+.wrapping{
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: center;
+} /*랩핑 : 중간정렬 / 최대폭 1200px / 가운데정렬 */
+.gnb{
+    height: 160px;
+    background-color:#ffffff;
+    border-bottom: 1px solid #ebebeb;
+    box-sizing: content-box;
+} /*gnb : 영역 160px / 백그라운드 컬러 흰색 / 밑줄 1px 컬러지정 / 영역맞춰서 테두리적용 */
+.gnblogo {
+    padding-top: 37px;
+    /* position: relative;  일단보류 */
+} /*gnblogo : 패딩탑 37px  */
+.gnblogo ul{
+    position: absolute;
+    top: 40px;
+    right: 19%;
+} /*gnblogo ul : 절대영역지정 / top에서 40px이동 / 오른쪽에 붙이기 */
+.gnblogo ul li{
+    display: inline-block;
+} /*gnblogo ul li : 줄바꿈 없애기 */
+/* GNB logo 영역끝*/
+
+/* GNB 메뉴영역*/
+.menu > ul li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    letter-spacing : -2px;
+    position: relative;
+    top: 16.5px; 
+}/* 가로나열 / 폰트사이즈조절 / 볼드 / 폰트 / 글씨간격 / 위치조절 */
+.menu > ul li:nth-child(3) img {
+    position: relative;
+    bottom: -11px; 
+} /* 이미지 위치 맞추기 */
+.menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
+    margin-right: 90px;
+} /* 간격 맞추기 */
+.menu > ul li:nth-child(3) {
+    margin: 0 63px;
+} /* 간격 맞추기 */
+
+/* GNB 메뉴영역끝*/
+
+/* content 영역*/
+.content{
+    height: 8100px;
+    background-color: #f8f8f8;
+} /* 콘텐츠영역 810px / 백그라운드 배경색 지정 */
+.content > .wrapping{
+    background-color: #f8f8f8;
+} /*  랩핑영역 배경색 지정 */
+.search-box input:focus::-webkit-input-placeholder {
+    color:transparent;
+} /* 텍스트박스 클릭하면 텍스트 사라짐  */
+.search-box input{
+    position: relative;
+    top:50px;
+    height: 73px;
+    width: 800px;
+    left: 20px;
+    border-radius: 15px;
+    border: 0;
+    outline:0px;
+    box-shadow: 3px 3px 3px 3px #f2f2f2;
+    font-size: 18px;
+    font-weight: bold;
+} /* 검색창 포지션변경, 창크기변경, 둥글게15px, 기본바깥선없애기 / 클릭했을때 바깥선없애기
+     / 그림자 / 작성폰트사이즈 ,굵기  */
+.search-box .glyphicon.glyphicon-search {
+    position: relative;
+    font-size: 30px;
+    top: 60px;
+    right: 55px;
+} /* 돋보기 아이콘 크키 / 위치조정 */
+.category ul li{
+    display: inline-block;
+    position: relative;
+    top:130px;
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 0 15px;
+} /* 랭크 li 가로정렬, 위치조정 / 폰트사이즈 / 패딩 좌우 15 */
+.category a {
+    text-decoration:none;
+    color: black;
+}
+.category a:hover{
+    text-decoration:none;
+    color: black;
+} /* a태그 링크지우기 / 폰트색상변경 */
+.movie-list ul li{
+    display: inline-block;
+    position: relative;
+    top: 165px;
+} /* 포스터 가로정렬, 위치조정 */
+
+.movie-list ul li img{
+    height: 418px; 
+    width: 287px; 
+    border-radius: 15px;
+    margin-right: 10px;
+} /* 이미지크기조절 / 테두리둥글게 / 마진오른쪽 10 */
+
+/* .movie-list.a:hover{
+    color: black;
+    size: 0ex;
+} */
+
+.movie-list ul li:last-child {
+    margin-right: 0px;
+} /* 끝 포스터 오른쪽마진 0 */
+/* content 영역끝*/
+
+
+/*푸터 영역*/
+.footer{
+    height: 150px;
+    background-color: #191919;
+} /* 푸터영역 150 / 색상지정 */
+.footer > .wrapping{
+    background-color: #191919;
+} /* 푸터랩핑 생상지정 */
+.footercontent{
+    position: relative;
+    top: 50px;
+    right: 40%;
+} /* 푸터 로고 위치조정 */
+.footer > .wrapping > p{
+    position: relative;
+    left: 20%;
+    margin:0;
+    color: #9c9c9c;
+    text-align: left;
+} /* 푸터 텍스트 위치조정 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 공통 */
+body{
+    height: 620px;
+    margin: 10px;
+    background-color: white;
+
+}
+div{
+    margin: 0; 
+    padding: 0;
+}
+/* 공통 */
+/* 선택되면 불들어오는곳 */
+.select_check{
+    width: 700px;
+    height: 60px;
+    background-color: #282934;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+.select_check > span{
+    margin: 0px 10px;
+}
+.click{
+    color: white;
+}
+/* 선택되면 불들어오는곳 끝 */
+
+/* 예약메인세팅 */
+.movie_theater_top{
+   background-color: white;
+    width: 1000px;
+    height: 320px;
+    border :5px solid gray;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.booking_current_time > div , .booking_current_time > b {
+    position: relative;
+    top: 20%;
+    font-size: 15px;
+    font-weight: 900;
+}
+.booking_current_time > b{
+    font-size: 200%;
+    letter-spacing: -2px;
+}
+/* 현재시각끝 */
+/* 영역나누기 */
+
+/* 영화별/ 극장별 */
+.movie_theater_list{
+    
+    float: left;
+   
+    width: 194px;
+    height:  320px;
+    border-right: black 1px solid;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.listback_movie input{background-color:white;}
+.listback_movie active{background-color:#cfcfcf;}
+.listback_theater input{background-color:white;}
+.listback_theater active{background-color:#cfcfcf;}
+
+/* 영화별 */
+.listback_movie{
+   
+    width: 100%;
+    height: 50%;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+
+
+
+/* 극장별 */
+.listback_theater{
+    
+    width: 100%;
+    height: 49.7%;
+    border: none;
+    border-bottom-left-radius: 6px;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+
+
+/* 영화리스트 */
+
+
+.booking_movie_list{
+    
+    float: left;
+    width: 537px;
+    height:  320px;
+    border-right: white 1px solid  ;
+}
+.booking_movie_list ul{
+   list-style: none;
+    
+   
+}
+
+.booking_movie_list li{
+    float: left;
+    margin-right: 30px;
+    
+}
+
+/* 영화리스트 끝 */
+
+
+/* 영화 리스트 이미지  */
+.movie_list_image{
+   
+   
+    width: 200px;
+    height: 320px;
+}
+
+.movie_poster{
+    
+    
+    position: absolute; 
+    width: 267px;
+    height:320px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+   
+    
+}
+
+
+
+
+
+/* 영화 리스트 이미지 끝 */
+.booking_theater{
+    float: left;
+    width: 140px;
+    height:  320px;
+}
+.booking_time{
+    float: left;
+    width: 430px;
+    height: 442px;
+    position: relative;
+    left: 60px;
+    border-left: #f1f1f1 1px solid  ;
+}
+/* 영역나누기끝 */
+/* 중간영역 세팅 */
+.middle_field{
+    background-color: gray;
+    overflow:auto;
+    width: 70%;
+    height: 80%;
+    position: relative;
+    top: 5%;
+    left: 15%;
+}
+.middle_field::-webkit-scrollbar, .middle_field_2_1::-webkit-scrollbar, .middle_field_2_2::-webkit-scrollbar{
+    width: 3px;
+    background: #ffffff;
+}
+.middle_field::-webkit-scrollbar-thumb,.middle_field_2_1::-webkit-scrollbar-thumb, .middle_field_2_2::-webkit-scrollbar-thumb{
+    border-radius: 3.5px;
+    background-color: #adadad;
+}
+.middle_field::-webkit-scrollbar-track,.middle_field_2_1::-webkit-scrollbar-track,.middle_field_2_2::-webkit-scrollbar-track{
+    background-color: #eaeaea;
+}
+.middle_field_2_1, .middle_field_2_2{
+    overflow:auto;
+    width: 100%;
+    max-height: 70%;
+    position: relative;
+    top: 5%;
+    left: 15%;
+}
+.middle_field_2_1{
+    background-color: #f6f6f6;
+}
+.middle_field_2_1 > .selecter_name{
+    background-color: white;
+}
+/* 중간영역 세팅끝 */
+/* 중간영역내부 머리말 */
+.selecter_name{
+    font-weight: bold;
+    font-size: 20px;
+}
+/* 중간영역내부 머리말끝 */
+/* 중간영역내부 ul속성지정 */
+.list > ul{
+    margin-top: 5px;
+    list-style: none;
+    padding: 0;
+}
+/* 중간영역내부 ul속성지정 끝 */
+/* 중간영역내부 버튼 속성지정 */
+
+
+
+
+.btn{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+
+/* 영화별/극장별 버튼 */
+.btn_list{
+    
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+
+.btn:hover{
+    color: white;
+    background-color: #7186a6;
+}/*호버*/
+
+.btn_on{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    background-color: #265396;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+/* 중간영역내부 버튼 속성지정끝 */
+/* 극장선택 버튼속성지정 */
+.btn_on2{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    background-color: #4e87db;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+/* 극장선택 버튼속성지정끝 */
+/* 영화선택 내부 이미지 속성변경 */
+.btn > span > img , .btn_on > span >img{
+    width: 15px;
+    position: relative;
+    top: 1px;
+}
+/* 영화선택 내부 이미지 속성변경끝 */
+/* 극장선택 내부 속성변경 */
+.middle_field_2_2 > .list > .btn{
+    width: 80%;
+}
+.middle_field_2_2 > .list > .btn_on{
+    width: 80%;
+}
+/* 극장선택 내부 속성변경 */
+/* 시간선택 내부 속성변경 */
+.time{
+    background-color: #cfcfcf;
+    position: relative;
+    bottom: 1.2px; 
+}
+.now{
+
+    font-weight: bold;
+    font-size: 13px;
+}
+.all{
+
+    font-size: 10px;
+    color: #a4a4a4;
+}
+/* 시간선택 내부 속성변경 */
+/* 시간선택 버튼 속성변경 */
+.time_btn{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+.time_btn:hover{
+    color: black;
+    background-color: #7186a6;
+}/*호버*/
+.time_btn_on{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    background-color: #265396;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+}
+/* 시간선택 버튼 속성변경끝 */
+
+
+
+
+
+.listback_choice{
+    background-color: gray;
+
+}
+
+
+
+/* 기본 글씨체 */
+#moive_font
+{
+    font-size: 20px;
+    font-weight: bold;
+   
+    
+}
+
+
+/* 중간 부분 ( 날짜 )  */
+
+
+
+/*  중간 부분 ( 날짜 )  메인 */
+.movie_theater_middle{
+    background-color: white;
+    
+    width: 1200px;
+    height: 162px;
+    margin-top: 50px;
+
+    
+}
+
+/* 수평선 */
+.theater_middle_line { 
+    width: 1200px;
+    color:#adadad;
+    border: thin solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+/* 연도/월 */
+#timeMain_year_month{
+    font-size: 30px;
+    font-weight: bold;
+    color: #265394;
+}
+
+/* 슬라이드 리스트 */
+.movie_slide_list{
+    width: 1200px;
+    height: 100px;
+    background-color:white;
+    
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    border-top: 3px solid rgb(209, 209, 209);
+    border-bottom: 3px solid rgb(209, 209, 209);
+    
+}
+
+/* 영화시간표 리스트 화살표 */
+.list_button{
+    width: 25px;
+    height: 25px;
+}
+
+.list_ul{
+    list-style: none;
+    margin-top: 30px;
+    
+    
+}
+.list_li{
+    float: left;
+    margin-left: 40px;
+    font-size: 30px;
+}
+
+.list_li_day{
+    font-weight: bold;
+    margin: auto;
+    float: left;
+    margin-left: 20px;
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+}
+.list_li_block{
+    display:block;
+    
+}
+
+/* 영화시간표 리스트 주말 이전날 색 속성 */
+
+
+#list_li_day_prev{
+    color: #adadad;
+}
+#list_li_day_weekend{
+    color: red
+}
+
+
+.list_li_day:hover{
+    color: white;
+    background-color: #265394;
+    border-radius: 50%;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.3);
+}/*호버*/
+
+/* 중간 부분 ( 날짜 ) 끝 */
+
+
+
+/*  마지막 부분 ( 날짜 )  메인 */
+.movie_theater_bottom_schedule{
+    float: left;
+    background-color: rgb(179, 179, 179);
+    border-top: 3px solid rgb(209, 209, 209);
+    border-bottom: 3px solid rgb(209, 209, 209);
+    width: 1200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.movie_theater_bottom{
+    margin-top: 100px;
+    margin-bottom: 100px;
+   
+}
+
+
+ /* 상영시간정보 */
+.bottom_schedule_img{
+    width: 30px;
+    margin-left: 20px;
+}
+
+.bottom_schedule_info{
+    line-height: 26px;
+    font-size: 20px;
+    
+    font-weight: bold;
+}
+
+#ssangyoung{
+    color: #265394;
+}
+
+ /* 상영시간정보 끝 */
+
+
+
+ /* 영화관 석 정보 */
+ .gwan{
+    width: 1200px;
+     height: 100px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
+   
+    
+     
+ }
+ .gwan_seok{
+    
+    width: 300px;
+     height: 100px;
+     float: left;
+    
+    
+ }
+ .gwan_list_li_block{
+    display:block;
+    font-size: 20px;
+    
+ }
+#gwan_seok_span{
+    font-size: 40px;
+}
+
+ .gwan_ND{
+    background-color: #a4a4a4;
+    font-size: 30px;
+     width: 125px;
+     height: 100px;
+     float: left;
+     margin-left: 15px;
+     
+ }
+ .gwan_time{
+     
+     width: 745px;
+     height: 100px;
+     float: left;
+     margin-left: 15px;
+     
+ }
+.gwan_time_li{
+    float: left;
+   
+    outline: 2px solid rgb(209, 209, 209);
+    height: 100px;
+    width: 140px;
+    font-size: 30px;
+}
+#li_seok{
+    color: #265394;
+    font-weight: bold;
+    font-size: 20px;
+}
+ #gwan_border{
+    border-top: 3px solid rgb(209, 209, 209);
+    border-bottom: 3px solid rgb(209, 209, 209);
+    border-collapse: collapse;
+ }
+ /* 영화관 석 정보 끝 */

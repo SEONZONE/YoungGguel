@@ -1,0 +1,74 @@
+.contents {
+    height: 800px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.select {
+	max-width: 1200px;
+	padding-top: 50px;
+	margin: 0 auto;
+}
+
+.list_button button {
+	height: 40px; 
+	width: 150px; 
+	font-size: 15px; 
+	text-align: center; 
+	border-radius: 5px; 
+	background-color: #f3f3f3;
+	font-weight: bold; 
+	color: #939796;
+	border: 1px solid white;
+	box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+.list_button {
+	text-align: center;
+}
+.store-list {
+	height:auto;
+    max-width: 1200px;
+}
+.store-menu img {
+    width: 200px;
+    height: 200px;
+}
+.store-list div {
+    float: left;
+}
+.store-list {
+    margin: 5%;
+}
+.store-wrap {
+    position: relative; 
+	height:900px;
+	width:1200px;
+	margin:0 auto;
+ 	padding-left: 8%; 
+}
+.store-menu {
+    margin: 1%;
+}
+.store-menu img {
+    border: 1px solid #e2e2e2;
+}
+.store-menu #title {
+	font-weight: bold;
+}
+.store-menu #contents {
+	color: darkgray;
+	width: 200px;
+	font-size: 14px;
+}
+.store-menu #price {
+	color: darkslateblue;
+	font-weight: bold;
+}
+.store-menu p {
+	padding-bottom: 6px;
+}
+#hot {
+	background-color: black;
+	color: white;
+	border: none;
+}
+

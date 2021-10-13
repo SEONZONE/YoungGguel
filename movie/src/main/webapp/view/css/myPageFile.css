@@ -1,0 +1,48 @@
+.filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.filebox label {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    padding: 10px;
+    margin: 5px auto;
+    color: #999;
+    font-size: inherit;
+    vertical-align: middle;
+    background-color: black;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+    width: 480px;
+    height: 30px;
+    padding: 10px;
+    margin: 5px auto;
+    border:3px solid #f0f0f0;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    font-size: 18px;
+    line-height: 50px;
+    display: inline-block;
+    /* label의 패딩값과 일치 */
+    vertical-align: middle;
+    border-bottom-color: #e2e2e2;
+    -webkit-appearance: none;
+    /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+}

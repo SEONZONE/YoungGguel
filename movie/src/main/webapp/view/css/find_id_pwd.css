@@ -1,0 +1,132 @@
+/* 공통 */
+body{
+    margin: 0;
+    background-color: #f5f5f5;
+}
+.find_Wrapping{
+    width: 670px;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+.contents{
+    text-align: center;
+}
+.topcon{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.topcon > span{
+    color: #d92121;
+    font-size: 34px;
+    font-weight: bold;
+    letter-spacing : -2px;
+}
+.find_list {
+    height: 110px;
+    background-color: #f9f9f9;
+}
+.find_btn{
+    display: inline-block;
+    width: 200px;
+    border-bottom: #b81414 2px solid;
+    color: #b81414;
+    font-weight: bold;
+    padding: 30px 10px 10px 0px;
+    cursor: pointer;
+}
+.off{
+    display: inline-block;
+    width: 200px;
+    border-bottom: #dfdfdf 2px solid;
+    color: #dfdfdf;
+
+}
+.midcon{
+    height: 600px;
+}
+button{
+    cursor: pointer;
+}
+#close_join{
+	cursor: pointer;
+}
+.hidden{
+    display: none;
+}
+/* 공통 끝 */
+/* STEP.3*/
+.midcon_Wrapping{
+    width: 550px;
+    margin: 0 auto;
+}
+.mid_top{
+    font-size: 17px;
+    text-align: left;
+    color: #666666;
+    letter-spacing: -1px;
+}
+.mid_top:first-child{
+    color: black;
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+form > button{
+    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px 95px 15px 95px;
+    color: #d92121;
+    border: 1px #d92121 solid;
+    font-weight: bold;
+    text-align: right;
+}
+.info_list{
+    list-style: none;
+    text-align: right;
+    padding: 0;
+    color: #666666;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.info_list > li{
+    margin: 5px 0px;
+    margin-right: 10px;
+}
+.info_list > li > div{
+    float: left;
+    line-height: 54px;
+}
+.info_list > li > input{
+    width: 400px;
+    height: 50px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border: 1px #f0f0f0 solid;
+    padding-left: 10px;
+}
+#find_id_btn:hover, #find_pwd_btn:hover{
+    background-color: #d92121;
+    color: white;
+}
+.phone_number_check{
+    position: absolute;
+    top: 500px;
+    right: 710px;
+    background-color: black;
+    padding: 4px;
+    color: white;
+    font-weight: 200;
+    cursor: pointer;
+    user-select: none;
+}
+.phone_check{
+    position: absolute;
+    top: 560px;
+    right: 710px;
+    background-color: black;
+    padding: 4px;
+    color: white;
+    font-weight: 200;
+    cursor: pointer;
+    user-select: none;
+}

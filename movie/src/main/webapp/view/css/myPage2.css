@@ -1,0 +1,128 @@
+    #QNAFROM{
+        width: 800px;
+        height: 600px;
+        margin: 0 auto;
+    }
+    #QNA{
+        margin: o auto;
+        text-align: center;
+        
+    }
+    .QNA_title{
+        width: 600px;
+        height: 40px;
+        padding: 15px;
+        margin-top: 30px;
+        border:3px solid #d6e2ee;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+    .QNA_contents{
+        width: 600px;
+        height: 300px;
+        padding: 15px;
+        margin: 5px auto;
+        border:3px solid #d6e2ee;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+    .QNA_file{
+        width: 612.5px;
+        height: 50px;
+        padding: 10px;
+        margin: 5px auto;
+        border:3px solid #f0f0f0;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        font-size: 18px;
+        line-height: 50px;
+        align-items: flex-end;
+    }
+    /* form>div>input.QNA_file{
+       
+    } */
+    input#file-upload-button{
+        float: right;
+    }
+    #btn_tap {
+        margin: 5px auto;
+        margin-top: 25px;
+        text-align: center;
+        
+    }
+
+    #btn_tap>.form_submit {
+        font-size: 20px;
+        color: white;
+        width: 315px;
+        height: 65px;
+        padding:5px;
+        border-radius: 5px;
+        background-color: #265396;
+    }
+
+    #btn_tap>.form_cancel {
+        font-size: 20px;
+        color: white;
+        width: 315px;
+        height: 65px;
+        padding:5px;
+        border-radius: 5px;
+        background-color: #818181;
+    }
+#result{
+    font-size: 30px;
+    margin:100px;
+    width: 1000px;
+    height: 500px;
+}
+#QNA_result{
+    
+}
+.question{
+    border-bottom: 2px solid black; 
+    padding-bottom: 10px;
+
+}
+.result_title{
+    font-size: 20px;
+    border-bottom: 1px solid gray;
+    margin: 5px;
+    padding:15px;
+}
+.result_contents{
+    font-size:20px;
+    border-bottom: 1px solid gray;
+    margin: 5px;
+    padding:15px;
+}
+.result_answer{
+    font-size: 20px;
+    border-bottom: 2px solid gray;
+    margin: 5px;
+    padding:15px;
+}
+img.result_img{
+    width: 50px;
+    height: 20px;
+    border-radius:10px;
+    background-color: #b7b7b7;
+    margin: 0 10px;
+    padding: 7px 20px;
+}
+img.result_img_active{
+    width: 50px;
+    height: 20px;
+    border-radius:10px;
+    background-color: #275498;
+    margin: 0 10px;
+    padding: 7px 20px;
+}
+img.result_img2{
+    width: 30px;
+    height: 15px;
+    border-radius:10px;
+    background-color:none;
+    margin: 0 10px;
+    padding: 7px 20px;
+}

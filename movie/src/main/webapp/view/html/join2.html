@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Page Title</title>
+<link rel='stylesheet' href='../css/join.css'>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function() {
+		$('button').click(function() {
+			if ($("input[name='agree']").is('checked')) {
+			} else {
+				alert("약관을 동의해주세요.");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<form action="Join3.jsp" method="POST">
+		<div class="join_Pop_Wrapping">
+			<div class="join2">
+				<form action="join.jsp" method="post">
+					<div class="contents">
+						<div class="topcon">
+							<span>JOIN</span>
+						</div>
+						<div class="join_list">
+							<img src="../img/join_list_2.png" class="join_list">
+						</div>
+						<div class="midcon_Wrapping">
+							<div class="midcon">
+								<div class="mid_top">약관동의 및 정보활용 동의</div>
+								<div class="mid_top">영끌 서비스 이용을 위한 약관을 동의해주세요.</div>
+								<br>
+									<div class="mid_box">
+																																																																																																																																														수
+																																																																																																																																																																							있습니다.
+																																																																																																																																																																							2.
+									<!-- <%@include file="11111.html" %> -->																																																																																																																																																														회사는
+																																																																																																																																																																							회원이
+																																																																																																																																																																							해당
+																																																																																																																																																																																					대체합니다.
+																																																																																																																																																																																													
+									</div>
+									</form> <span class="ok_checkbox"> <input
+										type="checkbox" name="agree" value="">서비스 이용 약관 동의 </span><br>
+										<button type="submit" id="submit">확인</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+</body>
+</html>

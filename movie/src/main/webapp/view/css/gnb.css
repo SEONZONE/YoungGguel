@@ -1,0 +1,85 @@
+/* 
+* {
+    font-family: "Noto Sans KR", sans-serif;
+} */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,.glyphicon ,glyphicon-search {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    
+}
+ol, ul {
+	list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+/* HTML5 display-role reset for older browsers */
+
+/* GNB logo 영역*/
+.wrapping{
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: center;
+} /*랩핑 : 중간정렬 / 최대폭 1200px / 가운데정렬 */
+.gnb{
+    height: 160px;
+    background-color:#ffffff;
+    border-bottom: 1px solid #ebebeb;
+    box-sizing: content-box;
+} /*gnb : 영역 160px / 백그라운드 컬러 흰색 / 밑줄 1px 컬러지정 / 영역맞춰서 테두리적용 */
+.gnblogo {
+    padding-top: 37px;
+    /* position: relative;  일단보류 */
+} /*gnblogo : 패딩탑 37px  */
+.gnblogo ul{
+    position: absolute;
+    top: 40px;
+    right: 19%;
+} /*gnblogo ul : 절대영역지정 / top에서 40px이동 / 오른쪽에 붙이기 */
+.gnblogo ul li{
+    display: inline-block;
+} /*gnblogo ul li : 줄바꿈 없애기 */
+.gnblogo > ul > li > img{
+    cursor: pointer;
+} 
+/* GNB logo 영역끝*/
+
+/* GNB 메뉴영역*/
+.menu > ul li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    letter-spacing : -2px;
+    position: relative;
+    top: 20.5px; 
+    cursor: pointer;
+}/* 가로나열 / 폰트사이즈조절 / 볼드 / 폰트 / 글씨간격 / 위치조절 */
+.menu > ul li:nth-child(3) img {
+    position: relative;
+    bottom: -9px; 
+} /* 이미지 위치 맞추기 */
+.menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
+    margin-right: 90px;
+} /* 간격 맞추기 */
+.menu > ul li:nth-child(3) {
+    margin: 0 63px;
+} /* 간격 맞추기 */
+
+/* GNB 메뉴영역끝*/

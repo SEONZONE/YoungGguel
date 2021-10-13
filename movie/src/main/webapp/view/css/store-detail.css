@@ -1,0 +1,121 @@
+.contents {
+    height: 800px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.item-wrap {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.item {
+    width: 1000px;
+    height: 400px;
+    margin: 8% auto;
+    border-bottom: 1px solid darkgray;
+    border-top: 1px solid darkgray;
+}
+.item-img {
+    height: 500px;
+    width: 500px;
+    text-align: center;
+}
+.item-img img {
+    width: 400px;
+    height: 400px;
+}
+.item #fleft{
+    float: left;
+}
+.item-detail {
+    width: 500px;
+    height: 400px;
+}
+.top p{
+    padding-bottom: 5px;
+}
+#title {
+    font-weight: bold;
+    font-size: 22px;
+}
+#contents {
+    font-weight: bold;
+    font-size: 15px;
+    color: darkgrey;
+    padding-bottom: 20px;
+}
+#price {
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+}
+.top {
+    border-bottom: 1px solid darkgray;
+    padding: 4%;
+}
+.middle {
+    border-bottom: 1px solid darkgray;
+    padding-left: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 15px;
+}
+#mid-left {
+    display: inline-block;
+    width: 120px;
+}
+#mid-right {
+    color: gray;
+}
+.bottom {
+    border-bottom: 1px solid darkgray;
+    padding-left: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 15px;
+    height: 30px;
+}
+#btn {
+    float: left;
+}
+.quantity {
+    width: 230px;
+}
+.sum {
+    POSITION: relative;
+    bottom: 3px;
+    width: 230px;
+    text-align: right;
+}
+#total_title{
+    POSITION: relative;
+    bottom: 3px;
+}
+.sum #total {
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
+}
+.item-button {
+    padding-top: 5.5%;
+    text-align: center;
+}
+.item-button button{
+    background-color: #265394;;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: 250px;
+    height: 60px;
+    border: none;
+    margin: 0 auto;
+}
+.quantity input {
+    width: 30px;
+    border: none;
+}
+.quantity button {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid darkgray;
+}

@@ -1,0 +1,251 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,.glyphicon ,glyphicon-search {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    
+}
+ol, ul {
+	list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+/* HTML5 display-role reset for older browsers */
+
+/* GNB logo 영역*/
+.wrapping{
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: center;
+} /*랩핑 : 중간정렬 / 최대폭 1200px / 가운데정렬 */
+.gnb{
+    height: 160px;
+    background-color:#ffffff;
+    border-bottom: 1px solid #ebebeb;
+    box-sizing: content-box;
+} /*gnb : 영역 160px / 백그라운드 컬러 흰색 / 밑줄 1px 컬러지정 / 영역맞춰서 테두리적용 */
+.gnblogo {
+    padding-top: 37px;
+    /* position: relative;  일단보류 */
+} /*gnblogo : 패딩탑 37px  */
+.gnblogo ul{
+    position: absolute;
+    top: 40px;
+    right: 19%;
+} /*gnblogo ul : 절대영역지정 / top에서 40px이동 / 오른쪽에 붙이기 */
+.gnblogo ul li{
+    display: inline-block;
+} /*gnblogo ul li : 줄바꿈 없애기 */
+
+.gnblogo > ul > li > img{
+    cursor: pointer;
+} 
+/* GNB logo 영역끝*/
+
+/* GNB 메뉴영역*/
+.menu > ul li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    letter-spacing : -2px;
+    position: relative;
+    top: 38.5px; 
+    cursor: pointer;
+}/* 가로나열 / 폰트사이즈조절 / 볼드 / 폰트 / 글씨간격 / 위치조절 */
+.menu > ul li:nth-child(3) img {
+    position: relative;
+    bottom: 5px; 
+} /* 이미지 위치 맞추기 */
+.menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
+    margin-right: 90px;
+} /* 간격 맞추기 */
+.menu > ul li:nth-child(3) {
+    margin: 0 63px;
+} /* 간격 맞추기 */
+
+/* GNB 메뉴영역끝*/
+
+/* content 영역*/
+.content{
+    height: 810px;
+    background-color: #f8f8f8;
+} /* 콘텐츠영역 810px / 백그라운드 배경색 지정 */
+.content > .wrapping{
+    background-color: #f8f8f8;
+} /*  랩핑영역 배경색 지정 */
+.search-box input:focus::-webkit-input-placeholder {
+    color:transparent;
+} /* 텍스트박스 클릭하면 텍스트 사라짐  */
+.search-box > form > input{
+    position: relative;
+    top:50px;
+    height: 73px;
+    width: 800px;
+    left: 20px;
+    border-radius: 15px;
+    border: 0;
+    outline:0px;
+    box-shadow: 3px 3px 3px 3px #f2f2f2;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 20px;
+} /* 검색창 포지션변경, 창크기변경, 둥글게15px, 기본바깥선없애기 / 클릭했을때 바깥선없애기
+     / 그림자 / 작성폰트사이즈 ,굵기  */
+.search-box .glyphicon.glyphicon-search {
+    position: relative;
+    font-size: 30px;
+    top: 60px;
+    right: 55px;
+    cursor: pointer;
+} /* 돋보기 아이콘 크키 / 위치조정 */
+.category ul li{
+    display: inline-block;
+    position: relative;
+    top:130px;
+    font-size: 20px;
+    padding: 0 15px;
+    cursor: pointer;
+    color: #c7c7c7;
+} /* 랭크 li 가로정렬, 위치조정 / 폰트사이즈 / 패딩 좌우 15 */
+.category > span {
+    text-decoration:none;
+    cursor: pointer;
+}
+.category_off:hover{
+    text-decoration:none;
+    color: #3c3c3c;
+    font-weight: 400;
+} /* a태그 링크지우기 / 폰트색상변경 */
+.category_on{
+    color: black;
+    font-weight: bold;
+    font-size: 23px;
+    border-bottom: 0.5px solid #d84d4d;
+    padding: 2px;
+}
+#more_view{
+    position: relative;
+    top: 95px;
+    left: 505px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #3c3c3c;
+    cursor: pointer;
+}
+.movie-list ul li{
+    display: inline-block;
+    position: relative;
+    top: 165px;
+} /* 포스터 가로정렬, 위치조정 */
+
+.movie-list ul li img{
+    height: 418px; 
+    width: 287px; 
+    border-radius: 15px;
+    margin-right: 10px;
+} /* 이미지크기조절 / 테두리둥글게 / 마진오른쪽 10 */
+.main_hover_con{
+    position: absolute;
+    bottom: 88px;
+    margin-right: 10px;
+    color: white;
+    padding-top: 238px;
+    text-align: left;
+    z-index: 1;
+    width: 288px;
+} /* 이미지크기조절 / 테두리둥글게 / 마진오른쪽 10 */
+.main_hover_con > .hover_back{
+    position: absolute;
+    top: 2px;
+    z-index: -1;
+    background-color: black;
+    filter: opacity(0.6);
+    height: 418px;
+    width: 287px;
+    border-radius: 15px;
+}
+.hover_txt{
+    display: block;
+    margin-left: 20px;
+}
+
+
+.main_hover_btn{
+    float: left;
+    width: 200px;
+    height: 60px;
+    border-bottom-left-radius: 14px;
+    background-color: #d92121;
+    line-height: 60px;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+.main_hover_like, .main_hover_like_on{
+    float: left;
+    width: 87px;
+    height: 60px;
+    border-bottom-right-radius: 14px;
+    background-color: #3d4356;
+    line-height: 60px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+.movie-list ul li:last-child {
+    margin-right: 0px;
+} /* 끝 포스터 오른쪽마진 0 */
+/* content 영역끝*/
+
+
+/*푸터 영역*/
+.footer{
+    height: 150px;
+    background-color: #191919;
+} /* 푸터영역 150 / 색상지정 */
+.footer > .wrapping{
+    background-color: #191919;
+} /* 푸터랩핑 생상지정 */
+.footercontent{
+    position: relative;
+    top: 50px;
+    right: 40%;
+} /* 푸터 로고 위치조정 */
+.footer > .wrapping > p{
+    position: relative;
+    left: 20%;
+    margin:0;
+    color: #9c9c9c;
+    text-align: left;
+} /* 푸터 텍스트 위치조정 */
+
+
+
+
+
+
+
+
+
+
+
+
+
