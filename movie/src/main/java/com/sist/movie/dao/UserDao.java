@@ -21,4 +21,9 @@ public class UserDao extends SqlSessionDaoSupport {
 		this.getSqlSession().insert("insertUser", vo);
 	}
 	
+	public String idCheck(String id) {
+		String imsi = this.getSqlSession().selectOne(id);
+		return imsi;
+	}
+	
 }

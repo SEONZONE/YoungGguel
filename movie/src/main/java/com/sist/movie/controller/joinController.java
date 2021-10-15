@@ -20,4 +20,11 @@ public class joinController {
 		return "view/jsp/main";
 	}
 	
+	@RequestMapping(value="idCheck.do")
+	public int idCheck(String id) {
+		System.out.println(id);
+		return 0;
+	}
+	
+	
 }
