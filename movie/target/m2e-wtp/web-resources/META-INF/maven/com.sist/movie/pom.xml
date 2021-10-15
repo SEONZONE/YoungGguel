@@ -27,6 +27,12 @@
       <version>0.2.7</version>
     </dependency> 
 
+   <!-- javax.annotations 종속성 -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
    
    
    
