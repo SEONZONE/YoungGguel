@@ -22,6 +22,7 @@ public class loginRestController {
 		boolean state = dao.loginBoard(id, pw);
 		if(state) { 
 			session.setAttribute("id", id);
+			session.setAttribute("password",pw);
 			session.setMaxInactiveInterval(600);
 			return "Success";
 		}

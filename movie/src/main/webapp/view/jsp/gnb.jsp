@@ -156,6 +156,7 @@
 						<!-- <input type="button" class="login_button" name="LOGIN" value="LOGIN" id="LOGIN"> -->
 						<input type="button" class="login_button" name="LOGIN" value="LOGIN" id="LOGIN">
 						<br><span id="check"></span>
+					
 					</div>
 				</form>
 				<div class="midcon">
