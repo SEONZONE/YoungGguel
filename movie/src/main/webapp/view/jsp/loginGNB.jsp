@@ -36,7 +36,7 @@
                     </a>
                     <ul>
                         <li><img src="/movie/view/img/usericon.png"></li>
-                        <li><span>qkrdnjsdn77</span></li>
+                        <li><span>${id } 님</span></li>
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"></li>
                     </ul>
                 </div>

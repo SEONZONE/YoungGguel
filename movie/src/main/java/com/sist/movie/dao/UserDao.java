@@ -26,4 +26,8 @@ public class UserDao extends SqlSessionDaoSupport {
       return p;
    }
    
+   public boolean loginBoard(String id, String password) {
+		String dbPass = this.getSqlSession().selectOne("loginBoard", id);
+		return dbPass != null && dbPass.equals(password);
+	}
 }

@@ -72,7 +72,7 @@
             </div>
             <!-- 상단 현재시각끝 -->
             <!-- 예약시작 -->
-            <div class="booking_selecter hidden">
+            <div class="booking_selecter ">
                 <!-- 예약날짜 -->
                 <div class="booking_date">
                     <div class="middle_field">

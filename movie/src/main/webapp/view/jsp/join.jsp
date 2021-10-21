@@ -12,7 +12,7 @@
 <script type="text/javascript">
   $(function(){
      /*인풋 한글제한*/
-     $( 'input' ).on("blur keyup", function() {
+     $( 'input[name = USER_ID]' ).on("blur keyup", function() {
          $(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ));
       });
      

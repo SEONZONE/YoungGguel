@@ -82,4 +82,21 @@ ol, ul {
     margin: 0 63px;
 } /* 간격 맞추기 */
 
+/* 모달 기능  */
+#my_modal {
+	display: none;
+	width: 392px;
+	height: 633px;
+	padding: 20px 60px;
+	background-color: #fefefe;
+	border: 1px solid #888;
+	border-radius: 3px;
+}
+
+#my_modal .modal_close_btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
 /* GNB 메뉴영역끝*/
