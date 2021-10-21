@@ -10,20 +10,24 @@ import com.sist.movie.vo.UserVo;
 
 @Repository
 public class UserDao extends SqlSessionDaoSupport {
-	
-	@Resource(name="sqlSessionTemplate")
-	protected void initDao(SqlSessionTemplate st) throws Exception {
-		// TODO Auto-generated method stub
-		this.setSqlSessionTemplate(st);
+   
+   @Resource(name="sqlSessionTemplate")
+   protected void initDao(SqlSessionTemplate st) throws Exception {
+      // TODO Auto-generated method stub
+      this.setSqlSessionTemplate(st);
+   }
+   
+   public void insertUser(UserVo vo) {
+      this.getSqlSession().insert("insertUser", vo);
+   }
+   
+   public int idCheck(String id) {
+      int p = this.getSqlSession().selectOne("idCheck", id);
+      return p;
+   }
+   
+   public boolean loginBoard(String id, String password) {
+		String dbPass = this.getSqlSession().selectOne("loginBoard", id);
+		return dbPass != null && dbPass.equals(password);
 	}
-	
-	public void insertUser(UserVo vo) {
-		this.getSqlSession().insert("insertUser", vo);
-	}
-	
-	public String idCheck(String id) {
-		String imsi = this.getSqlSession().selectOne(id);
-		return imsi;
-	}
-	
 }

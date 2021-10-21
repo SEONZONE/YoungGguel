@@ -6,8 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- 성종테스트 -->
-	<!-- 원우테스트트트트 -->
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>영끌</title>
@@ -32,6 +30,7 @@
 </script>
 </head>
 <body>
+
     <!--gnb 시작-->
         <div class="gnb">
             <div class="wrapping">

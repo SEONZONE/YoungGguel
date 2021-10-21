@@ -11,47 +11,91 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(function(){
-	  $("button#next2").click(function(){
-			<!-- 휴대폰 인증 구현하면 바꿔야될부분 -->
-			$("div.join1").addClass("hidden");
-			$("div.join2").removeClass("hidden");
-			$("input[name=USER_NAME]").val("김영끌");
-			$("input[name=USER_TEL]").val("01012345678");
-			$("input[name=USER_BIRTH]").val("20210101");
-			$('input[id=man]').attr("checked",true);
-			<!-- 휴대폰 인증 구현하면 바꿔야될부분 -->
-		});
-		$("button#next3").click(function(){
-			if($('input[name=check]').is(":checked") == false ){
-				alert("약관에 동의해라");
-			}else{
-				$("div.join2").addClass("hidden");
-				$("div.join3").removeClass("hidden");
-			}
-		});
-		$("span#id_overlap").click(function(){
-			function idChk(){
-				$.ajax({
-					url:"/movie/idCheck.do",
-					type:"post",
-					dataType:"text",
-					data : $("input[name=USER_ID]").val(),
-					success : function(imsi){
-						alert("good");
-					}
-				})
-			}
-		});
-		$("button#next4").click(function(){
-			
-			
-			
-			/* $("div.join3").addClass("hidden");
-			$("div.join4").removeClass("hidden"); */
-		});
-		$("img#close_join").click(function(){
-			location.replace('main.jsp');
-		});
+     /*인풋 한글제한*/
+     $( 'input[name = USER_ID]' ).on("blur keyup", function() {
+         $(this).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ));
+      });
+     
+     /* 휴대폰 인증 구현하면 바꿔야될부분 */
+     $("button#next2").click(function(){
+         $("div.join1").addClass("hidden");
+         $("div.join2").removeClass("hidden");
+         $("input[name=USER_NAME]").val("김영끌");
+         $("input[name=USER_TEL]").val("01012345678");
+         $("input[name=USER_BIRTH]").val("20210101");
+         $('input[id=man]').attr("checked",true);
+      });
+        
+        /* 약관동의 체크 */
+        var yakguan = 0;
+      $("button#next3").click(function(){
+         if($('input[name=check]').is(":checked") == false ){
+            alert("약관에 동의해라");
+         }else{
+            yakguan = 1;
+            $("div.join2").addClass("hidden");
+            $("div.join3").removeClass("hidden");
+         }
+      });
+        
+      /* 아이디 체크 */
+      var checkid = 0;
+      var saveid;
+      $("span#id_overlap").click(function(){
+         var userid = $("input[name=USER_ID]").val();
+            $.ajax({
+               url:"/movie/idCheck.do",
+               type:"post",
+               dataType:"json",
+               data : {id:userid},
+               success : function(count){
+                  if(count > 0){
+                     $("span#idcheck_txt").removeClass("pass");
+                     $("span#idcheck_txt").addClass("fail");
+                     document.getElementById("idcheck_txt").innerText="사용 불가능한 아이디입니다";
+                     checkid = 0;
+                  }else{
+                     $("span#idcheck_txt").removeClass("fail");
+                     $("span#idcheck_txt").addClass("pass");
+                     document.getElementById("idcheck_txt").innerText="사용이 가능한 아이디입니다";
+                     saveid = $("input[name=USER_ID]").val();
+                     checkid = 1;
+                  }
+               }
+            });
+      });
+      
+      /* 비밀번호 맞는지 체크 */
+      var checkpw = 0
+      $("input[name=check_pw]").on("change keyup paste",function() {
+         if($("input[name=USER_PW]").val()==$("input[name=check_pw]").val()){
+            $("span#passcheck_txt").removeClass("fail");
+            $("span#passcheck_txt").addClass("pass");
+            document.getElementById("passcheck_txt").innerText="비밀번호가 맞습니다";
+            checkpw = 1;
+         }else{
+            $("span#passcheck_txt").removeClass("pass");
+            $("span#passcheck_txt").addClass("fail");
+            document.getElementById("passcheck_txt").innerText="비밀번호가 틀립니다";
+            checkpw = 0;
+         }
+      });
+      /* 이메일 형식체크 */
+      
+      
+      
+      
+      
+      $("button#next4").click(function(){
+         
+         
+         
+         /* $("div.join3").addClass("hidden");
+         $("div.join4").removeClass("hidden"); */
+      });
+      $("img#close_join").click(function(){
+         location.replace('main.jsp');
+      });
   });
 </script>
 </head>
@@ -124,8 +168,7 @@
                     <div class="midcon">
                         <div class="mid_top">영끌에 오신것을 환영합니다.</div>
                         <div class="mid_top">회원정보를 입력해주세요.</div><br>
-                        <form action="" method="post">
-                        <!-- /movie/join.do -->
+                        <form action="/movie/join.do" method="post">
                             <ul class="info_list">
                                 <li><div>성명</div><input type="text" name="USER_NAME" ></li>
                                 <li>
@@ -135,10 +178,11 @@
                                 </li>
                                 <li><div>생년월일</div><input type="text" name="USER_BIRTH"></li>
                                 <li><div>휴대폰번호</div><input type="text" name="USER_TEL"></li>
-                                <li><div>아이디</div><input type="text" id="id" name="USER_ID"><span id="id_overlap">중복확인</span></li>
-                                <div style="display: block;">사용 가능한 아이디입니다</div>
+                                <li><div>아이디</div><input type="text" id="id" name="USER_ID" placeholder="영문,숫자조합 최대  16글자" maxlength="16"><span id="id_overlap">중복확인</span></li>
+                                <span id="idcheck_txt" style="position: relative; right: 225px;"></span>
                                 <li><div>비밀번호</div><input type="password" name="USER_PW"></li>
-                                <li><div>비밀번호 확인</div><input type="password"></li>
+                                <li><div>비밀번호 확인</div><input type="password" name="check_pw"></li>
+                                <span id="passcheck_txt" style="position: relative; right: 275px;"></span>
                                 <li><div>이메일주소</div><input type="text" name="USER_EMAIL"></li>
                             </ul>
                             <button id="next4">가입하기</button>
@@ -160,7 +204,7 @@
                     <a><img src="/movie/view/img/join_fin.png"></a>
                     <b><br>영끌 가입을 환영합니다!<br></b>
                     <span>영끌의 다양한 컨텐츠 서비스를 즐겨보세요!<br></span>
-                    <button>홈페이지로 돌아가기</button>
+                    <button id="close_join">홈페이지로 돌아가기</button>
                 </div>        
             </div>
         </div>
