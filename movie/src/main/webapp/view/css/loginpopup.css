@@ -1,81 +1,107 @@
-body{
-    margin: 0;
+body {
+	margin: 0;
 }
-.login_Pop_Wrapping{
-    width: 670px;
-    height: 620px;
-    background-color: #ffffff;
+
+.login_Pop_Wrapping {
+	width: 670px;
+	height: 620px;
+	background-color: #ffffff;
 }
-.contents{
-    text-align: center;
+
+.contents {
+	text-align: center;
 }
-.topcon{
-    margin-top: 36px;
+
+.topcon {
+	margin-top: 36px;
 }
-.topcon > span{
-    color: #d92121;
-    font-size: 34px;
-    font-weight: bold;
-    letter-spacing : -2px;
+
+.topcon>span {
+	color: #d92121;
+	font-size: 34px;
+	font-weight: bold;
+	letter-spacing: -2px;
 }
-.topcon > img{
-    position: absolute;
-    right: 35px;
-    top: 40px;
+
+.topcon>img {
+	position: absolute;
+	right: 35px;
+	top: 40px;
 }
-.boxposition{
-    margin-top: 50px;
+
+.boxposition {
+	margin-top: 50px;
 }
-.inputbox{
-    background-color: #f8f8f8;
-    border: #f0f0f0 5px;
-    width: 400px;
-    height: 50px;
-    padding: 0;
-    margin: 4px;
-    border-radius: 5px;
-    outline: none;
-    font-size: 17px;
+
+.inputbox {
+	background-color: #f8f8f8;
+	border: #f0f0f0 5px;
+	width: 400px;
+	height: 50px;
+	padding: 0;
+	margin: 4px;
+	border-radius: 5px;
+	outline: none;
+	font-size: 17px;
 }
+
 input:focus::-webkit-input-placeholder {
-    color:transparent;
+	color: transparent;
 }
-input::placeholder{
-    color:#c4c4c4;
-    font-size: 17px;
-    padding-left: 20px;
+
+input::placeholder {
+	color: #c4c4c4;
+	font-size: 17px;
+	padding-left: 20px;
 }
-.login_button{
-    width: 400px;
-    height: 50px;
-    border: 0;
-    background-color: #d92121;
-    padding: 0;
-    margin: 40px 0px 25px 0px;
-    color: white;
-    font-size: 15px;
-    border-radius: 5px;
+
+.login_button {
+	width: 400px;
+	height: 50px;
+	border: 0;
+	background-color: #d92121;
+	padding: 0;
+	margin: 40px 0px 25px 0px;
+	color: white;
+	font-size: 15px;
+	border-radius: 5px;
+	cursor: pointer;
 }
-.midcon > img{
-    margin: 0px 40px;
+
+.midcon>img {
+	margin: 0px 40px;
 }
-.midcon > span:last-child{
-    margin-left: 75px;
+
+.midcon>span:last-child {
+	margin-left: 75px;
 }
-.footcon{
-    width: 400px;
-    height: 110px;
-    background-color: #f9f9f9;
-    margin:30px auto;
-    font-size: 15px;
-    letter-spacing : -1px;
+
+.footcon {
+	width: 400px;
+	height: 110px;
+	background-color: #f9f9f9;
+	margin: 30px auto;
+	font-size: 15px;
+	letter-spacing: -1px;
 }
-.findidpw{
-    padding-top: 26px;
-    padding-bottom: 5px;
-    color: #696969;
+
+.findidpw {
+	padding-top: 26px;
+	padding-bottom: 5px;
+	color: #696969;
 }
-.joinuscon > img{
-    position: relative;
-    top: 10px;
+
+.joinuscon>img {
+	position: relative;
+	top: 10px;
+}
+
+#modal {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	display: none;
 }
