@@ -34,36 +34,36 @@ ol, ul {
 }
 /* HTML5 display-role reset for older browsers */
 
-/* GNB logo ¿µ¿ª*/
+/* GNB logo ì˜ì—­*/
 .wrapping{
     margin: 0 auto;
     max-width: 1200px;
     text-align: center;
-} /*·¦ÇÎ : Áß°£Á¤·Ä / ÃÖ´ëÆø 1200px / °¡¿îµ¥Á¤·Ä */
+} /*ë©í•‘ : ì¤‘ê°„ì •ë ¬ / ìµœëŒ€í­ 1200px / ê°€ìš´ë°ì •ë ¬ */
 .gnb{
     height: 160px;
     background-color:#ffffff;
     border-bottom: 1px solid #ebebeb;
     box-sizing: content-box;
-} /*gnb : ¿µ¿ª 160px / ¹é±×¶ó¿îµå ÄÃ·¯ Èò»ö / ¹ØÁÙ 1px ÄÃ·¯ÁöÁ¤ / ¿µ¿ª¸ÂÃç¼­ Å×µÎ¸®Àû¿ë */
+} /*gnb : ì˜ì—­ 160px / ë°±ê·¸ë¼ìš´ë“œ ì»¬ëŸ¬ í°ìƒ‰ / ë°‘ì¤„ 1px ì»¬ëŸ¬ì§€ì • / ì˜ì—­ë§ì¶°ì„œ í…Œë‘ë¦¬ì ìš© */
 .gnblogo {
     padding-top: 37px;
-    /* position: relative;  ÀÏ´Üº¸·ù */
-} /*gnblogo : ÆĞµùÅ¾ 37px  */
+    /* position: relative;  ì¼ë‹¨ë³´ë¥˜ */
+} /*gnblogo : íŒ¨ë”©íƒ‘ 37px  */
 .gnblogo ul{
     position: absolute;
     top: 40px;
     right: 19%;
-} /*gnblogo ul : Àı´ë¿µ¿ªÁöÁ¤ / top¿¡¼­ 40pxÀÌµ¿ / ¿À¸¥ÂÊ¿¡ ºÙÀÌ±â */
+} /*gnblogo ul : ì ˆëŒ€ì˜ì—­ì§€ì • / topì—ì„œ 40pxì´ë™ / ì˜¤ë¥¸ìª½ì— ë¶™ì´ê¸° */
 .gnblogo ul li{
     display: inline-block;
-} /*gnblogo ul li : ÁÙ¹Ù²Ş ¾ø¾Ö±â */
+} /*gnblogo ul li : ì¤„ë°”ê¿ˆ ì—†ì• ê¸° */
 .gnblogo > ul > li > img{
     cursor: pointer;
 } 
-/* GNB logo ¿µ¿ª³¡*/
+/* GNB logo ì˜ì—­ë*/
 
-/* GNB ¸Ş´º¿µ¿ª*/
+/* GNB ë©”ë‰´ì˜ì—­*/
 .menu > ul li {
     display: inline-block;
     font-size: 20px;
@@ -73,19 +73,19 @@ ol, ul {
     position: relative;
     top: 20.5px; 
     cursor: pointer;
-}/* °¡·Î³ª¿­ / ÆùÆ®»çÀÌÁîÁ¶Àı / º¼µå / ÆùÆ® / ±Û¾¾°£°İ / À§Ä¡Á¶Àı */
+}/* ê°€ë¡œë‚˜ì—´ / í°íŠ¸ì‚¬ì´ì¦ˆì¡°ì ˆ / ë³¼ë“œ / í°íŠ¸ / ê¸€ì”¨ê°„ê²© / ìœ„ì¹˜ì¡°ì ˆ */
 .menu > ul li:nth-child(3) img {
     position: relative;
     bottom: -9px; 
-} /* ÀÌ¹ÌÁö À§Ä¡ ¸ÂÃß±â */
+} /* ì´ë¯¸ì§€ ìœ„ì¹˜ ë§ì¶”ê¸° */
 .menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
     margin-right: 90px;
-} /* °£°İ ¸ÂÃß±â */
+} /* ê°„ê²© ë§ì¶”ê¸° */
 .menu > ul li:nth-child(3) {
     margin: 0 63px;
-} /* °£°İ ¸ÂÃß±â */
+} /* ê°„ê²© ë§ì¶”ê¸° */
 
-/* ¸ğ´Ş ±â´É  */
+/* ëª¨ë‹¬ ê¸°ëŠ¥  */
 #my_modal {
 	display: none;
 	width: 392px;
@@ -102,10 +102,11 @@ ol, ul {
 	right: 10px;
 }
 
+
 #info_user{
 	
 	position: relative;
 	bottom : 10px;
 }
 
-/* GNB ¸Ş´º¿µ¿ª³¡*/
+/* GNB ë©”ë‰´ì˜ì—­ë*/

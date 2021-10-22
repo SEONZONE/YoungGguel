@@ -8,6 +8,9 @@
 <link rel='stylesheet' href='/movie/view/css/loginpopup.css'>
 <!--로그인 레이어팝업 CSS-->
 
+<link rel='stylesheet' href='/movie/view/css/joinpopup.css'>
+<!--로그인 레이어팝업 CSS-->
+
 <!--   <script src="../js/main.js"></script> 메인 스크립트 -->
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -18,7 +21,6 @@
 
 
 <script type="text/javascript">
-
 
 	
 	/* 로그인 팝업 function */
@@ -54,7 +56,7 @@
 				.find('.modal_close_btn').on('click', function() {
 					bg.remove();
 					modal.hide();
-					
+
 				});
 	}
 
@@ -90,6 +92,7 @@
 												$("input#password").val('');
 
 											} else {
+
 												//document.location.href = '/movie/view/jsp/loginGNB.jsp';
 												$("img#popup_open_btn").addClass("hidden");
 												$("img#joinImg").addClass("hidden");
@@ -104,6 +107,9 @@
 												});
 												
 												
+
+												document.location.href = '/movie/view/jsp/loginGNB.jsp';
+
 											}
 										},
 										error : function(e) {
@@ -119,6 +125,7 @@
 		$("#close_pop").click(function(flag) {
 			$('#boxposition').hide();
 		});
+
 		
 		/* gnb_area 로그아웃 버튼 작동 */
 	    $("#gnb_logout_button").click(function(){
@@ -130,6 +137,9 @@
 	});
 	
 	
+
+	});
+
 </script>
 
 
@@ -144,6 +154,7 @@
 				</a>
 				<ul>
 
+
 					<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
 					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>
 				
@@ -152,6 +163,10 @@
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"class=" hidden" id="logoutBtn"></li>
 
 					
+
+					<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn"></li>
+					<li><a href="../html/join.html"><img src="/movie/view/img/joinbutton.png"></a></li>
+
 				</ul>
 			</div>
 			<div class="menu">
