@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
@@ -12,8 +11,6 @@
     
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='/movie/view/css/main.css'> <!--메인 CSS-->
-    <link rel='stylesheet' href='/movie/view/css/loginpopup.css'> <!--로그인 레이어팝업 CSS-->
-    <link rel='stylesheet' href='/movie/view/css/joinpopup.css'> <!--로그인 레이어팝업 CSS-->
 
     <!-- icon -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -25,12 +22,13 @@
 <script type="text/javascript">
 
   $(function(){
-     
+     $("div.movie-list").mouseover(function(){
+		
+	});
   });
 </script>
 </head>
 <body>
-
     <!--gnb 시작-->
         <div class="gnb">
             <div class="wrapping">
@@ -77,19 +75,19 @@
                 </div>
                 <span id="more_view">MORE VIEW&nbsp;&nbsp;&nbsp;></span>
                 <div class="movie-list">
-                    <ul>
+                    <ul class="">
                         <li><a><img src="/movie/view/img/pos1.png"></a></li>
                         <li><a><img src="/movie/view/img/pos2.png"></a></li>
                         <li><a><img src="/movie/view/img/pos3.png"></a></li>
                         <li><a><img src="/movie/view/img/pos4.png"></a></li>
                     </ul>           
-                    <ul style="display: none;">
+                    <ul class="hidden">
                         <li><a><img src="/movie/view/img/pos1.png"></a></li>
                         <li><a><img src="/movie/view/img/pos2.png"></a></li>
                         <li><a><img src="/movie/view/img/pos3.png"></a></li>
                         <li><a><img src="/movie/view/img/pos4.png"></a></li>
                     </ul>           
-                    <ul style="display: none;">
+                    <ul class="hidden">
                         <li><a><img src="/movie/view/img/pos1.png"></a></li>
                         <li><a><img src="/movie/view/img/pos2.png"></a></li>
                         <li><a><img src="/movie/view/img/pos3.png"></a></li>
@@ -97,15 +95,135 @@
                     </ul>
                 </div>
                 <!-- 호버 컨텐츠 -->
-                <div class="main_hover_con">
-                    <div class="hover_back"></div>
-                    <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
-                    <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
-                    <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
-                    <div class="main_hover_btn">예매하기</div>
-                    <div class="main_hover_like">🤍</div>
-                    <div class="main_hover_like_on hidden">🧡</div>
-                </div>      
+                <div class="movie-list">
+                    <ul class="hovercon">
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                    </ul>           
+                    <ul class="hovercon hidden">
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                    </ul>           
+                    <ul class="hovercon hidden">
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                        <div class="main_hover_con">
+                            <div class="hover_back">
+                                <div class="hover_txt" style="font-size: 25px; font-weight: bold;">영화제목</div>
+                                <div class="hover_txt" style="font-size: 17px;">예매율<span>79%</span></div>
+                                <div class="hover_txt" style="font-size: 17px;">장르<span>·</span><span>127분</span></div><br><br>
+                                <div class="main_hover_btn">예매하기</div>
+                                <div class="main_hover_like">🤍</div>
+                                <div class="main_hover_like_on hidden">🧡</div>
+                            </div>
+                        </div>
+                    </ul>           
+                    
+                </div>
                 <!-- 호버 컨텐츠끝 -->
             </div>
         </div>
