@@ -34,11 +34,15 @@
                     <a href="/">
                         <img src="/movie/view/img/logo.png">
                     </a>
+
+                    
+
                     <ul>
                         <li><img src="/movie/view/img/usericon.png"></li>
                         <li><span>${id } 님 </span></li>
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"></li>
                     </ul>
+
                 </div>
                 <div class="menu">
                     <ul>
