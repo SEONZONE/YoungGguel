@@ -22,10 +22,9 @@
 
 <script type="text/javascript">
 
-	
-	/* 로그인 팝업 function */
-	
-	function modal(id) {
+
+
+	function modal(id) {	
 		var zIndex = 9999;
 		var modal = $('#' + id);
 		// 모달 div 뒤  레이어
@@ -59,12 +58,27 @@
 
 				});
 	}
+	
+	
+	/* 시작할때 세션값에 아이디, 비밀번호가 있는지 체크
+	있으면 로그인 되있단 뜻으로, 로그인상태 화면을 보여준다. */
+	$(document).ready(function(){
+		var UUid = sessionStorage.getItem('Uid');
+		var UUpw = sessionStorage.getItem('Upw'); 
+		if(UUid && UUpw != null) { 
+			$("img#popup_open_btn").addClass("hidden");
+			$("img#joinImg").addClass("hidden");		
+			$("img#usericon").removeClass("hidden");
+			$("span#info_user").removeClass("hidden");
+			$("img#logoutBtn").removeClass("hidden");			
+		}
+
+	});
+	
 
 
 	
 	$(function() {
-	
-		
 		/* 아이디 비밀번호 검증 */	
 		$("#LOGIN").click(function(e) {
 							if ($("input#id").val().length == 0
@@ -75,6 +89,7 @@
 								return false;
 							}
 							//$("form").submit();
+							
 							$.ajax({
 										url : '/movie/loginpopup.do',
 										type : 'POST',
@@ -92,28 +107,27 @@
 												$("input#password").val('');
 
 											} else {
-
-												//document.location.href = '/movie/view/jsp/loginGNB.jsp';
+												//세션값에 아이디, 비밀번호를 넣어준다.
+												var Uid = $("input#id").val();
+												var Upw = $("input#password").val();			
+												sessionStorage.setItem('Uid',Uid);
+												sessionStorage.setItem('Upw',Upw);
 												$("img#popup_open_btn").addClass("hidden");
-												$("img#joinImg").addClass("hidden");
-												
+												$("img#joinImg").addClass("hidden");													
 												$("img#usericon").removeClass("hidden");
 												$("span#info_user").removeClass("hidden");
 												$("img#logoutBtn").removeClass("hidden");
-											
+										
+												/* 트리거를 사용하여 로그인팝업 창 닫기 */
 												$(document).ready(function(){
 													$(".modal_close_btn").trigger('click');
-													// 또는 $("#tmpBtn").click();
+													
 												});
-												
-												
-
-												document.location.href = '/movie/view/jsp/loginGNB.jsp';
 
 											}
 										},
 										error : function(e) {
-											alert('에러' + e);
+											alert('로그인 에러' + e);
 										}
 									});
 						});
@@ -128,13 +142,39 @@
 
 		
 		/* gnb_area 로그아웃 버튼 작동 */
-	    $("#gnb_logout_button").click(function(){
-	        alert("버튼 작동");
+	    $("#logoutBtn").click(function(e){
+	    	$.ajax({  
+	    		type: "POST",
+	    		url: '/movie/logout.do',
+	    		dataType : "text",
+	    		success: function(e) { 
+	    			alert("로그아웃 성공");
+	    			
+	    			//로그아웃 된 gnb를 띄워준다.
+	    			$("img#popup_open_btn").removeClass("hidden");
+					$("img#joinImg").removeClass("hidden");
+					$("img#usericon").addClass("hidden");
+					$("span#info_user").addClass("hidden");
+					$("img#logoutBtn").addClass("hidden");
+					
+					//세션값에 저장되어 있던 아이디, 비밀번호를 지워준다.
+					sessionStorage.removeItem("Uid");
+					sessionStorage.removeItem("Upw");
+					document.location.reload();
+	    		},
+
+				error : function(e) {
+					alert('로그아웃 에러' + e);
+				}
+	    	
+	    	});
 	    });
+		
+		
 	  
 
 		
-	});
+	//});
 	
 	
 
@@ -163,9 +203,6 @@
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"class=" hidden" id="logoutBtn"></li>
 
 					
-
-					<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn"></li>
-					<li><a href="../html/join.html"><img src="/movie/view/img/joinbutton.png"></a></li>
 
 				</ul>
 			</div>
