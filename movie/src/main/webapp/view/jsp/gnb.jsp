@@ -22,10 +22,7 @@
 
 <script type="text/javascript">
 
-	
-	/* 로그인 팝업 function */
-	
-	function modal(id) {
+	function modal(id) {	
 		var zIndex = 9999;
 		var modal = $('#' + id);
 		// 모달 div 뒤  레이어
@@ -64,6 +61,8 @@
 	
 	$(function() {
 	
+
+
 		
 		/* 아이디 비밀번호 검증 */	
 		$("#LOGIN").click(function(e) {
@@ -92,7 +91,8 @@
 												$("input#password").val('');
 
 											} else {
-
+												
+												
 												//document.location.href = '/movie/view/jsp/loginGNB.jsp';
 												$("img#popup_open_btn").addClass("hidden");
 												$("img#joinImg").addClass("hidden");
@@ -108,12 +108,12 @@
 												
 												
 
-												document.location.href = '/movie/view/jsp/loginGNB.jsp';
+												
 
 											}
 										},
 										error : function(e) {
-											alert('에러' + e);
+											alert('로그인 에러' + e);
 										}
 									});
 						});
@@ -128,13 +128,36 @@
 
 		
 		/* gnb_area 로그아웃 버튼 작동 */
-	    $("#gnb_logout_button").click(function(){
-	        alert("버튼 작동");
+	    $("#logoutBtn").click(function(e){
+	    	$.ajax({  
+	    		type: "POST",
+	    		url: '/movie/logout.do',
+	    		dataType : "text",
+	    		success: function(e) { 
+	    			alert("로그아웃 성공");
+	    			
+	    			$("img#popup_open_btn").removeClass("hidden");
+					$("img#joinImg").removeClass("hidden");
+					
+					$("img#usericon").addClass("hidden");
+					$("span#info_user").addClass("hidden");
+					$("img#logoutBtn").addClass("hidden");
+					
+					document.location.reload();
+	    		},
+
+				error : function(e) {
+					alert('로그아웃 에러' + e);
+				}
+	    	
+	    	});
 	    });
+		
+		
 	  
 
 		
-	});
+	//});
 	
 	
 
@@ -163,9 +186,6 @@
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"class=" hidden" id="logoutBtn"></li>
 
 					
-
-					<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn"></li>
-					<li><a href="../html/join.html"><img src="/movie/view/img/joinbutton.png"></a></li>
 
 				</ul>
 			</div>
