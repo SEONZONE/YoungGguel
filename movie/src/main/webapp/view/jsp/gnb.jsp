@@ -106,7 +106,30 @@
 												$("input#id").val('');
 												$("input#password").val('');
 
-											} else {
+											} 
+											//어드민 일 때
+											else if(e =='adminSuccess'){
+												alert("어드민 권한입니다.");
+												var Uid = $("input#id").val();
+												var Upw = $("input#password").val();	
+										
+												sessionStorage.setItem('Uid',Uid);
+												sessionStorage.setItem('Upw',Upw);
+												$("img#popup_open_btn").addClass("hidden");
+												$("img#joinImg").addClass("hidden");													
+												$("img#usericon").removeClass("hidden");
+												$("span#info_user").removeClass("hidden");
+												$("img#logoutBtn").removeClass("hidden");
+										
+												/* 트리거를 사용하여 로그인팝업 창 닫기 */
+												$(document).ready(function(){
+													$(".modal_close_btn").trigger('click');
+													
+												});
+												
+											}
+											// 일반 회원일 때
+											else {
 												//세션값에 아이디, 비밀번호를 넣어준다.
 												var Uid = $("input#id").val();
 												var Upw = $("input#password").val();			

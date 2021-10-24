@@ -1,11 +1,8 @@
 package com.sist.movie.controller;
 
-
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,36 +14,50 @@ import com.sist.movie.dao.UserDao;
 
 @RestController
 public class loginRestController {
-	
+
 	@Inject
 	UserDao dao;
-	
-	
+
 	/* 로그인 팝업 메소드 */
-	
+
 	@PostMapping(value = "loginpopup.do")
-	public String ajaxLoginAction(String id, String pw,HttpSession	session) { 
+	public String ajaxLoginAction(String id, String pw, HttpSession session) {
 		boolean state = dao.loginBoard(id, pw);
-		if(state) { 
-			
+		String verify = "1";
+		if (state) {
+
 			session.setAttribute("id", id);
-			session.setAttribute("password",pw);
+			session.setAttribute("password", pw);
 			session.setMaxInactiveInterval(600);
+
+			//어드민 로그인 체크 
+			boolean adminState = dao.adminloginBoard(id, verify);
+			if (adminState) {
+				session.setAttribute("verify", verify);
+				System.out.println("success adminSuccess");
+				return "adminSuccess";
+			}
+
+			else {
+				System.out.println("fail adminSuccess");
+				System.out.println(adminState);
+
+			}
 			return "Success";
 		}
 		return "Fail";
 	}
-	
+
 	/* 로그아웃 팝업 메소드 */
-	
+
 	@PostMapping(value = "logout.do")
 	@ResponseBody // ajax 를 통해서 서베어 요청을 하는 방식으로 작성해야함 
-	public void ajaxLogOutAction(HttpServletRequest request) { 
-	
+	public void ajaxLogOutAction(HttpServletRequest request) {
+
 		System.out.println("비동기 로그아웃 메서드 진입..");
-		HttpSession session  = request.getSession();
+		HttpSession session = request.getSession();
 		session.invalidate();
-		
+
 	}
-	
+
 }
