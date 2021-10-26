@@ -1,5 +1,5 @@
-/* 공통 */
-body{
+/* 怨듯넻 */
+/* body{
     width: 1260px;
     height: 620px;
     margin: 10px;
@@ -8,9 +8,9 @@ body{
 div{
     margin: 0; 
     padding: 0;
-}
-/* 공통 */
-/* 선택되면 불들어오는곳 */
+} */
+/* 怨듯넻 */
+/* �꽑�깮�릺硫� 遺덈뱾�뼱�삤�뒗怨� */
 .select_check{
     width: 700px;
     height: 60px;
@@ -31,9 +31,9 @@ div{
 .hidden{
     display: none;
 }
-/* 선택되면 불들어오는곳 끝 */
+/* �꽑�깮�릺硫� 遺덈뱾�뼱�삤�뒗怨� �걹 */
 
-/* 예약메인세팅 */
+/* �삁�빟硫붿씤�꽭�똿 */
 .booking_main{
     width: 1260px;
     height: 540px;
@@ -42,7 +42,7 @@ div{
     margin: 0 auto;
     margin-top: 20px;
 }
-/* 현재시각 */
+/* �쁽�옱�떆媛� */
 .booking_current_time{
     width: 1260px;
     height: 98px;
@@ -62,8 +62,8 @@ div{
     font-size: 200%;
     letter-spacing: -2px;
 }
-/* 현재시각끝 */
-/* 영역나누기 */
+/* �쁽�옱�떆媛곷걹 */
+/* �쁺�뿭�굹�늻湲� */
 .booking_date{
     float: left;
     width: 194px;
@@ -89,8 +89,8 @@ div{
     left: 60px;
     border-left: #f1f1f1 1px solid  ;
 }
-/* 영역나누기끝 */
-/* 중간영역 세팅 */
+/* �쁺�뿭�굹�늻湲곕걹 */
+/* 以묎컙�쁺�뿭 �꽭�똿 */
 .middle_field{
     overflow:auto;
     width: 85%;
@@ -124,21 +124,21 @@ div{
 .middle_field_2_1 > .selecter_name{
     background-color: white;
 }
-/* 중간영역 세팅끝 */
-/* 중간영역내부 머리말 */
+/* 以묎컙�쁺�뿭 �꽭�똿�걹 */
+/* 以묎컙�쁺�뿭�궡遺� 癒몃━留� */
 .selecter_name{
     font-weight: bold;
     font-size: 20px;
 }
-/* 중간영역내부 머리말끝 */
-/* 중간영역내부 ul속성지정 */
+/* 以묎컙�쁺�뿭�궡遺� 癒몃━留먮걹 */
+/* 以묎컙�쁺�뿭�궡遺� ul�냽�꽦吏��젙 */
 .list > ul{
     margin-top: 5px;
     list-style: none;
     padding: 0;
 }
-/* 중간영역내부 ul속성지정 끝 */
-/* 중간영역내부 버튼 속성지정 */
+/* 以묎컙�쁺�뿭�궡遺� ul�냽�꽦吏��젙 �걹 */
+/* 以묎컙�쁺�뿭�궡遺� 踰꾪듉 �냽�꽦吏��젙 */
 .btn{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -151,7 +151,7 @@ div{
 .btn:hover{
     color: white;
     background-color: #7186a6;
-}/*호버*/
+}/*�샇踰�*/
 .btn_on{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -164,8 +164,8 @@ div{
     text-align: left;
     padding: 0;
 }
-/* 중간영역내부 버튼 속성지정끝 */
-/* 극장선택 버튼속성지정 */
+/* 以묎컙�쁺�뿭�궡遺� 踰꾪듉 �냽�꽦吏��젙�걹 */
+/* 洹뱀옣�꽑�깮 踰꾪듉�냽�꽦吏��젙 */
 .btn_on2{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -178,23 +178,23 @@ div{
     text-align: left;
     padding: 0;
 }
-/* 극장선택 버튼속성지정끝 */
-/* 영화선택 내부 이미지 속성변경 */
+/* 洹뱀옣�꽑�깮 踰꾪듉�냽�꽦吏��젙�걹 */
+/* �쁺�솕�꽑�깮 �궡遺� �씠誘몄� �냽�꽦蹂�寃� */
 .btn > span > img , .btn_on > span >img{
     width: 15px;
     position: relative;
     top: 1px;
 }
-/* 영화선택 내부 이미지 속성변경끝 */
-/* 극장선택 내부 속성변경 */
+/* �쁺�솕�꽑�깮 �궡遺� �씠誘몄� �냽�꽦蹂�寃쎈걹 */
+/* 洹뱀옣�꽑�깮 �궡遺� �냽�꽦蹂�寃� */
 .middle_field_2_2 > .list > .btn{
     width: 80%;
 }
 .middle_field_2_2 > .list > .btn_on{
     width: 80%;
 }
-/* 극장선택 내부 속성변경 */
-/* 시간선택 내부 속성변경 */
+/* 洹뱀옣�꽑�깮 �궡遺� �냽�꽦蹂�寃� */
+/* �떆媛꾩꽑�깮 �궡遺� �냽�꽦蹂�寃� */
 .time{
     font-size: 17px;
     float: left;
@@ -213,8 +213,8 @@ div{
     font-size: 10px;
     color: #a4a4a4;
 }
-/* 시간선택 내부 속성변경 */
-/* 시간선택 버튼 속성변경 */
+/* �떆媛꾩꽑�깮 �궡遺� �냽�꽦蹂�寃� */
+/* �떆媛꾩꽑�깮 踰꾪듉 �냽�꽦蹂�寃� */
 .time_btn{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -229,7 +229,7 @@ div{
 .time_btn:hover{
     color: black;
     background-color: #b9c1cc;
-}/*호버*/
+}/*�샇踰�*/
 .time_btn.on{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -240,8 +240,8 @@ div{
     font-size: 15px;
     padding: 0;
 }
-/* 시간선택 버튼 속성변경끝 */
-/* 부킹 셀렉터 시작 */
+/* �떆媛꾩꽑�깮 踰꾪듉 �냽�꽦蹂�寃쎈걹 */
+/* 遺��궧 ���젆�꽣 �떆�옉 */
 .seat_info{
     font-weight: bold;
     font-size: 20px;
@@ -275,7 +275,7 @@ div{
     margin-left: 40px;
     font-weight: bold;
 }
-/*카운트 버튼 시작*/
+/*移댁슫�듃 踰꾪듉 �떆�옉*/
 .down{
     float: left;
     width: 32px;
@@ -310,7 +310,7 @@ div{
     margin-top: 15px;
     
 }
-/*카운트 버튼 끝*/
+/*移댁슫�듃 踰꾪듉 �걹*/
 .choice_seat{
     width: 500px;
     height: 250px;
@@ -324,7 +324,7 @@ div{
     font-weight: bold;
     margin-bottom: 20px;
 }
-/*좌석 시작*/
+/*醫뚯꽍 �떆�옉*/
 .seat_row{
     width: 25px;
     height: 25px;
@@ -356,8 +356,8 @@ div{
     background-color: #777777;
     font-size: 20px;
 }
-/*좌석 끝*/
-/*쇼박스 시작*/
+/*醫뚯꽍 �걹*/
+/*�눥諛뺤뒪 �떆�옉*/
 .show_box{
     background-color: #282934;
     float: left;
@@ -405,7 +405,24 @@ div{
     line-height: 60px;
     cursor: pointer;
 }
-/*쇼박스 끝*/
+
+/* booking 모달 */
+#my_Bookmodal {
+	display: none;
+	 width: 1260px;
+    height: 620px;
+    margin: 10px;
+    background-color:none;
+	padding: 20px 60px;
+	border-radius: 3px;
+}
+
+#my_Bookmodal .modal_close_btn {
+	position: absolute;
+	top: 32px;
+	right: 64px;
+}
+/*�눥諛뺤뒪 �걹*/
 
 
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,36 +18,50 @@ import com.sist.movie.dao.UserDao;
 
 @RestController
 public class loginRestController {
-	
+
 	@Inject
 	UserDao dao;
-	
-	
-	/* ·Î±×ÀÎ ÆË¾÷ ¸Þ¼Òµå */
-	
+
+	/* ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½ ï¿½Þ¼Òµï¿½ */
+
 	@PostMapping(value = "loginpopup.do")
-	public String ajaxLoginAction(String id, String pw,HttpSession	session) { 
+	public String ajaxLoginAction(String id, String pw, HttpSession session) {
 		boolean state = dao.loginBoard(id, pw);
-		if(state) { 
-			
+		String verify = "1";
+		if (state) {
+
 			session.setAttribute("id", id);
-			session.setAttribute("password",pw);
+			session.setAttribute("password", pw);
 			session.setMaxInactiveInterval(600);
+
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ Ã¼Å© 
+			boolean adminState = dao.adminloginBoard(id, verify);
+			if (adminState) {
+				session.setAttribute("verify", verify);
+				System.out.println("success adminSuccess");
+				return "adminSuccess";
+			}
+
+			else {
+				System.out.println("fail adminSuccess");
+				System.out.println(adminState);
+
+			}
 			return "Success";
 		}
 		return "Fail";
 	}
-	
-	/* ·Î±×¾Æ¿ô ÆË¾÷ ¸Þ¼Òµå */
-	
+
+	/* ï¿½Î±×¾Æ¿ï¿½ ï¿½Ë¾ï¿½ ï¿½Þ¼Òµï¿½ */
+
 	@PostMapping(value = "logout.do")
-	@ResponseBody // ajax ¸¦ ÅëÇØ¼­ ¼­º£¾î ¿äÃ»À» ÇÏ´Â ¹æ½ÄÀ¸·Î ÀÛ¼ºÇØ¾ßÇÔ 
-	public void ajaxLogOutAction(HttpServletRequest request) { 
-	
-		System.out.println("ºñµ¿±â ·Î±×¾Æ¿ô ¸Þ¼­µå ÁøÀÔ..");
-		HttpSession session  = request.getSession();
+	@ResponseBody // ajax ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ 
+	public void ajaxLogOutAction(HttpServletRequest request) {
+
+		System.out.println("ï¿½ñµ¿±ï¿½ ï¿½Î±×¾Æ¿ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..");
+		HttpSession session = request.getSession();
 		session.invalidate();
-		
+
 	}
-	
+
 }
