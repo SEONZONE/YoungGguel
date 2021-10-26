@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel='stylesheet' href='/movie/view/css/gnb.css'>
+<link rel='stylesheet' href='/movie/view/css/booking.css'>
 <!--gnb CSS-->
 <link rel='stylesheet' href='/movie/view/css/loginpopup.css'>
 <!--로그인 레이어팝업 CSS-->
@@ -40,7 +41,7 @@
 		}).appendTo('body');
 		modal.css({
 							position : 'fixed',
-							boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							//boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 
 							// 배경 레이어 보다 한칸 위에 보이기
 							zIndex : zIndex + 1,
@@ -197,10 +198,20 @@
 	  
 
 		
-	//});
+
 	
 	
 
+	});
+	$(function(){
+	/* 예매 모달 */
+	$("img#popup_booking_open_btn").click(function() {
+		modal('my_Bookmodal');
+		});
+	/* 모달창 닫기 */
+	$("#close_pop").click(function(flag) {
+		$('#boxposition').hide();
+	});
 	});
 
 </script>
@@ -233,7 +244,7 @@
 				<ul>
 					<li>영화</li>
 					<li>상영시간표</li>
-					<li onclick="wow()"><img src="/movie/view/img/gnbbutton.png"
+					<li onclick="wow()"><img id="popup_booking_open_btn" src="/movie/view/img/gnbbutton.png"
 						onmouseover="this.src='/movie/view/img/gnbbutton_hover.png'"
 						onmouseout="this.src='/movie/view/img/gnbbutton.png'"></li>
 					<li>스토어</li>
@@ -284,6 +295,224 @@
 	</div>
 
 
+ <!-- 상단 선택되면 불들어오는곳 -->
+ <div id="my_Bookmodal">
+ <div class="select_check">
+                <span class="click">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                    	날짜선택
+                </span>
+                <span class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                    	영화선택
+                </span>
+                <span class="click">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                  	  극장선택
+                </span>
+                <span class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                    	시간선택
+                </span>
+                <span class="click">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                   	 좌석선택
+                </span>
+                <span class="click">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                    결제
+                </span>
+            </div>
+<!-- 상단 선택되면 불들어오는곳 끝 -->
 
+
+<!-- 메인 시작 -->
+        <div class="booking_main">
+            <!-- 상단 현재시각 -->
+            <div class="booking_current_time">
+                <div>현재시각</div>
+                <b>2021.01.01 PM 10:23</b>
+            </div>
+            <!-- 상단 현재시각끝 -->
+            <!-- 예약시작 -->
+            <div class="booking_selecter ">
+            <img src="/movie/view/img/popupx.png" class="modal_close_btn "id="close_pop">
+                <!-- 예약날짜 -->
+                <div class="booking_date">
+                    <div class="middle_field">
+                        <span class="selecter_name">날짜</span>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span>10월&nbsp;</span>
+                                        <span>27일&nbsp;</span>
+                                        <span>수요일</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn_on">
+                                        <span>10월&nbsp;</span>
+                                        <span>27일&nbsp;</span>
+                                        <span>수요일</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span>10월&nbsp;</span>
+                                        <span>27일&nbsp;</span>
+                                        <span>수요일</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 예약날짜끝 -->
+                <!-- 예약영화 -->
+                <div class="booking_movie">
+                    <div class="middle_field">
+                        <span class="selecter_name">영화</span>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span><img src="/movie/view/img/19.png">&nbsp;</span>
+                                        <span>모가디슈</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span><img src="/movie/view/img/15.png">&nbsp;</span>
+                                        <span>모가디슈</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span><img src="/movie/view/img/12.png">&nbsp;</span>
+                                        <span>모가디슈</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span><img src="/movie/view/img/all.png">&nbsp;</span>
+                                        <span>모가디슈</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 예약영화끝 -->
+                <!-- 예약극장 -->
+                <div class="booking_theater">
+                    <div class="middle_field_2_1">
+                        <div class="selecter_name">극장</div>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span>서울(30)&nbsp;</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn_on2">
+                                        <span>경기(10)&nbsp;</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn">
+                                    <span>강원(6)&nbsp;</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn">
+                                    <span>강원(6)&nbsp;</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn">
+                                    <span>강원(6)&nbsp;</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking_theater">
+                    <div class="middle_field_2_2">
+                        <span class="selecter_name">&nbsp;</span>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <button type="button" class="btn">
+                                        <span>강남&nbsp;</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn_on">
+                                        <span>동대문&nbsp;</span>
+                                    </button>
+                                </li>
+                                </li>
+                                    <button type="button" class="btn">
+                                    <span>상암월드컵경기장&nbsp;</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 예약극장끝 -->
+                <!-- 예약시간 -->
+                <div class="booking_time">
+                    <div class="middle_field">
+                        <span class="selecter_name">시간</span>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <button type="button" class="time_btn">
+                                        <span class="time">09:10</span>
+                                        <span class="theater">역삼쌍용용죽겠지점</span>
+                                        <span class="possible_now">10</span>
+                                        <span class="all">/ 150</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="time_btn on">
+                                        <span class="time">09:10</span>
+                                        <span class="theater">강남대로변두리점</span>
+                                        <span class="possible_now">10</span>
+                                        <span class="all">/ 150</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 예약시간끝 -->
+            </div>
+            <!-- 예약 1번끝-->
+            </div>
+            <!-- 모달 끝 -->
+            </div>
 </body>
 </html>
