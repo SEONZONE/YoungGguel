@@ -1,10 +1,16 @@
 package com.sist.movie.controller;
 
+
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +22,7 @@ public class loginRestController {
 	@Inject
 	UserDao dao;
 
-	/* ·Î±×ÀÎ ÆË¾÷ ¸Þ¼Òµå */
+	/* ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½ ï¿½Þ¼Òµï¿½ */
 
 	@PostMapping(value = "loginpopup.do")
 	public String ajaxLoginAction(String id, String pw, HttpSession session) {
@@ -28,7 +34,7 @@ public class loginRestController {
 			session.setAttribute("password", pw);
 			session.setMaxInactiveInterval(600);
 
-			//¾îµå¹Î ·Î±×ÀÎ Ã¼Å© 
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ Ã¼Å© 
 			boolean adminState = dao.adminloginBoard(id, verify);
 			if (adminState) {
 				session.setAttribute("verify", verify);
@@ -46,13 +52,13 @@ public class loginRestController {
 		return "Fail";
 	}
 
-	/* ·Î±×¾Æ¿ô ÆË¾÷ ¸Þ¼Òµå */
+	/* ï¿½Î±×¾Æ¿ï¿½ ï¿½Ë¾ï¿½ ï¿½Þ¼Òµï¿½ */
 
 	@PostMapping(value = "logout.do")
-	@ResponseBody // ajax ¸¦ ÅëÇØ¼­ ¼­º£¾î ¿äÃ»À» ÇÏ´Â ¹æ½ÄÀ¸·Î ÀÛ¼ºÇØ¾ßÇÔ 
+	@ResponseBody // ajax ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ 
 	public void ajaxLogOutAction(HttpServletRequest request) {
 
-		System.out.println("ºñµ¿±â ·Î±×¾Æ¿ô ¸Þ¼­µå ÁøÀÔ..");
+		System.out.println("ï¿½ñµ¿±ï¿½ ï¿½Î±×¾Æ¿ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..");
 		HttpSession session = request.getSession();
 		session.invalidate();
 
