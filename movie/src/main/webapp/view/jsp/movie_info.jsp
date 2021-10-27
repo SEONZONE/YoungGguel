@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="functions" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<jsp:include page="gnb.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,25 +12,68 @@
     <link rel='stylesheet' href='/movie/view/css/movie_info.css'> <!--무비인포 CSS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+/* 	  $(document).ready(function(){
+	      var UUid = sessionStorage.getItem('Uid');
+	      var UUpw = sessionStorage.getItem('Upw'); 
+	      console.log(UUid);
+	   }); */
   $(function(){
-     
+	  
+	  
+	  /* 로그인 세션 확인 */
+	  var UUid = sessionStorage.getItem('Uid');
+      var UUpw = sessionStorage.getItem('Upw'); 
+      console.log(UUid);
+	  
+      /*  뮤비의 리뷰 리스트 */
+	  /* movieReview('/movie/movieReview.do','json'); */
+	  
+	  function movieReview(url,data,dataType){
+	      $.ajax({
+				  url:url,
+	    		  type:'POST',
+	    		  data:data,
+	   			  dataType:dataType,				  
+	   			  success:function(v){
+	   				movieReviewList(v);
+	   			  },
+	   			  error:function(e){
+	   				  alert(e);
+    			  }	    		  
+	   			  });	
+	      }
+
+	   function movieReviewList(v){
+		   var temp="";
+    		$.each(v,function(index,dom){
+    			temp="<div style=\"width: 130px; height: 50px; text-align: center;\">"; 
+    			temp="<span><img src=\"/movie/view/img/usericon.png\"></span><br>";
+    			temp="<span>"+dom.userId+"</span>";
+    			temp="</div>";
+    			temp="<div id=\"review_text\">"+dom.contents+"</div>";
+	    	});	
+    		$(".review_list").html(temp);
+	      }
+	   
+	   /* 코멘트 작성 후 버튼 클릭시 리뷰리스트에 추가 */
+	   $("#review_button").click(function(){
+		   movieReview('${pageContext.request.contextPath}/movieReviewInsert.do',$("form#sendReview").serialize(),'json'); 
+	   });
   });
 </script>
 </head>
 <body>
-    <!--gnb 시작-->
 
-         <jsp:include page="gnb.jsp" ></jsp:include>
-    <!--gnb 끝-->
     <!--content 시작-->
         <div class="content">
             <div class="black_bar">
                 <div class="wrapping">
                     <div id="blur_back_img"  style="background-image: url(/movie/view/img/sp.jpg); "></div>
                     <div id="on_img">
-                        <div id="main_title">보이스</div>
-                        <div id="sub_title">영어제목입니다 또는 부제입니다</div>
-                        <div id="right_poster"><img src="/movie/view/img/pos2.png" style="width: 85%;"></div>
+                        <div id="main_title">${info.movieNm}</div>
+                        <div id="sub_title">${info.movieNmEn}</div>
+                        <div id="right_poster"><img src="/movie/view/img/${info.movieCd}.jpg" style="width: 85%;"></div>
                         <div id="right_button">예매하기</div>
                         <div>
                             <ul>
@@ -50,25 +94,35 @@
             <div class="wrapping">
                 <div class="summary">
                     <div>
-                        /n을 br로 치환해서 ${content} 로 부르면<br>
-                        줄바꿈 줄거리로 만들수있대요<br>
-                        이건 로직을 넣어야할거같아요<br><br>
-                        자바스크립트말고<br>
-                        자바단에서 치환시켜서 던져주면 된다고하네요<br>
-                        리플레이스올 포문돌려서 뭐시기... 네 우리모두 화이팅<br>
+                    ${info.contents}
+                    </div>
+                    <br><br>
+                    <div>
+                    감독:&nbsp;${info.directors}&nbsp;| 장르:&nbsp;${info.genre}&nbsp;| 개봉일:&nbsp;${info.openDt} <br>
+                    출연진:&nbsp;${info.actors}
                     </div>
                 </div>
                 <div class="review">
                     <span>리뷰 모아보기</span>
                     <div class="review_lnput">
+                    <form id="sendReview">
+                    <input class="hidden" value="${info.movieCd}">
                         <div style="width: 130px; height: 50px; text-align: center;"> 
-                            <span><img src="/movie/view/img/usericon.png"></span><br>
-                            <span>로그인된 아이디</span>
+                            <span><img src="/movie/view/img/usericon.png"></span><br>                        
+                            <span> ${UUid} </span>
                         </div>
-                        <input type="text" placeholder="... 별모양은 빼자^^">
+                        <input type="text" placeholder="관람평을 등록해주세요.(200자)">
                         <div id="review_button">관람평 쓰기</div>
+                    </form>
                     </div>
                     <div class="review_list">
+                     <!--    <div style="width: 130px; height: 50px; text-align: center;"> 
+                            <span><img src="/movie/view/img/usericon.png"></span><br>
+                            <span>작성자아이디</span>
+                        </div>
+                    <div id="review_text">글자수 제한 필요합니다</div> -->
+                    </div>
+                   <!--  <div class="review_list">
                         <div style="width: 130px; height: 50px; text-align: center;"> 
                             <span><img src="/movie/view/img/usericon.png"></span><br>
                             <span>작성자아이디</span>
@@ -81,14 +135,7 @@
                             <span>작성자아이디</span>
                         </div>
                         <div id="review_text">글자수 제한 필요합니다</div>
-                    </div>
-                    <div class="review_list">
-                        <div style="width: 130px; height: 50px; text-align: center;"> 
-                            <span><img src="/movie/view/img/usericon.png"></span><br>
-                            <span>작성자아이디</span>
-                        </div>
-                        <div id="review_text">글자수 제한 필요합니다</div>
-                    </div>
+                    </div>  -->
                 </div>
             </div>
         </div>
