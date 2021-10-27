@@ -31,33 +31,33 @@ ol, ul {
 }
 /* HTML5 display-role reset for older browsers */
 
-/* GNB logo 영역*/
+/* GNB logo �쁺�뿭*/
 .wrapping{
     margin: 0 auto;
     max-width: 1200px;
     text-align: center;
-} /*랩핑 : 중간정렬 / 최대폭 1200px / 가운데정렬 */
+} /*�옪�븨 : 以묎컙�젙�젹 / 理쒕��룺 1200px / 媛��슫�뜲�젙�젹 */
 .gnb{
     height: 160px;
     background-color:#ffffff;
     border-bottom: 1px solid #ebebeb;
     box-sizing: content-box;
-} /*gnb : 영역 160px / 백그라운드 컬러 흰색 / 밑줄 1px 컬러지정 / 영역맞춰서 테두리적용 */
+} /*gnb : �쁺�뿭 160px / 諛깃렇�씪�슫�뱶 而щ윭 �씛�깋 / 諛묒쨪 1px 而щ윭吏��젙 / �쁺�뿭留욎떠�꽌 �뀒�몢由ъ쟻�슜 */
 .gnblogo {
     padding-top: 37px;
-    /* position: relative;  일단보류 */
-} /*gnblogo : 패딩탑 37px  */
+    /* position: relative;  �씪�떒蹂대쪟 */
+} /*gnblogo : �뙣�뵫�깙 37px  */
 .gnblogo ul{
     position: absolute;
     top: 40px;
     right: 19%;
-} /*gnblogo ul : 절대영역지정 / top에서 40px이동 / 오른쪽에 붙이기 */
+} /*gnblogo ul : �젅���쁺�뿭吏��젙 / top�뿉�꽌 40px�씠�룞 / �삤瑜몄そ�뿉 遺숈씠湲� */
 .gnblogo ul li{
     display: inline-block;
-} /*gnblogo ul li : 줄바꿈 없애기 */
-/* GNB logo 영역끝*/
+} /*gnblogo ul li : 以꾨컮轅� �뾾�븷湲� */
+/* GNB logo �쁺�뿭�걹*/
 
-/* GNB 메뉴영역*/
+/* GNB 硫붾돱�쁺�뿭*/
 .menu > ul li {
     display: inline-block;
     font-size: 20px;
@@ -66,24 +66,24 @@ ol, ul {
     letter-spacing : -2px;
     position: relative;
     top: 16.5px; 
-}/* 가로나열 / 폰트사이즈조절 / 볼드 / 폰트 / 글씨간격 / 위치조절 */
+}/* 媛�濡쒕굹�뿴 / �룿�듃�궗�씠利덉“�젅 / 蹂쇰뱶 / �룿�듃 / 湲��뵪媛꾧꺽 / �쐞移섏“�젅 */
 .menu > ul li:nth-child(3) img {
     position: relative;
     bottom: -11px; 
-} /* 이미지 위치 맞추기 */
+} /* �씠誘몄� �쐞移� 留욎텛湲� */
 .menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
     margin-right: 90px;
-} /* 간격 맞추기 */
+} /* 媛꾧꺽 留욎텛湲� */
 .menu > ul li:nth-child(3) {
     margin: 0 63px;
-} /* 간격 맞추기 */
+} /* 媛꾧꺽 留욎텛湲� */
 
-/* GNB 메뉴영역끝*/
+/* GNB 硫붾돱�쁺�뿭�걹*/
 
-/* content 영역*/
+/* content �쁺�뿭*/
 .content{
     background-color: white;
-} /* 콘텐츠영역 810px / 백그라운드 배경색 지정 */
+} /* 肄섑뀗痢좎쁺�뿭 810px / 諛깃렇�씪�슫�뱶 諛곌꼍�깋 吏��젙 */
 .content > .black_bar{
     height: 440px;
     background-color: #191919;
@@ -151,7 +151,7 @@ ol, ul {
     font-weight: bold;
 }
 .summary{
-    margin-top: 30px;
+    margin-top: 60px;
     margin-bottom: 30px;
     max-height: 400px;
     font-size: 15px;
@@ -179,7 +179,7 @@ ol, ul {
 }
 .review_lnput input:focus::-webkit-input-placeholder {
     color:transparent;
-} /* 텍스트박스 클릭하면 텍스트 사라짐  */
+} /* �뀓�뒪�듃諛뺤뒪 �겢由��븯硫� �뀓�뒪�듃 �궗�씪吏�  */
 #review_button{
     width: 130px;
     height: 55px;
@@ -211,29 +211,29 @@ ol, ul {
 }
 
 
-/* content 영역끝*/
+/* content �쁺�뿭�걹*/
 
 
-/*푸터 영역*/
+/*�뫖�꽣 �쁺�뿭*/
 .footer{
     height: 150px;
     background-color: #191919;
-} /* 푸터영역 150 / 색상지정 */
+} /* �뫖�꽣�쁺�뿭 150 / �깋�긽吏��젙 */
 .footer > .wrapping{
     background-color: #191919;
-} /* 푸터랩핑 생상지정 */
+} /* �뫖�꽣�옪�븨 �깮�긽吏��젙 */
 .footercontent{
     position: relative;
     top: 50px;
     right: 40%;
-} /* 푸터 로고 위치조정 */
+} /* �뫖�꽣 濡쒓퀬 �쐞移섏“�젙 */
 .footer > .wrapping > p{
     position: relative;
     left: 20%;
     margin:0;
     color: #9c9c9c;
     text-align: left;
-} /* 푸터 텍스트 위치조정 */
+} /* �뫖�꽣 �뀓�뒪�듃 �쐞移섏“�젙 */
 
 
 
