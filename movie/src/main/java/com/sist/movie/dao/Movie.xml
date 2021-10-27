@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sist.com.vo.apple">
+
+	<!-- USER 매퍼 -->
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO
+		USER_INFO(USER_ID,USER_PW,USER_NAME,USER_GENDER,USER_TEL,USER_BIRTH,USER_EMAIL)
+		VALUES(#{USER_ID},#{USER_PW},#{USER_NAME},#{USER_GENDER},#{USER_TEL},#{USER_BIRTH},#{USER_EMAIL})
+	</insert>
+
+	<select id="loginBoard" parameterType="String"
+		resultType="String">
+		SELECT USER_PW FROM USER_INFO WHERE USER_ID=#{VALUE}
+	</select>
+	<select id="adminloginBoard" parameterType="String"
+		resultType="String">
+		SELECT USER_VERIFY FROM USER_INFO WHERE USER_ID=#{VALUE}
+	</select>
+
+<!-- 기본 sql -->
+<sql id="sql">
+ SELECT
+ MOVIECD, MOVIENM, MOVIENMEN, SHOWTM, OPENDT, CONTENTS, PRDTSTATNM, 
+ NATIONS, GENRE, DIRECTORS, ACTORS, WATCHGRADENM, COMPANYS
+ FROM MOVIEINFO
+</sql>
+ 
+<select id="movieList" resultType="movielist">
+    SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIEINFO
+</select>
+
+<select id="currentMovieList" resultType="movielist">
+    SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIEINFO WHERE PRDTSTATNM='개봉'
+</select>
+
+<select id="laterMovieList" resultType="movielist">
+    SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIEINFO WHERE PRDTSTATNM='개봉예정'
+</select>
+
+<select id="selectInfoMovie" parameterType="int" resultType="movielist">
+<include refid="sql"></include>
+	WHERE MOVIECD=#{NO}
+</select>
+
+<select id="searchMovie" parameterType="String" resultType="movielist">
+SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIEINFO
+WHERE MOVIENM LIKE '%'||#{search}||'%'
+</select>
+
+<!-- 메인 현재상영작 -->
+<select id="mainCurrentList" resultType="movielist">
+SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
+FROM(
+SELECT RANK() OVER(ORDER BY OPENDT DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIEINFO <![CDATA[WHERE OPENDT < SYSDATE]]>)
+<![CDATA[WHERE RANK <=4]]>
+
+</select>
+
+<select id="mainPlanning" resultType="java.util.HashMap">
+SELECT MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIEINFO WHERE OPENDT > SYSDATE-20 ORDER BY OPENDT;
+</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
