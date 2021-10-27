@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="functions" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<%@ include file="gnb.jsp"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,145 +14,193 @@
     <title>영끌</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--메인 CSS-->
-    <link rel="stylesheet" href="/movie/view/css/list-poster.css" />
+    <link rel="stylesheet" text="text/css" href="/movie/view/css/movie_list.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-  $(function(){
-     
-  });
+
+
+
+$(function(){	
+	
+    var param = getUrlParams();
+    result = param.view;    	
+    
+	if(result == 'poster'){
+		$("#boxoffice").addClass("active");
+	}else if(result == 'current'){
+		$("#current").addClass("active");		
+	}else{
+		$("#later").addClass("active");				
+	}
+	
+    $(".align-button img").click(function(){
+    	var img =$(this).attr('src'); 	
+    	if(img == '/movie/view/img/list.PNG'){
+        $(".align-button img").attr("src","/movie/view/img/poster.PNG");    	      
+    		if(result == 'poster'){
+     			ajaxList('/movie/ajaxMovieList.do?view=poster','json'); 
+    		}else if(result == 'current'){
+    			ajaxList('/movie/ajaxMovieList.do?view=current','json');    			
+    		}else if(result == 'later'){
+    			ajaxList('/movie/ajaxMovieList.do?view=later','json');    	   	    			
+    		}	
+    	}else{
+    		$(".align-button img").attr("src","/movie/view/img/list.PNG");
+    		if(result == 'poster'){
+     			ajaxPoster('/movie/ajaxMovieList.do?view=poster','json'); 
+    		}else if(result == 'current'){
+    			ajaxPoster('/movie/ajaxMovieList.do?view=current','json');
+    		}else if(result == 'later'){
+    			ajaxPoster('/movie/ajaxMovieList.do?view=later','json');
+    		}
+    	}
+    });
+    
+  }); 
+
+/* URL에서 파라미터값 가져오기 */
+function getUrlParams() {
+	var params = {};
+	window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+	return params;
+}
+
+function select_click(btnSelect){	
+
+	if(btnSelect == 'boxoffice'){
+ 		document.location.href='/movie/movieList.do?view=poster';
+    }else if(btnSelect == 'current'){
+		document.location.href='/movie/movieList.do?view=current';	 
+	}else{
+		document.location.href='/movie/movieList.do?view=later';	 
+	} 
+
+}
+  
+  
+function ajaxPoster(url,data,dataType){
+	   $.ajax({
+			  url:url,
+			  type:'POST',
+			  data:data,
+			  dataType:dataType,				  
+			  success:function(v){
+				 ajaxMovieList2(v)
+			  },
+			  error:function(e){
+				  alert(e);
+			  }
+		  });	
+}
+
+function ajaxMovieList2(v){
+	var temp="";
+	$.each(v,function(index,dom){
+		temp+="<div class=\"movie\">";
+		temp+="<a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\">";
+		temp+="<img src=\"/movie/view/img/"+dom.movieCd+".jpg\" id=\"mposter\" />";
+		temp+="<br>";
+		temp+="<span id=\"title\">"+dom.movieNm+"</span>";
+		temp+="<br>";
+		temp+="<span id=\"release\">개봉일 "+dom.openDt+" |</span>";
+		temp+="<span id=\"runningtime\">"+dom.showTm+"분</span>";
+		temp+="<br>";
+		temp+="<span id=\"ratio\">예매율 30%</span>";
+		temp+="</a>";
+		temp+="<br>";
+		temp+="<br>";
+		temp+="<button>예매하기</button>";
+		temp+=" <span class=\"movie_like\">🤍</span>";
+		/* temp+="<img src=\"/movie/view/img/like.png\" class=\"like\" id=\"like\" onclick=\"like()\" />"; */
+		temp+="</div>";
+	});
+	$(".movie-list").html(temp);
+}
+
+function ajaxList(url,data,dataType){
+	   $.ajax({
+			  url:url,
+			  type:'POST',
+			  data:data,
+			  dataType:dataType,				  
+			  success:function(v){
+				 ajaxMovieList(v)
+			  },
+			  error:function(e){
+				  alert(e);
+			  }
+		  });	
+}
+
+function ajaxMovieList(v){
+	 $(".movie").css("display","none");
+	var temp="";
+	$.each(v,function(index,dom){
+		temp+="<li class=\"movie-list-li\">";
+		temp+="<div class=\"movie-list-info\" id=\"fleft\">";
+		temp+="<img src=\"/movie/view/img/"+dom.movieCd+".jpg\" />";
+		temp+="</div>";
+	    temp+="<div id=\"fleft\">";
+		temp+="<a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\">";
+    	temp+="<div class=\"tit-area\">";
+    	temp+="<span class=\"title\">"+dom.movieNm+" | </span>";
+    	temp+="<span class=\"runningtime\">"+dom.showTm+"분 </span>";
+        temp+="<span class=\"rate\">예매율 60%</span>";
+    	temp+="</div>";
+    	temp+="<div class=\"detail-area\">";
+    	temp+=" <span>개봉 </span><span class=\"release\">"+dom.openDt+"</span>";
+    	temp+=" <p class=\"genre\">"+dom.genre+"</p>";
+    	temp+=" <p class=\"cont\">"+dom.contents+"</p>";
+        temp+="</div>";
+        temp+="</a>";
+        temp+="<div class=\"btn-area\">";
+        temp+="<button class=\"reserve\">예매하기</button>";
+        temp+=" <span class=\"movie_like\">🤍</span>";
+        temp+="</div>";
+        temp+="</div>";
+        temp+="</li>";
+	});
+	$(".movie-list").html(temp);
+}
+
 </script>
   </head>
   <body>
-    <!--gnb 시작-->
-   <jsp:include page="gnb.jsp" ></jsp:include>
-    <!--gnb 끝-->
-    <!--content 시작-->
+  <div class="content">
    <div class="select">
       <div class="list_button" style="height: 60px; margin: auto">
-        <button>박스오피스</button>
-        <button>현재상영작</button>
-        <button>상영예정작</button>
+        <button id="boxoffice" onclick="select_click(this.id)">박스오피스</button>
+        <button id="current" onclick="select_click(this.id)">현재상영작</button>
+        <button id="later" onclick="select_click(this.id)">상영예정작</button>
       </div>
       <div class="align-button">
-        <img src="/movie/view/img/poster.PNG"/>
+        <img src="/movie/view/img/list.PNG"/>
       </div>
-      <div class="movielist">
-        <div class="movie_wrapping">
-          <div class="movies">
+     </div>
+      <div class="inner-wrap">
+        <div class="movie-list">
+           <c:forEach var="i" items="${movieList}" varStatus="cnt">
             <div class="movie">
-              <img src="/movie/view/img/Harry_Potter1.jpg" />
-              <p id="title">HarryPotter1</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">152분</span>
+            <a href="/movie/movieInfo.do?no=${i.movieCd}">
+              <img src="/movie/view/img/${i.movieCd}.jpg" id="mposter"/>
+              <br>
+              <span id="title">${i.movieNm}</span>
+              <br>
+              <span id="release">개봉일 ${i.openDt} |</span>
+              <span id="runningtime">${i.showTm}분</span>
+              <br>
               <span id="ratio">예매율 30%</span>
+              </a>
+              <br>
               <br>
               <button>예매하기</button>
-              <img
-                src="/movie/view/img/like.png"
-                class="like"
-                id="like"
-                onclick="like()"
-              />
+              <span class="movie_like">🤍</span>
+             <!--  <img src="/movie/view/img/like.png" class="like" id="like" onclick="like()" /> -->
             </div>
-            <div class="movie">
-              <img src="/movie/view/img/Harry_Potter2.jpg" />
-              <p id="title">HarryPotter2</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-            <div class="movie">
-              <img src="/movie/view/img/Harry_Potter3.jpg" />
-              <p id="title">HarryPotter3</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-            <div class="movie">
-              <img src="/movie/view/img/Harry_Potter4.jpg" />
-              <p id="title">HarryPotter4</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-          </div>
-          <div class="movies">
-            <div class="movie">
-              <img src="/movie/view/img/Harry_Potter5.jpg" />
-              <p id="title">HarryPotter5</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-            <div class="movie">
-              <img src="/movie/view/img/Harry_Potter6.jpg" />
-              <p id="title">HarryPotter6</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-            <div class="movie">
-              <img src="/movie/view/img/월요일이사라졌다.jpeg" />
-              <p id="title">월요일이 사라졌다</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-            <div class="movie">
-              <img src="/movie/view/img/샹치.jpg" />
-              <p id="title">샹치</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-          </div>
-          <div class="movies">
-            <div class="movie">
-              <img src="/movie/view/img/알라딘.jpg" />
-              <p id="title">알라딘</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-            <div class="movie">
-              <img src="/movie/view/img/1917.png" />
-              <p id="title">1917</p>
-              <span id="release">2006.09.09</span>
-              <span id="runningtime">80분</span>
-              <span id="ratio">예매율 30%</span>
-              <br />
-              <button>예매하기</button>
-              <img src="/movie/view/img/like.png" id="like" />
-            </div>
-          </div>
+           </c:forEach>
+         </div> 
         </div>
       </div>
-    </div>
-
     <!--content 끝-->
     <!--footer 시작-->
     <jsp:include page="footer.jsp" ></jsp:include>
