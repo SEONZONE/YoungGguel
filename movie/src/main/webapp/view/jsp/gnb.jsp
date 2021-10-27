@@ -4,21 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <link rel='stylesheet' href='/movie/view/css/gnb.css'>
-<link rel='stylesheet' href='/movie/view/css/booking.css'>
+
 <!--gnb CSS-->
-<link rel='stylesheet' href='/movie/view/css/loginpopup.css'>
-<!--로그인 레이어팝업 CSS-->
+<!-- <link rel='stylesheet' href='/movie/view/css/joinpopup.css'> -->
 
-<link rel='stylesheet' href='/movie/view/css/joinpopup.css'>
-<!--로그인 레이어팝업 CSS-->
-
-<!--   <script src="../js/main.js"></script> 메인 스크립트 -->
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
+<jsp:include page="booking.jsp"></jsp:include>
+<jsp:include page="loginpopup.jsp"></jsp:include>
 
 
 <script type="text/javascript">
@@ -202,15 +198,15 @@
 	
 
 	});
+	//Modal Function
 	$(function(){
 	/* 예매 모달 */
 	$("img#popup_booking_open_btn").click(function() {
 		modal('my_Bookmodal');
 		});
-	/* 모달창 닫기 */
-	$("#close_pop").click(function(flag) {
-		$('#boxposition').hide();
-	});
+
+	
+
 	});
 
 </script>
@@ -219,24 +215,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<div class="gnb">
 		<div class="wrapping">
 			<div class="gnblogo" id="gnblogoid">
 				<a href="/"> <img src="/movie/view/img/logo.png">
 				</a>
 				<ul>
-
-
-					<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
-					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>
-				
+				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
+					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
                         <li><img src="/movie/view/img/usericon.png" id ="usericon"class=" hidden"></li>
                         <li><span id ="info_user"class=" hidden">${id } 님 </span></li>
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"class=" hidden" id="logoutBtn"></li>
-
-					
-
 				</ul>
 			</div>
 			<div class="menu">
@@ -259,260 +248,7 @@
 	</div>
 
 
-	<!-- 로그인 팝업 창  -->
-	<div id="my_modal">
 	
-			<div class="contents">
-				<div class="topcon">
-					<span>LOGIN</span> <img src="/movie/view/img/popupx.png" class="modal_close_btn "id="close_pop">
-				</div>
-				<form name="LOGIN_FORM" id="LOGIN_FORM" method="post">
-					<div class="boxposition">
-						<input type="text" class="inputbox" placeholder="ID" id="id" name="id"><br> <input
-							type="password" class="inputbox" placeholder="PW" id="password" name="password"><br>
-						<!-- <input type="button" class="login_button" name="LOGIN" value="LOGIN" id="LOGIN"> -->
-						<input type="button" class="login_button" name="LOGIN" value="LOGIN" id="LOGIN">
-						<br><span id="check"></span>
-					
-					</div>
-				</form>
-				<div class="midcon">
-					<img src="/movie/view/img/loginpopupnaver.png"> <span
-						style="color: #e7e7e7; font-size: 30px;">|</span> <img
-						src="/movie/view/img/loginpopupkakao.png"><br> <span>네이버</span> <span>카카오</span>
-				</div>
-				<div class="footcon">
-					<div class="findidpw">
-						<a>아이디찾기</a> <span style="font-weight: bold;">|</span> <a>비밀번호찾기</a><br>
-					</div>
-					<div class="joinuscon">
-					
-						<span style="color: #133597;">영끌이 처음이신가요?</span> <img src="/movie/view/img/loginpopupjoin.png">
-					</div>
-				</div>
-			</div>
-		
-	</div>
-
-
- <!-- 상단 선택되면 불들어오는곳 -->
- <div id="my_Bookmodal">
- <div class="select_check">
-                <span class="click">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                    	날짜선택
-                </span>
-                <span class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                    	영화선택
-                </span>
-                <span class="click">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                  	  극장선택
-                </span>
-                <span class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                    	시간선택
-                </span>
-                <span class="click">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                   	 좌석선택
-                </span>
-                <span class="click">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                    결제
-                </span>
-            </div>
-<!-- 상단 선택되면 불들어오는곳 끝 -->
-
-
-<!-- 메인 시작 -->
-        <div class="booking_main">
-            <!-- 상단 현재시각 -->
-            <div class="booking_current_time">
-                <div>현재시각</div>
-                <b>2021.01.01 PM 10:23</b>
-            </div>
-            <!-- 상단 현재시각끝 -->
-            <!-- 예약시작 -->
-            <div class="booking_selecter ">
-            <img src="/movie/view/img/popupx.png" class="modal_close_btn "id="close_pop">
-                <!-- 예약날짜 -->
-                <div class="booking_date">
-                    <div class="middle_field">
-                        <span class="selecter_name">날짜</span>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span>10월&nbsp;</span>
-                                        <span>27일&nbsp;</span>
-                                        <span>수요일</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn_on">
-                                        <span>10월&nbsp;</span>
-                                        <span>27일&nbsp;</span>
-                                        <span>수요일</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span>10월&nbsp;</span>
-                                        <span>27일&nbsp;</span>
-                                        <span>수요일</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- 예약날짜끝 -->
-                <!-- 예약영화 -->
-                <div class="booking_movie">
-                    <div class="middle_field">
-                        <span class="selecter_name">영화</span>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span><img src="/movie/view/img/19.png">&nbsp;</span>
-                                        <span>모가디슈</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span><img src="/movie/view/img/15.png">&nbsp;</span>
-                                        <span>모가디슈</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span><img src="/movie/view/img/12.png">&nbsp;</span>
-                                        <span>모가디슈</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span><img src="/movie/view/img/all.png">&nbsp;</span>
-                                        <span>모가디슈</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- 예약영화끝 -->
-                <!-- 예약극장 -->
-                <div class="booking_theater">
-                    <div class="middle_field_2_1">
-                        <div class="selecter_name">극장</div>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span>서울(30)&nbsp;</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn_on2">
-                                        <span>경기(10)&nbsp;</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn">
-                                    <span>강원(6)&nbsp;</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn">
-                                    <span>강원(6)&nbsp;</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn">
-                                    <span>강원(6)&nbsp;</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="booking_theater">
-                    <div class="middle_field_2_2">
-                        <span class="selecter_name">&nbsp;</span>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <button type="button" class="btn">
-                                        <span>강남&nbsp;</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn_on">
-                                        <span>동대문&nbsp;</span>
-                                    </button>
-                                </li>
-                                </li>
-                                    <button type="button" class="btn">
-                                    <span>상암월드컵경기장&nbsp;</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- 예약극장끝 -->
-                <!-- 예약시간 -->
-                <div class="booking_time">
-                    <div class="middle_field">
-                        <span class="selecter_name">시간</span>
-                        <div class="list">
-                            <ul>
-                                <li>
-                                    <button type="button" class="time_btn">
-                                        <span class="time">09:10</span>
-                                        <span class="theater">역삼쌍용용죽겠지점</span>
-                                        <span class="possible_now">10</span>
-                                        <span class="all">/ 150</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="time_btn on">
-                                        <span class="time">09:10</span>
-                                        <span class="theater">강남대로변두리점</span>
-                                        <span class="possible_now">10</span>
-                                        <span class="all">/ 150</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- 예약시간끝 -->
-            </div>
-            <!-- 예약 1번끝-->
-            </div>
-            <!-- 모달 끝 -->
-            </div>
+ 
 </body>
 </html>
