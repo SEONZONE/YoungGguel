@@ -286,6 +286,7 @@
 						<a>아이디찾기</a> <span style="font-weight: bold;">|</span> <a>비밀번호찾기</a><br>
 					</div>
 					<div class="joinuscon">
+					
 						<span style="color: #133597;">영끌이 처음이신가요?</span> <img src="/movie/view/img/loginpopupjoin.png">
 					</div>
 				</div>
