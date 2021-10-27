@@ -9,7 +9,7 @@ import com.sist.movie.dao.UserDao;
 import com.sist.movie.vo.UserVo;
 
 @Controller
-public class joinController {
+public class JoinController {
    
    @Autowired
    private UserDao dao;

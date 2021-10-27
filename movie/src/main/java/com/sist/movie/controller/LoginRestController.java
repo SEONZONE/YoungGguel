@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sist.movie.dao.UserDao;
 
 @RestController
-public class loginRestController {
+public class LoginRestController {
 
 	@Inject
 	UserDao dao;

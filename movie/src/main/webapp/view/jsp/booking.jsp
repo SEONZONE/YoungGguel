@@ -16,7 +16,9 @@
   });
 </script>
     </head>
+    
     <body>
+     <div id="my_Bookmodal">
         <!-- 상단 선택되면 불들어오는곳 -->
         <div class="select_check">
                 <span class="click">
@@ -73,6 +75,7 @@
             <!-- 상단 현재시각끝 -->
             <!-- 예약시작 -->
             <div class="booking_selecter ">
+             <img src="/movie/view/img/popupx.png" class="modal_close_btn "id="close_pop">
                 <!-- 예약날짜 -->
                 <div class="booking_date">
                     <div class="middle_field">
@@ -229,8 +232,11 @@
                 <!-- 예약시간끝 -->
             </div>
             <!-- 예약 1번끝-->
+            </div>
+            
+            
             <!-- 예약 2번 시작-->
-            <div class="seat_selecter ">
+            <div class="seat_selecter hidden">
                 <div class="ghost_box"></div>
                 <!-- 2번 좌측 -->
                 <span class="seat_info">좌석선택</span>
