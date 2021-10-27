@@ -20,13 +20,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT USER_VERIFY FROM USER_INFO WHERE USER_ID=#{VALUE}
 	</select>
 
-	<!-- MOVIE 매퍼 -->
-
-<!-- 	<select id="selectMovies" resultType="">
-		SELECT
-		MOVIE_NO,MOVIE_GENRE,TO_CHAR(REGDATE,'yyyy/mm/dd') MOVIE_RELEASE,MOVIE_SUBTITLE,MOVIE_SUBTITLE,MOVIE_DIRECTOR,MOVIE_RT,MOVIE_CONTENTS,MOVIE_END
-		FROM MOVIES 
-	</select> -->
 
 
 </mapper>
