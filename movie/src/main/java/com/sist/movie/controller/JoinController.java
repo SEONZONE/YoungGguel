@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sist.movie.dao.UserDao;
-import com.sist.movie.vo.UserVo;
+import com.sist.movie.vo.UserVO;
 
 @Controller
 public class JoinController {
@@ -15,7 +15,7 @@ public class JoinController {
    private UserDao dao;
    
    @RequestMapping(value="join.do")
-   public String insertUser(UserVo vo) {
+   public String insertUser(UserVO vo) {
       System.out.println("hi");
       dao.insertUser(vo);
       return "view/jsp/main";

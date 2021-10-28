@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserVo {
+public class UserVO {
 
    private String USER_ID;
    private String USER_PW;

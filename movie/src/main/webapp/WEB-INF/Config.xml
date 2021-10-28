@@ -5,12 +5,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration><!-- DB설정(Connection) -->
    
     <typeAliases>
-    	<typeAlias type="com.sist.movie.vo.UserVo" alias="User"/>
+    	<typeAlias type="com.sist.movie.vo.UserVO" alias="User"/>
+    	<typeAlias type="com.sist.movie.vo.BookVO" alias="Book"/>
+    	<typeAlias type="com.sist.movie.vo.MovieVO" alias="Movie"/>
+    	<typeAlias type="com.sist.movie.vo.SeatVO" alias="Seat"/>
+    	<typeAlias type="com.sist.movie.vo.TheaterVO" alias="Theater"/>
     </typeAliases>
    
     
     <mappers>
-      <mapper resource="com/sist/movie/dao/mapper.xml"/>
+      <mapper resource="com/sist/movie/dao/UserMapper.xml"/>
     </mappers>
 </configuration>
 
