@@ -1,69 +1,78 @@
-.select {
-
-	max-width: 1200px;
-	padding-top: 50px;
-	text-align: center;
-	margin: auto;
-}
-.list_button button {
-	height: 30px; 
-	width: 150px; 
-	font-size: 15px; 
-	text-align: center; 
-	border-radius: 5px; 
-	background-color: #f3f3f3;
-	font-weight: bold; 
-	color: #939796;
-	border: 1px solid white;
-	box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
-.align-button {
-    text-align: right;
-}
-.align-button img{
-    width: 6%;
-    height: 6%;
-}
+a { text-decoration: none; color: black;}
+a:visited { color: black; text-decoration: none;}
+a:hover { text-decoration: none;}
 .inner-wrap {
-    position: relative;
+   position: relative;   
+   max-width: 1200px;   
+   text-align: left;
+   margin: 0 auto;
 }
-.movie-list ol li .movie-list-info img {
+.inner-wrap img{
+    width: 230px; 
+    height: 290px; 
+    margin-bottom: 5px;
+}
+.inner-wrap #title {
+   color: black;
+}
+.inner-wrap #ratio {
+   color: #1a67bb;
+   font-weight: bold;
+}
+.inner-wrap button {
+   height: 40px; 
+   width: 190px;
+   color:white;
+   font-weight: bold;
+   background-color: #191d36;
+   border-radius: 5px;
+}
+/* .movie-list div {
+   float:left;   
+} */
+.movie {
+   padding: 2.8%;
+   float: left;
+}
+.movie-list {
+   margin: 0 auto;
+   font-weight: bold;
+   list-style: none;
+}
+.movie-list li .movie-list-info img {
     width: 170px;
-    height: 250px;
-}
-.movie-list ol li #fleft {
+    height: 250px; 
+} 
+.movie-list li #fleft {
     float: left;
-}
-.inner-wrap {
-    width: 1200px;
-    margin: 0 auto;
-}
-.movie-list ol li {
+} 
+.movie-list li {
     overflow: hidden;
     position: relative;
     width: 900px;
-    height: 300px;
+    height: 300px;   
     padding-bottom: 20px;
+    margin: auto;
 }
+.movie-list li:first-child {
+    margin-top: 40px;
+}
+
 .movie-list-info {
     padding-right: 5%;
 }
 .movie-list .reserve {
-	height: 40px; 
-	width: 150px;
-	color:white;
-	font-weight: bold;
-	background-color: #191d36;
-	border-radius: 5px;
-}
-.movie-list {
-    font-weight: bold;
+   height: 40px; 
+   width: 150px;
+   color:white;
+   font-weight: bold;
+   background-color: #191d36;
+   border-radius: 5px;
 }
 .movie-list .rate {
     background-color:cornflowerblue;
     color: #f3f3f3;
-	font-weight: bold;
+   font-weight: bold;
     border-radius: 10px; 
 }
 .movie-list .runningtime {
@@ -99,4 +108,99 @@
 .list {
     margin-top: 3%;
     margin-left: 12%;
+}
+.cont {
+   overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; 
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 3.6em; 
+}
+
+/* movie_search */
+.search-box > form > input{
+    position: relative;
+    top:50px;
+    height: 73px;
+    width: 800px;
+    left: 20px;
+    border-radius: 15px;
+    border: 0;
+    outline:0px;
+    box-shadow: 3px 3px 3px 3px #f2f2f2;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 20px;
+} 
+.search-box .glyphicon.glyphicon-search {
+    position: relative;
+    font-size: 30px;
+    top: 60px;
+    right: 55px;
+    cursor: pointer;
+}
+.search-box {
+   text-align: center;
+   height: 150px;
+}
+
+/* list-poster */
+.select {
+   max-width: 1200px;
+   padding-top: 50px;
+   text-align: center;
+   margin: auto;
+}
+.align-button {
+    text-align: right;
+    padding-bottom: 20px;
+}
+.align-button img{
+    width: 6%;
+    height: 6%;
+}
+.list_button button {
+   height: 40px; 
+   width: 150px; 
+   font-size: 15px; 
+   text-align: center; 
+   border-radius: 5px; 
+   background-color: #f3f3f3;
+   font-weight: bold; 
+   color: #939796;
+   border: 1px solid white;
+   box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+ .list_button button:hover{
+    background-color: #1d213d;
+    color: white;
+    border: none;
+}
+.list_button .active{
+    background-color: black;
+    color: white;
+    border: none;
+} 
+
+#title {
+   margin-top: 4px;
+   font-size: 18px;
+   font-weight: bold;
+   margin-bottom: 10px;
+}
+.movies {
+   margin: 0 auto;
+}
+#release , #runningtime{
+   color: #939796;
+   font-weight: bold;
+}
+.movie button {
+   margin-top: 1%;
+}
+.tit-area, .detail-area, .genre, .release {
+   margin-bottom: 5px;   
 }

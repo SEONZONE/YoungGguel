@@ -20,137 +20,137 @@
 
 
 
-$(function(){	
-	
+$(function(){   
+   
     var param = getUrlParams();
-    result = param.view;    	
+    result = param.view;       
     
-	if(result == 'poster'){
-		$("#boxoffice").addClass("active");
-	}else if(result == 'current'){
-		$("#current").addClass("active");		
-	}else{
-		$("#later").addClass("active");				
-	}
-	
+   if(result == 'poster'){
+      $("#boxoffice").addClass("active");
+   }else if(result == 'current'){
+      $("#current").addClass("active");      
+   }else{
+      $("#later").addClass("active");            
+   }
+   
     $(".align-button img").click(function(){
-    	var img =$(this).attr('src'); 	
-    	if(img == '/movie/view/img/list.PNG'){
-        $(".align-button img").attr("src","/movie/view/img/poster.PNG");    	      
-    		if(result == 'poster'){
-     			ajaxList('/movie/ajaxMovieList.do?view=poster','json'); 
-    		}else if(result == 'current'){
-    			ajaxList('/movie/ajaxMovieList.do?view=current','json');    			
-    		}else if(result == 'later'){
-    			ajaxList('/movie/ajaxMovieList.do?view=later','json');    	   	    			
-    		}	
-    	}else{
-    		$(".align-button img").attr("src","/movie/view/img/list.PNG");
-    		if(result == 'poster'){
-     			ajaxPoster('/movie/ajaxMovieList.do?view=poster','json'); 
-    		}else if(result == 'current'){
-    			ajaxPoster('/movie/ajaxMovieList.do?view=current','json');
-    		}else if(result == 'later'){
-    			ajaxPoster('/movie/ajaxMovieList.do?view=later','json');
-    		}
-    	}
+       var img =$(this).attr('src');    
+       if(img == '/movie/view/img/list.PNG'){
+        $(".align-button img").attr("src","/movie/view/img/poster.PNG");             
+          if(result == 'poster'){
+              ajaxList('/movie/ajaxMovieList.do?view=poster','json'); 
+          }else if(result == 'current'){
+             ajaxList('/movie/ajaxMovieList.do?view=current','json');             
+          }else if(result == 'later'){
+             ajaxList('/movie/ajaxMovieList.do?view=later','json');                          
+          }   
+       }else{
+          $(".align-button img").attr("src","/movie/view/img/list.PNG");
+          if(result == 'poster'){
+              ajaxPoster('/movie/ajaxMovieList.do?view=poster','json'); 
+          }else if(result == 'current'){
+             ajaxPoster('/movie/ajaxMovieList.do?view=current','json');
+          }else if(result == 'later'){
+             ajaxPoster('/movie/ajaxMovieList.do?view=later','json');
+          }
+       }
     });
     
   }); 
 
 /* URL에서 파라미터값 가져오기 */
 function getUrlParams() {
-	var params = {};
-	window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
-	return params;
+   var params = {};
+   window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+   return params;
 }
 
-function select_click(btnSelect){	
+function select_click(btnSelect){   
 
-	if(btnSelect == 'boxoffice'){
- 		document.location.href='/movie/movieList.do?view=poster';
+   if(btnSelect == 'boxoffice'){
+       document.location.href='/movie/movieList.do?view=poster';
     }else if(btnSelect == 'current'){
-		document.location.href='/movie/movieList.do?view=current';	 
-	}else{
-		document.location.href='/movie/movieList.do?view=later';	 
-	} 
+      document.location.href='/movie/movieList.do?view=current';    
+   }else{
+      document.location.href='/movie/movieList.do?view=later';    
+   } 
 
 }
   
   
 function ajaxPoster(url,data,dataType){
-	   $.ajax({
-			  url:url,
-			  type:'POST',
-			  data:data,
-			  dataType:dataType,				  
-			  success:function(v){
-				 ajaxMovieList2(v)
-			  },
-			  error:function(e){
-				  alert(e);
-			  }
-		  });	
+      $.ajax({
+           url:url,
+           type:'POST',
+           data:data,
+           dataType:dataType,              
+           success:function(v){
+             ajaxMovieList2(v)
+           },
+           error:function(e){
+              alert(e);
+           }
+        });   
 }
 
 function ajaxMovieList2(v){
-	var temp="";
-	$.each(v,function(index,dom){
-		temp+="<div class=\"movie\">";
-		temp+="<a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\">";
-		temp+="<img src=\"/movie/view/img/"+dom.movieCd+".jpg\" id=\"mposter\" />";
-		temp+="<br>";
-		temp+="<span id=\"title\">"+dom.movieNm+"</span>";
-		temp+="<br>";
-		temp+="<span id=\"release\">개봉일 "+dom.openDt+" |</span>";
-		temp+="<span id=\"runningtime\">"+dom.showTm+"분</span>";
-		temp+="<br>";
-		temp+="<span id=\"ratio\">예매율 30%</span>";
-		temp+="</a>";
-		temp+="<br>";
-		temp+="<br>";
-		temp+="<button>예매하기</button>";
-		temp+=" <span class=\"movie_like\">🤍</span>";
-		/* temp+="<img src=\"/movie/view/img/like.png\" class=\"like\" id=\"like\" onclick=\"like()\" />"; */
-		temp+="</div>";
-	});
-	$(".movie-list").html(temp);
+   var temp="";
+   $.each(v,function(index,dom){
+      temp+="<div class=\"movie\">";
+      temp+="<a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\">";
+      temp+="<img src=\"/movie/view/img/"+dom.movieCd+".jpg\" id=\"mposter\" />";
+      temp+="<br>";
+      temp+="<span id=\"title\">"+dom.movieNm+"</span>";
+      temp+="<br>";
+      temp+="<span id=\"release\">개봉일 "+dom.openDt+" |</span>";
+      temp+="<span id=\"runningtime\">"+dom.showTm+"분</span>";
+      temp+="<br>";
+      temp+="<span id=\"ratio\">예매율 30%</span>";
+      temp+="</a>";
+      temp+="<br>";
+      temp+="<br>";
+      temp+="<button>예매하기</button>";
+      temp+=" <span class=\"movie_like\">🤍</span>";
+      /* temp+="<img src=\"/movie/view/img/like.png\" class=\"like\" id=\"like\" onclick=\"like()\" />"; */
+      temp+="</div>";
+   });
+   $(".movie-list").html(temp);
 }
 
 function ajaxList(url,data,dataType){
-	   $.ajax({
-			  url:url,
-			  type:'POST',
-			  data:data,
-			  dataType:dataType,				  
-			  success:function(v){
-				 ajaxMovieList(v)
-			  },
-			  error:function(e){
-				  alert(e);
-			  }
-		  });	
+      $.ajax({
+           url:url,
+           type:'POST',
+           data:data,
+           dataType:dataType,              
+           success:function(v){
+             ajaxMovieList(v)
+           },
+           error:function(e){
+              alert(e);
+           }
+        });   
 }
 
 function ajaxMovieList(v){
-	 $(".movie").css("display","none");
-	var temp="";
-	$.each(v,function(index,dom){
-		temp+="<li class=\"movie-list-li\">";
-		temp+="<div class=\"movie-list-info\" id=\"fleft\">";
-		temp+="<img src=\"/movie/view/img/"+dom.movieCd+".jpg\" />";
-		temp+="</div>";
-	    temp+="<div id=\"fleft\">";
-		temp+="<a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\">";
-    	temp+="<div class=\"tit-area\">";
-    	temp+="<span class=\"title\">"+dom.movieNm+" | </span>";
-    	temp+="<span class=\"runningtime\">"+dom.showTm+"분 </span>";
+    $(".movie").css("display","none");
+   var temp="";
+   $.each(v,function(index,dom){
+      temp+="<li class=\"movie-list-li\">";
+      temp+="<div class=\"movie-list-info\" id=\"fleft\">";
+      temp+="<img src=\"/movie/view/img/"+dom.movieCd+".jpg\" />";
+      temp+="</div>";
+       temp+="<div id=\"fleft\">";
+      temp+="<a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\">";
+       temp+="<div class=\"tit-area\">";
+       temp+="<span class=\"title\">"+dom.movieNm+" | </span>";
+       temp+="<span class=\"runningtime\">"+dom.showTm+"분 </span>";
         temp+="<span class=\"rate\">예매율 60%</span>";
-    	temp+="</div>";
-    	temp+="<div class=\"detail-area\">";
-    	temp+=" <span>개봉 </span><span class=\"release\">"+dom.openDt+"</span>";
-    	temp+=" <p class=\"genre\">"+dom.genre+"</p>";
-    	temp+=" <p class=\"cont\">"+dom.contents+"</p>";
+       temp+="</div>";
+       temp+="<div class=\"detail-area\">";
+       temp+=" <span>개봉 </span><span class=\"release\">"+dom.openDt+"</span>";
+       temp+=" <p class=\"genre\">"+dom.genre+"</p>";
+       temp+=" <p class=\"cont\">"+dom.contents+"</p>";
         temp+="</div>";
         temp+="</a>";
         temp+="<div class=\"btn-area\">";
@@ -159,8 +159,8 @@ function ajaxMovieList(v){
         temp+="</div>";
         temp+="</div>";
         temp+="</li>";
-	});
-	$(".movie-list").html(temp);
+   });
+   $(".movie-list").html(temp);
 }
 
 </script>
