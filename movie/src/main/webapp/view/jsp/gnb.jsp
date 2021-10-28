@@ -4,9 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <link rel='stylesheet' href='/movie/view/css/gnb.css'>
+<!--gnb CSS-->
+<link rel='stylesheet' href='/movie/view/css/loginpopup.css'>
+<!--로그인 레이어팝업 CSS-->
 
 <!--gnb CSS-->
 <!-- <link rel='stylesheet' href='/movie/view/css/joinpopup.css'> -->
+
+
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -18,8 +23,6 @@
 
 
 <script type="text/javascript">
-
-
 
 	function modal(id) {	
 		var zIndex = 9999;
@@ -37,7 +40,7 @@
 		}).appendTo('body');
 		modal.css({
 							position : 'fixed',
-							//boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 
 							// 배경 레이어 보다 한칸 위에 보이기
 							zIndex : zIndex + 1,
@@ -194,6 +197,7 @@
 	  
 
 		
+	//});
 	
 	
 
@@ -230,9 +234,9 @@
 			</div>
 			<div class="menu">
 				<ul>
-					<li>영화</li>
+					<li><a href='/movie/movieList.do?view=poster'>영화</a></li>
 					<li>상영시간표</li>
-					<li onclick="wow()"><img id="popup_booking_open_btn" src="/movie/view/img/gnbbutton.png"
+					<li onclick="wow()"><img src="/movie/view/img/gnbbutton.png"
 						onmouseover="this.src='/movie/view/img/gnbbutton_hover.png'"
 						onmouseout="this.src='/movie/view/img/gnbbutton.png'"></li>
 					<li>스토어</li>

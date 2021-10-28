@@ -20,18 +20,18 @@ public class UserDao extends SqlSessionDaoSupport {
    public void insertUser(UserVO vo) {
       this.getSqlSession().insert("insertUser", vo);
    }
-   
+   //아이디 비밀번호 체크
    public int idCheck(String id) {
       int p = this.getSqlSession().selectOne("idCheck", id);
       return p;
    }
    
-   //�α��� üũ
+   //일반 사용자 로그인 
    public boolean loginBoard(String id, String password) {
 		String dbPass = this.getSqlSession().selectOne("loginBoard", id);
 		return dbPass != null && dbPass.equals(password);
 	}
-   //������ �α��� üũ
+   //어드민 로그인
    public boolean adminloginBoard(String id,String verify) {
 	   String dbPass = this.getSqlSession().selectOne("adminloginBoard", id);
 	   return dbPass != null && dbPass.equals(verify);
