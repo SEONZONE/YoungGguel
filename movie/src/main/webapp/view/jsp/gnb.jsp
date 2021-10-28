@@ -8,10 +8,9 @@
 <link rel='stylesheet' href='/movie/view/css/loginpopup.css'>
 <!--로그인 레이어팝업 CSS-->
 
-<link rel='stylesheet' href='/movie/view/css/joinpopup.css'>
-<!--로그인 레이어팝업 CSS-->
+<!--gnb CSS-->
+<!-- <link rel='stylesheet' href='/movie/view/css/joinpopup.css'> -->
 
-<!--   <script src="../js/main.js"></script> 메인 스크립트 -->
 
 
 
@@ -19,7 +18,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
+<jsp:include page="booking.jsp"></jsp:include>
+<jsp:include page="loginpopup.jsp"></jsp:include>
 
 
 <script type="text/javascript">
@@ -202,6 +202,16 @@
 	
 
 	});
+	//Modal Function
+	$(function(){
+	/* 예매 모달 */
+	$("img#popup_booking_open_btn").click(function() {
+		modal('my_Bookmodal');
+		});
+
+	
+
+	});
 
 </script>
 
@@ -209,24 +219,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<div class="gnb">
 		<div class="wrapping">
 			<div class="gnblogo" id="gnblogoid">
 				<a href="/"> <img src="/movie/view/img/logo.png">
 				</a>
 				<ul>
-
-
-					<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
-					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>
-				
+				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
+					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
                         <li><img src="/movie/view/img/usericon.png" id ="usericon"class=" hidden"></li>
                         <li><span id ="info_user"class=" hidden">${id } 님 </span></li>
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"class=" hidden" id="logoutBtn"></li>
-
-					
-
 				</ul>
 			</div>
 			<div class="menu">
@@ -249,41 +252,7 @@
 	</div>
 
 
-	<!-- 로그인 팝업 창  -->
-	<div id="my_modal">
 	
-			<div class="contents">
-				<div class="topcon">
-					<span>LOGIN</span> <img src="/movie/view/img/popupx.png" class="modal_close_btn "id="close_pop">
-				</div>
-				<form name="LOGIN_FORM" id="LOGIN_FORM" method="post">
-					<div class="boxposition">
-						<input type="text" class="inputbox" placeholder="ID" id="id" name="id"><br> <input
-							type="password" class="inputbox" placeholder="PW" id="password" name="password"><br>
-						<!-- <input type="button" class="login_button" name="LOGIN" value="LOGIN" id="LOGIN"> -->
-						<input type="button" class="login_button" name="LOGIN" value="LOGIN" id="LOGIN">
-						<br><span id="check"></span>
-					
-					</div>
-				</form>
-				<div class="midcon">
-					<img src="/movie/view/img/loginpopupnaver.png"> <span
-						style="color: #e7e7e7; font-size: 30px;">|</span> <img
-						src="/movie/view/img/loginpopupkakao.png"><br> <span>네이버</span> <span>카카오</span>
-				</div>
-				<div class="footcon">
-					<div class="findidpw">
-						<a>아이디찾기</a> <span style="font-weight: bold;">|</span> <a>비밀번호찾기</a><br>
-					</div>
-					<div class="joinuscon">
-						<span style="color: #133597;">영끌이 처음이신가요?</span> <img src="/movie/view/img/loginpopupjoin.png">
-					</div>
-				</div>
-			</div>
-		
-	</div>
-
-
-
+ 
 </body>
 </html>

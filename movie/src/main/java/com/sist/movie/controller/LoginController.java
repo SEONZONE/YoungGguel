@@ -22,7 +22,7 @@ public class LoginController {
 	@Inject
 	UserDao dao;
 
-	/* �α��� �˾� �޼ҵ� */
+	//Login 
 
 	@PostMapping(value = "loginpopup.do")
 	public String ajaxLoginAction(String id, String pw, HttpSession session) {
@@ -34,8 +34,9 @@ public class LoginController {
 			session.setAttribute("password", pw);
 			session.setMaxInactiveInterval(600);
 
-			//���� �α��� üũ 
+			
 			boolean adminState = dao.adminloginBoard(id, verify);
+			//Admin Login
 			if (adminState) {
 				session.setAttribute("verify", verify);
 				System.out.println("success adminSuccess");
@@ -52,13 +53,13 @@ public class LoginController {
 		return "Fail";
 	}
 
-	/* �α׾ƿ� �˾� �޼ҵ� */
+	
 
 	@PostMapping(value = "logout.do")
-	@ResponseBody // ajax �� ���ؼ� ������ ��û�� �ϴ� ������� �ۼ��ؾ��� 
+	@ResponseBody // ajax
 	public void ajaxLogOutAction(HttpServletRequest request) {
 
-		System.out.println("�񵿱� �α׾ƿ� �޼��� ����..");
+		System.out.println("LogOut Process..");
 		HttpSession session = request.getSession();
 		session.invalidate();
 

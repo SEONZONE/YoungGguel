@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.sist.movie.vo.UserVo;
+import com.sist.movie.vo.UserVO;
 
 @Repository
 public class UserDao extends SqlSessionDaoSupport {
@@ -16,8 +16,8 @@ public class UserDao extends SqlSessionDaoSupport {
       // TODO Auto-generated method stub
       this.setSqlSessionTemplate(st);
    }
-   //회원가입
-   public void insertUser(UserVo vo) {
+   
+   public void insertUser(UserVO vo) {
       this.getSqlSession().insert("insertUser", vo);
    }
    //아이디 비밀번호 체크
