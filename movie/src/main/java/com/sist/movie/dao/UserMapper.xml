@@ -11,8 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{USER_ID},#{USER_PW},#{USER_NAME},#{USER_GENDER},#{USER_TEL},#{USER_BIRTH},#{USER_EMAIL})
 	</insert>
 
-	<select id="loginBoard" parameterType="String"
-		resultType="String">
+	<select id="loginBoard" parameterType="String" resultType="String">
 		SELECT USER_PW FROM USER_INFO WHERE USER_ID=#{VALUE}
 	</select>
 	<select id="adminloginBoard" parameterType="String"

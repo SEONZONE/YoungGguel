@@ -1,4 +1,4 @@
-/* 怨듯넻 */
+/* �⑤벏�꽰 */
 /* body{
     width: 1260px;
     height: 620px;
@@ -9,8 +9,8 @@ div{
     margin: 0; 
     padding: 0;
 } */
-/* 怨듯넻 */
-/* �꽑�깮�릺硫� 遺덈뱾�뼱�삤�뒗怨� */
+/* �⑤벏�꽰 */
+/* 占쎄퐨占쎄문占쎈┷筌롳옙 �겫�뜄諭억옙堉깍옙�궎占쎈뮉�⑨옙 */
 .select_check{
     width: 700px;
     height: 60px;
@@ -31,9 +31,9 @@ div{
 .hidden{
     display: none;
 }
-/* �꽑�깮�릺硫� 遺덈뱾�뼱�삤�뒗怨� �걹 */
+/* 占쎄퐨占쎄문占쎈┷筌롳옙 �겫�뜄諭억옙堉깍옙�궎占쎈뮉�⑨옙 占쎄국 */
 
-/* �삁�빟硫붿씤�꽭�똿 */
+/* 占쎌굙占쎈튋筌롫뗄�뵥占쎄쉭占쎈샒 */
 .booking_main{
     width: 1260px;
     height: 540px;
@@ -42,7 +42,7 @@ div{
     margin: 0 auto;
     margin-top: 20px;
 }
-/* �쁽�옱�떆媛� */
+/* 占쎌겱占쎌삺占쎈뻻揶쏉옙 */
 .booking_current_time{
     width: 1260px;
     height: 98px;
@@ -62,8 +62,8 @@ div{
     font-size: 200%;
     letter-spacing: -2px;
 }
-/* �쁽�옱�떆媛곷걹 */
-/* �쁺�뿭�굹�늻湲� */
+/* 占쎌겱占쎌삺占쎈뻻揶쏄낮嫄� */
+/* 占쎌겫占쎈열占쎄돌占쎈듇疫뀐옙 */
 .booking_date{
     float: left;
     width: 194px;
@@ -89,8 +89,8 @@ div{
     left: 60px;
     border-left: #f1f1f1 1px solid  ;
 }
-/* �쁺�뿭�굹�늻湲곕걹 */
-/* 以묎컙�쁺�뿭 �꽭�똿 */
+/* 占쎌겫占쎈열占쎄돌占쎈듇疫꿸퀡嫄� */
+/* 餓λ쵌而숋옙�겫占쎈열 占쎄쉭占쎈샒 */
 .middle_field{
     overflow:auto;
     width: 85%;
@@ -124,21 +124,21 @@ div{
 .middle_field_2_1 > .selecter_name{
     background-color: white;
 }
-/* 以묎컙�쁺�뿭 �꽭�똿�걹 */
-/* 以묎컙�쁺�뿭�궡遺� 癒몃━留� */
+/* 餓λ쵌而숋옙�겫占쎈열 占쎄쉭占쎈샒占쎄국 */
+/* 餓λ쵌而숋옙�겫占쎈열占쎄땀�겫占� �솒紐꺿봺筌랃옙 */
 .selecter_name{
     font-weight: bold;
     font-size: 20px;
 }
-/* 以묎컙�쁺�뿭�궡遺� 癒몃━留먮걹 */
-/* 以묎컙�쁺�뿭�궡遺� ul�냽�꽦吏��젙 */
+/* 餓λ쵌而숋옙�겫占쎈열占쎄땀�겫占� �솒紐꺿봺筌띾Ŧ嫄� */
+/* 餓λ쵌而숋옙�겫占쎈열占쎄땀�겫占� ul占쎈꺗占쎄쉐筌욑옙占쎌젟 */
 .list > ul{
     margin-top: 5px;
     list-style: none;
     padding: 0;
 }
-/* 以묎컙�쁺�뿭�궡遺� ul�냽�꽦吏��젙 �걹 */
-/* 以묎컙�쁺�뿭�궡遺� 踰꾪듉 �냽�꽦吏��젙 */
+/* 餓λ쵌而숋옙�겫占쎈열占쎄땀�겫占� ul占쎈꺗占쎄쉐筌욑옙占쎌젟 占쎄국 */
+/* 餓λ쵌而숋옙�겫占쎈열占쎄땀�겫占� 甕곌쑵�뱣 占쎈꺗占쎄쉐筌욑옙占쎌젟 */
 .btn{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -151,7 +151,7 @@ div{
 .btn:hover{
     color: white;
     background-color: #7186a6;
-}/*�샇踰�*/
+}/*占쎌깈甕곤옙*/
 .btn_on{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -164,8 +164,8 @@ div{
     text-align: left;
     padding: 0;
 }
-/* 以묎컙�쁺�뿭�궡遺� 踰꾪듉 �냽�꽦吏��젙�걹 */
-/* 洹뱀옣�꽑�깮 踰꾪듉�냽�꽦吏��젙 */
+/* 餓λ쵌而숋옙�겫占쎈열占쎄땀�겫占� 甕곌쑵�뱣 占쎈꺗占쎄쉐筌욑옙占쎌젟占쎄국 */
+/* 域밸��삢占쎄퐨占쎄문 甕곌쑵�뱣占쎈꺗占쎄쉐筌욑옙占쎌젟 */
 .btn_on2{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -178,23 +178,23 @@ div{
     text-align: left;
     padding: 0;
 }
-/* 洹뱀옣�꽑�깮 踰꾪듉�냽�꽦吏��젙�걹 */
-/* �쁺�솕�꽑�깮 �궡遺� �씠誘몄� �냽�꽦蹂�寃� */
+/* 域밸��삢占쎄퐨占쎄문 甕곌쑵�뱣占쎈꺗占쎄쉐筌욑옙占쎌젟占쎄국 */
+/* 占쎌겫占쎌넅占쎄퐨占쎄문 占쎄땀�겫占� 占쎌뵠沃섎챷占� 占쎈꺗占쎄쉐癰귨옙野껓옙 */
 .btn > span > img , .btn_on > span >img{
     width: 15px;
     position: relative;
     top: 1px;
 }
-/* �쁺�솕�꽑�깮 �궡遺� �씠誘몄� �냽�꽦蹂�寃쎈걹 */
-/* 洹뱀옣�꽑�깮 �궡遺� �냽�꽦蹂�寃� */
+/* 占쎌겫占쎌넅占쎄퐨占쎄문 占쎄땀�겫占� 占쎌뵠沃섎챷占� 占쎈꺗占쎄쉐癰귨옙野껋럥嫄� */
+/* 域밸��삢占쎄퐨占쎄문 占쎄땀�겫占� 占쎈꺗占쎄쉐癰귨옙野껓옙 */
 .middle_field_2_2 > .list > .btn{
     width: 80%;
 }
 .middle_field_2_2 > .list > .btn_on{
     width: 80%;
 }
-/* 洹뱀옣�꽑�깮 �궡遺� �냽�꽦蹂�寃� */
-/* �떆媛꾩꽑�깮 �궡遺� �냽�꽦蹂�寃� */
+/* 域밸��삢占쎄퐨占쎄문 占쎄땀�겫占� 占쎈꺗占쎄쉐癰귨옙野껓옙 */
+/* 占쎈뻻揶쏄쑴苑묕옙源� 占쎄땀�겫占� 占쎈꺗占쎄쉐癰귨옙野껓옙 */
 .time{
     font-size: 17px;
     float: left;
@@ -213,8 +213,8 @@ div{
     font-size: 10px;
     color: #a4a4a4;
 }
-/* �떆媛꾩꽑�깮 �궡遺� �냽�꽦蹂�寃� */
-/* �떆媛꾩꽑�깮 踰꾪듉 �냽�꽦蹂�寃� */
+/* 占쎈뻻揶쏄쑴苑묕옙源� 占쎄땀�겫占� 占쎈꺗占쎄쉐癰귨옙野껓옙 */
+/* 占쎈뻻揶쏄쑴苑묕옙源� 甕곌쑵�뱣 占쎈꺗占쎄쉐癰귨옙野껓옙 */
 .time_btn{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -229,7 +229,7 @@ div{
 .time_btn:hover{
     color: black;
     background-color: #b9c1cc;
-}/*�샇踰�*/
+}/*占쎌깈甕곤옙*/
 .time_btn.on{
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -240,8 +240,8 @@ div{
     font-size: 15px;
     padding: 0;
 }
-/* �떆媛꾩꽑�깮 踰꾪듉 �냽�꽦蹂�寃쎈걹 */
-/* 遺��궧 ���젆�꽣 �떆�옉 */
+/* 占쎈뻻揶쏄쑴苑묕옙源� 甕곌쑵�뱣 占쎈꺗占쎄쉐癰귨옙野껋럥嫄� */
+/* �겫占쏙옙沅� 占쏙옙占쎌젂占쎄숲 占쎈뻻占쎌삂 */
 .seat_info{
     font-weight: bold;
     font-size: 20px;
@@ -275,7 +275,7 @@ div{
     margin-left: 40px;
     font-weight: bold;
 }
-/*移댁슫�듃 踰꾪듉 �떆�옉*/
+/*燁삳똻�뒲占쎈뱜 甕곌쑵�뱣 占쎈뻻占쎌삂*/
 .down{
     float: left;
     width: 32px;
@@ -310,7 +310,7 @@ div{
     margin-top: 15px;
     
 }
-/*移댁슫�듃 踰꾪듉 �걹*/
+/*燁삳똻�뒲占쎈뱜 甕곌쑵�뱣 占쎄국*/
 .choice_seat{
     width: 500px;
     height: 250px;
@@ -324,7 +324,7 @@ div{
     font-weight: bold;
     margin-bottom: 20px;
 }
-/*醫뚯꽍 �떆�옉*/
+/*�넫�슣苑� 占쎈뻻占쎌삂*/
 .seat_row{
     width: 25px;
     height: 25px;
@@ -356,8 +356,8 @@ div{
     background-color: #777777;
     font-size: 20px;
 }
-/*醫뚯꽍 �걹*/
-/*�눥諛뺤뒪 �떆�옉*/
+/*�넫�슣苑� 占쎄국*/
+/*占쎈닪獄쏅벡�뮞 占쎈뻻占쎌삂*/
 .show_box{
     background-color: #282934;
     float: left;
@@ -422,7 +422,6 @@ div{
 	top: 32px;
 	right: 64px;
 }
-/*�눥諛뺤뒪 �걹*/
 
 
 

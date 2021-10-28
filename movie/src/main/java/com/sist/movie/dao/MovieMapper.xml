@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sist.com.vo.movie">
+
+
+	<sql id="sql">
+		SELECT
+		MOVIECD, MOVIENM, MOVIENMEN, SHOWTM, OPENDT, CONTENTS, PRDTSTATNM,
+		NATIONS, GENRE, DIRECTORS, ACTORS, WATCHGRADENM, COMPANYS
+		FROM MOVIE
+	</sql>
+
+	<select id="movieList" resultType="movielist">
+		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
+		CONTENTS, SHOWTM, CONTENTS FROM MOVIE
+	</select>
+
+	<select id="currentMovieList" resultType="movielist">
+		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
+		CONTENTS, SHOWTM, CONTENTS FROM MOVIE WHERE PRDTSTATNM='개봉'
+	</select>
+
+	<select id="laterMovieList" resultType="movielist">
+		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
+		CONTENTS, SHOWTM, CONTENTS FROM MOVIE WHERE PRDTSTATNM='개봉예정'
+	</select>
+
+	<select id="selectInfoMovie" parameterType="int"
+		resultType="movielist">
+		<include refid="sql"></include>
+		WHERE MOVIECD=#{NO}
+	</select>
+
+	<select id="searchMovie" parameterType="String"
+		resultType="movielist">
+		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
+		CONTENTS, SHOWTM, CONTENTS FROM MOVIE
+		WHERE MOVIENM LIKE '%'||#{search}||'%'
+	</select>
+
+	<!-- 메인 현재상영작 -->
+	<select id="mainOnAirList" resultType="movielist">
+		SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
+		FROM(
+		SELECT RANK() OVER(ORDER BY OPENDT
+		DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE OPENDT < SYSDATE]]>)
+<![CDATA[WHERE RANK <=4]]>
+	</select>
+
+	<!-- 메인 상영예정작 -->
+	<select id="mainScheduledList" resultType="movielist">
+		SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
+		FROM(
+		SELECT RANK() OVER(ORDER BY OPENDT
+		DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE OPENDT > SYSDATE-20]]>)
+<![CDATA[WHERE RANK <=4]]>
+	</select>
+
+	<!-- 메인 인기순위 -->
+	<!-- 예매율 넣어서 수정 필요 지금은 암거나 쓴거임 -->
+	<select id="mainPopularList" resultType="movielist">
+		SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
+		FROM(
+		SELECT RANK() OVER(ORDER BY SHOWTM
+		DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE SHOWTM < 150]]>)
+<![CDATA[WHERE RANK <=4]]>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

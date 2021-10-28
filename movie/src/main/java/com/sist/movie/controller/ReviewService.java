@@ -1,4 +1,4 @@
-package com.sist.movie.service;
+package com.sist.movie.controller;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ReviewService {
 	}
 	
 	public void registerReview(String userId, String comment) {
-		//TODO 구현 필요 
+		//TODO 援ы쁽 �븘�슂 
 		
 	}
 }

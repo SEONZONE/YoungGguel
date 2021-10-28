@@ -30,12 +30,13 @@ public class MovieControllerAjax {
 	@RequestMapping(value = "ajaxMain.do")
 	public List<MovieVO> ajaxMain(String key) {	
 		if(key.equals("main")) {
-			return dao.mainCurrentList();		
-		}else if(key.equals("current")) {
-			return dao.mainCurrentList();
-		}else{
-			return dao.mainPlanning();
+			return dao.mainPopularList();		
+		}else if(key.equals("onAir")) {
+			return dao.mainOnAirList();
+		}else if(key.equals("scheduled")){
+			return dao.mainScheduledList();
 		}
+		return null;
 	}
 	
 	/*@RequestMapping("ajaxSearch.do")

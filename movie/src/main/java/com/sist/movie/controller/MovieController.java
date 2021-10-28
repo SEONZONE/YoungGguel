@@ -12,10 +12,10 @@ import com.sist.movie.dao.MovieDao;
 
 @Controller
 public class MovieController {
-    //get,postë¥¼ ì¨ì•¼í•¨
-	//get ë°ì´í„° ë¶€ë¥¼ë•Œ selectí•´ì„œ ë³´ì—¬ì¤„ë•Œ
-	//post íšŒì›ê°€ì… ë“±ë¡
-	//put íšŒì›ì •ë³´ ì—…ë°ì´íŠ¸, ë”œë¦¬íŠ¸ 
+    //get,post¸¦ ½á¾ßÇÔ
+	//get µ¥ÀÌÅÍ ºÎ¸¦¶§ selectÇØ¼­ º¸¿©ÁÙ¶§
+	//post È¸¿ø°¡ÀÔ µî·Ï
+	//put È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®, µô¸®Æ® 
 	@Autowired
 	private MovieDao dao;
 
