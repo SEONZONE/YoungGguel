@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="sist.com.vo.apple">
+<mapper namespace="sist.com.vo.movie">
 
 
 	<sql id="sql">
@@ -16,6 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
 		CONTENTS, SHOWTM, CONTENTS FROM MOVIE
 	</select>
+	
+
 
 	<select id="currentMovieList" resultType="movielist">
 		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
