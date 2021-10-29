@@ -13,12 +13,12 @@ import lombok.ToString;
 @ToString
 public class UserVO {
 
-   private String USER_ID;
-   private String USER_PW;
-   private String USER_NAME;
-   private String USER_GENDER;
-   private int USER_TEL;
-   private String USER_BIRTH;
-   private String USER_EMAIL;
+   private String USERID;
+   private String USERPW;
+   private String USERNAME;
+   private String USERGENDER;
+   private int USERTEL;
+   private String USERBIRTH;
+   private String USEREMAIL;
 
 }

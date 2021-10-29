@@ -185,6 +185,7 @@
 					sessionStorage.removeItem("Upw");
 					document.location.reload();
 	    		},
+	    		
 
 				error : function(e) {
 					alert('로그아웃 에러' + e);
@@ -219,7 +220,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="gnb">
+	
 		<div class="wrapping">
 			<div class="gnblogo" id="gnblogoid">
 				<a href="/"> <img src="/movie/view/img/logo.png">
@@ -228,6 +231,7 @@
 				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
 					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
                         <li><img src="/movie/view/img/usericon.png" id ="usericon"class=" hidden"></li>
+                     
                         <li><span id ="info_user"class=" hidden">${id } 님 </span></li>
                         &nbsp;<li><img src="/movie/view/img/logoutbutton.png"class=" hidden" id="logoutBtn"></li>
 				</ul>

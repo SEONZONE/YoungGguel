@@ -4,27 +4,27 @@ import lombok.Data;
 
 @Data
 public class SeatVO {
-	int seNo;
-	String seNo1;
-	String seNo2;
-	String seNo3;
-	String seNo4;
-	String seNo5;
-	String seNo6;
-	String seNo7;
-	String seNo8;
-	String seNo9;
-	String seNo10;
-	String seNo11;
-	String seNo12;
-	String seNo13;
-	String seNo14;
-	String seNo15;
-	String seNo16;
-	String seNo17;
-	String seNo18;
-	String seNo19;
-	String seNo20;
+	private int seNo;
+	private String seNo1;
+	private String seNo2;
+	private String seNo3;
+	private String seNo4;
+	private String seNo5;
+	private String seNo6;
+	private String seNo7;
+	private String seNo8;
+	private String seNo9;
+	private String seNo10;
+	private String seNo11;
+	private String seNo12;
+	private String seNo13;
+	private String seNo14;
+	private String seNo15;
+	private String seNo16;
+	private String seNo17;
+	private String seNo18;
+	private String seNo19;
+	private String seNo20;
 
 
 }

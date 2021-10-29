@@ -19,6 +19,8 @@ public class MovieDao extends SqlSessionDaoSupport {
    public List<MovieVO> movieList() {
       return this.getSqlSession().selectList("movieList");
    }
+  
+   
    public List<MovieVO> currentMovieList() {
 	   return this.getSqlSession().selectList("currentMovieList");
    }
