@@ -23,10 +23,10 @@ import com.sist.movie.vo.MovieVO;
 @Controller
 public class BookingController {
 	
-	@Inject
+	@Autowired
 	private MovieDao mdao;
 	
-	@Inject
+	@Autowired
 	private TheaterDao tdao;
 	
 	@ResponseBody

@@ -20,19 +20,18 @@ import com.sist.movie.dao.MovieDao;
 import com.sist.movie.dao.MyPageDao;
 import com.sist.movie.dao.UserDao;
 import com.sist.movie.vo.AskVO;
-import com.sist.movie.vo.UserVO;
 
 
 @Controller
 public class MyPageController{
 	@Autowired
 	private MyPageDao dao;
-	@Inject
+	@Autowired
 	private UserDao userdao;
-	@Inject
+	@Autowired
 	private MovieDao mdao;
 
-	// �����ϱ� ������ �ִ°�
+	// 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙 占쌍는곤옙
 	@PostMapping(value = "ask.do")
 	public String uploadAskAction(AskVO bean, @RequestParam(value="file", required=false, defaultValue = "noData") MultipartFile file) {
 	String location = "C:\\Users\\izp10\\Desktop\\Spring\\movie\\src\\main\\webapp\\resources\\upload\\";
@@ -89,7 +88,7 @@ public class MyPageController{
 	@RequestMapping(value="deleteUser.do")
 	public String deleteUserAction(String id) {
 		//HashMap<String,Object> map=new HashMap<String,Object>();
-		System.out.println(id+" "+"����");
+		System.out.println(id+" "+"占쏙옙占쏙옙");
 		userdao.deleteUser(id);
 		
 //		System.out.println("success");
@@ -97,17 +96,17 @@ public class MyPageController{
 		return "/view/jsp/Admin/deleteUser";
 			
 	}
-	//�н����� ����//
+	//占싻쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙//
 	@RequestMapping(value="RenewPassword.do")
 	public String renewPassword(String userPw,String userId) {
 		HashMap<String,Object> map=new HashMap<String,Object>();
 		map.put("userId",userId);
 		map.put("userPw",userPw);
 		userdao.renewPWAction(map);
-		System.out.println("PW번호변경 성공");	
+		System.out.println("PW踰덊샇蹂�寃� �꽦怨�");	
 		return "view/jsp/myPage1";
 	}
-	//�������������� ��ȭ����Ʈ �ҷ�����
+	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙화占쏙옙占쏙옙트 占쌀뤄옙占쏙옙占쏙옙
 	@RequestMapping(value="loadReserveList.do")
 	public String selectReserveList(HashMap<String,Object> map) {
 		//List<Object> mlist=mdao.selcetReserveMovieList();
