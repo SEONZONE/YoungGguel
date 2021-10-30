@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
        <typeAlias type="com.sist.movie.vo.TheaterVO" alias="theaterlist"/>
        <typeAlias type="com.sist.movie.vo.ReviewVO" alias="review"/>
        <typeAlias type="com.sist.movie.vo.ActorVO" alias="actor"/>
+
     </typeAliases>
    
     
