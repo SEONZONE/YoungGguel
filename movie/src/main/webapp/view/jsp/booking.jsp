@@ -94,6 +94,28 @@
 		});
 	}
 	
+<<<<<<< Updated upstream
+=======
+	
+	/* 클릭시 값 저장 */
+	$("button#dayButton1").click(function(e) {
+		var daySelect = $("span#daySpan1").html();
+		console.log(daySelect);
+		$("button#movieButton1").click(function(d) {
+			var movieSelect = $("span#movieSpan1").html();
+			console.log(daySelect);
+			console.log(movieSelect);
+		});
+	});
+	
+	 $("span.tempCity#0").click(function() {
+		alert("서울!");
+	}); 
+ 
+	
+	
+	
+>>>>>>> Stashed changes
 
 	
 	});
