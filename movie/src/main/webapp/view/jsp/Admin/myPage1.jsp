@@ -34,7 +34,7 @@
 
 <body>
 
- <jsp:include page="gnb.jsp" ></jsp:include>
+ <jsp:include page="../gnb.jsp" ></jsp:include>
     <div id="contents_wrap">
         <div id="myPage_btn">
             <div id="myPage_div_img_active"><img src="/movie/view/img/예매확인.png" class="myPage_img active" id="checkReserveimg" onmouseover="
@@ -87,6 +87,6 @@
 
         <!--테이블탭끝-->
         </div>
- <jsp:include page="footer.jsp" ></jsp:include>
+ <jsp:include page="../footer.jsp" ></jsp:include>
 </body>
 </html>

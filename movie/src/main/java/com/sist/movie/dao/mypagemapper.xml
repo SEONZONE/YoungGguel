@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.movie.dao.mypagemapper">
+<!-- 유저관련 -->
+<!-- 이거는 현재 작동 x -->
+<insert id="insertUser" parameterType="user">
+		INSERT INTO
+		USER_INFO(USERID,USERPW,USERNAME,USERTEL,USERBIRTH,USEREMAIL,USERGENDER)
+		VALUES(#{user_id},#{user_pw},#{user_name},#{user_gender},#{user_tel},#{user_birth},#{user_email})
+</insert>
+<select id="getUserInfo" parameterType="String" resultType="user">
+		SELECT
+		USERID,USERPW,USERNAME,USERTEL,USERBIRTH,USEREMAIL,USERGENDER
+		FROM USER_INFO
+		WHERE USERID=#{VALUE}
+</select>
+
+<!-- 유저관련끝 -->
+<select id="getPassword" parameterType="String" resultType="String">
+SELECT PASSWORD 
+FROM USER_INFO 
+WHERE ID=#{VALUE}
+</select>
+
+<select id="getUserId" parameterType="String" resultType="String">
+SELECT USER_ID FROM USER_INFO WHERE USER_ID=#{VALUE}
+</select>
+
+<delete id="deleteUser" parameterType="String">
+DELETE FROM USER_INFO WHERE USERID=#{VALUE}
+</delete>
+
+<update id="renewPassword" parameterType="java.util.HashMap">
+UPDATE USER_INFO SET USERPW=#{userPw} WHERE userID=#{userId}
+</update>
+
+<!-- 댓글로직 시작 -->
+<!-- 문의하기 할때 문의번호 가져오기! -->
+<select id="getAskSequence" resultType="int">
+SELECT ASK_NO_SEQ.NEXTVAL FROM DUAL
+</select>
+	
+<!-- 문의내용 DB에 인설트 하기 * 파일넣는건 못했음 여쭤봐야댐-->
+<insert id="uploadAsk" parameterType="ask">
+	INSERT INTO ASK(ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK) 
+	VALUES(#{ask_no},#{ask_title},#{ask_contents},#{ask_fileName},SYSDATE,#{pnum},#{ref},#{user_id},#{answer_ck})
+</insert>
+
+<select id="selectAsk" resultType="ask" parameterType="String">
+SELECT ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ask_REGDATE,
+PNUM,REF,USER_ID,ANSWER_CK
+FROM ASK
+WHERE USER_ID=#{VALUE}
+ORDER BY ASK_REGDATE DESC, REF DESC
+
+<!-- to_char(ASK_REGDATE,'yyyy/mm/dd') -->
+</select>
+
+<delete id="DeleteAsk" parameterType="int">
+      DELETE FROM ask
+      WHERE ASK_NO = #{VALUE}
+</delete>
+<!-- 댓글로직 끝 -->
+
+</mapper>
