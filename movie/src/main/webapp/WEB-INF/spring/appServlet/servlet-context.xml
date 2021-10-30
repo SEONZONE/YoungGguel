@@ -28,11 +28,9 @@
 
 	<beans:bean id="database"
 		class="org.apache.commons.dbcp.BasicDataSource">
-		<beans:property name="driverClassName"
-			value="oracle.jdbc.OracleDriver" />
+		<beans:property name="driverClassName"	value="oracle.jdbc.OracleDriver" />
 		<beans:property name="url"
-
-			value="jdbc:oracle:thin:@db202109031726_high?TNS_ADMIN=C://Users//izp10//Documents//Wallet_DB202109031726" />
+		value="jdbc:oracle:thin:@db202109031726_high?TNS_ADMIN=C://Users//izp10//Documents//Wallet_DB202109031726" />
 
 			
 
@@ -40,33 +38,26 @@
 		<beans:property name="password" value="Qkrtjdwhd031"></beans:property>
 	</beans:bean>
 
-	<beans:bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
+	<beans:bean id="sqlSessionFactory"	class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="database" />
 		<beans:property name="configLocation"
 			value="/WEB-INF/Config.xml"></beans:property>
 	</beans:bean>
-	<beans:bean id="sqlSessionTemplate"
-		class="org.mybatis.spring.SqlSessionTemplate">
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg>
 			<beans:ref bean="sqlSessionFactory" />
 		</beans:constructor-arg>
 	</beans:bean>
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:bean id="multipartResolver"	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"></beans:property>
 		<beans:property name="maxUploadSize" value="300000000"></beans:property>
 	</beans:bean>
 
 
-	<context:component-scan
-		base-package="com.sist.movie" />
-	<context:component-scan
-		base-package="com.sist.movie.controller" />
-	<context:component-scan
-		base-package="com.sist.movie.vo" />
-	<context:component-scan
-		base-package="com.sist.movie.dao" />
+	<context:component-scan	base-package="com.sist.movie" />
+	<context:component-scan	base-package="com.sist.movie.controller" />
+	<context:component-scan	base-package="com.sist.movie.vo" />
+	<context:component-scan	base-package="com.sist.movie.dao" />
 
 
 </beans:beans>

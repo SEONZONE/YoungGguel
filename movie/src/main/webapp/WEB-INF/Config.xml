@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <typeAliases>
     	<typeAlias type="com.sist.movie.vo.UserVO" alias="User"/>
     	<typeAlias type="com.sist.movie.vo.BookVO" alias="Book"/>
-    	<typeAlias type="com.sist.movie.vo.MovieVO" alias="movielist"/>
+    	<typeAlias type="com.sist.movie.vo.MovieVO" alias="movieList"/>
     	<typeAlias type="com.sist.movie.vo.SeatVO" alias="Seat"/>
     	<typeAlias type="com.sist.movie.vo.AskVO" alias="ask"/>
     	<typeAlias type="com.sist.movie.vo.BookingVO" alias="booking"/>
