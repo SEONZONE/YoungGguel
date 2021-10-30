@@ -2,17 +2,16 @@
     padding-top: 50px;  max-width: 1200px; 
     margin: 0px auto;
     width: 1200px;
-    height: 1200px; 
-    
+    height: auto; 
 }
 #myPage_btn{
     width: 450px; height: 150px ; background-color: #265396; 
     text-align: center; 
      margin: 15px auto;
-     margin-left: 400px;
 }
 #myPage_div_img_active{
-    width:149px; height: 150px;  background-color: #265396; 
+    width:149px; height: 150px;  
+    background-color: #265396; 
     float: left;
     border-right: 1px solid gray;
 }  
@@ -22,16 +21,31 @@
     margin: 0 auto;
     border-right: 1px solid gray;
 
-} 
-#myPage_div:last-child{
+}
+#myPage_div_img:last-child{
     border-right: none;
     width: 150px;
+}
+.active{
+	filter:brightness(2);
 }
 .myPage_img{
     width: 50%;
     position: relative;
     top:23%;
     
+}
+img#find_img {
+	padding: 5px;
+    height: 22px;
+    border: 1px solid gray;
+    background-color:#e1e1e1;
+    align-items: center;
+    position: relative;
+    top: 15%;
+    width: 70px;
+	
+
 }
 
 

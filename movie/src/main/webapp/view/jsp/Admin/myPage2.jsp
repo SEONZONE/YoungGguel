@@ -12,32 +12,20 @@
     <title>Document</title>
          <link rel="stylesheet" href="/movie/view/css/myPagecommon.css">
       <link rel="stylesheet" href="/movie/view/css/myPage2.css"> 
-	 --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-function ajaxReplyList(v){
-	   var temp="";
-	   var id="";
-	    $.each(v,function(index,dom){
-	    	temp+="<div id=\"QNA_result\">";
-	    	temp+="<div class=\"result_title\">";
-	    	temp+="<img src=\"/movie/view/img/"+dom.answer_ck+".png\" alt=\"답변여부\" class=\"result_img\">";
-	    	temp+="<div class=\"ask_title\"><a href=\"javascript:ajaxcontent()\"  >";
-	    	temp+="<span id=ask_title lang="+dom.ask_no+" class=link>"+dom.ask_title+"/</span></a></div>";
-	    	temp+="<div class=\"ask_date\"><a href=\"/movie/AnswerList.do?user_id="+dom.user_id+"&ask_no="+dom.ask_no+"\" id=\"Answer\"></a>"+dom.ask_regdate+"</div>";
-	    	    
-	    	//temp+="<span><input type=\"button\"value="답변달기\"></button></span>";
-	    	
-	       //여기아래 부분이 하이드 되어잇음 
-	    	 temp+="<div class=\"result_answer\" lang=\"answer\" id="+dom.ask_no+">";
-	         temp+="<img src=\"/movie/view/img/답변화살표.png\" alt=\"답변화살표\" class=\"result_img2\">"+dom.ask_contents;
-	         temp+="</div>"; 
-	         temp+="</div>"; 
-	    });
-	    $("div#QNA_result").html(temp);
-
-	}
-
- 
+ function ajaxReplyList(v){
+   var temp="";
+    $.each(v,function(index,dom){
+    	temp+="<div id=\"QNA_result\">";
+    	temp+="<div class=\"result_title\">";
+    	temp+="<img src=\"/movie/view/img/"+dom.answer_ck+".png\" alt=\"미답변\" class=\"result_img\">";
+        temp+="<div class=\"ask_title\">"+dom.ask_title+"</div>";
+        temp+="<div class=\"ask_date\">"+dom.ask_regdate+"</div>";
+        temp+="</div>";
+    });
+    $("div#QNA_RE").html(temp);
+} 
 function ajaxRequest(url,data,dataType){
    $.ajax({
         url:url,
@@ -53,10 +41,10 @@ function ajaxRequest(url,data,dataType){
      });
 
 };
-   
+
 $(function(){
 	$("button#searchask").click(function(){
-			ajaxRequest('/movie/selectAsk.do',{id:'asd'},'json')
+			ajaxRequest('/movie/selectAsk.do',{id:'seonzone'},'json')
 		});
 	  $('img#checkReserveimg').click(function(){
 		  //alert(this);
@@ -71,15 +59,18 @@ $(function(){
 		 // document.location.href='/movie/view/jsp/myPage3.jsp';
 		  document.location.href='/movie/mypage3.do?id=asd';
 	  });
-
+/* 	  $("a#searchask").click(function(){
+	         ajaxRequest('${pageContext.request.contextPath}/mypage2.do',$("form#QNAFROM").serialize(),'json');
+	        
+	      }); */
 	  
 });
 </script>
 </head>
 
 <body>
-
-  <jsp:include page="gnb.jsp"></jsp:include>
+<!-- <a href="/movie/selectAsk.do">asasdas -->
+  <jsp:include page="../gnb.jsp"></jsp:include>
      <div id="contents_wrap">
         <div id="myPage_btn">
             <div id="myPage_div_img"><img src="/movie/view/img/예매확인.png" class="myPage_img" id="checkReserveimg" onmouseover="
@@ -90,11 +81,11 @@ $(function(){
                     this.style.cursor='pointer'"></div>
         </div>
         <!--버튼끝-->
-        <!--폼 시작-->`
-        <form action="/movie/ask.do?job=ask&id=asd" method="POST" id="QNAFROM" enctype="multipart/form-data">
-            <input type="hidden" name="user_id" value="asd">
+        <!--폼 시작-->
+        <form action="/movie/ask.do?job=new" method="POST" id="QNAFROM" enctype="multipart/form-data">
             <div id="QNA"><input type="text" class="QNA_title" placeholder="제목을 입력하시오" name="ask_title"></div>
             <div id="QNA"><textarea class="QNA_contents" placeholder="내용을 입력하시오" name="ask_contents"></textarea></div>
+            <!-- <div id="QNA"><input type="file" class="QNA_file"></div>     -->
 
            
             <!--파일추가-->
@@ -109,12 +100,12 @@ $(function(){
 	                 <input type="file" id="ex_filename" class="upload-hidden">
                 </div> -->
             <!--파일추가-->
-			<input type="hidden" name="answer_ck" value="미답변">
+
             <div id="btn_tap">
                 <input type="submit" value="확인" class="form_submit">
                 <input type="button" value="취소" class="form_cancel">
             </div>
-		
+
         </form>
 
     
@@ -122,35 +113,32 @@ $(function(){
         
         <div id="result">
             <div class="question">
-             <button id="searchask">문의내역</a> 
+             <button id="searchask">문의내역 확인</a> 
             </div>
-            <div id="QNA_result">
-                 <div class="result_title">
-                   <!-- <img src="/movie/view/img/미답변.png" alt="미답변" class="result_img">
-                    <div class="ask_title">영끌페시기 제목</div>
-                    <div class="ask_date">날짜</div>
-                </div>
-                 <div class="result_title">
+            <div id="QNA_RE">
+          
+                 </div>
+                <!-- <!-- <div class="result_title">
                     <img src="/movie/view/img/미답변.png" alt="미답변" class="result_img">영끌페시기 제목
                 </div> 
                 <div class="result_title">
                     <img src="/movie/view/img/답변완료.png" alt="미답변" class="result_img_active">
                      <div class="ask_title">영끌 포인트 제도은 없나요</div>
                     <div class="ask_date">날짜</div>
-                </div>-->
+                </div>
+ -->
 
-
-                <!-- <div class="result_answer">
+                <div class="result_answer">
                     <img src="/movie/view/img/답변화살표.png" alt="답변화살표" class="result_img2">답변 뭐시기뭐시기답변 뭐시기뭐시기답변 뭐시기뭐시기답변뭐시기뭐시기답변
                     뭐시기뭐시기답변 뭐시기뭐시기답변뭐시기뭐시기답변 뭐시기뭐시기답변
                     뭐시기뭐시기답변뭐시기뭐시기답변 뭐시기변 뭐시기뭐시기답변ㄴ
-                </div> -->
+                </div>
 
-            </div>
+            
  </div>
             </div>
             <!--문의내역 끝-->
-            <jsp:include page="footer.jsp"></jsp:include>
+            <jsp:include page="../footer.jsp"></jsp:include>
            
             </body>
 
