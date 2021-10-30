@@ -46,7 +46,7 @@
         <div id="contents">
             <span class="search">구분</span>
             <span id="taptap">
-            <span id="search2" ><input type="radio" name="searchtap" value="true" >전체 내역</span>
+            <span id="search2" ><input type="radio" name="searchtap" checked="checked" >전체 내역</span>
             <span id="search2"><input type="radio" name="searchtap">기간별 조회</span>&nbsp;
             <span id="search2"><input type="date" id="search_date"></span><span> ~ </span>
             <span id="search2"><input type="date" id="search_date"></span>

@@ -83,7 +83,7 @@ public class MyPageController{
 	@RequestMapping(value ="mypage3.do")
 	public String myPage3Action(Model model, String id) {
 		model.addAttribute("user_info",dao.getUserInfo(id));
-		return "view/jsp/Admin/myPage3";
+		return "view/jsp/myPage3";
 	}
 	@RequestMapping(value="deleteUser.do")
 	public String deleteUserAction(String id) {
@@ -113,6 +113,6 @@ public class MyPageController{
 		//model.addAttribute("user_info", dao.getUserInfo(id));
 		System.out.println(mdao.selcetReserveMovieList());
 		map.put("mlist",mdao.selcetReserveMovieList());
-		return "view/jsp/Admin/myPage1";
+		return "view/jsp/myPage1";
 	}
 }

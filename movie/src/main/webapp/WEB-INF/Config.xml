@@ -8,12 +8,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
        <typeAlias type="com.sist.movie.vo.UserVO" alias="user"/>
        <typeAlias type="com.sist.movie.vo.BookVO" alias="Book"/>
        <typeAlias type="com.sist.movie.vo.MovieVO" alias="movieList"/>
+       <typeAlias type="com.sist.movie.vo.MovieDemoVO" alias="movieDemo"/>
        <typeAlias type="com.sist.movie.vo.SeatVO" alias="Seat"/>
        <typeAlias type="com.sist.movie.vo.AskVO" alias="ask"/>
        <typeAlias type="com.sist.movie.vo.BookingVO" alias="booking"/>
        <typeAlias type="com.sist.movie.vo.AnswerVO" alias="askanswer"/>
        <typeAlias type="com.sist.movie.vo.TheaterVO" alias="theaterlist"/>
        <typeAlias type="com.sist.movie.vo.ReviewVO" alias="review"/>
+       <typeAlias type="com.sist.movie.vo.ActorVO" alias="actor"/>
     </typeAliases>
    
     
@@ -22,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="com/sist/movie/dao/MovieMapper.xml"/>
       <mapper resource="com/sist/movie/dao/TheaterMapper.xml"/>
       <mapper resource="com/sist/movie/dao/mypagemapper.xml"/>
+      <mapper resource="com/sist/movie/dao/AdminMapper.xml"/>
     </mappers>
 </configuration>
 
