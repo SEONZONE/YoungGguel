@@ -14,24 +14,22 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(function(){
+	  $('img#find_img').click(function(){
+		  document.location.href='/movie/loadReserveList.do';
+	  });
 	  $('img#checkReserveimg').click(function(){
-		  //alert(this);
 		  document.location.href='/movie/view/jsp/myPage1.jsp';
-	  }),
+	  });
 	  $('img#questionimg').click(function(){
-		  //alert(this);
 		  document.location.href='/movie/mypage2.do';
-	  }),
+	  });
 	  $('img#changeInfoimg').click(function(){
-		  //alert(this);
-		//  document.location.href='/movie/view/jsp/myPage3.jsp';
 		  document.location.href='/movie/mypage3.do?id=asd';
 	  });
 	  
   });
 </script>
 </head>
-
 <body>
 
  <jsp:include page="gnb.jsp" ></jsp:include>
@@ -48,17 +46,16 @@
         <div id="contents">
             <span class="search">구분</span>
             <span id="taptap">
-            <span id="search2" ><input type="radio" name="searchtap" >예매내역</span>
-            <span id="search2"><input type="radio" name="searchtap">지난내역</span>&nbsp;
+            <span id="search2" ><input type="radio" name="searchtap" value="true" >전체 내역</span>
+            <span id="search2"><input type="radio" name="searchtap">기간별 조회</span>&nbsp;
             <span id="search2"><input type="date" id="search_date"></span><span> ~ </span>
             <span id="search2"><input type="date" id="search_date"></span>
-            <img src="/movie/view/img/find.png" id="find_img" onmouseover="
-                this.style.cursor='pointer'"></span>
+            <img src="/movie/view/img/find.png" id="find_img" onmouseover="this.style.cursor='pointer'"></span>
              
         </div>
         <!--구분탭끝-->
         <!--테이블탭시작-->
-        <a href="/movie/loadReserveList.do">영화리스트 가져오기</a>
+       
             <table id="table_wrap">      
                 <thead id="table_top">
                     <tr>

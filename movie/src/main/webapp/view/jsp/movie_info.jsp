@@ -7,28 +7,30 @@
 <html>
 <head>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>영끌</title>
+    <title>영끌 영화정보</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='/movie/view/css/movie_info.css'> <!--무비인포 CSS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-/* 	  $(document).ready(function(){
-	      var UUid = sessionStorage.getItem('Uid');
-	      var UUpw = sessionStorage.getItem('Upw'); 
-	      console.log(UUid);
-	   }); */
+
   $(function(){
-	  
-	  
+
 	  /* 로그인 세션 확인 */
 	  var UUid = sessionStorage.getItem('Uid');
-      var UUpw = sessionStorage.getItem('Upw'); 
-      console.log(UUid);
+      
+      /* 덧글에 id html로 넣음 */
+      $("#sessionId").html(UUid);
+      
+      var code = $("#movieCd").val();
+	  movieReview('/movie/Review.do',{movieCd:code},'json');
+      
+      /* 로그인 세션이 있을 경우 id값 hidden해서 넘김 */
+      if(UUid != null){
+      $("#userId").val(UUid);    	  
+      }
 	  
       /*  뮤비의 리뷰 리스트 */
-	  /* movieReview('/movie/movieReview.do','json'); */
-	  
 	  function movieReview(url,data,dataType){
 	      $.ajax({
 				  url:url,
@@ -46,21 +48,65 @@
 
 	   function movieReviewList(v){
 		   var temp="";
-    		$.each(v,function(index,dom){
-    			temp="<div style=\"width: 130px; height: 50px; text-align: center;\">"; 
-    			temp="<span><img src=\"/movie/view/img/usericon.png\"></span><br>";
-    			temp="<span>"+dom.userId+"</span>";
-    			temp="</div>";
-    			temp="<div id=\"review_text\">"+dom.contents+"</div>";
+		   var id="";
+    		$.each(v,function(index,dom){ 		
+    			id=dom.userId;
+    			temp+="<div class=\"review_list\">";
+    			temp+="<div style=\"width: 130px; height: 50px; text-align: center;\">"; 
+    			temp+="<span><img src=\"/movie/view/img/usericon.png\"></span><br>";
+    			temp+="<span>"+dom.userId+"</span>";
+    			temp+="</div>";
+    		    if(UUid!=id){
+    			  temp+="<div id=\"review_text\" class="+dom.userId+">"+dom.comments;
+    			  temp+="<span class=\"updateDate\">"+dom.updateDate+"</span>";
+    			  temp+="</div>";
+    		    } else {
+    			  temp+="<div id=\"review_text\" class="+dom.userId+">"+dom.comments;
+    			  temp+="<span class=\"updateDate\">"+dom.updateDate+"</span>";
+    			  temp+="<button class=\"review_btn\" id=\"updateReview\" name="+dom.reviewNo+">수정</button>";
+    			  temp+="<button class=\"review_btn\" id=\"deleteReview\" name="+dom.reviewNo+">삭제</button>";
+    			  temp+="</div>";   		    	
+    			  temp+="<form id=\"hiddenValue\">";
+    			  temp+="<input type=\"hidden\" id=\"reviewNo\" name=\"reviewNo\" value="+dom.reviewNo+">";
+    			  temp+="<input type=\"hidden\" id=\"movieCd\" name=\"movieCd\" value="+dom.movieCd+">";
+    			  temp+="</form>";
+    		    }
+    			temp+="</div>";
 	    	});	
-    		$(".review_list").html(temp);
+    		$(".reviewList").html(temp);
 	      }
 	   
+	   
 	   /* 코멘트 작성 후 버튼 클릭시 리뷰리스트에 추가 */
-	   $("#review_button").click(function(){
-		   movieReview('${pageContext.request.contextPath}/movieReviewInsert.do',$("form#sendReview").serialize(),'json'); 
+	   $("div#review_button").click(function(){
+		   if(UUid == null){
+			   alert('로그인 후 관람평 등록이 가능합니다.');
+			   $("#comments").val('');
+		   }else{
+			   movieReview('/movie/reviewInsert.do',$("form#sendReview").serialize(),'json'); 
+			   $("#comments").val('');
+		   }		   
 	   });
+	   
+	   $(document).on('click', '#deleteReview', function(){
+			  movieReview('/movie/reviewDelete.do',$("form#hiddenValue").serialize(),'json');	  
+	   });
+
   });
+  
+	   /* $(".reviewList.review_list.review_text.review_btn").click(function(){
+		  
+	   }); */
+	   
+	  /* 
+	   $(".review_btn").on("click",".review_btn", function(){
+		   alert("success");
+		 }); */
+ /*  $(document).on('click', '.deletelanguage', function () {
+	    alert("success");
+	    $('#LangTable').append(' <br>------------<br> <a class="deletelanguage">Now my class is deletelanguage. click me to test it is not working.</a>');
+	}); */
+	
 </script>
 </head>
 <body>
@@ -104,57 +150,39 @@
                 </div>
                 <div class="review">
                     <span>리뷰 모아보기</span>
+                    <form id="sendReview" method="POST"> 
                     <div class="review_lnput">
-                    <form id="sendReview">
-                    <input class="hidden" value="${info.movieCd}">
+                    <input type="hidden" name="movieCd" id="movieCd" value="${info.movieCd}"> 
+                    <input type="hidden" name="userId" id="userId"> 
                         <div style="width: 130px; height: 50px; text-align: center;"> 
                             <span><img src="/movie/view/img/usericon.png"></span><br>                        
-                            <span> ${UUid} </span>
+                            <span id="sessionId"></span>
                         </div>
-                        <input type="text" placeholder="관람평을 등록해주세요.(200자)">
+                        <input type="text" placeholder="관람평을 등록해주세요.(200자)" name="comments" id="comments">
                         <div id="review_button">관람평 쓰기</div>
-                    </form>
                     </div>
-                    <div class="review_list">
-                     <!--    <div style="width: 130px; height: 50px; text-align: center;"> 
-                            <span><img src="/movie/view/img/usericon.png"></span><br>
-                            <span>작성자아이디</span>
-                        </div>
-                    <div id="review_text">글자수 제한 필요합니다</div> -->
-                    </div>
-                   <!--  <div class="review_list">
+                   </form>
+                   <div class="reviewList"></div>
+                  <!-- <div class="review_list">
                         <div style="width: 130px; height: 50px; text-align: center;"> 
                             <span><img src="/movie/view/img/usericon.png"></span><br>
                             <span>작성자아이디</span>
                         </div>
-                        <div id="review_text">글자수 제한 필요합니다</div>
+                    <div id="review_text">글자수 제한 필요합니다
+                    <span class="updateDate">0000</span>
+                    <button id="updateReview">수정</button>                 
+                    <button id="deleteReview">삭제</button>
                     </div>
-                    <div class="review_list">
-                        <div style="width: 130px; height: 50px; text-align: center;"> 
-                            <span><img src="/movie/view/img/usericon.png"></span><br>
-                            <span>작성자아이디</span>
-                        </div>
-                        <div id="review_text">글자수 제한 필요합니다</div>
-                    </div>  -->
-                </div>
+                </div> --> 
             </div>
         </div>
+</div>
     <!--content 끝-->
     <!--footer 시작-->
         <jsp:include page="footer.jsp" ></jsp:include>
     <!--footer 끝-->
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 

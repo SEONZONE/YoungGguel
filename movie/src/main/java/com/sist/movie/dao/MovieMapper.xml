@@ -33,14 +33,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		CONTENTS, SHOWTM, CONTENTS FROM MOVIE WHERE PRDTSTATNM='개봉예정'
 	</select>
 
-	<select id="selectInfoMovie" parameterType="int"
-		resultType="movielist">
+	<select id="selectInfoMovie" parameterType="int" resultType="movieList">
 		<include refid="sql"></include>
 		WHERE MOVIECD=#{NO}
 	</select>
 
-	<select id="searchMovie" parameterType="String"
-		resultType="movielist">
+	<select id="searchMovie" parameterType="String"	resultType="movieList">
 		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
 		CONTENTS, SHOWTM, CONTENTS FROM MOVIE
 		WHERE MOVIENM LIKE '%'||#{search}||'%'
@@ -73,6 +71,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE SHOWTM < 150]]>)
 <![CDATA[WHERE RANK <=4]]>
 	</select>
+	
+	<!-- 리뷰 -->
+
+<select id="findReviewList" resultType="review">
+SELECT MOVIECD, REVIEWNO, USERID, COMMENTS, UPDATEDATE FROM MOVIE_REVIEW WHERE MOVIECD=#{movieCd} ORDER BY REVIEWNO DESC
+</select>
+
+<insert id="registerReview" parameterType="Hashmap">
+INSERT INTO MOVIE_REVIEW(REVIEWNO,MOVIECD,USERID,COMMENTS,REGISTERDATE,UPDATEDATE)
+VALUES(SEQ_MOVIE_REVIEW.NEXTVAL,#{movieCd},#{userId},#{comments},#{registerDate},#{updateDate})
+</insert>
+
+<delete id="deleteReview" parameterType="int">
+DELETE FROM MOVIE_REVIEW WHERE REVIEWNO=#{reviewNo}
+</delete>
 </mapper>
 
 

@@ -5,13 +5,13 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Review {
+public class ReviewVO {
 
-	private Long reviewNo;
+	private int reviewNo;
+	private int movieCd;
 	private String userId;
 	private String comments;
-	private Date registerDate;
-	private String moviecd;
-	private Date updateDate;
+	private String registerDate;
+	private String updateDate;
 	
 }

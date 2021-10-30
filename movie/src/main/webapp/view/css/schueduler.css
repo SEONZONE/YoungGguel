@@ -1,0 +1,408 @@
+/* 
+* {
+    font-family: "Noto Sans KR", sans-serif;
+} */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,.glyphicon ,glyphicon-search {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    
+}
+ol, ul {
+	list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+/* HTML5 display-role reset for older browsers */
+
+/* GNB logo �쁺�뿭*/
+.wrapping{
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: center;
+    
+} /*�옪�븨 : 以묎컙�젙�젹 / 理쒕��룺 1200px / 媛��슫�뜲�젙�젹 */
+.gnb{
+    height: 160px;
+    background-color:#ffffff;
+    border-bottom: 1px solid #ebebeb;
+    box-sizing: content-box;
+} /*gnb : �쁺�뿭 160px / 諛깃렇�씪�슫�뱶 而щ윭 �씛�깋 / 諛묒쨪 1px 而щ윭吏��젙 / �쁺�뿭留욎떠�꽌 �뀒�몢由ъ쟻�슜 */
+.gnblogo {
+    padding-top: 37px;
+    /* position: relative;  �씪�떒蹂대쪟 */
+} /*gnblogo : �뙣�뵫�깙 37px  */
+.gnblogo ul{
+    position: absolute;
+    top: 40px;
+    right: 19%;
+} /*gnblogo ul : �젅���쁺�뿭吏��젙 / top�뿉�꽌 40px�씠�룞 / �삤瑜몄そ�뿉 遺숈씠湲� */
+.gnblogo ul li{
+    display: inline-block;
+} /*gnblogo ul li : 以꾨컮轅� �뾾�븷湲� */
+/* GNB logo �쁺�뿭�걹*/
+
+/* GNB 硫붾돱�쁺�뿭*/
+.menu > ul li {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    letter-spacing : -2px;
+    position: relative;
+    top: 16.5px; 
+}/* 媛�濡쒕굹�뿴 / �룿�듃�궗�씠利덉“�젅 / 蹂쇰뱶 / �룿�듃 / 湲��뵪媛꾧꺽 / �쐞移섏“�젅 */
+.menu > ul li:nth-child(3) img {
+    position: relative;
+    bottom: -11px; 
+} /* �씠誘몄� �쐞移� 留욎텛湲� */
+.menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
+    margin-right: 90px;
+} /* 媛꾧꺽 留욎텛湲� */
+.menu > ul li:nth-child(3) {
+    margin: 0 63px;
+} /* 媛꾧꺽 留욎텛湲� */
+
+/* GNB 硫붾돱�쁺�뿭�걹*/
+
+/* content �쁺�뿭*/
+.content{
+    height: 810px;
+
+} /* 肄섑뀗痢좎쁺�뿭 810px / 諛깃렇�씪�슫�뱶 諛곌꼍�깋 吏��젙 */
+#schuedulbox{
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 1100px;
+    height: 220px;
+    border: 2px solid #9da0a6;
+    border-radius: 20px;
+}
+.schuedulgroup{
+    width: 160px;
+    /* max-width: 160px; */
+    height: 220px;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    display: inline;
+    float: left;
+    cursor: pointer;
+}
+.schuedulmovie{
+    height: 110px;
+    border-top-left-radius: 18px;
+    border-right: 1px #bababa solid;
+    line-height: 125px;
+}
+.schuedultheater{
+    height: 110px;
+    border-bottom-left-radius: 18px;
+    border-right: 1px #bababa solid;
+    line-height: 125px;
+}
+.on{
+    border-right: none;
+}
+.off{
+    background-color: #dadada;
+    filter: opacity(0.3);
+}
+.schuedulnav{
+    width: 780px;
+    height: 210px;
+    margin: 5px;
+    float: left;
+}
+.choicer{
+    float: inherit;
+}
+#choicer_top{
+    width: 770px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #9da0a6;
+    text-align: left;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+#choicer_con{
+    width: 780px;
+    height: 170px;
+    overflow: auto;
+    overflow-x:hidden;
+}
+#choicer_con::-webkit-scrollbar{
+    width: 4px;
+    height: 5px;
+    background: #ffffff;
+}
+#choicer_con::-webkit-scrollbar-thumb{
+    border-radius: 3.5px;
+    background-color: #adadad;
+}
+#choicer_con::-webkit-scrollbar-track{
+    background-color: #dfdfdf;
+}
+.choicer_con_info{
+    width: 780px;
+    height: 170px;
+    text-align: left;
+    float: left;
+}
+.con_name{
+    width: 240px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    padding: 1px;
+    margin: 1px;
+    display: inline-block;
+    cursor: pointer;
+}
+.con_name:hover{
+    background-color: #265396;
+    color: white;
+    font-weight: 500;
+}
+.con_nameclick{
+    background-color: #265396;
+    color: white;
+    font-weight: 600;
+}
+.selectedposter{
+    float: right;
+}
+#selectedposterimg{
+    width: 145px;
+    height: 220px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+.selectdate{
+    margin-top: 40px;
+    height: 77px;
+    border-top: 2px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+}
+.selectdateconright{
+    display: inline-block;
+    position: relative;
+    right: 435px;
+    top: 27px;
+    color: #265396;
+    font-weight: bold;
+}
+.selectdateconrleft{
+    display: inline-block;
+    position: relative;
+    left: 390px;
+    bottom: 37px;
+}
+.date_info{
+    width: 750px;
+    height: 42px;
+    margin: 0 auto;
+    color: #265396;  
+    font-weight: bold;
+    /* line-height: 77px; */
+    /* float: left; */
+    overflow: hidden;
+    overflow-x:hidden;
+    position: relative;
+    bottom: 5px;
+}
+#controllicon{
+    width: 9px;
+    height: 14px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.day{
+    color: black;
+    display: inline-grid;
+    cursor: pointer;
+    font-size: 14px;
+}
+.day:hover{
+    background-color: #265396;
+    border-radius: 20px;
+    color: white;
+}
+.day_nameclick{
+    background-color: #265396;
+    color: white;
+    border-radius: 18px;
+}
+.day_sun{
+    color: red;
+}
+.day_sat{
+    color: #265396;
+}
+.day_nonmovie{
+    pointer-events: none;
+    color: #d6d6d6;
+}
+.day > span {
+    /* position: relative;
+    bottom: 10px; */
+    display: inline-block;
+    height: 18px;
+    margin: 0px 10px 0px 10px;
+}
+.city{
+    margin-top: 30px;
+    color: #b5b5b5;
+    height: 50px;
+    background-color: #f6f6f6;
+    display: flex;
+    cursor: pointer;
+}
+.cityinfo{
+    width: 171px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #dbdbdb;
+}
+.cityinfo:hover, .towninfo:hover{
+    background-color: #282934;
+    color: white;
+}
+.cityinfoclick, .towninfoclick{
+    background-color: #282934;
+    color: white;
+}
+.town{
+    height: 40px;
+    color: #b5b5b5;
+    width: 1040px;
+    background-color: #f6f6f6;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    cursor: pointer;
+}
+.towninfo{
+    width: 148px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+#towncontrolliconright{
+    position: relative;
+    right: 550px;
+    top: 52px;
+    cursor: pointer;
+}
+#towncontrolliconleft{
+    position: relative;
+    left: 550px;
+    bottom: 29px;
+    cursor: pointer;
+}
+.schuedulinfo{
+    height: 110px;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    margin-bottom: 10px;
+}
+.theaterbox{
+    width: 190px;
+    height: 110px;
+    text-align: left;
+    position: relative;
+}
+.theaternum{
+    font-size: 25px;
+    position: relative;
+    left: 40px;
+    top: 20px;
+}
+.theaterseatcount{
+    position: relative;
+    left: 40px;
+    top: 20px;
+}
+.infobox{
+    width: 100px;
+    height: 80px;
+    border: 1px solid #eaeaea;
+    margin: 15px 0px 0px 20px;
+    background-color: #f2f4f5;
+    cursor: pointer;
+}
+.infobox:hover{
+	background-color: #265396;
+}
+.scheduledtime{
+    position: relative;
+    top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.remainingseat{
+    position: relative;
+    top: 15px;
+    color: #0188ba;
+    font-weight: bold;
+}
+
+
+
+
+/* content �쁺�뿭�걹*/
+
+
+/*�뫖�꽣 �쁺�뿭*/
+.footer{
+    height: 150px;
+    background-color: #191919;
+} /* �뫖�꽣�쁺�뿭 150 / �깋�긽吏��젙 */
+.footer > .wrapping{
+    background-color: #191919;
+} /* �뫖�꽣�옪�븨 �깮�긽吏��젙 */
+.footercontent{
+    position: relative;
+    top: 50px;
+    right: 40%;
+} /* �뫖�꽣 濡쒓퀬 �쐞移섏“�젙 */
+.footer > .wrapping > p{
+    position: relative;
+    left: 20%;
+    margin:0;
+    color: #9c9c9c;
+    text-align: left;
+} /* �뫖�꽣 �뀓�뒪�듃 �쐞移섏“�젙 */
+
+
+
+
+
+
+
+
+
+
+
+
+

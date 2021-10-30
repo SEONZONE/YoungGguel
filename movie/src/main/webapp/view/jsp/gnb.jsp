@@ -225,7 +225,7 @@
 	
 		<div class="wrapping">
 			<div class="gnblogo" id="gnblogoid">
-				<a href="/"> <img src="/movie/view/img/logo.png">
+				<a href="/movie/view/jsp/main.jsp"> <img src="/movie/view/img/logo.png">
 				</a>
 				<ul>
 				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
