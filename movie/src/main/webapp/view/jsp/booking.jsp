@@ -29,9 +29,11 @@
 		   				  else if(methodName == "cityName"){
 		   					cityNameList(v);  
 		   				  }
+
 		   				  else if(methodName == "townName"){
 		   					townNameList(v);  
 		   				  }
+
 		   				  
 		   			  },
 		   			  error:function(e){
@@ -42,14 +44,16 @@
 		
 		listMethod('/movie/nameList.do',{select:'movieList'},'json','moiveName');
 		listMethod('/movie/nameList.do',{select:'cityList'},'json','cityName');
+
 		listMethod('/movie/nameList.do',{select:'townList'},'json','townName');
 		
 	
+
 		
 	/* 영화 이름 불러오기 */
 	function movieNameList(v){
 		var temp="";
-		
+
 		$.each(v,function(index,dom){
 			temp += "<li>";
 			temp += "<button type=\"button\" class=\"btn\" id=\"movieButton1\">";
@@ -62,24 +66,29 @@
 	
 	/* 지역 이름 불러오기 */
 	var tempCity="";
-	
+
 	function cityNameList(v){
 		$.each(v,function(index,dom){		
 			tempCity += "<li>";
 			tempCity += "<button type=\"button\" id=\"cityNameButton\" class=\"btn\">";
+
+			tempCity +=	"<span>" + dom.theaterCity +"&nbsp;</span>";
+
 			tempCity +=	"<span onClick="reply_click(+ index +)">" + dom.theaterCity +"&nbsp;</span>";
+
 			tempCity +=	"</button>";
 			tempCity +=	"</li>";
 		
 		});
 		$(".theaterCityList").html(tempCity);	
 	}
-	
+
  
 	
 	
 	/* 도시 이름 불러오기 */
 	function townNameList(v){
+
 		var tempTown="";
 		$.each(v,function(index,dom){
 		tempTown += "<li>";
@@ -88,6 +97,10 @@
 		tempTown +=	"</button>";
 		tempTown +=	"</li>";
 		});
+
+	}
+	
+
 		$(".theaterTownList").html(tempTown);	
 	}
 	
@@ -110,6 +123,7 @@
 	
 	
 	
+
 
 	
 	});

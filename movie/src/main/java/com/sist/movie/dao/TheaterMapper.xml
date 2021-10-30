@@ -2,7 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.sist.movie.dao.TheaterMapper">
+
 
 	<!-- Theater 매퍼 -->
 
@@ -10,27 +12,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		THEATERNO AS theaterNo, THEATERCITY AS theaterCity, THEATERTOWN AS theaterTown, 
 		THEATERGWAN AS theaterGwan,THEATERROOMSEAT AS theaterRoomSeat FROM THEATER 
 		</select> -->
+
 		
 		
 <!-- 	<select id="theaterTown" parameterType="String"
+
 		resultType="theaterlist">
 		select THEATERTOWN AS theaterTown from THEATER
 		where
 		theatercity=#{VALUE}
 		group by THEATERTOWN
 	</select>
+
 	 -->
 	<!-- 대분류 불러오기 -->
+
 	<select id="theaterCity" resultType="theaterlist">
 		select DISTINCT THEATERCITY
 		AS theaterCity from THEATER
 	</select>
-	
+
 	<!-- 중분류 불러오기 -->
 	<select id="theaterTown" resultType="theaterlist">
 		select DISTINCT THEATERTOWN
 		AS theaterTown from THEATER
 	</select>
+
 
 
 

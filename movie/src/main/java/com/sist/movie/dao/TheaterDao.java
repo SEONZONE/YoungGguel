@@ -20,6 +20,7 @@ public class TheaterDao extends SqlSessionDaoSupport {
 		System.out.println("THEATERLIST!!!!!");
 		return this.getSqlSession().selectList("theaterCity");
 	}
+
 	public List<TheaterVO> theaterTown() {
 		System.out.println("theaterTown!!!!!");
 		return this.getSqlSession().selectList("theaterTown");

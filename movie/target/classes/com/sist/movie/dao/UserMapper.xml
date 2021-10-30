@@ -2,10 +2,12 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.sist.movie.dao.UserMapper">
 
 	<!-- USER 매퍼 -->
 	<insert id="insertUser" parameterType="user">
+
 		INSERT INTO
 		USER_INFO(USERID,USERPW,USERNAME,USERGENDER,USERTEL,USERBIRTH,USEREMAIL)
 		VALUES(#{USERID},#{USERPW},#{USERNAME},#{USERGENDER},#{USERTEL},#{USERBIRTH},#{USEREMAIL})
