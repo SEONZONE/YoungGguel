@@ -29,6 +29,11 @@
 		   				  else if(methodName == "cityName"){
 		   					cityNameList(v);  
 		   				  }
+
+		   				  else if(methodName == "townName"){
+		   					townNameList(v);  
+		   				  }
+
 		   				  
 		   			  },
 		   			  error:function(e){
@@ -39,20 +44,16 @@
 		
 		listMethod('/movie/nameList.do',{select:'movieList'},'json','moiveName');
 		listMethod('/movie/nameList.do',{select:'cityList'},'json','cityName');
-		/* 클릭시 값 저장 */
-		$("button#dayButton1").click(function(e) {
-			var daySelect = $("span#daySpan1").html();
-			console.log(daySelect);
-			$("button#movieButton1").click(function(d) {
-				var movieSelect = $("span#movieSpan1").html();
-				console.log(daySelect);
-				console.log(movieSelect);
-			});
-		});
+
+		listMethod('/movie/nameList.do',{select:'townList'},'json','townName');
+		
+	
+
 		
 	/* 영화 이름 불러오기 */
 	function movieNameList(v){
 		var temp="";
+
 		$.each(v,function(index,dom){
 			temp += "<li>";
 			temp += "<button type=\"button\" class=\"btn\" id=\"movieButton1\">";
@@ -65,25 +66,29 @@
 	
 	/* 지역 이름 불러오기 */
 	var tempCity="";
+
 	function cityNameList(v){
 		$.each(v,function(index,dom){		
 			tempCity += "<li>";
 			tempCity += "<button type=\"button\" id=\"cityNameButton\" class=\"btn\">";
+
 			tempCity +=	"<span>" + dom.theaterCity +"&nbsp;</span>";
+
+			tempCity +=	"<span onClick="reply_click(+ index +)">" + dom.theaterCity +"&nbsp;</span>";
+
 			tempCity +=	"</button>";
 			tempCity +=	"</li>";
 		
 		});
 		$(".theaterCityList").html(tempCity);	
 	}
-/* 	$("button#cityNameButton").click(function() {
-		console.log("click");
-	}
- */
+
+ 
 	
 	
 	/* 도시 이름 불러오기 */
-	function townName(v){
+	function townNameList(v){
+
 		var tempTown="";
 		$.each(v,function(index,dom){
 		tempTown += "<li>";
@@ -92,8 +97,33 @@
 		tempTown +=	"</button>";
 		tempTown +=	"</li>";
 		});
+
 	}
 	
+
+		$(".theaterTownList").html(tempTown);	
+	}
+	
+	
+	/* 클릭시 값 저장 */
+	$("button#dayButton1").click(function(e) {
+		var daySelect = $("span#daySpan1").html();
+		console.log(daySelect);
+		$("button#movieButton1").click(function(d) {
+			var movieSelect = $("span#movieSpan1").html();
+			console.log(daySelect);
+			console.log(movieSelect);
+		});
+	});
+	
+	$("span.tempCity#0").click(function() {
+		alert("서울!");
+	});
+ 
+	
+	
+	
+
 
 	
 	});

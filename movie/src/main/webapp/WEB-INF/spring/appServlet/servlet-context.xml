@@ -5,8 +5,8 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
@@ -26,43 +26,35 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<beans:bean id="database"
-		class="org.apache.commons.dbcp.BasicDataSource">
-		<beans:property name="driverClassName"
-			value="oracle.jdbc.OracleDriver" />
+	<beans:bean id="database" class="org.apache.commons.dbcp.BasicDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@db202109031726_high?TNS_ADMIN=D://elcipse-workspace//Wallet_DB202109031726" />
+			value="jdbc:oracle:thin:@db202109031726_high?TNS_ADMIN=C://Users//izp10//Documents//Wallet_DB202109031726" />
 		<beans:property name="username" value="admin"></beans:property>
 		<beans:property name="password" value="Qkrtjdwhd031"></beans:property>
 	</beans:bean>
 
-	<beans:bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name="dataSource" ref="database" />
-		<beans:property name="configLocation"
-			value="/WEB-INF/Config.xml"></beans:property>
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="database"/>
+		<beans:property name="configLocation" value="/WEB-INF/Config.xml"/>
 	</beans:bean>
-	<beans:bean id="sqlSessionTemplate"
-		class="org.mybatis.spring.SqlSessionTemplate">
+	
+	<beans:bean id="sqlSessionTemplate"	class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg>
-			<beans:ref bean="sqlSessionFactory" />
+			<beans:ref bean="sqlSessionFactory"/>
 		</beans:constructor-arg>
 	</beans:bean>
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"></beans:property>
 		<beans:property name="maxUploadSize" value="300000000"></beans:property>
 	</beans:bean>
 
 
-	<context:component-scan
-		base-package="com.sist.movie" />
-	<context:component-scan
-		base-package="com.sist.movie.controller" />
-	<context:component-scan
-		base-package="com.sist.movie.vo" />
-	<context:component-scan
-		base-package="com.sist.movie.dao" />
+	<context:component-scan	base-package="com.sist.movie" />
+	<context:component-scan	base-package="com.sist.movie.controller" />
+	<context:component-scan base-package="com.sist.movie.vo" />
+	<context:component-scan base-package="com.sist.movie.dao" />
 
 
 </beans:beans>

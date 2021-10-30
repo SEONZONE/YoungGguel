@@ -225,7 +225,7 @@
 	
 		<div class="wrapping">
 			<div class="gnblogo" id="gnblogoid">
-				<a href="/"> <img src="/movie/view/img/logo.png">
+				<a href="/movie/view/jsp/main.jsp"> <img src="/movie/view/img/logo.png">
 				</a>
 				<ul>
 				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
@@ -245,7 +245,7 @@
 						onmouseover="this.src='/movie/view/img/gnbbutton_hover.png'"
 						onmouseout="this.src='/movie/view/img/gnbbutton.png'"></li>
 					<li>스토어</li>
-					<li>고객센터</li>
+					<li><a href="/movie/view/jsp/myPage1.jsp">마이 페이지</a></li>
 				</ul>
 			</div>
 		</div>

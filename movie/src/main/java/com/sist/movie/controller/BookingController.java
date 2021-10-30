@@ -23,10 +23,11 @@ import com.sist.movie.vo.MovieVO;
 @Controller
 public class BookingController {
 	
-	@Inject
+
+	@Autowired
 	private MovieDao mdao;
 	
-	@Inject
+	@Autowired
 	private TheaterDao tdao;
 	
 	@ResponseBody
@@ -45,8 +46,10 @@ public class BookingController {
 			
 		}
 		else if(select.equals("townList")) { 
-			System.out.println(tdao.theaterTown(city));
-			return tdao.theaterTown(city);
+
+			System.out.println(tdao.theaterTown());
+			return tdao.theaterTown();
+
 			
 		}
 		return  mdao.movieList();	

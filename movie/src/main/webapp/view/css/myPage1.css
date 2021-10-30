@@ -27,24 +27,13 @@ span#search2 {
     width: 100px;
     height: 40px;
 }
-span#search3{
-	width:90px;
-	height: 58px;
-	padding: 5px;
-}
+
 #search_date {
     padding: 5px;
 }
 
-img#find {
-    height: 32px;
-    border: 1px solid gray;
-    align-items: center;
-    position: relative;
-    top: 15%;
 
 
-}
 #table_wrap {
     width: 1200px;
     margin: 0 auto;
