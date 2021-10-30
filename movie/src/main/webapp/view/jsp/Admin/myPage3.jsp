@@ -37,7 +37,7 @@ $(function(){
 </script>
 </head>
 <body>
- <jsp:include page="gnb.jsp" ></jsp:include>
+ <jsp:include page="../gnb.jsp" ></jsp:include>
 
         <div id="contents_wrap">
             <div id="myPage_btn">
@@ -87,6 +87,6 @@ $(function(){
                 <input type="submit" value="확인" class="form_btn3">
             </form>
             </div>
-            <jsp:include page="footer.jsp" ></jsp:include>
+            <jsp:include page="../footer.jsp" ></jsp:include>
     </body>
 </html>

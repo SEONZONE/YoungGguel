@@ -12,6 +12,7 @@
     <title>Document</title>
          <link rel="stylesheet" href="/movie/view/css/myPagecommon.css">
       <link rel="stylesheet" href="/movie/view/css/myPage2.css"> 
+     <!--  <link rel="stylesheet" href="/movie/view/css/myPagefile.css">
 	 --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 function ajaxReplyList(v){
@@ -79,7 +80,7 @@ $(function(){
 
 <body>
 
-  <jsp:include page="gnb.jsp"></jsp:include>
+  <jsp:include page="../gnb.jsp"></jsp:include>
      <div id="contents_wrap">
         <div id="myPage_btn">
             <div id="myPage_div_img"><img src="/movie/view/img/예매확인.png" class="myPage_img" id="checkReserveimg" onmouseover="
@@ -150,7 +151,7 @@ $(function(){
  </div>
             </div>
             <!--문의내역 끝-->
-            <jsp:include page="footer.jsp"></jsp:include>
+            <jsp:include page="../footer.jsp"></jsp:include>
            
             </body>
 

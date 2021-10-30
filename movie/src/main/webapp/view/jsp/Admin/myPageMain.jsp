@@ -14,19 +14,22 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(function(){
+	  
 	  $('img#checkReserveimg').click(function(){
-		  //alert(this);
-		  document.location.href='/movie/view/jsp/myPage1.jsp';
+		  document.location.href='/movie/view/jsp/Admin/myPage1.jsp';
 	  }),
 	  $('img#questionimg').click(function(){
-		  //alert(this);
-		  document.location.href='/movie/mypage2.do';
+		  document.location.href='/movie/view/jsp/Admin/myPage2.jsp';
+		 // document.location.href='/movie/view/jsp/myPage2.jsp';
 	  }),
-	  $('img#changeInfoimg').click(function(){
-		  //alert(this);
-		//  document.location.href='/movie/view/jsp/myPage3.jsp';
-		  document.location.href='/movie/mypage3.do?id=asd';
+	  $("img#changeInfoimg").click(function(){
+		  //document.location.href='/movie/view/jsp/myPage3.jsp';
+		  document.location.href='/movie/mypage3.do?id=1234';
 	  });
+	 /*  $('a#to_myPage').click(function(){
+		 document.location.href='/movie/renewMyPage.do'' 
+	  }); */
+	 
 	  
   });
 </script>
@@ -34,7 +37,9 @@
 
 <body>
 
- <jsp:include page="gnb.jsp" ></jsp:include>
+ <jsp:include page="../gnb.jsp" ></jsp:include>
+
+
     <div id="contents_wrap">
         <div id="myPage_btn">
             <div id="myPage_div_img_active"><img src="/movie/view/img/예매확인.png" class="myPage_img active" id="checkReserveimg" onmouseover="
@@ -43,6 +48,7 @@
                     this.style.cursor='pointer'"></div>
             <div id="myPage_div_img"><img src="/movie/view/img/개인정보변경.png" class="myPage_img" id="changeInfoimg" onmouseover="
                     this.style.cursor='pointer'"></div>
+                    <a href="/movie/renewMyPage.do" id="to_myPage"><input type="button" value="마이페이지로"></a>
         </div>
             <!--버튼끝-->
         <div id="contents">
@@ -54,12 +60,12 @@
             <span id="search2"><input type="date" id="search_date"></span>
             <img src="/movie/view/img/find.png" id="find_img" onmouseover="
                 this.style.cursor='pointer'"></span>
-             
         </div>
         <!--구분탭끝-->
         <!--테이블탭시작-->
-        <a href="/movie/loadReserveList.do">영화리스트 가져오기</a>
-            <table id="table_wrap">      
+       
+<a href="/movie/loadReserveList.do">영화리스트 가져오기</a>
+          <table id="table_wrap" >      
                 <thead id="table_top">
                     <tr>
                         <td class="table_header">예매날짜</td>
@@ -70,23 +76,23 @@
                         <td class="table_header">결제시간</td>
                     </tr>
                     </thead>
-
-			<c:forEach var="i" items="${mlist}" varStatus="cnt">
-				<tbody>
-					<tr>
-						<td class="table_data">${i.reserve_date }</td>
-						<td class="table_data">${i.reserve_no }</td>
-						<td class="table_data">${i.movie_title }</td>
-						<td class="table_data">${i.reserve_info }</td>
-						<td class="table_data">${i.pay_total }원</td>
-						<td class="table_data">${i.pay_date }</td>
-					</tr>
-			</c:forEach>
-			</tbody>
+                     <c:forEach var="i" items="${mlist}" varStatus="cnt">
+                    <tbody>
+                        <tr>
+                        <td class="table_data"> ${i.reserve_date }</td>
+                        <td class="table_data">${i.reserve_no }</td>
+                        <td class="table_data">${i.movie_title }</td>
+                        <td class="table_data"> ${i.reserve_info }</td>
+                        <td class="table_data">   ${i.pay_total }원</td>
+                        <td class="table_data">  ${i.pay_date }</td>
+                    </tr>
+                    </c:forEach>
+               
+                </tbody>
             </table>
-
+	<a href="/movie/view/jsp/Admin/deleteUser.jsp" id="deleteUser">회원탈퇴</a>
         <!--테이블탭끝-->
         </div>
- <jsp:include page="footer.jsp" ></jsp:include>
+ <jsp:include page="../footer.jsp" ></jsp:include>
 </body>
 </html>

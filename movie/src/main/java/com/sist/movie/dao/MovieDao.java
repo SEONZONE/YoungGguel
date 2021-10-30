@@ -42,4 +42,8 @@ public class MovieDao extends SqlSessionDaoSupport {
    public List<MovieVO> mainOnAirList() {   
 	   return this.getSqlSession().selectList("mainOnAirList");
    }
+   //인효 예매 데모테이블 가져오기
+   public List<MovieVO> selcetReserveMovieList(){
+	   return this.getSqlSession().selectList("movieList22");
+   }
 }
