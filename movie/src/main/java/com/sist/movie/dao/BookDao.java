@@ -1,5 +1,6 @@
 package com.sist.movie.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,7 +19,7 @@ public class BookDao extends SqlSessionDaoSupport{
 		this.setSqlSessionTemplate(st);
 	}
 
-	public List<BookVO> movieSelectAction() {
-		return this.getSqlSession().selectList("movieSelectAction");
+	public List<BookVO> movieSelectAction(HashMap<String, Object> map) {
+		return this.getSqlSession().selectList("movieSelectAction",map);
 	}
 }

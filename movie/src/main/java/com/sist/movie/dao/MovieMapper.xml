@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="movieList" resultType="movieList">
 		SELECT MOVIECD , MOVIENM , GENRE , TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT ,
-		CONTENTS , SHOWTM , CONTENTS  FROM MOVIE
+		CONTENTS , SHOWTM , CONTENTS, WATCHGRADENM  FROM MOVIE
 	</select>
 	
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="functions" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -21,13 +21,16 @@ var clickMovie = "";
 	
 	// 요일, 영화 눌리면 값 저장 
 	$(function() {
-		
+		listMethod('/movie/nameList.do',{select:'movieList'},'json','moiveName');
+		listMethod('/movie/nameList.do',{select:'cityList'},'json','cityName');
+		listMethod('/movie/nameList.do',{select:'townList'},'json','townName');
 		function listMethod(url,data,datatype,methodName){
 		      $.ajax({
 					  url:url,
 		    		  type:'POST',
 		    		  data:data,
-		   			  dataType:datatype,				  
+		   			  dataType:datatype,
+		   			 
 		   			  success:function(v){
 		   				  if( methodName == "moiveName"){
 		   					movieNameList(v);
@@ -36,19 +39,24 @@ var clickMovie = "";
 		   					cityNameList(v);  
 		   				  }
 		   				  else if(methodName == "townName"){
+		   					
 		   					townNameList(v);  
 		   				  }
+		   				  else if(methodName == "selectName") {
+		   				
+		   					timeNameList(v);
+		   				  }
+		   				 
 		   				  
 		   			  },
 		   			  error:function(e){
+		   				  console.log("실패");
 		   				  console.log("error" + e);
 	    			  }	    		  
 		   			  });	
 		      }
 		
-		listMethod('/movie/nameList.do',{select:'movieList'},'json','moiveName');
-		listMethod('/movie/nameList.do',{select:'cityList'},'json','cityName');
-		listMethod('/movie/nameList.do',{select:'townList'},'json','townName');
+		
 		
 	
 		
@@ -100,10 +108,43 @@ var clickMovie = "";
 		
 		evtbind();
 	}
-
- 
+	/* 영화 시간표 불러오기 */
+	function townNameList(v){
+		var tempTown="";
+		$.each(v,function(index,dom){
+		tempTown += "<li>";
+		tempTown += "<button type=\"button\" class=\"btn\">";
+		tempTown +=	"<span id=\"townNameList\">" + dom.theaterTown +"</span>";
+		tempTown +=	"</button>";
+		tempTown +=	"</li>";
+		});
+		$(".theaterTownList").html(tempTown);	
+		
+		evtbind();
+	}
 	
-});
+	
+	/*  시간표 불러오기 */
+	function timeNameList(v){
+		
+		var tempTime="";
+		$.each(v,function(index,dom){
+			tempTime +=	"<li>";
+			tempTime +=	"<button type=\"button\" class=\"time_btn\">";
+			tempTime += "<span class=\"time\">" + dom.bookingTimeStart + "</span> <span class=\"theater\">" + dom.bookingGwan + "</span> <span class=\"possible_now\">" +dom.bookingTheaterroomseat + "</span> <span class=\"all\">/ 20</span>";
+			tempTime +=	"</button>";
+			tempTime +=	"</li>";
+		
+		
+		});
+		$("ul#selectTime").html(tempTime);	
+		
+		
+	}
+	
+	
+	
+	
 	/* 클릭시 값 저장 */
 	/* bind function */
 	function evtbind() {
@@ -124,6 +165,7 @@ var clickMovie = "";
 
 		$("span#townNameList").click(function() {
 			clickTown = $(this).text();
+			console.log(clickTown);
 			allClickEvent();
 			});
 		
@@ -132,29 +174,22 @@ var clickMovie = "";
 	
 		function allClickEvent() { 
 			if(clickMovie != null && clickDate != null && clickTown != null) {
-				selectName('/movie/selectBookList.do',{day :clickDate,town:clickTown,movie:clickMovie},'json');
+				listMethod('/movie/selectBookList.do',{day :clickDate,town:clickTown,movie:clickMovie},'json','selectName');
+				
 				 clickDate = "";
 				 clickTown = "";
 				 clickMovie = "";
 			}
 				
 		}
+
+ 
 	
-		function selectName(url,data,datatype){
-		      $.ajax({
-					  url:url,
-		    		  type:'POST',
-		    		  data:data,
-		   			  dataType:datatype,				  
-		   			  success:function(v){
-		   				
-		   				  alert("success!!!!");
-		   			  },
-		   			  error:function(e){
-		   				  console.log("error" + e);
-	    			  }	    		  
-		   			  });	
-		      }
+});
+	
+	
+	
+		
 
 		
 	
@@ -232,16 +267,7 @@ var clickMovie = "";
 										<span  id ="dayList" lang="21/11/03">21/11/03</span>
 									</button>
 								</li>
-								<li>
-									<button type="button" class="btn_on">
-										<span>8월&nbsp;</span> <span>23일&nbsp;</span> <span>일</span>
-									</button>
-								</li>
-								<li>
-									<button type="button" class="btn">
-										<span>8월&nbsp;</span> <span>23일&nbsp;</span> <span>일</span>
-									</button>
-								</li>
+							
 							</ul>
 						</div>
 					</div>
@@ -290,17 +316,9 @@ var clickMovie = "";
 					<div class="middle_field">
 						<span class="selecter_name">시간</span>
 						<div class="list">
-							<ul>
-								<li>
-									<button type="button" class="time_btn">
-										<span class="time">09:10</span> <span class="theater">역삼쌍용용죽겠지점</span> <span class="possible_now">10</span> <span class="all">/ 150</span>
-									</button>
-								</li>
-								<li>
-									<button type="button" class="time_btn on">
-										<span class="time">09:10</span> <span class="theater">강남대로변두리점</span> <span class="possible_now">10</span> <span class="all">/ 150</span>
-									</button>
-								</li>
+							<ul id="selectTime" >
+							
+						
 							</ul>
 						</div>
 					</div>
