@@ -21,10 +21,18 @@
 
 
 $(function(){   
-   
+	/* URL에서 파라미터값 가져오기 */
+
     var param = getUrlParams();
     result = param.view;       
     
+    /* URL에서 파라미터값 가져오기 */
+    function getUrlParams() {
+       var params = {};
+       window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+       return params;
+    }
+    /* 영화 리스트 버튼 클릭시 onclick 속성 실행 */
    if(result == 'poster'){
       $("#boxoffice").addClass("active");
    }else if(result == 'current'){
@@ -32,7 +40,7 @@ $(function(){
    }else{
       $("#later").addClass("active");            
    }
-   
+   /* 정렬 버튼 함수 */
     $(".align-button img").click(function(){
        var img =$(this).attr('src');    
        if(img == '/movie/view/img/list.PNG'){
@@ -45,6 +53,7 @@ $(function(){
              ajaxList('/movie/ajaxMovieList.do?view=later','json');                          
           }   
        }else{
+    	   /* 버튼이 리스트형일 때 */
           $(".align-button img").attr("src","/movie/view/img/list.PNG");
           if(result == 'poster'){
               ajaxPoster('/movie/ajaxMovieList.do?view=poster','json'); 
@@ -58,13 +67,8 @@ $(function(){
     
   }); 
 
-/* URL에서 파라미터값 가져오기 */
-function getUrlParams() {
-   var params = {};
-   window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
-   return params;
-}
 
+/* 영화 리스트 함수 */
 function select_click(btnSelect){   
 
    if(btnSelect == 'boxoffice'){
@@ -77,7 +81,8 @@ function select_click(btnSelect){
 
 }
   
-  
+/* 영화목록 포스트형으로 */
+
 function ajaxPoster(url,data,dataType){
       $.ajax({
            url:url,
@@ -92,7 +97,7 @@ function ajaxPoster(url,data,dataType){
            }
         });   
 }
-
+/* 영화목록 포스트형으로 */
 function ajaxMovieList2(v){
    var temp="";
    $.each(v,function(index,dom){
@@ -116,6 +121,7 @@ function ajaxMovieList2(v){
    });
    $(".movie-list").html(temp);
 }
+/* 영화목록 리스트형으로 */
 
 function ajaxList(url,data,dataType){
       $.ajax({

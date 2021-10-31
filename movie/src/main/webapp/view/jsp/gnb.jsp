@@ -229,7 +229,7 @@
 				</a>
 				<ul>
 				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
-					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
+					<li><a href="../jsp/join.jsp" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
                         <li><img src="/movie/view/img/usericon.png" id ="usericon"class=" hidden"></li>
                      
                         <li><span id ="info_user"class=" hidden">${id } 님 </span></li>

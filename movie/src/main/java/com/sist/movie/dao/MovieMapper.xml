@@ -8,84 +8,88 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="movieDemoList" resultType="com.sist.movie.vo.MovieDemoVO">
     SELECT RESERVE_DATE,RESERVE_NO,MOVIE_TITLE,RESERVE_INFO,PAY_TOTAL,PAY_DATE FROM MOVIEDEMO
 </select>
-
-	<sql id="sql">
-		SELECT
-		MOVIECD, MOVIENM, MOVIENMEN, SHOWTM, OPENDT, CONTENTS, PRDTSTATNM,
-		NATIONS, GENRE, DIRECTORS, ACTORS, WATCHGRADENM, COMPANYS
-		FROM MOVIE
-	</sql>
-
-	<select id="movieList" resultType="movieList">
-		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
-		CONTENTS, SHOWTM, CONTENTS FROM MOVIE
-	</select>
-	
-
-
-	<select id="currentMovieList" resultType="movieList">
-		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
-		CONTENTS, SHOWTM, CONTENTS FROM MOVIE WHERE PRDTSTATNM='개봉'
-	</select>
-
-	<select id="laterMovieList" resultType="movieList">
-		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
-		CONTENTS, SHOWTM, CONTENTS FROM MOVIE WHERE PRDTSTATNM='개봉예정'
-	</select>
-
-	<select id="selectInfoMovie" parameterType="int" resultType="movieList">
-		<include refid="sql"></include>
-		WHERE MOVIECD=#{NO}
-	</select>
-
-	<select id="searchMovie" parameterType="String"	resultType="movieList">
-		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
-		CONTENTS, SHOWTM, CONTENTS FROM MOVIE
-		WHERE MOVIENM LIKE '%'||#{search}||'%'
-	</select>
-
-	<!-- 메인 현재상영작 -->
-	<select id="mainOnAirList" resultType="movieList">
-		SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
-		FROM(
-		SELECT RANK() OVER(ORDER BY OPENDT
-		DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE OPENDT < SYSDATE]]>)
-<![CDATA[WHERE RANK <=4]]>
-	</select>
-
-	<!-- 메인 상영예정작 -->
-	<select id="mainScheduledList" resultType="movieList">
-		SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
-		FROM(
-		SELECT RANK() OVER(ORDER BY OPENDT
-		DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE OPENDT > SYSDATE-20]]>)
-<![CDATA[WHERE RANK <=4]]>
-	</select>
-
-	<!-- 메인 인기순위 -->
-	<!-- 예매율 넣어서 수정 필요 지금은 암거나 쓴거임 -->
-	<select id="mainPopularList" resultType="movieList">
-		SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
-		FROM(
-		SELECT RANK() OVER(ORDER BY SHOWTM
-		DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE SHOWTM < 150]]>)
-<![CDATA[WHERE RANK <=4]]>
-	</select>
-	
-	<!-- 리뷰 -->
-
-<select id="findReviewList" resultType="review">
-SELECT MOVIECD, REVIEWNO, USERID, COMMENTS, UPDATEDATE FROM MOVIE_REVIEW WHERE MOVIECD=#{movieCd} ORDER BY REVIEWNO DESC
+<!-- 이거는 인효부분 끝-->
+<!-- 이거는 소연부분 끝-->
+	<!-- 기본 sql -->
+<!-- 기본 sql -->
+<sql id="sql">
+ SELECT
+ MOVIECD, MOVIENM, MOVIENMEN, SHOWTM, OPENDT, CONTENTS, PRDTSTATNM, 
+ NATIONS, GENRE, DIRECTORS, ACTORS, WATCHGRADENM, COMPANYS
+ FROM MOVIE
+</sql>
+<!-- 영화 리스트 -->
+<select id="movieList" resultType="movielist">
+    SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIE
+</select>
+<!-- 최근 상영작 -->
+<select id="currentMovieList" resultType="movielist">
+    SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIE WHERE PRDTSTATNM='개봉'
+</select>
+<!-- 상영예정작 -->
+<select id="laterMovieList" resultType="movielist">
+    SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIE WHERE PRDTSTATNM='개봉예정'
+</select>
+<!-- 영화 정보 -->
+<select id="selectInfoMovie" parameterType="int" resultType="movielist">
+<include refid="sql"></include>
+   WHERE MOVIECD=#{NO}
+</select>
+<!-- 영화 찾기 -->
+<select id="searchMovie" parameterType="String" resultType="movielist">
+SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, CONTENTS FROM MOVIE
+WHERE MOVIENM LIKE '%'||#{search}||'%'
 </select>
 
+<!-- 메인 현재상영작 -->
+<select id="mainOnAirList" resultType="movielist">
+SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
+FROM(
+SELECT RANK() OVER(ORDER BY OPENDT DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE OPENDT < SYSDATE]]>)
+<![CDATA[WHERE RANK <=4]]>
+</select>
+
+<!-- 메인 상영예정작 -->
+<select id="mainScheduledList" resultType="movielist">
+SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
+FROM(
+SELECT RANK() OVER(ORDER BY OPENDT DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE OPENDT > SYSDATE-20]]>)
+<![CDATA[WHERE RANK <=4]]>
+</select>
+
+<!-- 메인 인기순위 -->
+<!-- 예매율 넣어서 수정 필요 지금은 암거나 쓴거임 -->
+<select id="mainPopularList" resultType="movielist">
+SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
+FROM(
+SELECT RANK() OVER(ORDER BY SHOWTM DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT FROM MOVIE <![CDATA[WHERE SHOWTM < 150]]>)
+<![CDATA[WHERE RANK <=4]]>
+</select>
+
+
+<!-- 리뷰 -->
+<!-- 리뷰 중복 검사 -->
+<select id="reviewCheck" parameterType="Hashmap" resultType="int">
+SELECT REVIEWNO FROM MOVIE_REVIEW WHERE USERID=#{userId} AND MOVIECD=#{movieCd}
+</select>
+<!-- 리뷰 리스트 -->
+<select id="findReviewList" resultType="Review">
+SELECT MOVIECD, REVIEWNO, USERID, COMMENTS, UPDATEDATE FROM MOVIE_REVIEW WHERE MOVIECD=#{movieCd} ORDER BY REVIEWNO DESC
+</select>
+<!-- 리뷰 등록 -->
 <insert id="registerReview" parameterType="Hashmap">
 INSERT INTO MOVIE_REVIEW(REVIEWNO,MOVIECD,USERID,COMMENTS,REGISTERDATE,UPDATEDATE)
 VALUES(SEQ_MOVIE_REVIEW.NEXTVAL,#{movieCd},#{userId},#{comments},#{registerDate},#{updateDate})
 </insert>
-
+<!-- 리뷰 삭제 -->
 <delete id="deleteReview" parameterType="int">
 DELETE FROM MOVIE_REVIEW WHERE REVIEWNO=#{reviewNo}
 </delete>
+<!-- 리튜 수정 -->
+<update id="updateReview" parameterType="Hashmap">
+UPDATE MOVIE_REVIEW SET UPDATEDATE=TO_CHAR(SYSDATE,'YYYY/MM/DD'),COMMENTS=#{comments} WHERE REVIEWNO=#{reviewNo}
+</update>
+<!--  소연부분 끝 -->
 </mapper>
 
 
