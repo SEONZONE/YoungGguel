@@ -14,8 +14,14 @@
 <script type="text/javascript" src="/movie/resources/js/MovieJs.js"></script>
 
 <script type="text/javascript">
+
+var clickDate = "";
+var clickTown = "";
+var clickMovie = "";
+	
 	// 요일, 영화 눌리면 값 저장 
 	$(function() {
+		
 		function listMethod(url,data,datatype,methodName){
 		      $.ajax({
 					  url:url,
@@ -52,12 +58,13 @@
 		
 		$.each(v,function(index,dom){
 			temp += "<li>";
-			temp += "<button type=\"button\" class=\"btn\" id=\"movieButton1\">";
-			temp +=	"<span><img src=\"/movie/view/img/19.png\">&nbsp;</span> <span id=\"movieSpan1\">"+dom.movieNm+"</span>";
+			temp += "<button type=\"button\" class=\"btn\" >";
+			temp +=	"<span ><img src=\"/movie/view/img/19.png\"></span> <span id=\"movieNameList\">"+dom.movieNm+"</span>";
 			temp += "</button>";
 			temp += "</li>" ;
 		});
 		$(".mList").html(temp);	
+		evtbind();
 	}
 	
 	/* 지역 이름 불러오기 */
@@ -66,17 +73,18 @@
 	function cityNameList(v){
 		$.each(v,function(index,dom){		
 			tempCity += "<li>";
-			tempCity += "<button type=\"button\" id=\"cityNameButton\" class=\"btn\">";
-			tempCity +=	"<span onClick="reply_click(+ index +)">" + dom.theaterCity +"&nbsp;</span>";
+			tempCity += "<button type=\"button\" class=\"btn\">";
+			tempCity +=	"<span id=\"cityNameList\" >" + dom.theaterCity +"</span>";
 			tempCity +=	"</button>";
 			tempCity +=	"</li>";
 		
 		});
 		$(".theaterCityList").html(tempCity);	
+		
 	}
 	
- 
 	
+
 	
 	/* 도시 이름 불러오기 */
 	function townNameList(v){
@@ -84,35 +92,72 @@
 		$.each(v,function(index,dom){
 		tempTown += "<li>";
 		tempTown += "<button type=\"button\" class=\"btn\">";
-		tempTown +=	"<span>" + dom.theaterTown +"&nbsp;</span>";
+		tempTown +=	"<span id=\"townNameList\">" + dom.theaterTown +"</span>";
 		tempTown +=	"</button>";
 		tempTown +=	"</li>";
 		});
 		$(".theaterTownList").html(tempTown);	
+		
+		evtbind();
 	}
-	
-	
-	/* 클릭시 값 저장 */
-	$("button#dayButton1").click(function(e) {
-		var daySelect = $("span#daySpan1").html();
-		console.log(daySelect);
-		$("button#movieButton1").click(function(d) {
-			var movieSelect = $("span#movieSpan1").html();
-			console.log(daySelect);
-			console.log(movieSelect);
-		});
-	});
-	
-	$("span.tempCity#0").click(function() {
-		alert("서울!");
-	});
+
  
 	
+});
+	/* 클릭시 값 저장 */
+	/* bind function */
+	function evtbind() {
 	
 	
+		
+		$("span#movieNameList").click(function() {
+			clickMovie = $(this).text();
+			console.log(clickMovie);
+		
+		});
 
+		$("span#dayList").click(function() {
+			clickDate = $(this).text();
+			console.log(clickDate);
+			
+		});
+
+		$("span#townNameList").click(function() {
+			clickTown = $(this).text();
+			allClickEvent();
+			});
+		
+		
+		}
 	
-	});
+		function allClickEvent() { 
+			if(clickMovie != null && clickDate != null && clickTown != null) {
+				selectName('/movie/selectBookList.do',{day :clickDate,town:clickTown,movie:clickMovie},'json');
+				 clickDate = "";
+				 clickTown = "";
+				 clickMovie = "";
+			}
+				
+		}
+	
+		function selectName(url,data,datatype){
+		      $.ajax({
+					  url:url,
+		    		  type:'POST',
+		    		  data:data,
+		   			  dataType:datatype,				  
+		   			  success:function(v){
+		   				
+		   				  alert("success!!!!");
+		   			  },
+		   			  error:function(e){
+		   				  console.log("error" + e);
+	    			  }	    		  
+		   			  });	
+		      }
+
+		
+	
 	
 
 </script>
@@ -183,7 +228,8 @@
 							<ul>
 								<li>
 									<button type="button" class="btn" id="dayButton1">
-										<span id="daySpan1">8월 23일 일요일</span>
+								
+										<span  id ="dayList" lang="21/11/03">21/11/03</span>
 									</button>
 								</li>
 								<li>

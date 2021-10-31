@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		theatercity=#{VALUE}
 		group by THEATERTOWN
 	</select>
+	
 	 -->
 	<!-- 대분류 불러오기 -->
 	<select id="theaterCity" resultType="theaterlist">
