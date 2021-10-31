@@ -14,13 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 로그인 -->
 	<select id="loginBoard" parameterType="String"
 		resultType="String">
-		SELECT USER_PW FROM USER_INFO WHERE USERID=#{VALUE}
+		SELECT USERPW FROM USER_INFO WHERE USERID=#{VALUE}
 	</select>
 
 	<!-- 어드민로그인 -->
 	<select id="adminloginBoard" parameterType="String"
 		resultType="String">
-		SELECT USER_VERIFY FROM USER_INFO WHERE USERID=#{VALUE}
+		SELECT USERVERIFY FROM USER_INFO WHERE USERID=#{VALUE}
 	</select>
 
 	<!-- 회원가입 중복체크 -->

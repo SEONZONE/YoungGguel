@@ -229,7 +229,7 @@
 				</a>
 				<ul>
 				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
-					<li><a href="../jsp/join.jsp" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
+					<li><a href="/movie/view/jsp/join.jsp" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
                         <li><img src="/movie/view/img/usericon.png" id ="usericon"class=" hidden"></li>
                      
                         <li><span id ="info_user"class=" hidden">${id } 님 </span></li>
@@ -244,7 +244,7 @@
 					<li onclick="wow()"><img id="popup_booking_open_btn" src="/movie/view/img/gnbbutton.png"
 						onmouseover="this.src='/movie/view/img/gnbbutton_hover.png'"
 						onmouseout="this.src='/movie/view/img/gnbbutton.png'"></li>
-					<li>스토어</li>
+					<li><a href="/movie/view/jsp/store.jsp">스토어</a></li>
 					<li><a href="/movie/view/jsp/myPage1.jsp">마이 페이지</a></li>
 				</ul>
 			</div>

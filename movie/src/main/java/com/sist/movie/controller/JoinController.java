@@ -15,8 +15,8 @@ public class JoinController {
 	@Autowired
 	private UserDao dao;
 	
-	@RequestMapping(value="join.do", method=RequestMethod.POST)
 	@ResponseBody
+	@RequestMapping(value="join.do", method=RequestMethod.POST)
 	public int insertUser(UserVO vo) {
 		int success; 
 		try {
