@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- 본인이 선택한 시간,영화,상영관에 해당하는 타임테이블 -->
-	<select id="movieSelectAction" resultType="booking">
+	<select id="movieSelectAction" parameterType="java.util.Map" resultType="booking">
 		SELECT T.TIME_NO, T.MOVIE_NO, M.MOVIENM, T.THEATER_NO, T.TIME_DATE,
 		T.TIME_START, T.TIME_END, T.SE_NO,
 		S.THEATERCITY, S.THEATERTOWN, S.THEATERGWAN, S.THEATERROOMSEAT,
