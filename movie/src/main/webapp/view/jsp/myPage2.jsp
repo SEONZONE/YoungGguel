@@ -23,7 +23,7 @@ function ajaxReplyList(v){
 	    	temp+="<img src=\"/movie/view/img/"+dom.answer_ck+".png\" alt=\"답변여부\" class=\"result_img\">";
 	    	temp+="<div class=\"ask_title\"><a href=\"javascript:ajaxcontent()\"  >";
 	    	temp+="<span id=ask_title lang="+dom.ask_no+" class=link>"+dom.ask_title+"/</span></a></div>";
-	    	temp+="<div class=\"ask_date\"><a href=\"/movie/AnswerList.do?user_id="+dom.user_id+"&ask_no="+dom.ask_no+"\" id=\"Answer\"></a>"+dom.ask_regdate+"</div>";
+	    	temp+="<div class=\"ask_date\"><a href=\"/movie/AnswerList.do?user_id="+dom.user_id+"&ask_no="+dom.ask_no+"\" id=\"Answer\">답변달기</a>"+dom.ask_regdate+"</div>";
 	    	    
 	    	//temp+="<span><input type=\"button\"value="답변달기\"></button></span>";
 	    	
@@ -46,6 +46,7 @@ function ajaxRequest(url,data,dataType){
         dataType:dataType,              
         success:function(v){
            ajaxReplyList(v);
+           $("div[lang=answer]").hide();
         },
         error:function(e){
            alert('error'+e);

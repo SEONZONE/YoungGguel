@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.sist.movie.dao.MovieMapper">
 
  <!-- 이거는 인효부분 -->
-<select id="movieList22" resultType="com.sist.movie.vo.MovieDemoVO">
+<select id="movieDemoList" resultType="com.sist.movie.vo.MovieDemoVO">
     SELECT RESERVE_DATE,RESERVE_NO,MOVIE_TITLE,RESERVE_INFO,PAY_TOTAL,PAY_DATE FROM MOVIEDEMO
 </select>
 
@@ -17,8 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<select id="movieList" resultType="movieList">
-		SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT,
-		CONTENTS, SHOWTM, CONTENTS FROM MOVIE
+		SELECT MOVIECD , MOVIENM , GENRE , TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT ,
+		CONTENTS , SHOWTM , CONTENTS  FROM MOVIE
 	</select>
 	
 

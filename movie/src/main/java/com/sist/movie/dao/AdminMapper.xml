@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.movie.dao.AdminMapper"><!-- 매퍼네임스페이스랑 config의 매퍼이름일치시킬것 -->
+<!-- 영화관련 -->
+<!-- 글 작성시에 글번호NO 증가시켜주는 SQL -->
+<select id="getSequence" resultType="java.lang.Integer">
+    SELECT MOVIE_INFO_SEQ.NEXTVAL FROM DUAL
+</select> 
+<select id="getAdminAskSequence" resultType="java.lang.Integer">
+     SELECT ASK_NO_SEQ.NEXTVAL FROM DUAL
+</select> 
+
+<!-- 영화 인포넣는법 -->
+<insert id="insertMovie_info" parameterType="movieList">
+ INSERT INTO MOVIE (MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,OPENDT,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS)
+ VALUES(MOVIE_INFO_SEQ.NEXTVAL,#{movieNm},#{movieNmEn},#{showTm},#{openDt},#{contents},#{prdtStatNm},#{nations},#{genre},#{directors},#{actors},#{watchGradeNm},#{companys})
+ </insert>
+ 
+ 
+
+<insert id="insertActor" parameterType="actor">
+INSERT INTO ACTOR (ACTOR_NO,ACTOR_NAME) VALUES (ACTOR_SEQ.NEXTVAL,#{actor_name})
+</insert>
+
+ 
+ <!-- 마이페이지에서 영화 리스트 가져오기 -->
+<select id="selcetReserveMovieList" resultType="movieDemo">
+select TO_CHAR(RESERVE_DATE,'YYYY/MM/DD') RESERVE_DATE,
+RESERVE_NO,
+MOVIE_TITLE,
+RESERVE_INFO,
+PAY_TOTAL,
+TO_CHAR(PAY_DATE,'YYYY/MM/DD/HH:MM') PAY_DATE
+FROM MOVIEDEMO
+</select>
+ <!-- 영화관련 끝-->
+ <!-- 어드민에서 문의내역읽어오기 -->
+ <select id="AskAnswerList" resultType="ask">
+SELECT ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK
+FROM ASK
+ORDER BY ASK_REGDATE ASC
+ </select>
+ <!-- 어드민에서 선택한문의내역읽어오기 -->
+ <select id="readselecectedAsk" resultType="ask" parameterType="java.util.HashMap">
+SELECT ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK
+ FROM ASK
+ WHERE USER_ID=#{user_id} AND ASK_NO=#{ask_no}
+ </select>
+<!-- 어드민에서 문의 답변달아주기 -->
+<!-- <insert id="insertAskAnswer1" parameterType="askanswer">
+INSERT INTO ASK_ANSWER(ANSWER_NO,ANSWER_TITLE,ANSWER_CONTENTS,ANSWER_PNUM,ANSWER_FILE) 
+VALUES(#{ask_no},#{answer_title},#{answer_contents},#{ANSWER_PNUM},#{answer_file})
+</insert> -->
+<!-- 어드민에서 문의 답변달아주기 -->
+<insert id="insertAskAnswer" parameterType="ask">
+	INSERT INTO ASK(ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK) 
+	VALUES(#{ask_no},#{ask_title},#{ask_contents},#{ask_fileName},SYSDATE,#{pnum},#{ref},#{user_id},#{answer_ck})
+</insert>	
+ <!-- <update id="updateReply" parameterType="java.util.HashMap">
+    UPDATE BOARDMVC SET
+    <choose>
+      <when test="job eq 'reply'">
+       REPLY=REPLY+1
+      </when>
+      <otherwise>
+        REPLY=REPLY-1
+      </otherwise>      
+    </choose>
+    WHERE NO=#{pnum}
+ </update> -->
+<update id="updateAskstate" parameterType="Integer">
+UPDATE ASK 
+SET ANSWER_CK='답변완료' 
+WHERE ASK_NO=#{VALUE}
+</update>
+ 
+ 
+
+ 
+ </mapper>
