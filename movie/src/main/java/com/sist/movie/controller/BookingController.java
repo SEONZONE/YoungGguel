@@ -29,7 +29,7 @@ public class BookingController {
 
 	@Autowired
 	private TheaterDao tdao;
-	
+
 	@Autowired
 	private BookDao bdao;
 
@@ -61,7 +61,6 @@ public class BookingController {
 		String temp = "";
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (movie != null) {
-
 			map.put("movie", movie);
 			if (town != null) {
 				map.put("town", town);
@@ -72,8 +71,8 @@ public class BookingController {
 
 			}
 		}
-		System.out.println(temp);
-		return "";
+		System.out.println(bdao.movieSelectAction());
+		return bdao.movieSelectAction();
 
 	}
 

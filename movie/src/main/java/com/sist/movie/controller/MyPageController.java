@@ -30,6 +30,7 @@ public class MyPageController{
 	private UserDao userdao;
 	@Autowired
 	private MovieDao mdao;
+	
 
 	// 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙 占쌍는곤옙
 	@PostMapping(value = "ask.do")

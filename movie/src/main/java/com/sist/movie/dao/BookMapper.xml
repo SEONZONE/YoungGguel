@@ -17,6 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE T.MOVIE_NO = M.MOVIECD
 		AND T.THEATER_NO = S.THEATERNO
 		AND T.SE_NO = A.SE_NO
+		AND M.MOVIENM = ${movie}
+		AND S.THEATERTOWN = ${town}
+		AND T.TIME_DATE = ${day}
 		
 	</select>
 
