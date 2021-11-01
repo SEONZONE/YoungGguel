@@ -1,5 +1,6 @@
 package com.sist.movie.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,8 +43,12 @@ public class MovieDao extends SqlSessionDaoSupport {
    public List<MovieVO> mainOnAirList() {   
 	   return this.getSqlSession().selectList("mainOnAirList");
    }
-   //��ȿ ���� �������̺� ��������
+   //영화데모테이블 조회
    public List<MovieVO> selcetReserveMovieList(){
 	   return this.getSqlSession().selectList("movieDemoList");
+   }
+   //영화기간별  조회	
+   public List<MovieVO> selcetReserveMovieListtest(HashMap<String,Object> map){
+	   return this.getSqlSession().selectList("movieDemoListTest",map);
    }
 }

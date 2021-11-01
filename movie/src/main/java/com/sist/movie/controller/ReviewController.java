@@ -31,6 +31,18 @@ public class ReviewController {
 	public List<ReviewVO> findReviewList(int movieCd) {
 		return dao.findReviewList(movieCd);
 	}
+	/*리뷰 중복 검사
+	@RequestMapping("reviewCheck.do")
+	public String reviewCheck(Review rv) {
+		System.out.println(rv);
+		HashMap<String, Object> param = new HashMap<>();
+		param.put("movieCd", rv.getMovieCd());
+		param.put("userId", rv.getUserId());
+		System.out.println(param);
+		if(dao.reviewCheck(param)) {
+			dao.registerReview(param);
+		}return "";
+	}*/
 	
 	/*리뷰 등록*/
 	@ResponseBody
@@ -69,7 +81,9 @@ public class ReviewController {
 		String comments = rv.getComments();
 		int reviewNo = rv.getReviewNo();
 		int movieCd = rv.getMovieCd();
+
 		HashMap<String, Object> param = new HashMap<String, Object>();
+
 		param.put("comments", comments);
 		param.put("reviewNo", reviewNo);
 		dao.updateReview(param);

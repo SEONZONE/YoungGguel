@@ -11,13 +11,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class BookingVO {
-	private int booking_no; //50001╨нем
+public class BookingDemoVO {
+	private int booking_no; //50001О©╫О©╫О©╫О©╫
 	private int payment_no; //P1 P2 P3
-	private int movie_no; 	//10001╨нем
-	private int theater_no; //30001╨нем
+	private int movie_no; 	//10001О©╫О©╫О©╫О©╫
+	private int theater_no; //30001О©╫О©╫О©╫О©╫
 	private String user_id;
-	private int bk_usecoupon;  //1юл╦И ф╝╥Г 0юл╦И ╧л╩Г©Кю╦╥н гоюз
+	private int bk_usecoupon;  //1О©╫л╦О©╫ ф╝О©╫О©╫ 0О©╫л╦О©╫ О©╫л╩О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 	private int bk_adult;
 	private int bk_child;
 	private int bk_senior;

@@ -11,13 +11,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{USERID},#{USERPW},#{USERNAME},#{USERGENDER},#{USERTEL},#{USERBIRTH},#{USEREMAIL})
 	</insert>
 
-	<select id="loginBoard" parameterType="String" resultType="String">
+	<!-- 로그인 -->
+	<select id="loginBoard" parameterType="String"
+		resultType="String">
 		SELECT USERPW FROM USER_INFO WHERE USERID=#{VALUE}
 	</select>
+
+	<!-- 어드민로그인 -->
 	<select id="adminloginBoard" parameterType="String"
 		resultType="String">
 		SELECT USERVERIFY FROM USER_INFO WHERE USERID=#{VALUE}
 	</select>
+
+	<!-- 회원가입 중복체크 -->
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		SELECT
+		COUNT(*) FROM USER_INFO WHERE USERID=#{id}
+	</select>
+
+
+
+
+
+
 
 
 

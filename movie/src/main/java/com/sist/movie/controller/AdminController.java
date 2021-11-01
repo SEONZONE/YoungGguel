@@ -21,7 +21,7 @@ import com.sist.movie.dao.UserDao;
 import com.sist.movie.vo.ActorVO;
 import com.sist.movie.vo.AnswerVO;
 import com.sist.movie.vo.AskVO;
-import com.sist.movie.vo.BookingVO;
+import com.sist.movie.vo.BookingDemoVO;
 import com.sist.movie.vo.MovieVO;
 
 @Controller

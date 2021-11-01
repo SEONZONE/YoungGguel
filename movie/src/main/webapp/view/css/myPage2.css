@@ -143,3 +143,15 @@ button#showcontents{
 	margin:10px;
 	padding :10px;
 }
+.paging {
+    margin-top: 13px;
+    text-align: center;
+    font-family: Tahoma;
+    
+}
+
+.paging img {
+    margin-top: -3px;
+    padding: 3px;
+    vertical-align: middle;
+}

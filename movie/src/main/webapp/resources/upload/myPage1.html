@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style type="text/css">
+
+
+
+#wrap{
+    padding-top: 50px;  max-width: 1200px; 
+    display: block; margin: 0px auto;
+    width: 1200px;
+    height: 900px; 
+    
+}
+#myPage_btn{
+    width: 450px; height: 150px ; background-color: #265396; 
+    text-align: center; 
+    display: block; margin: 0px auto;
+    align-content: center;
+}
+#myPage_div_active{
+    width:149px; height: 150px;  background-color: #265396; 
+    float: left;
+    border-right: 1px solid gray;
+}  
+#myPage_div_unactive{
+    width:149px; height: 150px;  background-color: #eef1f6; 
+    float: left;
+    border-right: 1px solid gray;
+
+} 
+#myPage_div:last-child{
+    border-right: none;
+    width: 150px;
+}
+.myPage_img{
+    width: 50%;
+    position: relative;
+    top:23%;
+    
+}
+#contents{
+    width: 900px;
+    height: 120px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    line-height: 120px;
+    border: 1px solid black;
+    
+    
+}
+#contents > .search{background-color: gray;
+float: left;
+width: 200px;
+height: 120px;
+font-size: 25px;
+margin: 0 auto;
+}
+#contents > .search2{
+    background-color: #f6f6f6;
+    
+}
+table{
+    padding-top: 30px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 3px solid gray;
+}
+td{
+    border-style: groove;
+    padding: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+/* #wrap>#header >#myPage_btn{display: inline;} */
+</style>
+<body>
+
+<div  id="wrap">
+            <div id="myPage_btn">
+                <div id="myPage_div_active"><img src="/img/개인정보변경.png" class="myPage_img" onmouseover="
+                    this.style.cursor='pointer'"></div>
+                <div id="myPage_div_unactive"><img src="/img/문의하기.png" class="myPage_img" onmouseover="
+                    this.style.cursor='pointer'"></div>
+                <div id="myPage_div_unactive"><img src="/img/예매확인.png" class="myPage_img" onmouseover="
+                    this.style.cursor='pointer'"></div>
+           </div>
+                <br><br><br>
+                <!--버튼끝-->
+            <div id="contents">
+                <span class="search">구분</span>
+                <span><input type="radio" class="search2">예매내역</span>
+                <span><input type="radio" class="search2">지난내역</span>&nbsp;
+                <span><input type="date" class="search2"></span><span> ~ </span>
+                <span><input type="date" class="search2"></span>
+                <span><input type="button" value="조회하기"></span>
+            </div>
+            <!--구분탭끝-->
+            <!--테이블탭시작-->
+                <table id="table_wrap">      
+                    <thead id="table_top">
+                        <tr>
+                        <td>예매날짜</td>
+                        <td>예매번호</td>
+                        <td>영화이름</td>
+                        <td>예매정보</td>
+                        <td>결제금액</td>
+                        <td>결제시간</td>
+                    </tr>
+                    </thead>
+                    <br>
+                    <tbody>
+                        <tr>
+                        <td>2021.09.23</td>
+                        <td>PWW5678922</td>
+                        <td>보이스</td>
+                        <td>2021.09.22/월계 CGV / 3관 / PM 09: 00 /성인 2명</td>
+                        <td>20,000원</td>
+                        <td>2021/09.22.AM12:00</td>
+                    </tr>
+                    <tr>
+                        <td>2021.09.23</td>
+                        <td>PWW5678922</td>
+                        <td>보이스</td>
+                        <td>2021.09.22/월계 CGV / 3관 / PM 09: 00 /성인 2명</td>
+                        <td>20,000원</td>
+                        <td>2021/09.22.AM12:00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            <!--테이블탭끝-->
+            </div>
+            </div>
+</div>
+</body>
+</html>

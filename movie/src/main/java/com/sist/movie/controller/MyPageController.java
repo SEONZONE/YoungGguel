@@ -21,6 +21,8 @@ import com.sist.movie.dao.MyPageDao;
 import com.sist.movie.dao.UserDao;
 import com.sist.movie.vo.AskVO;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 
 @Controller
 public class MyPageController{
@@ -32,10 +34,22 @@ public class MyPageController{
 	private MovieDao mdao;
 	
 
-	// 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙占쏙옙 占쌍는곤옙
+	//마이페이1에서 기간별 조회하흔ㄴ거
+	@PostMapping(value="myPage1Test.do")
+	public String test(HashMap<String,Object> map,String from, String to) {
+		System.out.println(from+  to);
+			
+			map.put("from",from);
+			map.put("to",to);
+			//dao.reserveListGigan(map);
+			map.put("mlistTest",mdao.selcetReserveMovieListtest(map));
+		return "/view/jsp/test";
+	}
+	// 마이페이지에서 문의하기 등록하는것
+
 	@PostMapping(value = "ask.do")
 	public String uploadAskAction(AskVO bean, @RequestParam(value="file", required=false, defaultValue = "noData") MultipartFile file) {
-	String location = "C:\\Users\\izp10\\Desktop\\Spring\\movie\\src\\main\\webapp\\resources\\upload\\";
+	String location = "C:\\Users\\izp10\\Documents\\GitHub\\YGProject\\YoungGguel\\movie\\src\\main\\webapp\\resources\\upload\\";
 	FileOutputStream fos = null;
 	String fileName = file.getOriginalFilename();
 	if (fileName.length() > 0) {
@@ -97,7 +111,7 @@ public class MyPageController{
 		return "/view/jsp/Admin/deleteUser";
 			
 	}
-	//占싻쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙//
+	//비밀번호 변경하는 것
 	@RequestMapping(value="RenewPassword.do")
 	public String renewPassword(String userPw,String userId) {
 		HashMap<String,Object> map=new HashMap<String,Object>();
@@ -107,11 +121,9 @@ public class MyPageController{
 		System.out.println("PW踰덊샇蹂�寃� �꽦怨�");	
 		return "view/jsp/myPage1";
 	}
-	//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙화占쏙옙占쏙옙트 占쌀뤄옙占쏙옙占쏙옙
+	//마이페이지 1에서 예매 데이터 불러오는 map
 	@RequestMapping(value="loadReserveList.do")
 	public String selectReserveList(HashMap<String,Object> map) {
-		//List<Object> mlist=mdao.selcetReserveMovieList();
-		//model.addAttribute("user_info", dao.getUserInfo(id));
 		System.out.println(mdao.selcetReserveMovieList());
 		map.put("mlist",mdao.selcetReserveMovieList());
 		return "view/jsp/myPage1";

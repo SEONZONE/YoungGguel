@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyPage</title>
-        <link rel="stylesheet" href="/movie/view/css/myPagecommon.css">
-      <link rel="stylesheet" href="/movie/view/css/myPage1.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>MyPage</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/movie/view/css/myPagecommon.css">
+ <link rel="stylesheet" href="/movie/view/css/myPage1.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(function(){
 	  $('img#find_img').click(function(){
@@ -49,8 +49,8 @@
 
             <span id="search2" ><input type="radio" name="searchtap" checked="checked" >전체 내역</span>
             <span id="search2"><input type="radio" name="searchtap">기간별 조회</span>&nbsp;
-            <span id="search2"><input type="date" id="search_date"></span><span> ~ </span>
-            <span id="search2"><input type="date" id="search_date"></span>
+            <span id="search2"><input type="date" id="search_date" name="from"></span><span> ~ </span>
+            <span id="search2"><input type="date" id="search_date" name="to"></span>
             <img src="/movie/view/img/find.png" id="find_img" onmouseover="this.style.cursor='pointer'"></span>
              
         </div>

@@ -13,10 +13,14 @@
 
 
 
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+ <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+
+
 
 <jsp:include page="booking.jsp"></jsp:include>
 <jsp:include page="loginpopup.jsp"></jsp:include>
@@ -229,7 +233,7 @@
 				</a>
 				<ul>
 				<li><img src="/movie/view/img/loginbutton.png" id="popup_open_btn" class="loginNo"></li>
-					<li><a href="../html/join.html" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
+					<li><a href="/movie/view/jsp/join.jsp" ><img src="/movie/view/img/joinbutton.png" id="joinImg"class="loginNo"></a></li>			
                         <li><img src="/movie/view/img/usericon.png" id ="usericon"class=" hidden"></li>
                      
                         <li><span id ="info_user"class=" hidden">${id } 님 </span></li>
@@ -244,7 +248,7 @@
 					<li onclick="wow()"><img id="popup_booking_open_btn" src="/movie/view/img/gnbbutton.png"
 						onmouseover="this.src='/movie/view/img/gnbbutton_hover.png'"
 						onmouseout="this.src='/movie/view/img/gnbbutton.png'"></li>
-					<li>스토어</li>
+					<li><a href="/movie/view/jsp/store.jsp">스토어</a></li>
 					<li><a href="/movie/view/jsp/myPage1.jsp">마이 페이지</a></li>
 				</ul>
 			</div>

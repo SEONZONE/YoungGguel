@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sist.movie.vo.AnswerVO;
 import com.sist.movie.vo.AskVO;
-import com.sist.movie.vo.BookingVO;
+import com.sist.movie.vo.BookingDemoVO;
 import com.sist.movie.vo.UserVO;
 
 
@@ -33,7 +33,7 @@ public class MyPageDao extends SqlSessionDaoSupport {
 	public void insertQuery(UserVO vo) {
 		this.getSqlSession().insert("insertQuery", vo);
 	}
-	public void renewMyPage(BookingVO vo) {
+	public void renewMyPage(BookingDemoVO vo) {
 		this.getSqlSession().selectList("renewMypage", vo);
 	}
 	//�������������� �����ϱ� ������
