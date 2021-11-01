@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="functions" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -14,14 +14,25 @@
 <script type="text/javascript" src="/movie/resources/js/MovieJs.js"></script>
 
 <script type="text/javascript">
+
+var clickDate = "";
+var clickTown = "";
+var clickMovie = "";
+var clickTime = "";
+
+	
 	// 요일, 영화 눌리면 값 저장 
 	$(function() {
+		listMethod('/movie/nameList.do',{select:'movieList'},'json','moiveName');
+		listMethod('/movie/nameList.do',{select:'cityList'},'json','cityName');
+		listMethod('/movie/nameList.do',{select:'townList'},'json','townName');
 		function listMethod(url,data,datatype,methodName){
 		      $.ajax({
 					  url:url,
 		    		  type:'POST',
 		    		  data:data,
-		   			  dataType:datatype,				  
+		   			  dataType:datatype,
+		   			 
 		   			  success:function(v){
 		   				  if( methodName == "moiveName"){
 		   					movieNameList(v);
@@ -30,34 +41,46 @@
 		   					cityNameList(v);  
 		   				  }
 		   				  else if(methodName == "townName"){
+		   					
 		   					townNameList(v);  
 		   				  }
+		   				  else if(methodName == "selectName") {
+		   					
+		   					timeNameList(v);
+		   				  }
+		   				  else if(methodName == "selectTime") {
+		   					for(var i=1; i<=10; i++){
+		   					seatNameList(v,i);
+		   					}
+		   				 	
+		   				  }
+		   				 
 		   				  
 		   			  },
 		   			  error:function(e){
+		   				  console.log("실패");
 		   				  console.log("error" + e);
 	    			  }	    		  
 		   			  });	
 		      }
 		
-		listMethod('/movie/nameList.do',{select:'movieList'},'json','moiveName');
-		listMethod('/movie/nameList.do',{select:'cityList'},'json','cityName');
-		listMethod('/movie/nameList.do',{select:'townList'},'json','townName');
+		
 		
 	
 		
 	/* 영화 이름 불러오기 */
 	function movieNameList(v){
 		var temp="";
-		
+
 		$.each(v,function(index,dom){
 			temp += "<li>";
-			temp += "<button type=\"button\" class=\"btn\" id=\"movieButton1\">";
-			temp +=	"<span><img src=\"/movie/view/img/19.png\">&nbsp;</span> <span id=\"movieSpan1\">"+dom.movieNm+"</span>";
+			temp += "<button type=\"button\" class=\"btn\" >";
+			temp +=	"<span ><img src=\"/movie/view/img/"+dom.watchGradeNm+".png\"></span> <span id=\"movieNameList\">"+dom.movieNm+"</span>";
 			temp += "</button>";
 			temp += "</li>" ;
 		});
 		$(".mList").html(temp);	
+		evtbind();
 	}
 	
 	/* 지역 이름 불러오기 */
@@ -66,17 +89,18 @@
 	function cityNameList(v){
 		$.each(v,function(index,dom){		
 			tempCity += "<li>";
-			tempCity += "<button type=\"button\" id=\"cityNameButton\" class=\"btn\">";
-			tempCity +=	"<span onClick="reply_click(+ index +)">" + dom.theaterCity +"&nbsp;</span>";
+			tempCity += "<button type=\"button\" class=\"btn\">";
+			tempCity +=	"<span id=\"cityNameList\" >" + dom.theaterCity +"</span>";
 			tempCity +=	"</button>";
 			tempCity +=	"</li>";
 		
 		});
 		$(".theaterCityList").html(tempCity);	
+		
 	}
 	
- 
 	
+
 	
 	/* 도시 이름 불러오기 */
 	function townNameList(v){
@@ -84,35 +108,145 @@
 		$.each(v,function(index,dom){
 		tempTown += "<li>";
 		tempTown += "<button type=\"button\" class=\"btn\">";
-		tempTown +=	"<span>" + dom.theaterTown +"&nbsp;</span>";
+		tempTown +=	"<span id=\"townNameList\">" + dom.theaterTown +"</span>";
 		tempTown +=	"</button>";
 		tempTown +=	"</li>";
 		});
 		$(".theaterTownList").html(tempTown);	
+		
+		evtbind();
+	}
+	/* 영화 시간표 불러오기 */
+	function townNameList(v){
+		var tempTown="";
+		$.each(v,function(index,dom){
+		tempTown += "<li>";
+		tempTown += "<button type=\"button\" class=\"btn\">";
+		tempTown +=	"<span id=\"townNameList\">" + dom.theaterTown +"</span>";
+		tempTown +=	"</button>";
+		tempTown +=	"</li>";
+		});
+		$(".theaterTownList").html(tempTown);	
+		
+		evtbind();
 	}
 	
 	
-	/* 클릭시 값 저장 */
-	$("button#dayButton1").click(function(e) {
-		var daySelect = $("span#daySpan1").html();
-		console.log(daySelect);
-		$("button#movieButton1").click(function(d) {
-			var movieSelect = $("span#movieSpan1").html();
-			console.log(daySelect);
-			console.log(movieSelect);
+	/*  시간표 불러오기 */
+	function timeNameList(v){
+		
+		var tempTime="";
+		$.each(v,function(index,dom){
+			tempTime +=	"<li >";
+			tempTime +=	"<button type=\"button\" class=\"time_btn\">";
+			tempTime += "<span id=\"bookingTimeNo\" hidden>" + dom.bookingTimeNo +"</span>";
+			tempTime += "<span class=\"time\">" + dom.bookingTimeStart + "</span> <span class=\"theater\">" + dom.bookingGwan + "</span> <span class=\"possible_now\">" +dom.bookingTheaterroomseat + "</span> <span class=\"all\">/ 20</span>";
+			tempTime +=	"</button>";
+			tempTime +=	"</li>";
+		
+		
 		});
-	});
+		$("ul#selectTime").html(tempTime);
+		evtbind();
+		
+	}
+
+	var i = 1;
+	var tempSeat = "";
+	var k=350;
+	/* 좌석 불러오기 */
+	function seatNameList(v,i) { 
+		
+			$.each(v,function(index,dom) { 
+			console.log( dom["bookingSeatNo"+i]);
+			 var seatSelect = "";
+			 if(dom["bookingSeatNo"+i] == "t") { 
+				 var seatSelect = "finish";
+			 }
+			 else if(dom["bookingSeatNo"+i] == "f"){ 
+				var seatSelect = "choice";
+			 } 		
+			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
+			 k += 30;	
+			});
+			$(".seat_row_wrapping").html(tempSeat);	
+			evtbind();
+	}
 	
-	$("span.tempCity#0").click(function() {
-		alert("서울!");
-	});
+	
+	
+	
+	/* 클릭시 값 저장 */
+	/* bind function */
+	function evtbind() {
+	
+	
+		
+		$("span#movieNameList").click(function() {
+			clickMovie = $(this).text();
+			console.log(clickMovie);
+		
+		});
+
+		$("span#dayList").click(function() {
+			clickDate = $(this).text();
+			console.log(clickDate);
+			
+		});
+
+		$("span#townNameList").click(function() {
+			clickTown = $(this).text();
+			console.log(clickTown);
+			allClickEvent();
+			});
+		
+		$(".time_btn").click(function() {
+			clickTime = $(this).find("#bookingTimeNo").text();
+			//clickTown = $(this).text();
+			console.log(clickTime);
+			$(".booking_selecter").addClass("hidden");		
+			$(".seat_selecter").removeClass("hidden");
+			
+			allClickEvent();
+			});
+		
+		
+		}
+	
+		$(".seat_number choice").click(function() {
+			console.log("button.seat_number choice");
+			$(".seat_number choice").removeClass("choice");
+			$(".seat_number ").addClass("finish");
+		
+			
+		});
+	
+		function allClickEvent() { 
+			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
+				
+				listMethod('/movie/selectBookList.do',{day :clickDate,town:clickTown,movie:clickMovie},'json','selectName');
+				
+				 
+			}
+			else if(clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
+				console.log("clickTime = Notnull");
+				listMethod('/movie/selectSeatList.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime},'json','selectTime');
+				
+				 
+			}
+				
+		}
+
  
 	
+});
 	
 	
+	
+		
 
+		
 	
-	});
 	
 
 </script>
@@ -170,11 +304,12 @@
 			<div class="booking_current_time">
 				<div>현재시각</div>
 				<b>2021.01.01 PM 10:23</b>
+				<img src="/movie/view/img/popupx.png" class="modal_close_btn " id="close_pop">
 			</div>
 			<!-- 상단 현재시각끝 -->
 			<!-- 예약시작 -->
 			<div class="booking_selecter ">
-				<img src="/movie/view/img/popupx.png" class="modal_close_btn " id="close_pop">
+				
 				<!-- 예약날짜 -->
 				<div class="booking_date">
 					<div class="middle_field">
@@ -183,19 +318,11 @@
 							<ul>
 								<li>
 									<button type="button" class="btn" id="dayButton1">
-										<span id="daySpan1">8월 23일 일요일</span>
+								
+										<span  id ="dayList" lang="21/11/03">21/11/03</span>
 									</button>
 								</li>
-								<li>
-									<button type="button" class="btn_on">
-										<span>8월&nbsp;</span> <span>23일&nbsp;</span> <span>일</span>
-									</button>
-								</li>
-								<li>
-									<button type="button" class="btn">
-										<span>8월&nbsp;</span> <span>23일&nbsp;</span> <span>일</span>
-									</button>
-								</li>
+							
 							</ul>
 						</div>
 					</div>
@@ -244,17 +371,10 @@
 					<div class="middle_field">
 						<span class="selecter_name">시간</span>
 						<div class="list">
-							<ul>
-								<li>
-									<button type="button" class="time_btn">
-										<span class="time">09:10</span> <span class="theater">역삼쌍용용죽겠지점</span> <span class="possible_now">10</span> <span class="all">/ 150</span>
-									</button>
-								</li>
-								<li>
-									<button type="button" class="time_btn on">
-										<span class="time">09:10</span> <span class="theater">강남대로변두리점</span> <span class="possible_now">10</span> <span class="all">/ 150</span>
-									</button>
-								</li>
+							<ul id="selectTime" >
+							
+							
+						
 							</ul>
 						</div>
 					</div>
@@ -262,9 +382,7 @@
 				<!-- 예약시간끝 -->
 			</div>
 			<!-- 예약 1번끝-->
-		</div>
-
-
+		
 		<!-- 예약 2번 시작-->
 		<div class="seat_selecter hidden">
 			<div class="ghost_box"></div>
@@ -294,17 +412,12 @@
 				<div class="choice_seat">
 					<div id="screen">SCREEN</div>
 					<div class="seat_row_wrapping">
-						<button type="button" class="seat_row" style="position: absolute; top: 360px; left: 150px;">A</button>
-						<button type="button" class="seat_number common" style="position: absolute; top: 360px; left: 200px;">1</button>
+						<!-- <button type="button" class="seat_row" style="position: absolute; top: 360px; left: 150px;">A</button> -->
+					<!-- 	<button type="button" class="seat_number common" style="position: absolute; top: 360px; left: 200px;">1</button>
 						<button type="button" class="seat_number choice" style="position: absolute; top: 360px; left: 230px;">2</button>
-						<button type="button" class="seat_number finish" style="position: absolute; top: 360px; left: 260px;">x</button>
+						<button type="button" class="seat_number finish" style="position: absolute; top: 360px; left: 260px;">x</button> -->
 					</div>
-					<div class="seat_row_wrapping">
-						<button type="button" class="seat_row" style="position: absolute; top: 390px; left: 150px;">B</button>
-						<button type="button" class="seat_number common" style="position: absolute; top: 390px; left: 200px;">1</button>
-						<button type="button" class="seat_number choice" style="position: absolute; top: 390px; left: 230px;">2</button>
-						<button type="button" class="seat_number finish" style="position: absolute; top: 390px; left: 260px;">x</button>
-					</div>
+			
 				</div>
 			</div>
 			<!-- 2번 좌측끝-->
@@ -327,7 +440,7 @@
 				<div id="pay_btn">결제하기</div>
 				<div id="rollback_btn">이전</div>
 			</div>
-
+			</div>
 		</div>
 	</div>
 </body>

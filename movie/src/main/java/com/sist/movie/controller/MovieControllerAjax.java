@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.movie.dao.MovieDao;
@@ -39,8 +41,10 @@ public class MovieControllerAjax {
 		return null;
 	}
 	
-	/*@RequestMapping("ajaxSearch.do")
-	public movieVO ajaxSearch(String search) {
-		return dao.searchMovie(search);
-	}*/
+	@ResponseBody
+	@GetMapping(value = "mainDetail.do")
+	public MovieVO mainMovieDetail(int movieCd){
+		System.out.println(movieCd);
+		return dao.selectInfoMovie(movieCd);
+	}
 }

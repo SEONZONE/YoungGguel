@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.movie.dao.ReviewMapper">
+
+<!-- 리뷰 중복 검사 -->
+<select id="reviewCheck" parameterType="Hashmap" resultType="int">
+SELECT REVIEWNO FROM MOVIE_REVIEW WHERE USERID=#{userId} AND MOVIECD=#{movieCd}
+</select>
+
+<!-- 리뷰 리스트 -->
+<select id="findReviewList" resultType="review">
+SELECT MOVIECD, REVIEWNO, USERID, COMMENTS, UPDATEDATE FROM MOVIE_REVIEW WHERE MOVIECD=#{movieCd} ORDER BY REVIEWNO DESC
+</select>
+
+<!-- 리뷰 등록 -->
+<insert id="registerReview" parameterType="Hashmap">
+INSERT INTO MOVIE_REVIEW(REVIEWNO,MOVIECD,USERID,COMMENTS,REGISTERDATE,UPDATEDATE)
+VALUES(SEQ_MOVIE_REVIEW.NEXTVAL,#{movieCd},#{userId},#{comments},#{registerDate},#{updateDate})
+</insert>
+
+<!-- 리뷰 삭제 -->
+<delete id="deleteReview" parameterType="int">
+DELETE FROM MOVIE_REVIEW WHERE REVIEWNO=#{reviewNo}
+</delete>
+
+<!-- 리튜 수정 -->
+<update id="updateReview" parameterType="Hashmap">
+UPDATE MOVIE_REVIEW SET UPDATEDATE=TO_CHAR(SYSDATE,'YYYY/MM/DD'),COMMENTS=#{comments} WHERE REVIEWNO=#{reviewNo}
+</update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

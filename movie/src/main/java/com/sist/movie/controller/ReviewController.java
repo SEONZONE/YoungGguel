@@ -48,7 +48,7 @@ public class ReviewController {
 	@ResponseBody
 	@RequestMapping(value="reviewInsert.do")
 	public List<ReviewVO> registerReviewList(@RequestParam("userId") String userId, @RequestParam("comments") String comments, @RequestParam("movieCd") Integer movieCd) {
-		HashMap<String, Object> param = new HashMap<>();
+		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("userId", userId);
 		param.put("comments", comments);
 		param.put("movieCd", movieCd);
@@ -81,7 +81,9 @@ public class ReviewController {
 		String comments = rv.getComments();
 		int reviewNo = rv.getReviewNo();
 		int movieCd = rv.getMovieCd();
-		HashMap<String, Object> param = new HashMap<>();
+
+		HashMap<String, Object> param = new HashMap<String, Object>();
+
 		param.put("comments", comments);
 		param.put("reviewNo", reviewNo);
 		dao.updateReview(param);

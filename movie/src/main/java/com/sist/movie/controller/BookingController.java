@@ -2,6 +2,7 @@ package com.sist.movie.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -22,35 +23,76 @@ import com.sist.movie.vo.MovieVO;
 
 @Controller
 public class BookingController {
-	
+
 	@Autowired
 	private MovieDao mdao;
-	
+
 	@Autowired
 	private TheaterDao tdao;
-	
+
+	@Autowired
+	private BookDao bdao;
+
 	@ResponseBody
-	
-	@RequestMapping(value ="nameList.do")
-	public List<?> movieListAction(String select,String city) {
+
+	@RequestMapping(value = "nameList.do")
+	public List<?> movieListAction(String select, String city) {
 		System.out.println("select : " + select);
 		System.out.println("city : " + city);
-		if(select.equals("movieList")) {
-			return mdao.movieList();	
+		if (select.equals("movieList")) {
+			return mdao.movieList();
 		}
-		
-		else if(select.equals("cityList")) { 
+
+		else if (select.equals("cityList")) {
 			System.out.println(tdao.theaterCity());
 			return tdao.theaterCity();
-			
-		}
-		else if(select.equals("townList")) { 
+
+		} else if (select.equals("townList")) {
 			System.out.println(tdao.theaterTown());
 			return tdao.theaterTown();
-			
+
 		}
-		return  mdao.movieList();	
+		return mdao.movieList();
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "selectBookList.do")
+	public List<BookVO> movieSelectAction(String town, String day, String movie,String page) {
+		String temp = "";
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
+			if (movie != null) {
+				map.put("movie", movie);
+				if (town != null) {
+					map.put("town", town);
+					if (day != null) {
+						map.put("day", day);
+						System.out.println("movie: " + movie + "town : " + town + "day : " + day);
+
+					}
+
+				}
+			}
+		
+		
+		
+		System.out.println(bdao.movieSelectAction(map));
+		return bdao.movieSelectAction(map);
+
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "selectSeatList.do")
+	public List<BookVO> seatSelectAction(String town, String day, String movie ,String time) { 
+		System.out.println(town + " " + day + "  " + movie + " " + time);
+		HashMap<String, Object> mapSeat = new HashMap<String, Object>();
+		mapSeat.put("town",town);
+		mapSeat.put("day",day);
+		mapSeat.put("movie",movie);
+		mapSeat.put("time",time);
+		System.out.println(bdao.seatSelectAction(mapSeat));
+		return bdao.seatSelectAction(mapSeat);
+	}
+
 }
