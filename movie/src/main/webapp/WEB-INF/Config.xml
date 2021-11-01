@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="com/sist/movie/dao/mypagemapper.xml"/>
       <mapper resource="com/sist/movie/dao/AdminMapper.xml"/>
       <mapper resource="com/sist/movie/dao/BookMapper.xml"/>
+      <mapper resource="com/sist/movie/dao/ReviewMapper.xml"/>
       
     </mappers>
 </configuration>
