@@ -244,11 +244,11 @@
 			<div class="menu">
 				<ul>
 					<li><a href='/movie/movieList.do?view=poster'>영화</a></li>
-					<li>상영시간표</li>
+					<li><a href="/movie/scheduler/main.do">상영시간표</a></li>
 					<li onclick="wow()"><img id="popup_booking_open_btn" src="/movie/view/img/gnbbutton.png"
 						onmouseover="this.src='/movie/view/img/gnbbutton_hover.png'"
 						onmouseout="this.src='/movie/view/img/gnbbutton.png'"></li>
-					<li><a href="/movie/view/jsp/store.jsp">스토어</a></li>
+					<li><a href="/movie/store/main.do">스토어</a></li>
 					<li><a href="/movie/view/jsp/myPage1.jsp">마이 페이지</a></li>
 				</ul>
 			</div>

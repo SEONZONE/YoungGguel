@@ -116,8 +116,6 @@ $(function(){
 				checkpw = 0;
 			}
 		});
-		/* 이메일 형식체크 */
-		
 		$("button#next4").click(function(){
 			if(yakguan != 1){
 				alert("부정적인 방법의 접근입니다");
@@ -170,7 +168,7 @@ $(function(){
             <div class="contents">
                 <div class="topcon">
                     <span>JOIN</span>
-                    <img src="/movie/view/img/popupx.png" style="position: absolute; right: 35%;" id="exit_btn">
+                    <img src="/movie/view/img/popupx.png" id="exit_btn">
                 </div>
                 <div class="join_list">
                     <img src="/movie/view/img/join_list_1.png" class="join_list">
@@ -264,12 +262,12 @@ $(function(){
                 </div>
                 <div class="join_list">
                     <img src="/movie/view/img/join_list_4.png" class="join_list">
-                </div>	
+                </div>
                 <div class="midcon">
                     <a><img src="/movie/view/img/join_fin.png"></a>
                     <b><br>영끌 가입을 환영합니다!<br></b>
                     <span>영끌의 다양한 컨텐츠 서비스를 즐겨보세요!<br></span>
-                    <button id="close_join">홈페이지로 돌아가기</button>
+                    <button id="close_join"><a href="/movie/movieList.do?view=poster">홈페이지로 돌아가기</button>
                 </div>        
             </div>
         </div>

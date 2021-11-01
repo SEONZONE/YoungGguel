@@ -9,6 +9,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.sist.movie.vo.TheaterVO;
+import com.sist.movie.vo.BookVO;
 import com.sist.movie.vo.MovieVO;
 
 @Repository
@@ -26,8 +27,14 @@ public class SchedulerDao extends SqlSessionDaoSupport{
 	public List<TheaterVO> selecttheaterList(String city){
 		return this.getSqlSession().selectList("selecttheaterList", city);
 	}
-	public List selecttheatercity() {
+	public List<TheaterVO> selecttheatercity() {
 		return this.getSqlSession().selectList("selecttheatercity");
+	}
+	public List<BookVO> selectGwanList(BookVO vo) {
+		return this.getSqlSession().selectList("gwanList", vo);
+	}
+	public List<BookVO> selectGwanMovieList(BookVO vo) {
+		return this.getSqlSession().selectList("GwanMovieList", vo);
 	}
 	
 }

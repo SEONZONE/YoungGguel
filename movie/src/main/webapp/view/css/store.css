@@ -8,18 +8,21 @@
 	margin: 0 auto;
 }
 
+a:link {
+	color: black; text-decoration: none;
+}
+a:visited {
+	color: black; text-decoration: none;
+}
 .list_button button {
 	height: 40px; 
 	width: 150px; 
 	font-size: 15px; 
 	text-align: center; 
 	border-radius: 5px; 
-	background-color: #f3f3f3;
 	font-weight: bold; 
-	color: #939796;
-	border: 1px solid white;
 	box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+	cursor: pointer;
 }
 .list_button {
 	text-align: center;
@@ -58,6 +61,7 @@
 	color: darkgray;
 	width: 200px;
 	font-size: 14px;
+	height: 32px;
 }
 .store-menu #price {
 	color: darkslateblue;
@@ -66,9 +70,13 @@
 .store-menu p {
 	padding-bottom: 6px;
 }
-#hot {
+.store_click_off{
+	background-color: #f3f3f3;
+	color: #939796;
+	border: 1px solid white;
+}
+.store_click_on {
 	background-color: black;
 	color: white;
 	border: none;
 }
-
