@@ -41,11 +41,12 @@
 	   				movieReviewList(v);
 	   			  },
 	   			  error:function(e){
-	   				  alert(e);
+	   				  alert('관람평은 한 번만 등록 가능합니다.');
     			  }	    		  
 	   			  });	
 	      }
 
+      /* 뮤비 리뷰 리스트 */
 	   function movieReviewList(v){
 		   var temp="";
 		   var id="";
@@ -56,16 +57,34 @@
     			temp+="<span><img src=\"/movie/view/img/usericon.png\"></span><br>";
     			temp+="<span>"+dom.userId+"</span>";
     			temp+="</div>";
-    		    if(UUid!=id){
-    			  temp+="<div id=\"review_text\" class="+dom.userId+">"+dom.comments;
+    			/* 세션에 아이디가 없을 때 수정, 삭제 등의 기능을 추가하지 않고 리뷰 리스트 생성 */
+    		    if(UUid!=id)
+    		    {
+    			  temp+="<div id=\"review_text\" class="+dom.userId+" name="+dom.reviewNo+">"+dom.comments; 
+    			  temp+="<div id=\"btnBundle\">";
     			  temp+="<span class=\"updateDate\">"+dom.updateDate+"</span>";
     			  temp+="</div>";
-    		    } else {
-    			  temp+="<div id=\"review_text\" class="+dom.userId+">"+dom.comments;
-    			  temp+="<span class=\"updateDate\">"+dom.updateDate+"</span>";
-    			  temp+="<button class=\"review_btn\" id=\"updateReview\" name="+dom.reviewNo+">수정</button>";
+    			  temp+="</div>";
+    		    } 
+    		    else 
+    		    {/* 세션에 아이디가 있을 때  */
+    			  temp+="<div id=\"review_text\" class="+dom.userId+" name="+dom.reviewNo+">"
+    			  /* 3. 리뷰 수정 시 submit할 form, {movieCd,reviewNo,comments} */
+    			  temp+="<form id=\"updateForm\">";
+    			  temp+="<input type=\"text\" id="+dom.reviewNo+" name=\"comments\" value="+dom.comments+" maxlength=\"200\" disabled >";
+    			  temp+="<input type=\"hidden\" name=\"reviewNo\" value="+dom.reviewNo+">";
+    			  temp+="<input type=\"hidden\" name=\"movieCd\" value="+dom.movieCd+">";
+    			  temp+="</form>";
+    			  /* 2. 리뷰 수정 후 확인 버튼 */
+    			  temp+="<button class=\"hidden\" id="+dom.reviewNo+">확인</button>"
+    			  temp+="<div id=\"btnBundle\">";
+    			  /* 1. 수정, 삭제 버튼 */
+    			  temp+="<button class=\"review_btn\" id=\"updateReview\" name="+dom.reviewNo+" value="+dom.comments+">수정</button>";
     			  temp+="<button class=\"review_btn\" id=\"deleteReview\" name="+dom.reviewNo+">삭제</button>";
-    			  temp+="</div>";   		    	
+    			  temp+="<span class=\"updateDate\">"+dom.updateDate+"</span>";
+    			  temp+="</div>";
+    			  temp+="</div>";   		
+    			  /* 리뷰 삭제 시 submit할 form {reviewNo, movieCd} */
     			  temp+="<form id=\"hiddenValue\">";
     			  temp+="<input type=\"hidden\" id=\"reviewNo\" name=\"reviewNo\" value="+dom.reviewNo+">";
     			  temp+="<input type=\"hidden\" id=\"movieCd\" name=\"movieCd\" value="+dom.movieCd+">";
@@ -79,34 +98,39 @@
 	   
 	   /* 코멘트 작성 후 버튼 클릭시 리뷰리스트에 추가 */
 	   $("div#review_button").click(function(){
+		   /* 로그인이 안되어 있을 때 */
 		   if(UUid == null){
 			   alert('로그인 후 관람평 등록이 가능합니다.');
 			   $("#comments").val('');
 		   }else{
 			   movieReview('/movie/reviewInsert.do',$("form#sendReview").serialize(),'json'); 
-			   $("#comments").val('');
-		   }		   
+			   $("#comments").val('');	
+		   }
 	   });
 	   
+	   /* 리뷰 삭제 버튼 클릭 */
 	   $(document).on('click', '#deleteReview', function(){
-			  movieReview('/movie/reviewDelete.do',$("form#hiddenValue").serialize(),'json');	  
+		   movieReview('/movie/reviewDelete.do',$("form#hiddenValue").serialize(),'json');	  
 	   });
-
+	   /* 리뷰 수정 클릭 */
+	   $(document).on('click', '#updateReview', function(){	
+		   var reviewNo = this.name;
+		   var updateText = $('input[id="'+reviewNo+'"]');
+		   
+		   updateText.attr("disabled", false); //input의 disabled 기능 해제
+		   updateText.focus();
+		   
+		   /* 리뷰 수정 확인 버튼 */
+		   $('button[id="'+reviewNo+'"]').removeClass("hidden");
+		   /* 리뷰 업데이트 */
+		   $('button[id="'+reviewNo+'"]').click(function(){ 
+			   movieReview('/movie/reviewUpdate.do',$("form#updateForm").serialize(),'json');
+		   });
+		   
+	   });
+	  
   });
-  
-	   /* $(".reviewList.review_list.review_text.review_btn").click(function(){
-		  
-	   }); */
-	   
-	  /* 
-	   $(".review_btn").on("click",".review_btn", function(){
-		   alert("success");
-		 }); */
- /*  $(document).on('click', '.deletelanguage', function () {
-	    alert("success");
-	    $('#LangTable').append(' <br>------------<br> <a class="deletelanguage">Now my class is deletelanguage. click me to test it is not working.</a>');
-	}); */
-	
+
 </script>
 </head>
 <body>
@@ -158,22 +182,11 @@
                             <span><img src="/movie/view/img/usericon.png"></span><br>                        
                             <span id="sessionId"></span>
                         </div>
-                        <input type="text" placeholder="관람평을 등록해주세요.(200자)" name="comments" id="comments">
+                        <input type="text" placeholder="관람평을 등록해주세요.(200자)" name="comments" id="comments" maxlength="200">
                         <div id="review_button">관람평 쓰기</div>
                     </div>
                    </form>
                    <div class="reviewList"></div>
-                  <!-- <div class="review_list">
-                        <div style="width: 130px; height: 50px; text-align: center;"> 
-                            <span><img src="/movie/view/img/usericon.png"></span><br>
-                            <span>작성자아이디</span>
-                        </div>
-                    <div id="review_text">글자수 제한 필요합니다
-                    <span class="updateDate">0000</span>
-                    <button id="updateReview">수정</button>                 
-                    <button id="deleteReview">삭제</button>
-                    </div>
-                </div> --> 
             </div>
         </div>
 </div>
@@ -183,6 +196,16 @@
     <!--footer 끝-->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
