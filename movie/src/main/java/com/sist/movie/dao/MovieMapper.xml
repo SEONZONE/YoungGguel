@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 리뷰 -->
 
-<select id="findReviewList" resultType="review">
+<!-- <select id="findReviewList" resultType="review">
 SELECT MOVIECD, REVIEWNO, USERID, COMMENTS, UPDATEDATE FROM MOVIE_REVIEW WHERE MOVIECD=#{movieCd} ORDER BY REVIEWNO DESC
 </select>
 
@@ -85,7 +85,7 @@ VALUES(SEQ_MOVIE_REVIEW.NEXTVAL,#{movieCd},#{userId},#{comments},#{registerDate}
 
 <delete id="deleteReview" parameterType="int">
 DELETE FROM MOVIE_REVIEW WHERE REVIEWNO=#{reviewNo}
-</delete>
+</delete> -->
 </mapper>
 
 
