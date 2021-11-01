@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="booking">
 		SELECT
 		T.TIME_START as bookingTimeStart,
-		S.THEATERGWAN as bookingGwan, S.THEATERROOMSEAT as bookingTheaterroomseat
+		S.THEATERGWAN as bookingGwan, S.THEATERROOMSEAT as bookingTheaterroomseat, T.TIME_NO as bookingTimeNo
 		FROM
 		TIMETABLE T , MOVIE M, THEATER S, SEAT A
 		WHERE T.MOVIE_NO = M.MOVIECD

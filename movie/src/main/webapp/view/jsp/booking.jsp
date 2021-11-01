@@ -18,6 +18,7 @@
 var clickDate = "";
 var clickTown = "";
 var clickMovie = "";
+var clickTime = "";
 	
 	// 요일, 영화 눌리면 값 저장 
 	$(function() {
@@ -43,8 +44,12 @@ var clickMovie = "";
 		   					townNameList(v);  
 		   				  }
 		   				  else if(methodName == "selectName") {
-		   				
+		   					
 		   					timeNameList(v);
+		   				  }
+		   				  else if(methodName == "selectTime") {
+		   					
+		   					seatNameList(v);
 		   				  }
 		   				 
 		   				  
@@ -67,7 +72,7 @@ var clickMovie = "";
 		$.each(v,function(index,dom){
 			temp += "<li>";
 			temp += "<button type=\"button\" class=\"btn\" >";
-			temp +=	"<span ><img src=\"/movie/view/img/19.png\"></span> <span id=\"movieNameList\">"+dom.movieNm+"</span>";
+			temp +=	"<span ><img src=\"/movie/view/img/"+dom.watchGradeNm+".png\"></span> <span id=\"movieNameList\">"+dom.movieNm+"</span>";
 			temp += "</button>";
 			temp += "</li>" ;
 		});
@@ -129,16 +134,17 @@ var clickMovie = "";
 		
 		var tempTime="";
 		$.each(v,function(index,dom){
-			tempTime +=	"<li>";
+			tempTime +=	"<li >";
 			tempTime +=	"<button type=\"button\" class=\"time_btn\">";
+			tempTime += "<span id=\"bookingTimeNo\" hidden>" + dom.bookingTimeNo +"</span>";
 			tempTime += "<span class=\"time\">" + dom.bookingTimeStart + "</span> <span class=\"theater\">" + dom.bookingGwan + "</span> <span class=\"possible_now\">" +dom.bookingTheaterroomseat + "</span> <span class=\"all\">/ 20</span>";
 			tempTime +=	"</button>";
 			tempTime +=	"</li>";
 		
 		
 		});
-		$("ul#selectTime").html(tempTime);	
-		
+		$("ul#selectTime").html(tempTime);
+		evtbind();
 		
 	}
 	
@@ -169,16 +175,29 @@ var clickMovie = "";
 			allClickEvent();
 			});
 		
+		$(".time_btn").click(function() {
+			clickTime = $(this).find("#bookingTimeNo").text();
+			//clickTown = $(this).text();
+			console.log(clickTime);
+			allClickEvent();
+			
+			});
+		
 		
 		}
 	
 		function allClickEvent() { 
-			if(clickMovie != null && clickDate != null && clickTown != null) {
+			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
+				
 				listMethod('/movie/selectBookList.do',{day :clickDate,town:clickTown,movie:clickMovie},'json','selectName');
 				
-				 clickDate = "";
-				 clickTown = "";
-				 clickMovie = "";
+				 
+			}
+			else if(clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
+				console.log("clickTime = Notnull");
+				listMethod('/movie/selectSeatList.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime},'json','selectTime');
+				
+				 
 			}
 				
 		}
@@ -317,6 +336,7 @@ var clickMovie = "";
 						<span class="selecter_name">시간</span>
 						<div class="list">
 							<ul id="selectTime" >
+							
 							
 						
 							</ul>

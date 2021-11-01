@@ -55,27 +55,39 @@ public class BookingController {
 		return mdao.movieList();
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "selectBookList.do")
-	public List<BookVO> movieSelectAction(String town, String day, String movie) {
+	public List<BookVO> movieSelectAction(String town, String day, String movie,String page) {
 		String temp = "";
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		if (movie != null) {
-			map.put("movie", movie);
-			if (town != null) {
-				map.put("town", town);
-				if (day != null) {
-					map.put("day", day);
-					System.out.println("movie: " + movie + "town : " + town + "day : " + day);
-					
-				}
+		
+			if (movie != null) {
+				map.put("movie", movie);
+				if (town != null) {
+					map.put("town", town);
+					if (day != null) {
+						map.put("day", day);
+						System.out.println("movie: " + movie + "town : " + town + "day : " + day);
 
+					}
+
+				}
 			}
-		}
+		
+		
+		
 		System.out.println(bdao.movieSelectAction(map));
 		return bdao.movieSelectAction(map);
 
+	}
+	
+	//@ResponseBody
+	@RequestMapping(value = "selectSeatList.do")
+	public String seatSelectAction(String town, String day, String movie ,String time) { 
+		System.out.println(town + " " + day + "  " + movie + " " + time);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		return "";
 	}
 
 }
