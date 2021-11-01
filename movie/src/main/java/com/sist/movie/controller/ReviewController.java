@@ -23,21 +23,20 @@ import com.sist.movie.vo.ReviewVO;
 @RestController
 public class ReviewController {
 
-	/*@Autowired
-	private ReviewService reviewService;*/
-
 	@Autowired 
 	private ReviewDao dao;  
-
+	
+    /*리뷰 리스트*/
 	@RequestMapping("Review.do")
 	public List<ReviewVO> findReviewList(int movieCd) {
 		return dao.findReviewList(movieCd);
 	}
 	
+	/*리뷰 등록*/
 	@ResponseBody
 	@RequestMapping(value="reviewInsert.do")
 	public List<ReviewVO> registerReviewList(@RequestParam("userId") String userId, @RequestParam("comments") String comments, @RequestParam("movieCd") Integer movieCd) {
-		HashMap<String, Object> param = new HashMap<>();
+		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("userId", userId);
 		param.put("comments", comments);
 		param.put("movieCd", movieCd);
@@ -47,22 +46,34 @@ public class ReviewController {
 		String updateDate = simpleDateFormat.format(new Date());
 		param.put("registerDate", registerDate);
 		param.put("updateDate", updateDate);
-		//System.out.println(param.get("movieCd"));
-        System.out.println(param);
-		dao.registerReview(param);	
-		
-		return dao.findReviewList(movieCd);
+        System.out.println(param);   
+        if(dao.reviewCheck(param)) {
+        	dao.registerReview(param);	        	
+        	return dao.findReviewList(movieCd);
+        }else {
+        	return null;
+        }
 	}
-	
+	/*리뷰 삭제*/
 	@ResponseBody
 	@RequestMapping(value="reviewDelete.do")
 	public List<ReviewVO> deleteReviewList(@RequestParam("reviewNo") int reviewNo, @RequestParam("movieCd") int movieCd) {
-		System.out.println(reviewNo);
-		System.out.println(movieCd);
 		dao.deleteReview(reviewNo);
 		return dao.findReviewList(movieCd);
 	}
-	
-
+	/*리뷰 업데이트*/
+	@ResponseBody
+	@RequestMapping(value="reviewUpdate.do")
+	public List<ReviewVO> updateReviewList(ReviewVO rv) {
+		System.out.println(rv);
+		String comments = rv.getComments();
+		int reviewNo = rv.getReviewNo();
+		int movieCd = rv.getMovieCd();
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("comments", comments);
+		param.put("reviewNo", reviewNo);
+		dao.updateReview(param);
+		return dao.findReviewList(movieCd);
+	}
 	
 }
