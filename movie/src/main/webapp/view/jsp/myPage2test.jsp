@@ -161,6 +161,67 @@ $(function(){
 
             </div>
  </div>
+<!-- paging 부분 시작 --> 
+<div class="paging">
+							<a href="/web/memberList.do?cmd=memberList&page=1"><img
+								src="/movie/view/img/맨처음버튼.gif"
+								alt="처음페이지" /></a>
+							<c:choose>
+								<c:when test="${pageBean.currentPage>1}">
+									<a
+										href="/web/memberList.do?cmd=memberList&page=${pageBean.currentPage-1}">Before</a>
+								</c:when>
+							</c:choose>
+
+							<c:choose>
+								<c:when test="${pageBean.currentBlock >1 }">
+									<a
+										href="/web/memberList.do?cmd=memberList&page=${pageBean.startPage-1 }">
+										<img src="/movie/view/img/이전버튼.gif" alt="이전" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href="#">
+									<img src="/movie/view/img/이전버튼.gif" alt="이전" /></a>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="i" begin="${pageBean.startPage }"
+								end="${pageBean.endPage}" step="1">
+								<c:choose>
+									<c:when test="${i eq pageBean.currentPage }">
+										<a href="#"><font size="4" color="red"> [${i}]</font>
+										</a>
+									</c:when>
+									<c:otherwise>
+										<a href="/web/memberList.do?cmd=memberList&page=${i}" style="text-decoration: none;
+    color: #848484;">
+											[${i}]</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:choose>
+								<c:when test="${pageBean.endPage<pageBean.totalPage }">
+									<a href="/web/loadReserveList.do?cmd=memberList&page=${pageBean.endPage+1}">
+										<img src="/movie/view/img/다음버튼.gif" alt="다음" />
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="#"> 
+									<img src="/movie/view/img/다음버튼.gif" alt="다음" />
+									</a>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${pageBean.currentPage<pageBean.totalPage}">
+									<a href="/web/memberList.do?cmd=memberList&page=${pageBean.currentPage+1}">
+									</a>
+								</c:when>
+							</c:choose>
+							<a href="/web/memberList.do?cmd=memberList&page=${pageBean.totalPage}">
+								<img src="/movie/view/img/마지막버튼.gif" alt="마지막페이지" />
+							</a>
+						</div>
+<!-- paging 부분 끝 --> 
+ 
             </div>
             <!--문의내역 끝-->
             <jsp:include page="footer.jsp"></jsp:include>

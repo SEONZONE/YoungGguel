@@ -21,6 +21,8 @@ import com.sist.movie.dao.MyPageDao;
 import com.sist.movie.dao.UserDao;
 import com.sist.movie.vo.AskVO;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 
 @Controller
 public class MyPageController{
@@ -30,7 +32,18 @@ public class MyPageController{
 	private UserDao userdao;
 	@Autowired
 	private MovieDao mdao;
-
+	
+	//마이페이1에서 기간별 조회하흔ㄴ거
+	@PostMapping(value="myPage1Test.do")
+	public String test(HashMap<String,Object> map,String from, String to) {
+		System.out.println(from+  to);
+			
+			map.put("from",from);
+			map.put("to",to);
+			//dao.reserveListGigan(map);
+			map.put("mlistTest",mdao.selcetReserveMovieListtest(map));
+		return "/view/jsp/test";
+	}
 	// 마이페이지에서 문의하기 등록하는것
 	@PostMapping(value = "ask.do")
 	public String uploadAskAction(AskVO bean, @RequestParam(value="file", required=false, defaultValue = "noData") MultipartFile file) {

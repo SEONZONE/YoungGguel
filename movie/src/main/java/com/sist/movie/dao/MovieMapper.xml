@@ -8,6 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="movieDemoList" resultType="com.sist.movie.vo.MovieDemoVO">
     SELECT RESERVE_DATE,RESERVE_NO,MOVIE_TITLE,RESERVE_INFO,PAY_TOTAL,PAY_DATE FROM MOVIEDEMO
 </select>
+
+<select id="movieDemoListTest" resultType="com.sist.movie.vo.MovieDemoVO">
+    SELECT RESERVE_DATE,RESERVE_NO,MOVIE_TITLE,RESERVE_INFO,PAY_TOTAL,PAY_DATE 
+    FROM MOVIEDEMO
+    
+</select>
 <!-- 이거는 인효부분 끝-->
 <!-- 이거는 소연부분 끝-->
 	<!-- 기본 sql -->
