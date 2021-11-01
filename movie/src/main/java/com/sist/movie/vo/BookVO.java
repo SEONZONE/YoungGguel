@@ -32,10 +32,29 @@ public class BookVO {
 	   private String bookingTheaterNo;
 	   private String bookingMovieNo;
 	   private String bookingTimeNo;
+	   private String bookingMovieCD;
+	   
+		/* ¼ºÁ¾ ÁÂ¼® VO */
 	   private String bookingSeatNo3;
 	   private String bookingSeatNo1;
 	   private String bookingSeatNo2;
 	   private String bookingSeatNo4;
+	   private String bookingSeatNo5;
+	   private String bookingSeatNo6;
+	   private String bookingSeatNo7;
+	   private String bookingSeatNo8;
+	   private String bookingSeatNo9;
+	   private String bookingSeatNo10;
+	   private String bookingSeatNo11;
+	   private String bookingSeatNo12;
+	   private String bookingSeatNo13;
+	   private String bookingSeatNo14;
+	   private String bookingSeatNo15;
+	   private String bookingSeatNo16;
+	   private String bookingSeatNo17;
+	   private String bookingSeatNo18;
+	   private String bookingSeatNo19;
+	   private String bookingSeatNo20;
 	  
 	   
 	}

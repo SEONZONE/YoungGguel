@@ -82,12 +82,17 @@ public class BookingController {
 
 	}
 	
-	//@ResponseBody
+	@ResponseBody
 	@RequestMapping(value = "selectSeatList.do")
-	public String seatSelectAction(String town, String day, String movie ,String time) { 
+	public List<BookVO> seatSelectAction(String town, String day, String movie ,String time) { 
 		System.out.println(town + " " + day + "  " + movie + " " + time);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		return "";
+		HashMap<String, Object> mapSeat = new HashMap<String, Object>();
+		mapSeat.put("town",town);
+		mapSeat.put("day",day);
+		mapSeat.put("movie",movie);
+		mapSeat.put("time",time);
+		System.out.println(bdao.seatSelectAction(mapSeat));
+		return bdao.seatSelectAction(mapSeat);
 	}
 
 }

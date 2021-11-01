@@ -22,4 +22,7 @@ public class BookDao extends SqlSessionDaoSupport{
 	public List<BookVO> movieSelectAction(HashMap<String, Object> map) {
 		return this.getSqlSession().selectList("movieSelectAction",map);
 	}
+	public List<BookVO> seatSelectAction(HashMap<String, Object> map) {
+		return this.getSqlSession().selectList("seatSelectAction",map);
+	}
 }

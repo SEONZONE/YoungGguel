@@ -18,12 +18,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE T.MOVIE_NO = M.MOVIECD
 		AND T.THEATER_NO = S.THEATERNO
 		AND T.SE_NO = A.SE_NO
-		AND M.MOVIENM =
-		#{movie}
+		AND M.MOVIENM = #{movie}
 		AND S.THEATERTOWN = #{town}
 		AND T.TIME_DATE = #{day}
 
 	</select>
+	
+	<select id="seatSelectAction" parameterType="java.util.HashMap"
+		resultType="booking">
+	
+	  SELECT
+		T.SE_NO as  bookingSeat, A.SE_NO1 as bookingSeatNo1, A.SE_NO2  as bookingSeatNo2, A.SE_NO3  as bookingSeatNo3, A.SE_NO4  as bookingSeatNo4,
+		 A.SE_NO5  as bookingSeatNo5
+        , A.SE_NO6 as bookingSeatNo6 , A.SE_NO7  as bookingSeatNo7, A.SE_NO8 as bookingSeatNo8 , A.SE_NO9  as bookingSeatNo9, A.SE_NO10 as bookingSeatNo10 ,
+         A.SE_NO11  as bookingSeatNo11
+        , A.SE_NO12  as bookingSeatNo12 , A.SE_NO13  as bookingSeatNo13, A.SE_NO14  as bookingSeatNo14, A.SE_NO15 as bookingSeatNo15 , A.SE_NO16 as bookingSeatNo16 ,
+         A.SE_NO17 as bookingSeatNo17 , A.SE_NO18  as bookingSeatNo18, A.SE_NO19  as bookingSeatNo19, A.SE_NO20 as bookingSeatNo20,
+         
+          T.TIME_NO as bookingTimeNo, T.MOVIE_NO as bookingMovieNo, M.MOVIENM 
+		as bookingMovieName, T.THEATER_NO as bookingTheaterNo, T.TIME_DATE as bookingDate, 
+		T.TIME_START as bookingTimeStart, T.TIME_END as bookingTimeEnd,  S.THEATERTOWN as bookingTown, S.THEATERGWAN
+         
+         
+         
+		FROM
+		TIMETABLE T , MOVIE M, THEATER S, SEAT A
+		WHERE T.MOVIE_NO = M.MOVIECD
+		AND T.THEATER_NO = S.THEATERNO
+		AND T.SE_NO = A.SE_NO
+	
+        AND T.TIME_NO = #{time}
+			AND M.MOVIENM = #{movie}
+		AND S.THEATERTOWN = #{town}
+		AND T.TIME_DATE = #{day}
+		
+		</select>
 
 	<!-- <select id="movieSelectAction" parameterType="java.util.HashMap" resultType="booking"> 
 		SELECT T.TIME_NO as bookingTimeNo, T.MOVIE_NO as bookingMovieNo, M.MOVIENM 

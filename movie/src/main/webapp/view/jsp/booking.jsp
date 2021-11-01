@@ -19,6 +19,7 @@ var clickDate = "";
 var clickTown = "";
 var clickMovie = "";
 var clickTime = "";
+
 	
 	// 요일, 영화 눌리면 값 저장 
 	$(function() {
@@ -48,8 +49,10 @@ var clickTime = "";
 		   					timeNameList(v);
 		   				  }
 		   				  else if(methodName == "selectTime") {
-		   					
-		   					seatNameList(v);
+		   					for(var i=1; i<=10; i++){
+		   					seatNameList(v,i);
+		   					}
+		   				 	
 		   				  }
 		   				 
 		   				  
@@ -68,7 +71,7 @@ var clickTime = "";
 	/* 영화 이름 불러오기 */
 	function movieNameList(v){
 		var temp="";
-		
+
 		$.each(v,function(index,dom){
 			temp += "<li>";
 			temp += "<button type=\"button\" class=\"btn\" >";
@@ -147,6 +150,28 @@ var clickTime = "";
 		evtbind();
 		
 	}
+
+	var i = 1;
+	var tempSeat = "";
+	var k=350;
+	/* 좌석 불러오기 */
+	function seatNameList(v,i) { 
+		
+			$.each(v,function(index,dom) { 
+			console.log( dom["bookingSeatNo"+i]);
+			 var seatSelect = "";
+			 if(dom["bookingSeatNo"+i] == "t") { 
+				 var seatSelect = "finish";
+			 }
+			 else if(dom["bookingSeatNo"+i] == "f"){ 
+				var seatSelect = "choice";
+			 } 		
+			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
+			 k += 30;	
+			});
+			$(".seat_row_wrapping").html(tempSeat);	
+			evtbind();
+	}
 	
 	
 	
@@ -179,12 +204,22 @@ var clickTime = "";
 			clickTime = $(this).find("#bookingTimeNo").text();
 			//clickTown = $(this).text();
 			console.log(clickTime);
-			allClickEvent();
+			$(".booking_selecter").addClass("hidden");		
+			$(".seat_selecter").removeClass("hidden");
 			
+			allClickEvent();
 			});
 		
 		
 		}
+	
+		$(".seat_number choice").click(function() {
+			console.log("button.seat_number choice");
+			$(".seat_number choice").removeClass("choice");
+			$(".seat_number ").addClass("finish");
+		
+			
+		});
 	
 		function allClickEvent() { 
 			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
@@ -269,11 +304,12 @@ var clickTime = "";
 			<div class="booking_current_time">
 				<div>현재시각</div>
 				<b>2021.01.01 PM 10:23</b>
+				<img src="/movie/view/img/popupx.png" class="modal_close_btn " id="close_pop">
 			</div>
 			<!-- 상단 현재시각끝 -->
 			<!-- 예약시작 -->
 			<div class="booking_selecter ">
-				<img src="/movie/view/img/popupx.png" class="modal_close_btn " id="close_pop">
+				
 				<!-- 예약날짜 -->
 				<div class="booking_date">
 					<div class="middle_field">
@@ -346,9 +382,7 @@ var clickTime = "";
 				<!-- 예약시간끝 -->
 			</div>
 			<!-- 예약 1번끝-->
-		</div>
-
-
+		
 		<!-- 예약 2번 시작-->
 		<div class="seat_selecter hidden">
 			<div class="ghost_box"></div>
@@ -378,17 +412,12 @@ var clickTime = "";
 				<div class="choice_seat">
 					<div id="screen">SCREEN</div>
 					<div class="seat_row_wrapping">
-						<button type="button" class="seat_row" style="position: absolute; top: 360px; left: 150px;">A</button>
-						<button type="button" class="seat_number common" style="position: absolute; top: 360px; left: 200px;">1</button>
+						<!-- <button type="button" class="seat_row" style="position: absolute; top: 360px; left: 150px;">A</button> -->
+					<!-- 	<button type="button" class="seat_number common" style="position: absolute; top: 360px; left: 200px;">1</button>
 						<button type="button" class="seat_number choice" style="position: absolute; top: 360px; left: 230px;">2</button>
-						<button type="button" class="seat_number finish" style="position: absolute; top: 360px; left: 260px;">x</button>
+						<button type="button" class="seat_number finish" style="position: absolute; top: 360px; left: 260px;">x</button> -->
 					</div>
-					<div class="seat_row_wrapping">
-						<button type="button" class="seat_row" style="position: absolute; top: 390px; left: 150px;">B</button>
-						<button type="button" class="seat_number common" style="position: absolute; top: 390px; left: 200px;">1</button>
-						<button type="button" class="seat_number choice" style="position: absolute; top: 390px; left: 230px;">2</button>
-						<button type="button" class="seat_number finish" style="position: absolute; top: 390px; left: 260px;">x</button>
-					</div>
+			
 				</div>
 			</div>
 			<!-- 2번 좌측끝-->
@@ -411,7 +440,7 @@ var clickTime = "";
 				<div id="pay_btn">결제하기</div>
 				<div id="rollback_btn">이전</div>
 			</div>
-
+			</div>
 		</div>
 	</div>
 </body>
