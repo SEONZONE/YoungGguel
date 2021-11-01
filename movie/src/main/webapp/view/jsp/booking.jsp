@@ -19,6 +19,10 @@ var clickDate = "";
 var clickTown = "";
 var clickMovie = "";
 var clickTime = "";
+var selectSeNo = "";
+
+var choiceSeNo = (document.getElementsByClassName('choice'));
+
 
 	
 	// 요일, 영화 눌리면 값 저장 
@@ -210,19 +214,63 @@ var clickTime = "";
 			allClickEvent();
 			});
 		
+				
 		$("button.seat_number").click(function() {
-				var sNumber = $(this).text();
-				$("button#"+sNumber+" ").removeClass("common");
-				$("button#"+sNumber+" ").addClass("finish");
-		});
+				 
+				
+				console.log(choiceSeNo);
+				if($(this).hasClass("common")) {
+			 	$(this).removeClass("common");
+			 	$(this).addClass("choice");
+			 		
+				}
+				else if($(this).hasClass("choice")) {
+			 	$(this).removeClass("choice");
+			 	$(this).addClass("common");
+				}
+				if(choiceSeNo.length > 2) { 
+					alert("2명까지만 가능합니다.");
+					$(this).removeClass("choice");
+				 	$(this).addClass("common");
+				 	
+				}
+				
+			});
+	
 		
 }
+			/* 결제하기 눌렀을 때 */
+			$("div#pay_btn").click(function() { 
+					var selectSeNo1 = choiceSeNo[0];
+					var selectSeNo2 = choiceSeNo[1];
+					var selectSeNo1Name ="";
+					var selectSeNo2Name ="";
+				 
+					if(selectSeNo2 != "undefined") { 
+						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
+						selectSeNo2Name = "bookingSeatNo" +selectSeNo2.id;
+						 	console.log(selectSeNo1Name);
+							console.log(selectSeNo2Name);
+							insertBooking("two");
+					}
+					else if(selectSeNo2 == "undefined"){
+						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
+						console.log("좌석이 하나만 일때: " + selectSeNo1Name);
+						insertBooking("one");
+					} 
+					 
+					 /* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
+					 var selectSeNo2 = "bookingSeatNo"+choiceSeNo[1].id; */
+					
+					console.log(clickMovie + " " + clickDate + " " + clickTown + " " + clickTime );
+			 		
+			});
+			
+		function insertBooking(seatCount)  {
+			console.log("insertBooking ::::" + seatCount)
+		}
 	
-	
-	
-		
-		
-	
+
 		function allClickEvent() { 
 			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
 				
@@ -233,8 +281,6 @@ var clickTime = "";
 			else if(clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
 				console.log("clickTime = Notnull");
 				listMethod('/movie/selectSeatList.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime},'json','selectTime');
-				
-				 
 			}
 				
 		}
