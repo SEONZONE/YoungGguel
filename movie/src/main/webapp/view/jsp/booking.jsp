@@ -21,6 +21,7 @@ var clickMovie = "";
 var clickTime = "";
 
 var selectSeNo = "";
+//선택된 좌석의 갯수를 저장하고 있는 변수
 var choiceSeNo = (document.getElementsByClassName('choice'));
 
 
@@ -52,6 +53,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		   					
 		   					timeNameList(v);
 		   				  }
+		   				  //좌석 선택부분
 		   				  else if(methodName == "selectTime") {
 		   					for(var i=1; i<=10; i++){
 		   					seatNameList(v,i);
@@ -172,8 +174,10 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			console.log( dom["bookingSeatNo"+i]);
 			 var seatSelect = "";
 			 if(dom["bookingSeatNo"+i] == "t") { 
+				 //선택된 좌석은 검정색으로 class추가?
 				 var seatSelect = "finish";
 			 }
+			 //선택 안된 좌석은 선택가능한 모습으로 
 			 else if(dom["bookingSeatNo"+i] == "f"){ 
 				var seatSelect = "common";
 			 } 		
@@ -188,12 +192,13 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 	var i = 1;
 	var tempSeat = "";
 	var k=350;
-	/* 좌석 불러오기 */
+	/* 좌석 불러오기 (뿌려지는것)*/
 	function seatNameList(v,i) { 
 		
 			$.each(v,function(index,dom) { 
 			console.log( dom["bookingSeatNo"+i]);
 			 var seatSelect = "";
+			 
 			 if(dom["bookingSeatNo"+i] == "t") { 
 				 var seatSelect = "finish";
 			 }
@@ -250,12 +255,13 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			allClickEvent();
 			});
 		
-				
+		/*좌석 선택은 3가지 상태가 존쟈
+		  선택 전(common) 선택 중(choice) 선택 끝  */
 		$("button.seat_number").click(function() {
 				 
-				
+			//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
 				console.log(choiceSeNo);
-				if($(this).hasClass("common")) {
+				if($(this).hasClass("common")) {  
 			 	$(this).removeClass("common");
 			 	$(this).addClass("choice");
 			 		
@@ -284,7 +290,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					
 					console.log(selectSeNo1);
 					console.log(selectSeNo2);
-				 
+				 	
 					if(selectSeNo2 != undefined) { 
 						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
 						selectSeNo2Name = "bookingSeatNo" +selectSeNo2.id;
@@ -292,6 +298,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 							console.log(selectSeNo2Name);
 							insertBooking("two",selectSeNo1Name,selectSeNo2Name);
 					}
+					//하나 선택하면 2번째꺼가 언디파인드
 					else if(selectSeNo2 == undefined){
 						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
 						console.log("좌석이 하나만 일때: " + selectSeNo1Name);
@@ -344,7 +351,6 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		
 		
 		
-	
 		$(".seat_number choice").click(function() {
 			console.log("button.seat_number choice");
 			$(".seat_number choice").removeClass("choice");
@@ -353,7 +359,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			
 		});
 	
-
+		/*시간표 앞3가지 요소들이 선택이 되었는지확인하는 함수*/
 		function allClickEvent() { 
 			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
 				

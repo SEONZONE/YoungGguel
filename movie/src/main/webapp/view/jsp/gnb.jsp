@@ -198,6 +198,21 @@ var UUid = sessionStorage.getItem('Uid');
 	    	
 	    	});
 	    });
+	  //Modal Function /* 예매 모달 */
+		//예매 버튼 누를때 아이디 검사
+		 $('img#popup_booking_open_btn').click(function(){
+			 if(UUid!=null){
+				  if(confirm('예매를 시작합니다')==true){
+					 modal('my_Bookmodal');
+				  }
+			  }
+				else{	
+					<!--저장된 아이디 값이 없으면-->
+					alert('로그인이 필요합니다');
+					modal('my_modal');
+				}
+		 });
+		
 		 $('a.Tomovie').click(function(){
 			 document.location.href="/movie/movieList.do?view=poster"; 
 		 });
@@ -227,17 +242,7 @@ var UUid = sessionStorage.getItem('Uid');
 	
 
 	});
-	//Modal Function
-	$(function(){
-	/* 예매 모달 */
-	$("img#popup_booking_open_btn").click(function() {
-		modal('my_Bookmodal');
-		});
-
 	
-
-	});
-
 </script>
 
 
