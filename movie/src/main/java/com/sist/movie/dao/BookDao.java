@@ -32,4 +32,5 @@ public class BookDao extends SqlSessionDaoSupport {
 	public void insertBooking(BookVO vo) {
 		this.getSqlSession().insert("insertBooking", vo);
 	}
+}
 	

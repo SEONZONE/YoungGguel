@@ -198,7 +198,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 				 var seatSelect = "finish";
 			 }
 			 else if(dom["bookingSeatNo"+i] == "f"){ 
-				var seatSelect = "choice";
+				var seatSelect = "common";
 			 } 		
 			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
 			 k += 30;	
@@ -343,7 +343,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			});
 		
 		
-		}
+		
 	
 		$(".seat_number choice").click(function() {
 			console.log("button.seat_number choice");

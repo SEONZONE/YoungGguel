@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TheaterVO{
 	
-	private int THEATERNO;
-	private String THEATERCITY;
-	private String THEATERTOWN;
-	private String THEATERGWAN;
-	private int THEATERROOMSEAT;
+	int theaterNo;
+	private String theaterCity;
+	private String theaterTown;
+	private String theaterGwan;
+	private String theaterRoomSeat;
 
 }
 
