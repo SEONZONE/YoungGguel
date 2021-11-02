@@ -16,8 +16,9 @@
 <script type="text/javascript">
 
 var clickDate = "";
-var clickTown = "";
 var clickMovie = "";
+var clickCity = "";
+var clickTown = "";
 var clickTime = "";
 
 var selectSeNo = "";
@@ -49,17 +50,23 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 
 	//시계
 
-	// 요일, 영화 눌리면 값 저장 
+	// 요일, 영화 눌리면 각 값을 저장하고 다음값 호출 
+	//시작하자마자불러지는것 
 	$(function() {
-		listMethod('/movie/nameList.do', {
-			select : 'movieList'
-		}, 'json', 'moiveName');
-		listMethod('/movie/nameList.do', {
-			select : 'cityList'
-		}, 'json', 'cityName');
+		$("span#dayList").click(function(){
+			listMethod('/movie/nameList.do', 
+					{select : 'movieList'},
+					'json', 'moiveName');
+		});
+		$("span#movieNameList").click(function(){
+			listMethod('/movie/nameList.do', 
+				{select : 'cityList'}, 
+				'json',	'cityName');
+		});
 		listMethod('/movie/nameList.do', {
 			select : 'townList'
 		}, 'json', 'townName');
+		
 		function listMethod(url, data, datatype, methodName) {
 			$.ajax({
 				url : url,
@@ -71,6 +78,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					if (methodName == "moiveName") {
 						movieNameList(v);
 					} else if (methodName == "cityName") {
+						alert('city');
 						cityNameList(v);
 					} else if (methodName == "townName") {
 
@@ -104,10 +112,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		function movieNameList(v) {
 			var temp = "";
 
-			$
-					.each(
-							v,
-							function(index, dom) {
+			$.each(v,function(index, dom) {
 								temp += "<li>";
 								temp += "<button type=\"button\" class=\"btn\" >";
 								temp += "<span ><img src=\"/movie/view/img/"+dom.watchGradeNm+".png\"></span> <span id=\"movieNameList\">"
@@ -120,9 +125,9 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		}
 
 		/* 지역 이름 불러오기 */
-		var tempCity = "";
 
 		function cityNameList(v) {
+		var tempCity = "";
 			$.each(v, function(index, dom) {
 				tempCity += "<li>";
 				tempCity += "<button type=\"button\" class=\"btn\">";
@@ -132,7 +137,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 				tempCity += "</li>";
 
 			});
-			$(".theaterCityList").html(tempCity);
+			$("#theaterCityList").html(tempCity);
 
 		}
 
@@ -196,10 +201,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		/* 좌석 불러오기 */
 		function seatNameList(v, i) {
 
-			$
-					.each(
-							v,
-							function(index, dom) {
+			$.each(v,function(index, dom) {
 								console.log(dom["bookingSeatNo" + i]);
 								var seatSelect = "";
 								if (dom["bookingSeatNo" + i] == "t") {
@@ -246,13 +248,14 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		}
 
 		/* 클릭시 값 저장 */
-		/* bind function */
+		/* bind function  Click Event 눌리면 저장되는것 누르면 값 저장*/
 		function evtbind() {
 
 			$("span#movieNameList").click(function() {
 				clickMovie = $(this).text();
 				console.log(clickMovie);
-
+				console.log(this.id);
+				
 			});
 
 			$("span#dayList").click(function() {
@@ -260,12 +263,18 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 				console.log(clickDate);
 
 			});
+			
+			$("span#cityNameList").click(function() {
+				clickDate = $(this).text();
+				console.log(clickCity);
 
-			$("span#townNameList").click(function() {
+			});
+
+			 $("span#townNameList").click(function() {
 				clickTown = $(this).text();
 				console.log(clickTown);
 				allClickEvent();
-			});
+			}); 
 
 			$(".time_btn").click(function() {
 				clickTime = $(this).find("#bookingTimeNo").text();
@@ -361,7 +370,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		$("span#dayList").click(function() {
 			clickDate = $(this).text();
 			console.log(clickDate);
-
+			allClickEvent();
 		});
 
 		$("span#townNameList").click(function() {
@@ -389,8 +398,28 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 
 		/*시간표 앞3가지 요소들이 선택이 되었는지확인하는 함수*/
 		function allClickEvent() {
-			if (clickMovie != null && clickDate != null && clickTown != null
-					&& clickTime == "") {
+			//날짜만 널이 아닐때 
+			if(clickDate != null && clickMovie = null && clickTown = null
+					&& clickTime == ""){
+				listMethod('/movie/nameList.do', {
+					select : 'movieList'
+				}, 'json', 'movieName');
+				
+			}
+			//날짜랑 영화가 널이 아닐때
+			else if(clickDate != null && clickMovie != null && clickTown = null
+					&& clickTime == ""){
+				listMethod('/movie/nameList.do', {
+					select : 'cityList'
+				}, 'json', 'cityName');
+			}
+			//날짜랑 영화랑 서울경기가 널이 아닐때
+			else if(clickDate != null && clickMovie != null && clickTown = null
+					&& clickTime == ""){
+				
+			}
+			else if (clickMovie != null && clickDate != null && clickTown != null
+					&& clickTime == "") {clickCity
 
 				listMethod('/movie/selectBookList.do', {
 					day : clickDate,
@@ -511,9 +540,9 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					<div class="middle_field_2_1">
 						<div class="selecter_name">극장</div>
 						<div class="list">
-							<ul class ="theaterCityList">
+							<ul class ="theaterCityList" id="theaterCityList">
 								
-							
+							sdsd
 							</ul>
 						</div>
 					</div>

@@ -24,369 +24,393 @@ var selectSeNo = "";
 //선택된 좌석의 갯수를 저장하고 있는 변수
 var choiceSeNo = (document.getElementsByClassName('choice'));
 
+//시계
 
-	
-	// 요일, 영화 눌리면 값 저장 
+	function printTime()
+
+	{
+
+		var clock = document.getElementById("clock2");
+
+		var now = new Date();
+
+		clock.innerHTML = now.getFullYear() + "년  " + (now.getMonth() + 1)
+				+ "월  " + now.getDate() + "일  " + now.getHours() + "시  "
+
+				+ now.getMinutes() + "분  " + now.getSeconds() + "초  ";
+
+		// setTimeout함수를 통해 원하는 함수를 1초간격으로 출력해줌
+
+		setTimeout("printTime()", 1000);
+
+	}
+
+	window.onload = printTime;
+
+	//시계
+
+	// 요일, 영화 눌리면 각 값을 저장하고 다음값 호출 
+	//시작하자마자불러지는것 
 	$(function() {
-		listMethod('/movie/nameList.do',{select:'movieList'},'json','moiveName');
-		listMethod('/movie/nameList.do',{select:'cityList'},'json','cityName');
-		listMethod('/movie/nameList.do',{select:'townList'},'json','townName');
-		function listMethod(url,data,datatype,methodName){
-		      $.ajax({
-					  url:url,
-		    		  type:'POST',
-		    		  data:data,
-		   			  dataType:datatype,
-		   			 
-		   			  success:function(v){
-		   				  if( methodName == "moiveName"){
-		   					movieNameList(v);
-		   				  }
-		   				  else if(methodName == "cityName"){
-		   					cityNameList(v);  
-		   				  }
-		   				  else if(methodName == "townName"){
-		   					
-		   					townNameList(v);  
-		   				  }
-		   				  else if(methodName == "selectName") {
-		   					
-		   					timeNameList(v);
-		   				  }
-		   				  //좌석 선택부분
-		   				  else if(methodName == "selectTime") {
-		   					for(var i=1; i<=10; i++){
-		   					seatNameList(v,i);
-		   					}
-		   				 	
-		   				  }
+		listMethod('/movie/nameList.do', {
+			select : 'movieList'
+		}, 'json', 'moiveName');
+		listMethod('/movie/nameList.do', {
+			select : 'cityList'
+		}, 'json', 'cityName');
+		listMethod('/movie/nameList.do', {
+			select : 'townList'
+		}, 'json', 'townName');
+		function listMethod(url, data, datatype, methodName) {
+			$.ajax({
+				url : url,
+				type : 'POST',
+				data : data,
+				dataType : datatype,
 
-		   				  else if(methodName == "insertBook") { 
-		   					alert("예매가 성공되었습니다!!");
-		   					alert(v);
-		   				  }
+				success : function(v) {
+					if (methodName == "moiveName") {
+						movieNameList(v);
+					} else if (methodName == "cityName") {
+						cityNameList(v);
+					} else if (methodName == "townName") {
 
-		   				 
-		   				  
-		   			  },
-		   			  error:function(e){
-		   				  console.log("실패");
-		   				  console.log("error" + e);
-	    			  }	    		  
-		   			  });	
-		      }
-		
-		
-		
-	
-		
-	/* 영화 이름 불러오기 */
-	function movieNameList(v){
-		var temp="";
+						townNameList(v);
+					} else if (methodName == "selectName") {
 
-		$.each(v,function(index,dom){
-			temp += "<li>";
-			temp += "<button type=\"button\" class=\"btn\" >";
-			temp +=	"<span ><img src=\"/movie/view/img/"+dom.watchGradeNm+".png\"></span> <span id=\"movieNameList\">"+dom.movieNm+"</span>";
-			temp += "</button>";
-			temp += "</li>" ;
-		});
-		$(".mList").html(temp);	
-		evtbind();
-	}
-	
-	/* 지역 이름 불러오기 */
-	var tempCity="";
-	
-	function cityNameList(v){
-		$.each(v,function(index,dom){		
-			tempCity += "<li>";
-			tempCity += "<button type=\"button\" class=\"btn\">";
-			tempCity +=	"<span id=\"cityNameList\" >" + dom.theaterCity +"</span>";
-			tempCity +=	"</button>";
-			tempCity +=	"</li>";
-		
-		});
-		$(".theaterCityList").html(tempCity);	
-		
-	}
-	
-	
+						timeNameList(v);
+					}
+					//좌석 선택부분
+					else if (methodName == "selectTime") {
+						for (var i = 1; i <= 10; i++) {
+							seatNameList(v, i);
+						}
 
-	
-	/* 도시 이름 불러오기 */
-	function townNameList(v){
-		var tempTown="";
-		$.each(v,function(index,dom){
-		tempTown += "<li>";
-		tempTown += "<button type=\"button\" class=\"btn\">";
-		tempTown +=	"<span id=\"townNameList\">" + dom.theaterTown +"</span>";
-		tempTown +=	"</button>";
-		tempTown +=	"</li>";
-		});
-		$(".theaterTownList").html(tempTown);	
-		
-		evtbind();
-	}
-	/* 영화 시간표 불러오기 */
-	function townNameList(v){
-		var tempTown="";
-		$.each(v,function(index,dom){
-		tempTown += "<li>";
-		tempTown += "<button type=\"button\" class=\"btn\">";
-		tempTown +=	"<span id=\"townNameList\">" + dom.theaterTown +"</span>";
-		tempTown +=	"</button>";
-		tempTown +=	"</li>";
-		});
-		$(".theaterTownList").html(tempTown);	
-		
-		evtbind();
-	}
-	
-	
-	/*  시간표 불러오기 */
-	function timeNameList(v){
-		
-		var tempTime="";
-		$.each(v,function(index,dom){
-			tempTime +=	"<li >";
-			tempTime +=	"<button type=\"button\" class=\"time_btn\">";
-			tempTime += "<span id=\"bookingTimeNo\" hidden>" + dom.bookingTimeNo +"</span>";
-			tempTime += "<span class=\"time\">" + dom.bookingTimeStart + "</span> <span class=\"theater\">" + dom.bookingGwan + "</span> <span class=\"possible_now\">" +dom.bookingTheaterroomseat + "</span> <span class=\"all\">/ 20</span>";
-			tempTime +=	"</button>";
-			tempTime +=	"</li>";
-		
-		
-		});
-		$("ul#selectTime").html(tempTime);
-		evtbind();
-		
+					}
 
-	}
+					else if (methodName == "insertBook") {
+						alert("예매가 성공되었습니다!!");
+						alert(v);
+					}
 
-	var i = 1;
-	var tempSeat = "";
-	var k=350;
-	/* 좌석 불러오기 */
-	function seatNameList(v,i) { 
-		
-			$.each(v,function(index,dom) { 
-			console.log( dom["bookingSeatNo"+i]);
-			 var seatSelect = "";
-			 if(dom["bookingSeatNo"+i] == "t") { 
-				 //선택된 좌석은 검정색으로 class추가?
-				 var seatSelect = "finish";
-			 }
-			 //선택 안된 좌석은 선택가능한 모습으로 
-			 else if(dom["bookingSeatNo"+i] == "f"){ 
-				var seatSelect = "common";
-			 } 		
-			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\"  id =\""+i+"\"style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
-			 k += 30;	
+				},
+				error : function(e) {
+					console.log("실패");
+					console.log("error" + e);
+				}
 			});
-			$(".seat_row_wrapping").html(tempSeat);	
+		}
+
+		/* 영화 이름 불러오기 */
+		function movieNameList(v) {
+			var temp = "";
+
+			$
+					.each(
+							v,
+							function(index, dom) {
+								temp += "<li>";
+								temp += "<button type=\"button\" class=\"btn\" >";
+								temp += "<span ><img src=\"/movie/view/img/"+dom.watchGradeNm+".png\"></span> <span id=\"movieNameList\">"
+										+ dom.movieNm + "</span>";
+								temp += "</button>";
+								temp += "</li>";
+							});
+			$(".mList").html(temp);
+			evtbind();
+		}
+
+		/* 지역 이름 불러오기 */
+		var tempCity = "";
+
+		function cityNameList(v) {
+			$.each(v, function(index, dom) {
+				tempCity += "<li>";
+				tempCity += "<button type=\"button\" class=\"btn\">";
+				tempCity += "<span id=\"cityNameList\" >" + dom.theaterCity
+						+ "</span>";
+				tempCity += "</button>";
+				tempCity += "</li>";
+
+			});
+			$(".theaterCityList").html(tempCity);
+
+		}
+
+		/* 도시 이름 불러오기 */
+		function townNameList(v) {
+			var tempTown = "";
+			$.each(v, function(index, dom) {
+				tempTown += "<li>";
+				tempTown += "<button type=\"button\" class=\"btn\">";
+				tempTown += "<span id=\"townNameList\">" + dom.theaterTown
+						+ "</span>";
+				tempTown += "</button>";
+				tempTown += "</li>";
+			});
+			$(".theaterTownList").html(tempTown);
+
+			evtbind();
+		}
+		/* 영화 시간표 불러오기 */
+		function townNameList(v) {
+			var tempTown = "";
+			$.each(v, function(index, dom) {
+				tempTown += "<li>";
+				tempTown += "<button type=\"button\" class=\"btn\">";
+				tempTown += "<span id=\"townNameList\">" + dom.theaterTown
+						+ "</span>";
+				tempTown += "</button>";
+				tempTown += "</li>";
+			});
+			$(".theaterTownList").html(tempTown);
+
+			evtbind();
+		}
+
+		/*  시간표 불러오기 */
+		function timeNameList(v) {
+
+			var tempTime = "";
+			$.each(v, function(index, dom) {
+				tempTime += "<li >";
+				tempTime += "<button type=\"button\" class=\"time_btn\">";
+				tempTime += "<span id=\"bookingTimeNo\" hidden>"
+						+ dom.bookingTimeNo + "</span>";
+				tempTime += "<span class=\"time\">" + dom.bookingTimeStart
+						+ "</span> <span class=\"theater\">" + dom.bookingGwan
+						+ "</span> <span class=\"possible_now\">"
+						+ dom.bookingTheaterroomseat
+						+ "</span> <span class=\"all\">/ 20</span>";
+				tempTime += "</button>";
+				tempTime += "</li>";
+
+			});
+			$("ul#selectTime").html(tempTime);
 			evtbind();
 
-	}
+		}
 
-	var i = 1;
-	var tempSeat = "";
-	var k=350;
-	/* 좌석 불러오기 (뿌려지는것)*/
-	function seatNameList(v,i) { 
-		
-			$.each(v,function(index,dom) { 
-			console.log( dom["bookingSeatNo"+i]);
-			 var seatSelect = "";
-			 
-			 if(dom["bookingSeatNo"+i] == "t") { 
-				 var seatSelect = "finish";
-			 }
-			 else if(dom["bookingSeatNo"+i] == "f"){ 
-				var seatSelect = "common";
-			 } 		
-			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
-			 k += 30;	
-			});
-			$(".seat_row_wrapping").html(tempSeat);	
+		var i = 1;
+		var tempSeat = "";
+		var k = 350;
+		/* 좌석 불러오기 */
+		function seatNameList(v, i) {
+
+			$.each(v,function(index, dom) {
+								console.log(dom["bookingSeatNo" + i]);
+								var seatSelect = "";
+								if (dom["bookingSeatNo" + i] == "t") {
+									//선택된 좌석은 검정색으로 class추가?
+									var seatSelect = "finish";
+								}
+								//선택 안된 좌석은 선택가능한 모습으로 
+								else if (dom["bookingSeatNo" + i] == "f") {
+									var seatSelect = "common";
+								}
+								tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\"  id =\""+i+"\"style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "
+										+ i + "</button>";
+								k += 30;
+							});
+			$(".seat_row_wrapping").html(tempSeat);
 			evtbind();
-	}
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	/* 클릭시 값 저장 */
-	/* bind function */
-	function evtbind() {
-	
-	
-		
-		$("span#movieNameList").click(function() {
-			clickMovie = $(this).text();
-			console.log(clickMovie);
-	
-		});
+		}
 
-		$("span#dayList").click(function() {
-			clickDate = $(this).text();
-			console.log(clickDate);
-			
-		});
+		var i = 1;
+		var tempSeat = "";
+		var k = 350;
+		/* 좌석 불러오기 (뿌려지는것)*/
+		function seatNameList(v, i) {
 
-		$("span#townNameList").click(function() {
-			clickTown = $(this).text();
-			console.log(clickTown);
-			allClickEvent();
+			$
+					.each(
+							v,
+							function(index, dom) {
+								console.log(dom["bookingSeatNo" + i]);
+								var seatSelect = "";
+
+								if (dom["bookingSeatNo" + i] == "t") {
+									var seatSelect = "finish";
+								} else if (dom["bookingSeatNo" + i] == "f") {
+									var seatSelect = "common";
+								}
+								tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "
+										+ i + "</button>";
+								k += 30;
+							});
+			$(".seat_row_wrapping").html(tempSeat);
+			evtbind();
+		}
+
+		/* 클릭시 값 저장 */
+		/* bind function  Click Event 눌리면 저장되는것 누르면 값 저장*/
+		function evtbind() {
+
+			$("span#movieNameList").click(function() {
+				clickMovie = $(this).text();
+				console.log(clickMovie);
+
 			});
-		
-		$(".time_btn").click(function() {
-			clickTime = $(this).find("#bookingTimeNo").text();
-			//clickTown = $(this).text();
-			console.log(clickTime);
-			$(".booking_selecter").addClass("hidden");		
-			$(".seat_selecter").removeClass("hidden");
-			
-			allClickEvent();
+
+			$("span#dayList").click(function() {
+				clickDate = $(this).text();
+				console.log(clickDate);
+
 			});
-		
-		/*좌석 선택은 3가지 상태가 존쟈
-		  선택 전(common) 선택 중(choice) 선택 끝  */
-		$("button.seat_number").click(function() {
-				 
-			//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
+
+			$("span#townNameList").click(function() {
+				clickTown = $(this).text();
+				console.log(clickTown);
+				allClickEvent();
+			});
+
+			$(".time_btn").click(function() {
+				clickTime = $(this).find("#bookingTimeNo").text();
+				//clickTown = $(this).text();
+				console.log(clickTime);
+				$(".booking_selecter").addClass("hidden");
+				$(".seat_selecter").removeClass("hidden");
+
+				allClickEvent();
+			});
+
+			/*좌석 선택은 3가지 상태가 존쟈
+			  선택 전(common) 선택 중(choice) 선택 끝  */
+			$("button.seat_number").click(function() {
+
+				//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
 				console.log(choiceSeNo);
-				if($(this).hasClass("common")) {  
-			 	$(this).removeClass("common");
-			 	$(this).addClass("choice");
-			 		
+				if ($(this).hasClass("common")) {
+					$(this).removeClass("common");
+					$(this).addClass("choice");
+
+				} else if ($(this).hasClass("choice")) {
+					$(this).removeClass("choice");
+					$(this).addClass("common");
 				}
-				else if($(this).hasClass("choice")) {
-			 	$(this).removeClass("choice");
-			 	$(this).addClass("common");
-				}
-				if(choiceSeNo.length > 2) { 
+				if (choiceSeNo.length > 2) {
 					alert("2명까지만 가능합니다.");
 					$(this).removeClass("choice");
-				 	$(this).addClass("common");
-				 	
+					$(this).addClass("common");
+
 				}
-				
+
 			});
-	
-		
-}
-			/* 결제하기 눌렀을 때 */
-			$("div#pay_btn").click(function() { 
+
+		}
+		/* 결제하기 눌렀을 때 */
+		$("div#pay_btn").click(
+				function() {
 					var selectSeNo1 = choiceSeNo[0];
 					var selectSeNo2 = choiceSeNo[1];
-					var selectSeNo1Name ="";
-					var selectSeNo2Name ="";
-					
+					var selectSeNo1Name = "";
+					var selectSeNo2Name = "";
+
 					console.log(selectSeNo1);
 					console.log(selectSeNo2);
-				 	
-					if(selectSeNo2 != undefined) { 
-						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
-						selectSeNo2Name = "bookingSeatNo" +selectSeNo2.id;
-						 	console.log(selectSeNo1Name);
-							console.log(selectSeNo2Name);
-							insertBooking("two",selectSeNo1Name,selectSeNo2Name);
+
+					if (selectSeNo2 != undefined) {
+						selectSeNo1Name = "bookingSeatNo" + selectSeNo1.id;
+						selectSeNo2Name = "bookingSeatNo" + selectSeNo2.id;
+						console.log(selectSeNo1Name);
+						console.log(selectSeNo2Name);
+						insertBooking("two", selectSeNo1Name, selectSeNo2Name);
 					}
 					//하나 선택하면 2번째꺼가 언디파인드
-					else if(selectSeNo2 == undefined){
-						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
+					else if (selectSeNo2 == undefined) {
+						selectSeNo1Name = "bookingSeatNo" + selectSeNo1.id;
 						console.log("좌석이 하나만 일때: " + selectSeNo1Name);
-						insertBooking("one",selectSeNo1Name);
-					} 
-					 
-					 /* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
-					 var selectSeNo2 = "bookingSeatNo"+choiceSeNo[1].id; */
-					
-					console.log(clickMovie + " " + clickDate + " " + clickTown + " " + clickTime );
-			 		
-			});
+						insertBooking("one", selectSeNo1Name);
+					}
+
+					/* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
+					var selectSeNo2 = "bookingSeatNo"+choiceSeNo[1].id; */
+
+					console.log(clickMovie + " " + clickDate + " " + clickTown
+							+ " " + clickTime);
+
+				});
 		// 선택된 좌석 수에 따른 예매 진행	
-		function insertBooking(seatCount,selectSeNo1Name,selectSeNo2Name)  {
+		function insertBooking(seatCount, selectSeNo1Name, selectSeNo2Name) {
 			console.log("insertBooking ::::" + seatCount);
 			console.log(selectSeNo1Name);
 			console.log(selectSeNo2Name);
-			if(seatCount == "one")  { 
-				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name},'json','insertBook');
-			}
-			else if(seatCount == "two")  { 
-				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name ,seat2:selectSeNowName},'json','insertBook');
+			if (seatCount == "one") {
+				listMethod('/movie/insertBooking.do', {
+					day : clickDate,
+					town : clickTown,
+					movie : clickMovie,
+					time : clickTime,
+					seat1 : selectSeNo1Name
+				}, 'json', 'insertBook');
+			} else if (seatCount == "two") {
+				listMethod('/movie/insertBooking.do', {
+					day : clickDate,
+					town : clickTown,
+					movie : clickMovie,
+					time : clickTime,
+					seat1 : selectSeNo1Name,
+					seat2 : selectSeNowName
+				}, 'json', 'insertBook');
 			}
 		}
-	
-
-	
 
 		$("span#dayList").click(function() {
 			clickDate = $(this).text();
 			console.log(clickDate);
-			
+
 		});
 
 		$("span#townNameList").click(function() {
 			clickTown = $(this).text();
 			console.log(clickTown);
 			allClickEvent();
-			});
-		
+		});
+
 		$(".time_btn").click(function() {
 			clickTime = $(this).find("#bookingTimeNo").text();
 			//clickTown = $(this).text();
 			console.log(clickTime);
-			$(".booking_selecter").addClass("hidden");		
+			$(".booking_selecter").addClass("hidden");
 			$(".seat_selecter").removeClass("hidden");
-			
+
 			allClickEvent();
-			});
-		
-		
-		
+		});
+
 		$(".seat_number choice").click(function() {
 			console.log("button.seat_number choice");
 			$(".seat_number choice").removeClass("choice");
 			$(".seat_number ").addClass("finish");
-		
-			
+
 		});
-	
+
 		/*시간표 앞3가지 요소들이 선택이 되었는지확인하는 함수*/
-		function allClickEvent() { 
-			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
-				
-				listMethod('/movie/selectBookList.do',{day :clickDate,town:clickTown,movie:clickMovie},'json','selectName');
-				
-				 
-			}
-			else if(clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
+		function allClickEvent() {
+			if (clickMovie != null && clickDate != null && clickTown != null
+					&& clickTime == "") {
+
+				listMethod('/movie/selectBookList.do', {
+					day : clickDate,
+					town : clickTown,
+					movie : clickMovie
+				}, 'json', 'selectName');
+
+			} else if (clickMovie != null && clickDate != null
+					&& clickTown != null && clickTime != "") {
 				console.log("clickTime = Notnull");
-				listMethod('/movie/selectSeatList.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime},'json','selectTime');
+				listMethod('/movie/selectSeatList.do', {
+					day : clickDate,
+					town : clickTown,
+					movie : clickMovie,
+					time : clickTime
+				}, 'json', 'selectTime');
 
 			}
-				
+
 		}
 
- 
-	
-});
-	
-	
-	
-		
-
-		
-	
-	
-
+	});
 </script>
 
 
@@ -441,7 +465,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			<!-- 상단 현재시각 -->
 			<div class="booking_current_time">
 				<div>현재시각</div>
-				<b>2021.01.01 PM 10:23</b>
+				<b id="clock2" name="currenttime">2021.01.01 PM 10:23</b>
 				<img src="/movie/view/img/popupx.png" class="modal_close_btn " id="close_pop">
 			</div>
 			<!-- 상단 현재시각끝 -->
