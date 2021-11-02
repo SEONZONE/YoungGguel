@@ -85,6 +85,10 @@ public class MyPageController{
 		
 		return "redirect:/view/jsp/myPage2.jsp";
 	}
+	@RequestMapping(value = "myPageMain.do")
+	public String myPageMainAction(Model model) {
+		return "view/jsp/myPage1";
+	}
 	@RequestMapping(value = "mypage2.do")
 	public String myPage2Action(Model model) {
 		return "view/jsp/myPage2";

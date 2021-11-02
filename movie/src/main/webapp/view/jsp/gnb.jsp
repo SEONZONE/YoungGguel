@@ -27,7 +27,7 @@
 
 
 <script type="text/javascript">
-
+var UUid = sessionStorage.getItem('Uid');
 	function modal(id) {	
 		var zIndex = 9999;
 		var modal = $('#' + id);
@@ -110,7 +110,7 @@
 												$("input#id").val('');
 												$("input#password").val('');
 
-											} 
+											}
 											//어드민 일 때
 											else if(e =='adminSuccess'){
 												alert("어드민 권한입니다.");
@@ -144,7 +144,7 @@
 												$("img#usericon").removeClass("hidden");
 												$("span#info_user").removeClass("hidden");
 												$("img#logoutBtn").removeClass("hidden");
-										
+												location.reload();
 												/* 트리거를 사용하여 로그인팝업 창 닫기 */
 												$(document).ready(function(){
 													$(".modal_close_btn").trigger('click');
@@ -157,6 +157,7 @@
 											alert('로그인 에러' + e);
 										}
 									});
+							 
 						});
 		/* 모달창 오픈 */
 		$("img#popup_open_btn").click(function() {
@@ -197,12 +198,31 @@
 	    	
 	    	});
 	    });
-		
-		
+		 $('a.Tomovie').click(function(){
+			 document.location.href="/movie/movieList.do?view=poster"; 
+		 });
+		 $('a.Totimetable').click(function(){
+			 document.location.href="/movie/scheduler/main.do"; 
+		 });
+		 $('a.Tostore').click(function(){
+			 document.location.href="/movie/store/main.do"; 
+		 });
+		//마이페이지 이동시 로그인 세션없으면 오류
+	    $('a.TomyPage').click(function(){
+	    	if(UUid!=null){
+				  if(confirm('마이페이지로 이동합니다')==true){
+					document.location.href="/movie/myPageMain.do";  
+				  }
+			  }
+				else{	
+					<!--저장된 아이디 값이 없으면-->
+					alert('로그인이 필요합니다');
+					modal('my_modal');
+				}
+			});
 	  
 
 		
-	//});
 	
 	
 
@@ -243,13 +263,13 @@
 			
 			<div class="menu">
 				<ul>
-					<li><a href='/movie/movieList.do?view=poster'>영화</a></li>
-					<li><a href="/movie/scheduler/main.do">상영시간표</a></li>
+					<li><a class="Tomovie">영화</a></li>
+					<li><a class="Totimetable">상영시간표</a></li>
 					<li onclick="wow()"><img id="popup_booking_open_btn" src="/movie/view/img/gnbbutton.png"
 						onmouseover="this.src='/movie/view/img/gnbbutton_hover.png'"
 						onmouseout="this.src='/movie/view/img/gnbbutton.png'"></li>
-					<li><a href="/movie/store/main.do">스토어</a></li>
-					<li><a href="/movie/view/jsp/myPage1.jsp">마이 페이지</a></li>
+					<li><a class="Tostore">스토어</a></li>
+					<li><a class="TomyPage">마이 페이지</a></li>
 				</ul>
 			</div>
 		</div>

@@ -14,7 +14,6 @@
       <link rel="stylesheet" href="/movie/view/css/myPage2.css"> 
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-var UUid = sessionStorage.getItem('Uid');
 function ajaxReplyList(v){
 	   var temp="";
 	   var id="";
@@ -74,15 +73,20 @@ $(function(){
 		  document.location.href='/movie/view/jsp/Admin/myPage2.jsp';
 	  });
 	  $('img#changeInfoimg').click(function(){
+		  document.location.href='/movie/mypage3.do?id=${id}';
+	  });
+	   $("input.form_submit").click(function(){
+		alert('문의하기 성공');  
+	  }); 
+	  $(document).ready(function(){
 		  if(UUid!=null){
-			  document.location.href='/movie/mypage3.do?id=${id}';
+			  return true;
 			}else{	<!--저장된 아이디 값이 없으면-->
 				alert('로그인이 필요합니다');
-				modal('my_modal');
+				//modal('my_modal');
+				return document.location.href="/movie/view/jsp/ErrorPage.jsp";
 			}
-		  
-	  });
-	
+		});
     	  
       
       

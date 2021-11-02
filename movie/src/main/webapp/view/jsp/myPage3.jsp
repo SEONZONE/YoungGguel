@@ -31,6 +31,15 @@ $(function(){
 	  $("a#signin").click(function(){
 		  alert("form제출");
 	  });
+	  $(document).ready(function(){
+		  if(UUid!=null){
+			  return true;
+			}else{	<!--저장된 아이디 값이 없으면-->
+				alert('로그인이 필요합니다');
+				return document.location.href="/movie/view/jsp/ErrorPage.jsp";
+				//modal('my_modal');
+			}
+		});
 			
 });
 

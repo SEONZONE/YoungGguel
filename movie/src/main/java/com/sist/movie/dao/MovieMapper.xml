@@ -66,6 +66,7 @@ SELECT RANK() OVER(ORDER BY OPENDT DESC)RANK,MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
 
 <!-- 메인 인기순위 -->
 <!-- 예매율 넣어서 수정 필요 지금은 암거나 쓴거임 -->
+<!-- 검색 -->
 <select id="mainPopularList" resultType="movieList">
 SELECT MOVIECD,MOVIENM,GENRE,SHOWTM,OPENDT
 FROM(

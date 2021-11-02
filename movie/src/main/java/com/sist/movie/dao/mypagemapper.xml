@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		USER_INFO(USERID,USERPW,USERNAME,USERTEL,USERBIRTH,USEREMAIL,USERGENDER)
 		VALUES(#{user_id},#{user_pw},#{user_name},#{user_gender},#{user_tel},#{user_birth},#{user_email})
 </insert>
-<select id="getUserInfo2" parameterType="String" resultType="user">
+<select id="getUserInfo" parameterType="String" resultType="user">
 		SELECT
 		USERID,USERPW,USERNAME,USERTEL,USERBIRTH,USEREMAIL,USERGENDER
 		FROM USER_INFO
