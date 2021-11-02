@@ -200,22 +200,13 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			 else if(dom["bookingSeatNo"+i] == "f"){ 
 				var seatSelect = "common";
 			 } 		
-			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
+			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\"  id =\""+i+"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
 			 k += 30;	
 			});
 			$(".seat_row_wrapping").html(tempSeat);	
 			evtbind();
 	}
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
 	/* 클릭시 값 저장 */
 	/* bind function */
 	function evtbind() {
@@ -274,7 +265,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			});
 	
 		
-}
+	}
 			/* 결제하기 눌렀을 때 */
 			$("div#pay_btn").click(function() { 
 					var selectSeNo1 = choiceSeNo[0];
@@ -284,10 +275,14 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					
 					console.log(selectSeNo1);
 					console.log(selectSeNo2);
+					
 				 
 					if(selectSeNo2 != undefined) { 
 						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
 						selectSeNo2Name = "bookingSeatNo" +selectSeNo2.id;
+						
+						console.log("id값" + selectSeNo1.id);
+						console.log("id2값" + selectSeNo2.id);
 						 	console.log(selectSeNo1Name);
 							console.log(selectSeNo2Name);
 							insertBooking("two",selectSeNo1Name,selectSeNo2Name);

@@ -37,8 +37,7 @@ public class BookingController {
 	@ResponseBody
 	@RequestMapping(value = "nameList.do")
 	public List<?> movieListAction(String select, String city) {
-		System.out.println("select : " + select);
-		System.out.println("city : " + city);
+	
 		if (select.equals("movieList")) {
 			return mdao.movieList();
 		}
@@ -68,7 +67,7 @@ public class BookingController {
 					map.put("town", town);
 					if (day != null) {
 						map.put("day", day);
-						System.out.println("movie: " + movie + "town : " + town + "day : " + day);
+						
 
 					}
 
@@ -77,7 +76,7 @@ public class BookingController {
 		
 		
 		
-		System.out.println(bdao.movieSelectAction(map));
+		
 		return bdao.movieSelectAction(map);
 
 	}
