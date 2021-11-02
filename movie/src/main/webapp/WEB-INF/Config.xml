@@ -33,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="com/sist/movie/dao/StoreMapper.xml"/>
       <mapper resource="com/sist/movie/dao/TheaterMapper.xml"/>
       <mapper resource="com/sist/movie/dao/UserMapper.xml"/>
+
       
     </mappers>
 </configuration>

@@ -21,7 +21,7 @@ public class PageAction {
 	   public void pageProcess(HttpServletRequest request,HashMap<String, Object>map) {
 		      try {
 		         currentPage=Integer.parseInt(request.getParameter("page"));
-		         //페이지에 잇는 값을 
+		         //�럹�씠吏��뿉 �엲�뒗 媛믪쓣 
 		      } catch (Exception e) {
 		         // TODO: handle exception
 		      }

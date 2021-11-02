@@ -20,6 +20,10 @@ var clickTown = "";
 var clickMovie = "";
 var clickTime = "";
 
+var selectSeNo = "";
+var choiceSeNo = (document.getElementsByClassName('choice'));
+
+
 	
 	// 요일, 영화 눌리면 값 저장 
 	$(function() {
@@ -54,6 +58,12 @@ var clickTime = "";
 		   					}
 		   				 	
 		   				  }
+
+		   				  else if(methodName == "insertBook") { 
+		   					alert("예매가 성공되었습니다!!");
+		   					alert(v);
+		   				  }
+
 		   				 
 		   				  
 		   			  },
@@ -149,6 +159,30 @@ var clickTime = "";
 		$("ul#selectTime").html(tempTime);
 		evtbind();
 		
+
+	}
+
+	var i = 1;
+	var tempSeat = "";
+	var k=350;
+	/* 좌석 불러오기 */
+	function seatNameList(v,i) { 
+		
+			$.each(v,function(index,dom) { 
+			console.log( dom["bookingSeatNo"+i]);
+			 var seatSelect = "";
+			 if(dom["bookingSeatNo"+i] == "t") { 
+				 var seatSelect = "finish";
+			 }
+			 else if(dom["bookingSeatNo"+i] == "f"){ 
+				var seatSelect = "common";
+			 } 		
+			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\"  id =\""+i+"\"style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
+			 k += 30;	
+			});
+			$(".seat_row_wrapping").html(tempSeat);	
+			evtbind();
+
 	}
 
 	var i = 1;
@@ -175,6 +209,12 @@ var clickTime = "";
 	
 	
 	
+
+	
+	
+	
+	
+	
 	
 	/* 클릭시 값 저장 */
 	/* bind function */
@@ -185,8 +225,100 @@ var clickTime = "";
 		$("span#movieNameList").click(function() {
 			clickMovie = $(this).text();
 			console.log(clickMovie);
-		
+	
 		});
+
+		$("span#dayList").click(function() {
+			clickDate = $(this).text();
+			console.log(clickDate);
+			
+		});
+
+		$("span#townNameList").click(function() {
+			clickTown = $(this).text();
+			console.log(clickTown);
+			allClickEvent();
+			});
+		
+		$(".time_btn").click(function() {
+			clickTime = $(this).find("#bookingTimeNo").text();
+			//clickTown = $(this).text();
+			console.log(clickTime);
+			$(".booking_selecter").addClass("hidden");		
+			$(".seat_selecter").removeClass("hidden");
+			
+			allClickEvent();
+			});
+		
+				
+		$("button.seat_number").click(function() {
+				 
+				
+				console.log(choiceSeNo);
+				if($(this).hasClass("common")) {
+			 	$(this).removeClass("common");
+			 	$(this).addClass("choice");
+			 		
+				}
+				else if($(this).hasClass("choice")) {
+			 	$(this).removeClass("choice");
+			 	$(this).addClass("common");
+				}
+				if(choiceSeNo.length > 2) { 
+					alert("2명까지만 가능합니다.");
+					$(this).removeClass("choice");
+				 	$(this).addClass("common");
+				 	
+				}
+				
+			});
+	
+		
+}
+			/* 결제하기 눌렀을 때 */
+			$("div#pay_btn").click(function() { 
+					var selectSeNo1 = choiceSeNo[0];
+					var selectSeNo2 = choiceSeNo[1];
+					var selectSeNo1Name ="";
+					var selectSeNo2Name ="";
+					
+					console.log(selectSeNo1);
+					console.log(selectSeNo2);
+				 
+					if(selectSeNo2 != undefined) { 
+						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
+						selectSeNo2Name = "bookingSeatNo" +selectSeNo2.id;
+						 	console.log(selectSeNo1Name);
+							console.log(selectSeNo2Name);
+							insertBooking("two",selectSeNo1Name,selectSeNo2Name);
+					}
+					else if(selectSeNo2 == undefined){
+						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
+						console.log("좌석이 하나만 일때: " + selectSeNo1Name);
+						insertBooking("one",selectSeNo1Name);
+					} 
+					 
+					 /* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
+					 var selectSeNo2 = "bookingSeatNo"+choiceSeNo[1].id; */
+					
+					console.log(clickMovie + " " + clickDate + " " + clickTown + " " + clickTime );
+			 		
+			});
+		// 선택된 좌석 수에 따른 예매 진행	
+		function insertBooking(seatCount,selectSeNo1Name,selectSeNo2Name)  {
+			console.log("insertBooking ::::" + seatCount);
+			console.log(selectSeNo1Name);
+			console.log(selectSeNo2Name);
+			if(seatCount == "one")  { 
+				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name},'json','insertBook');
+			}
+			else if(seatCount == "two")  { 
+				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name ,seat2:selectSeNowName},'json','insertBook');
+			}
+		}
+	
+
+	
 
 		$("span#dayList").click(function() {
 			clickDate = $(this).text();
@@ -221,6 +353,7 @@ var clickTime = "";
 			
 		});
 	
+
 		function allClickEvent() { 
 			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
 				
@@ -231,8 +364,7 @@ var clickTime = "";
 			else if(clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
 				console.log("clickTime = Notnull");
 				listMethod('/movie/selectSeatList.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime},'json','selectTime');
-				
-				 
+
 			}
 				
 		}

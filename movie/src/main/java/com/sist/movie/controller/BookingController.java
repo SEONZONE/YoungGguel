@@ -33,8 +33,8 @@ public class BookingController {
 	@Autowired
 	private BookDao bdao;
 
-	@ResponseBody
 
+	@ResponseBody
 	@RequestMapping(value = "nameList.do")
 	public List<?> movieListAction(String select, String city) {
 		System.out.println("select : " + select);
@@ -55,7 +55,7 @@ public class BookingController {
 		return mdao.movieList();
 
 	}
-
+  
 	@ResponseBody
 	@RequestMapping(value = "selectBookList.do")
 	public List<BookVO> movieSelectAction(String town, String day, String movie,String page) {
@@ -82,6 +82,7 @@ public class BookingController {
 
 	}
 	
+
 	@ResponseBody
 	@RequestMapping(value = "selectSeatList.do")
 	public List<BookVO> seatSelectAction(String town, String day, String movie ,String time) { 
@@ -94,5 +95,14 @@ public class BookingController {
 		System.out.println(bdao.seatSelectAction(mapSeat));
 		return bdao.seatSelectAction(mapSeat);
 	}
+
+	@ResponseBody
+	@RequestMapping( value = "insertBooking.do")
+	public void insertBooking(String town, String day, String movie ,String time,String seat1,String seat2) { 
+		BookVO vo = new BookVO();
+		
+		
+	}
+
 
 }

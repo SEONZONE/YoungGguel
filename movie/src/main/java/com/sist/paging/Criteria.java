@@ -6,19 +6,19 @@ import lombok.Setter;
 @Setter
 public class Criteria {
 
-	/** í˜„ì¬ í˜ì´ì§€ ë²ˆí˜¸ */
+	/** ÇöÀç ÆäÀÌÁö ¹øÈ£ */
 	private int currentPageNo;
 
-	/** í˜ì´ì§€ë‹¹ ì¶œë ¥í•  ë°ì´í„° ê°œìˆ˜ */
+	/** ÆäÀÌÁö´ç Ãâ·ÂÇÒ µ¥ÀÌÅÍ °³¼ö */
 	private int recordsPerPage;
 
-	/** í™”ë©´ í•˜ë‹¨ì— ì¶œë ¥í•  í˜ì´ì§€ ì‚¬ì´ì¦ˆ */
+	/** È­¸é ÇÏ´Ü¿¡ Ãâ·ÂÇÒ ÆäÀÌÁö »çÀÌÁî */
 	private int pageSize;
 
-	/** ê²€ìƒ‰ í‚¤ì›Œë“œ */
+	/** °Ë»ö Å°¿öµå */
 	private String searchKeyword;
 
-	/** ê²€ìƒ‰ ìœ í˜• */
+	/** °Ë»ö À¯Çü */
 	private String searchType;
 
 	public Criteria() {
