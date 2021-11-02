@@ -61,39 +61,39 @@
     		  });	
       }
     
-      function ajaxMainList(v){
-    	  var temp="";
-    	  var hover="";
-    	  var id="";
-    		$.each(v,function(index,dom){ 			
-    			temp+="<li><a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\"><img src=\"/movie/view/img/"+dom.movieCd+".jpg\" id=\"hoverImg\"></a></li>";
-    			hover+="<div class=\"hoverContents\" id="+dom.movieCd+">";
-    			hover+="<div class=\"main_hover_con\" id="+dom.movieCd+">";			
-    			hover+="<div class=\"hover_back\">";
-    			hover+="<div class=\"hover_txt\" style=\"font-size: 25px; font-weight: bold;\">"+dom.movieNm+"</div>";
-    			hover+="<div class=\"hover_txt\" style=\"font-size: 17px;\">예매율<span>79%</span></div>";
-    			hover+="<div class=\"hover_txt\" style=\"font-size: 17px;\">"+dom.genre+"<span>·</span><span>"+dom.showTm+"분</span></div><br><br>";
-    			hover+="<div class=\"main_hover_btn\">예매하기</div>";
-                hover+="<div class=\"main_hover_like\">🤍</div>";
-                hover+="<div class=\"main_hover_like_on hidden\">🧡</div>";
-                hover+="</div>";
-                hover+="</div>";           
-                hover+="</div>";           
-    		});
-    		$(".ajaxList").html(temp);
-    		$(".hovercon").html(hover);
-   			$(".main_hover_con").css("visibility","hidden"); 		
-   			$("div.hoverContents").mouseover(function(){
-   				hoverContents(this.id);
-   			});
-      }
-      
-      function hoverContents(v){
-    	  $("div.hoverContents").css("visibility","visible");
-      }
-  });
-  
+    /* 메인 호버 컨텐츠 */
+    function ajaxMainList(v){
+       var temp="";
+       var hover="";
+        $.each(v,function(index,dom){          
+           temp+="<li id="+dom.movieCd+"><a href=\"/movie/movieInfo.do?no="+dom.movieCd+"\"><img src=\"/movie/view/img/"+dom.movieCd+".jpg\" id=\"hoverImg\"></a></li>";         
+           hover+="<div class=\"hoverContents\">";
+            hover+="<div class=\"main_hover_con\" id="+dom.movieCd+">";         
+            hover+="<div class=\"hover_back\">";
+            hover+="<div class=\"hover_txt\" id=\"movieNm\" style=\"font-size: 25px; font-weight: bold;\">"+dom.movieNm+"</div>";
+            hover+="<div class=\"hover_txt\" style=\"font-size: 17px;\">예매율<span>79%</span></div>";
+            hover+="<div class=\"hover_txt\" style=\"font-size: 17px;\">"+dom.genre+"<span>·</span><span>"+dom.showTm+"분</span></div><br><br>";
+            hover+="<div class=\"main_hover_btn\">예매하기</div>";
+             hover+="<div class=\"main_hover_like\">🤍</div>";
+             hover+="<div class=\"main_hover_like_on hidden\">🧡</div>";
+             hover+="</div>";
+             hover+="</div>";           
+               hover+="</div>";
+        });
+        $(".ajaxList").html(temp);   
+        $(".hovercon").html(hover); 
+        $(".main_hover_con").css("visibility","hidden");
+    }
+});
 
+    $(document).on('mouseover', '.ajaxList li', function(){
+        var movieCd = this.id;
+        console.log(movieCd);
+        $('div[id="'+movieCd+'"]').css("visibility","visible");
+        $('div[id="'+movieCd+'"]').mouseout(function(){
+           $(".main_hover_con").css("visibility","hidden");
+        });
+      });
 </script>
 </head>
 <body>
@@ -119,10 +119,10 @@
                     <ul class="ajaxList">
                     </ul>       
                 </div>
-                <!-- 호버 컨텐츠 -->
+               <!-- 호버 컨텐츠 -->
                 <div class="movie-list">
-                  <ul class="hovercon">              
-                    </ul>           
+                  <div class="hovercon">              
+                    </div>           
                 </div>
                 <!-- 호버 컨텐츠끝 -->
             </div>
