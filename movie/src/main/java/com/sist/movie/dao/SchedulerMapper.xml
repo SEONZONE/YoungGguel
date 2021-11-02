@@ -12,14 +12,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 스케줄러 영화관 셀럭트 -->
 	<select id="selecttheaterList" parameterType="String" resultType="theaterList">
-		select theatertown from THEATER
-		where theatercity=#{VALUE}
-		group by theatertown
+		select THEATERTOWN  from THEATER
+		where THEATERCITY =#{VALUE}
+		group by THEATERTOWN 
 	</select>
 	
 	<!-- 대분류 셀렉트 -->
 	<select id="selecttheatercity" resultType="theaterList">
-		select DISTINCT THEATERCITY from THEATER
+		select DISTINCT THEATERCITY as theaterCity from THEATER
 	</select>
 	
 	

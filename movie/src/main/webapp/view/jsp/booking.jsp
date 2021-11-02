@@ -194,10 +194,7 @@
 						/* 좌석 불러오기 */
 						function seatNameList(v, i) {
 
-							$
-								.each(
-									v,
-									function (index, dom) {
+							$.each(v,function (index, dom) {
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
 										if (dom["bookingSeatNo" + i] == "t") {
@@ -223,10 +220,7 @@
 						/* 좌석 불러오기 (뿌려지는것)*/
 						function seatNameList(v, i) {
 
-							$
-								.each(
-									v,
-									function (index, dom) {
+							$.each(v,function (index, dom) {
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
 
@@ -235,7 +229,7 @@
 										} else if (dom["bookingSeatNo" + i] == "f") {
 											var seatSelect = "common";
 										}
-										tempSeat += "<button type=\"button\" class=\"seat_number " + seatSelect + "\" style=\"position: absolute; top: 360px; left: " + k + "px;  \"> "
+										tempSeat += "<button type=\"button\" class=\"seat_number " + seatSelect + "\"  id =\""+i+"\" style=\"position: absolute; top: 360px; left: " + k + "px;  \"> "
 											+ i + "</button>";
 										k += 30;
 									});
