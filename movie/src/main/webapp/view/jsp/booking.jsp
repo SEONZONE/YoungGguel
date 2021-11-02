@@ -362,7 +362,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					movie : clickMovie,
 					time : clickTime,
 					seat1 : selectSeNo1Name,
-					seat2 : selectSeNowName
+					seat2 : selectSeNo2Name
 				}, 'json', 'insertBook');
 			}
 		}
