@@ -11,9 +11,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
        <typeAlias type="com.sist.movie.vo.MovieDemoVO" alias="movieDemo"/>
        <typeAlias type="com.sist.movie.vo.SeatVO" alias="Seat"/>
        <typeAlias type="com.sist.movie.vo.AskVO" alias="ask"/>
-
        <typeAlias type="com.sist.movie.vo.BookingDemoVO" alias="bookingDemo"/>
-
        <typeAlias type="com.sist.movie.vo.AnswerVO" alias="askanswer"/>
        <typeAlias type="com.sist.movie.vo.TheaterVO" alias="theaterList"/>
        <typeAlias type="com.sist.movie.vo.ReviewVO" alias="review"/>
