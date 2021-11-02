@@ -97,8 +97,17 @@ public class BookingController {
 
 	@ResponseBody
 	@RequestMapping( value = "insertBooking.do")
-	public void insertBooking(String town, String day, String movie ,String time,String seat1,String seat2) { 
+	public String insertBooking(String time,String seat1,String seat2,String userId) { 
+		System.out.println( time +  " " + seat1 + " " + seat2 + " " + userId);
 		BookVO vo = new BookVO();
+		int numberTime = Integer.parseInt(time);
+		vo.setBookingTimeNo(numberTime);
+		vo.setBookingUserId(userId);
+		System.out.println("시간표넘버:" +vo.getBookingTimeNo());
+		System.out.println("유저아이디:" +  vo.getBookingUserId());
+		
+		bdao.insertBooking(vo);
+		return "success!";
 		
 		
 	}

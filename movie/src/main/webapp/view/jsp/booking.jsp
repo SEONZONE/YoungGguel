@@ -268,6 +268,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 	}
 			/* 결제하기 눌렀을 때 */
 			$("div#pay_btn").click(function() { 
+				
 					var selectSeNo1 = choiceSeNo[0];
 					var selectSeNo2 = choiceSeNo[1];
 					var selectSeNo1Name ="";
@@ -296,19 +297,22 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					 /* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
 					 var selectSeNo2 = "bookingSeatNo"+choiceSeNo[1].id; */
 					
+					console.log("id값: " + id);
 					console.log(clickMovie + " " + clickDate + " " + clickTown + " " + clickTime );
 			 		
 			});
 		// 선택된 좌석 수에 따른 예매 진행	
 		function insertBooking(seatCount,selectSeNo1Name,selectSeNo2Name)  {
+			var userId = "${id}";
 			console.log("insertBooking ::::" + seatCount);
 			console.log(selectSeNo1Name);
 			console.log(selectSeNo2Name);
+			
 			if(seatCount == "one")  { 
-				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name},'json','insertBook');
+				listMethod('/movie/insertBooking.do',{time:clickTime,seat1 :selectSeNo1Name, userId:userId},'json','insertBook');
 			}
 			else if(seatCount == "two")  { 
-				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name ,seat2:selectSeNowName},'json','insertBook');
+				listMethod('/movie/insertBooking.do',{time:clickTime,seat1 :selectSeNo1Name ,seat2:selectSeNo2Name, userId:userId},'json','insertBook');
 			}
 		}
 	
