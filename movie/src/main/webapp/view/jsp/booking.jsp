@@ -343,7 +343,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			});
 		
 		
-		}
+		
 	
 		$(".seat_number choice").click(function() {
 			console.log("button.seat_number choice");
