@@ -78,7 +78,7 @@ function ajaxtheaterList(success){
 	var temp="";
 	var temp2="";
 	$.each(success,function(index,dom){
-		temp+="<div class=\"town_name\">"+dom.theatertown+"</div>";
+		temp+="<div class=\"town_name\">"+dom.theaterTown+"</div>";
 	});
 	temp2+="<img src=\"/movie/view/img/f4f4f4.png\" class=\"selectedposterimg\">";
 	$("div.choicer_con_info").html(temp);
@@ -91,7 +91,7 @@ function ajaxtheaterList(success){
 function ajaxtownList(success) {
 	var temp="";
 	$.each(success,function(index,dom){
-		temp+="<div class=\"towninfo\">"+dom.theatertown+"</div>";
+		temp+="<div class=\"towninfo\">"+dom.theaterTown+"</div>";
 	});
 	$("div.town").html(temp);
 	evtBind();

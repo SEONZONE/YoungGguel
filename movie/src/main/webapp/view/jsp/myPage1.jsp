@@ -29,7 +29,7 @@
 	  $(document).ready(function(){
 		  if(UUid!=null){
 				return true;
-			}else{	<!--저장된 아이디 값이 없으면-->
+			}else{	<!--저장된 아이디 값이 없거나 URL 통한 접근 시 애러페이지-->
 				alert('로그인이 필요합니다');
 				return document.location.href="/movie/view/jsp/ErrorPage.jsp";
 				//modal('my_modal');

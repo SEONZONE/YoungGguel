@@ -131,6 +131,7 @@ $(function(){
 			}else if(checkpw != 1){
 				alert("비밀번호가 다릅니다");
 			}else{
+				//입력값 검증 성공 시 발생하는 AJAX
 				$.ajax({
 					url:"/movie/join.do",
 					type:"post",
