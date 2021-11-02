@@ -24,9 +24,17 @@
 		  document.location.href='/movie/mypage2.do';
 	  });
 	  $('img#changeInfoimg').click(function(){
-		  document.location.href='/movie/mypage3.do?id=asd';
-	  });
-	  
+			  document.location.href='/movie/mypage3.do?id=${id}';
+	  	  });
+	  $(document).ready(function(){
+		  if(UUid!=null){
+				return true;
+			}else{	<!--저장된 아이디 값이 없으면-->
+				alert('로그인이 필요합니다');
+				return document.location.href="/movie/view/jsp/ErrorPage.jsp";
+				//modal('my_modal');
+			}
+		});
   });
 </script>
 </head>

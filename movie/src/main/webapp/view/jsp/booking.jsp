@@ -19,8 +19,8 @@ var clickDate = "";
 var clickTown = "";
 var clickMovie = "";
 var clickTime = "";
-var selectSeNo = "";
 
+var selectSeNo = "";
 var choiceSeNo = (document.getElementsByClassName('choice'));
 
 
@@ -58,10 +58,12 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		   					}
 		   				 	
 		   				  }
+
 		   				  else if(methodName == "insertBook") { 
 		   					alert("예매가 성공되었습니다!!");
 		   					alert(v);
 		   				  }
+
 		   				 
 		   				  
 		   			  },
@@ -157,6 +159,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		$("ul#selectTime").html(tempTime);
 		evtbind();
 		
+
 	}
 
 	var i = 1;
@@ -179,7 +182,32 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			});
 			$(".seat_row_wrapping").html(tempSeat);	
 			evtbind();
+
 	}
+
+	var i = 1;
+	var tempSeat = "";
+	var k=350;
+	/* 좌석 불러오기 */
+	function seatNameList(v,i) { 
+		
+			$.each(v,function(index,dom) { 
+			console.log( dom["bookingSeatNo"+i]);
+			 var seatSelect = "";
+			 if(dom["bookingSeatNo"+i] == "t") { 
+				 var seatSelect = "finish";
+			 }
+			 else if(dom["bookingSeatNo"+i] == "f"){ 
+				var seatSelect = "choice";
+			 } 		
+			tempSeat += "<button type=\"button\" class=\"seat_number "+ seatSelect +"\" style=\"position: absolute; top: 360px; left: "+k+"px;  \"> "+ i  + "</button>";
+			 k += 30;	
+			});
+			$(".seat_row_wrapping").html(tempSeat);	
+			evtbind();
+	}
+	
+	
 	
 
 	
@@ -197,7 +225,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		$("span#movieNameList").click(function() {
 			clickMovie = $(this).text();
 			console.log(clickMovie);
-		
+	
 		});
 
 		$("span#dayList").click(function() {
@@ -290,6 +318,42 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		}
 	
 
+	
+
+		$("span#dayList").click(function() {
+			clickDate = $(this).text();
+			console.log(clickDate);
+			
+		});
+
+		$("span#townNameList").click(function() {
+			clickTown = $(this).text();
+			console.log(clickTown);
+			allClickEvent();
+			});
+		
+		$(".time_btn").click(function() {
+			clickTime = $(this).find("#bookingTimeNo").text();
+			//clickTown = $(this).text();
+			console.log(clickTime);
+			$(".booking_selecter").addClass("hidden");		
+			$(".seat_selecter").removeClass("hidden");
+			
+			allClickEvent();
+			});
+		
+		
+		}
+	
+		$(".seat_number choice").click(function() {
+			console.log("button.seat_number choice");
+			$(".seat_number choice").removeClass("choice");
+			$(".seat_number ").addClass("finish");
+		
+			
+		});
+	
+
 		function allClickEvent() { 
 			if(clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
 				
@@ -300,6 +364,7 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			else if(clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
 				console.log("clickTime = Notnull");
 				listMethod('/movie/selectSeatList.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime},'json','selectTime');
+
 			}
 				
 		}

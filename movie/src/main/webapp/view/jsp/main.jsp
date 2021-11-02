@@ -86,7 +86,7 @@
    			$("div.hoverContents").mouseover(function(){
    				hoverContents(this.id);
    			});
-      }frp
+      }
       
       function hoverContents(v){
     	  $("div.hoverContents").css("visibility","visible");

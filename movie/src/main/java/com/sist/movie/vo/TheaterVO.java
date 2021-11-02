@@ -2,21 +2,18 @@ package com.sist.movie.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class TheaterVO {
+public class TheaterVO{
+	
+	private int THEATERNO;
+	private String THEATERCITY;
+	private String THEATERTOWN;
+	private String THEATERGWAN;
+	private int THEATERROOMSEAT;
 
-	int theaterNo;
-	private String theaterCity;
-	private String theaterTown;
-	private String theaterGwan;
-	private String theaterRoomSeat;
 }
+

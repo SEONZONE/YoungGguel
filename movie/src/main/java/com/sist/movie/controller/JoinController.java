@@ -15,15 +15,17 @@ public class JoinController {
 	@Autowired
 	private UserDao dao;
 	
-	@ResponseBody
 	@RequestMapping(value="join.do", method=RequestMethod.POST)
+	@ResponseBody
 	public int insertUser(UserVO vo) {
-		int success; 
+		int success;
+		System.out.println(vo);
 		try {
 			dao.insertUser(vo);
 			success = 1;
 		} catch (Exception e) {
 			success = -1;
+			System.out.println(e);
 		}
 		return success;
 	}

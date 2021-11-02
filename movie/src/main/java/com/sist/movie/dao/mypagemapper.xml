@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.sist.movie.dao.mypagemapper">
 <!-- 유저관련 -->
 <!-- 이거는 현재 작동 x -->
-<insert id="insertUser" parameterType="user">
+<insert id="insertUser1" parameterType="user">
 		INSERT INTO
 		USER_INFO(USERID,USERPW,USERNAME,USERTEL,USERBIRTH,USEREMAIL,USERGENDER)
 		VALUES(#{user_id},#{user_pw},#{user_name},#{user_gender},#{user_tel},#{user_birth},#{user_email})

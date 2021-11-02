@@ -23,7 +23,7 @@ public class BookVO {
 	   private String bookingSeat2;
 	 
 	   
-		/* ¼ºÁ¾Ãß°¡¹öÀü */
+		/* Â¼ÂºÃÂ¾ÃƒÃŸÂ°Â¡Â¹Ã¶Ã€Ã¼ */
 	   private String bookingTheaterroomseat;
 	   private String bookingGwan;
 	   private String bookingSeat;
@@ -35,7 +35,7 @@ public class BookVO {
 	   private String bookingMovieCD;
 	   private String bookingUserId;
 	   
-		/* ¼ºÁ¾ ÁÂ¼® VO */
+		/* Â¼ÂºÃÂ¾ ÃÃ‚Â¼Â® VO */
 	   private String bookingSeatNo1;
 	   private String bookingSeatNo2;
 	   private String bookingSeatNo3;

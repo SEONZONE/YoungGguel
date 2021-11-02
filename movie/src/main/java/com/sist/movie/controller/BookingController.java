@@ -33,7 +33,7 @@ public class BookingController {
 	@Autowired
 	private BookDao bdao;
 
-	//영화예매 영화 이름, 도시 불러오기 
+
 	@ResponseBody
 	@RequestMapping(value = "nameList.do")
 	public List<?> movieListAction(String select, String city) {
@@ -55,7 +55,7 @@ public class BookingController {
 		return mdao.movieList();
 
 	}
-	//영화와 도시에 맞는 상영관 선택 
+  
 	@ResponseBody
 	@RequestMapping(value = "selectBookList.do")
 	public List<BookVO> movieSelectAction(String town, String day, String movie,String page) {
@@ -82,7 +82,7 @@ public class BookingController {
 
 	}
 	
-	//영화와 도시 와 상영관에 맞는 시간 선택  
+
 	@ResponseBody
 	@RequestMapping(value = "selectSeatList.do")
 	public List<BookVO> seatSelectAction(String town, String day, String movie ,String time) { 
@@ -95,7 +95,7 @@ public class BookingController {
 		System.out.println(bdao.seatSelectAction(mapSeat));
 		return bdao.seatSelectAction(mapSeat);
 	}
-	// 선택 좌석에 대한 영화 예매
+
 	@ResponseBody
 	@RequestMapping( value = "insertBooking.do")
 	public void insertBooking(String town, String day, String movie ,String time,String seat1,String seat2) { 
@@ -103,5 +103,6 @@ public class BookingController {
 		
 		
 	}
+
 
 }

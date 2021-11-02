@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="functions" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
@@ -9,13 +9,45 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <link rel="stylesheet" href="/movie/view/css/set.css" />
     <!--메인 CSS-->
     <link rel="stylesheet" href="/movie/view/css/store-detail.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(function(){
-     
+	var cnt = 0;
+	var price = $("input#priceval").val();
+	var total_price;
+	$("button[name='minus']").click(function(){
+		if(cnt <= 0){
+			cnt = 0;
+			$("input[name='count']").val(cnt);
+		}else{
+			cnt--
+			$("input[name='count']").val(cnt);
+		}
+		total_price = price*cnt;
+		$("span#total").text(total_price);
+		$("span#total").append("원");
+		$("input[name='totalprice']").val(total_price);
+		$("input[neme='count']").val(cnt);
+	});
+	$("button[name='plus']").click(function() {
+		if(cnt >= 9){
+			cnt = 9;
+			$("input[name='count']").val(cnt);
+		}else{
+			cnt++
+			$("input[name='count']").val(cnt);
+		}
+		total_price = price*cnt;
+		$("span#total").text(total_price);
+		$("span#total").append("원");
+		$("input[name='totalprice']").val(total_price);
+		$("input[neme='count']").val(cnt);
+	});	  
+	$("button#buybutton").click(function(){
+		$("form").submit();
+	});
   });
 </script>
   </head>
@@ -28,13 +60,13 @@
         <div class="item-wrap">
         <div class="item">
             <div class="item-img" id="fleft">
-                <img src="/movie/view/img/패밀리패키지.PNG"/>
+                <img src="/movie/view/img/${detail.PIMG}"/>
             </div>
             <div class="item-detail" id="fleft">
                 <div class="top">
-                    <p id="title">탄산패키지</p>
-                    <p id="contents">2D일반관람권2매+러브콤보[팝콘(L)1+탄산음료(R)2</p>
-                    <p id="price">30,000원</p>
+                    <p id="title">${detail.PNAME}</p>
+                    <p id="contents">${detail.PCONTENTS}</p>
+                    <p id="price">${detail.PPRICE}원</p>
                 </div>
                 <div class="middle">
                     <span id="mid-left">사용가능 영화관</span>
@@ -47,17 +79,17 @@
                 <div class="bottom">
                     <div class="quantity" id="btn">
                         <span>수량</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="button" onclick="quantity('d',this);">-</button>
-                        <input type="text" name="pop_out" value="0" readonly="readonly" style="text-align: center;"/>
-                        <button type="button" onclick="quantity('u',this);">+</button>
+                        <button type="button" name="minus">-</button>
+                        <input type="text" name="count" value="0" readonly="readonly" style="text-align: center;"/>
+                        <button type="button" name="plus" >+</button>
                     </div>
                     <div class="sum" id="btn">
                         <span id="total_title">총 상품금액</span>&nbsp;&nbsp;
-                        <span id="total">30,000원</span>
+                        <span id="total" name="total">0</span>
                     </div>
                 </div>
                 <div class="item-button">
-                    <button>결제하기</button>
+                    <button id="buybutton">결제하기</button>
                 </div>
             </div>
         </div>
@@ -66,7 +98,12 @@
       <!-- content -->
       <!-- footer -->
       <jsp:include page="footer.jsp" ></jsp:include>
+    <form action="/movie/store/buy.do" id="buybuy" method="post">
+		<input type="hidden" name="pno" value="${detail.PNO}"> <!-- 물품넘버 -->       
+        <input type="hidden" name="price" value="${detail.PPRICE}" id="priceval"> <!-- 1개당 금액 -->
+		<input type="hidden" name="count"> <!-- 구매개수 -->       
+    	<input type="hidden" name="totalprice"> <!-- 토탈금액 -->
+    </form>
+    
   </body>
-</html>
-
 </html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sist.com.vo.movie">
+	
+	
+	<!-- 스토어  -->
+	<!-- 스토어 메인 인기순 내림차순  -->
+	<select id="selectProductList" resultType="Product">
+		SELECT PNO,PCATEGORY,PNAME,PCONTENTS,PPRICE,PIMG,PSALESRATE
+		FROM PRODUCT ORDER BY PSALESRATE DESC
+	</select>
+	
+	<!-- 스토어 메인 티켓 리스트  -->
+	<select id="selectTicketProductList" resultType="Product">
+		SELECT PNO,PCATEGORY,PNAME,PCONTENTS,PPRICE,PIMG,PSALESRATE
+		FROM PRODUCT WHERE PCATEGORY='ticket'
+	</select>
+	
+	<!-- 스토어 메인 굿즈 리스트 -->
+	<select id="selectGoodsProductList" resultType="Product">
+		SELECT PNO,PCATEGORY,PNAME,PCONTENTS,PPRICE,PIMG,PSALESRATE
+		FROM PRODUCT WHERE PCATEGORY='drink'
+	</select>
+	
+	<!-- 스토어 디테일 데이터   -->
+	<select id="selectProductDetail" parameterType="int" resultType="Product">
+		SELECT PNO,PCATEGORY,PNAME,PCONTENTS,PPRICE,PIMG,PSALESRATE
+		FROM PRODUCT WHERE PNO=#{VALUE}
+	</select>	
+	
+
+	
+</mapper>
+
+
+

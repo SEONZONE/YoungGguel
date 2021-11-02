@@ -15,21 +15,25 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
        <typeAlias type="com.sist.movie.vo.BookingDemoVO" alias="bookingDemo"/>
 
        <typeAlias type="com.sist.movie.vo.AnswerVO" alias="askanswer"/>
-       <typeAlias type="com.sist.movie.vo.TheaterVO" alias="theaterlist"/>
+       <typeAlias type="com.sist.movie.vo.TheaterVO" alias="theaterList"/>
        <typeAlias type="com.sist.movie.vo.ReviewVO" alias="review"/>
        <typeAlias type="com.sist.movie.vo.ActorVO" alias="actor"/>
+       <typeAlias type="com.sist.movie.vo.ProductVO" alias="Product"/>
 
     </typeAliases>
    
     
     <mappers>
-      <mapper resource="com/sist/movie/dao/UserMapper.xml"/>
-      <mapper resource="com/sist/movie/dao/MovieMapper.xml"/>
-      <mapper resource="com/sist/movie/dao/TheaterMapper.xml"/>
-      <mapper resource="com/sist/movie/dao/mypagemapper.xml"/>
       <mapper resource="com/sist/movie/dao/AdminMapper.xml"/>
       <mapper resource="com/sist/movie/dao/BookMapper.xml"/>
+      <mapper resource="com/sist/movie/dao/MovieMapper.xml"/>
+      <mapper resource="com/sist/movie/dao/mypagemapper.xml"/>
       <mapper resource="com/sist/movie/dao/ReviewMapper.xml"/>
+      <mapper resource="com/sist/movie/dao/SchedulerMapper.xml"/>
+      <mapper resource="com/sist/movie/dao/StoreMapper.xml"/>
+      <mapper resource="com/sist/movie/dao/TheaterMapper.xml"/>
+      <mapper resource="com/sist/movie/dao/UserMapper.xml"/>
+
       
     </mappers>
 </configuration>

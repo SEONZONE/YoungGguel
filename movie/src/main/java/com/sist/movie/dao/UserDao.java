@@ -21,6 +21,7 @@ public class UserDao extends SqlSessionDaoSupport {
    
    public void insertUser(UserVO vo) {
       this.getSqlSession().insert("insertUser", vo);
+      System.out.println(vo);
    }
    //�븘�씠�뵒 鍮꾨�踰덊샇 泥댄겕
    public int idCheck(String id) {

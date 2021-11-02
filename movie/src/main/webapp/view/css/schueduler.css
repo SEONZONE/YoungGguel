@@ -29,6 +29,12 @@ ol, ul {
     margin: 0px;
     padding: 0px;
 }
+.btnoff{
+	color: gray;
+}
+#datekey{
+	display: none;
+}
 /* HTML5 display-role reset for older browsers */
 
 /* GNB logo �쁺�뿭*/
@@ -82,11 +88,7 @@ ol, ul {
 /* GNB 硫붾돱�쁺�뿭�걹*/
 
 /* content �쁺�뿭*/
-.content{
-    height: 810px;
-
-} /* 肄섑뀗痢좎쁺�뿭 810px / 諛깃렇�씪�슫�뱶 諛곌꼍�깋 吏��젙 */
-#schuedulbox{
+#schedulbox{
     margin: 0 auto;
     margin-top: 30px;
     width: 1100px;
@@ -94,7 +96,7 @@ ol, ul {
     border: 2px solid #9da0a6;
     border-radius: 20px;
 }
-.schuedulgroup{
+.schedulgroup{
     width: 160px;
     /* max-width: 160px; */
     height: 220px;
@@ -104,17 +106,21 @@ ol, ul {
     float: left;
     cursor: pointer;
 }
-.schuedulmovie{
+.schedulmovie{
     height: 110px;
     border-top-left-radius: 18px;
     border-right: 1px #bababa solid;
     line-height: 125px;
 }
-.schuedultheater{
+.schedultheater{
     height: 110px;
     border-bottom-left-radius: 18px;
     border-right: 1px #bababa solid;
     line-height: 125px;
+}
+.theatertop{
+	margin-right: 10px;
+	cursor: pointer;
 }
 .on{
     border-right: none;
@@ -123,7 +129,7 @@ ol, ul {
     background-color: #dadada;
     filter: opacity(0.3);
 }
-.schuedulnav{
+.schedulnav{
     width: 780px;
     height: 210px;
     margin: 5px;
@@ -141,6 +147,7 @@ ol, ul {
     padding-left: 10px;
     font-weight: bold;
     font-size: 13px;
+    display: flex;
 }
 #choicer_con{
     width: 780px;
@@ -166,22 +173,23 @@ ol, ul {
     text-align: left;
     float: left;
 }
-.con_name{
-    width: 240px;
-    white-space: nowrap; 
+.con_name, .town_name{
+    width: 256px;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; 
-    padding: 1px;
+    text-overflow: ellipsis;
     margin: 1px;
     display: inline-block;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
 }
-.con_name:hover{
-    background-color: #265396;
+.con_name:hover, .town_name:hover{
+    background-color: #265394;
     color: white;
-    font-weight: 500;
+    font-weight: 600;
 }
-.con_nameclick{
+.con_nameclick, .town_nameclick{
     background-color: #265396;
     color: white;
     font-weight: 600;
@@ -189,7 +197,7 @@ ol, ul {
 .selectedposter{
     float: right;
 }
-#selectedposterimg{
+.selectedposterimg{
     width: 145px;
     height: 220px;
     border-top-right-radius: 18px;
@@ -319,12 +327,12 @@ ol, ul {
     bottom: 29px;
     cursor: pointer;
 }
-.schuedulinfo{
-    height: 110px;
+.schedulinfo{
+    height: auto;
     border-top: 1px solid #eaeaea;
     border-bottom: 1px solid #eaeaea;
-    display: flex;
     margin-bottom: 10px;
+
 }
 .theaterbox{
     width: 190px;
@@ -342,6 +350,19 @@ ol, ul {
     position: relative;
     left: 40px;
     top: 20px;
+}
+.movieinfo{
+	height: 25px;
+    background-color: #d8d8d8;
+    width: 1180px;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 25px;
+    font-size: 13px;
+}
+.infoboxContainer{
+    display: flex;
+    border-bottom: 1px solid #eaeaea;
 }
 .infobox{
     width: 100px;
