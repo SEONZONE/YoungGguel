@@ -58,6 +58,10 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 		   					}
 		   				 	
 		   				  }
+		   				  else if(methodName == "insertBook") { 
+		   					alert("예매가 성공되었습니다!!");
+		   					alert(v);
+		   				  }
 		   				 
 		   				  
 		   			  },
@@ -177,6 +181,10 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 			evtbind();
 	}
 	
+
+	
+	
+	
 	
 	
 	
@@ -245,18 +253,21 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					var selectSeNo2 = choiceSeNo[1];
 					var selectSeNo1Name ="";
 					var selectSeNo2Name ="";
+					
+					console.log(selectSeNo1);
+					console.log(selectSeNo2);
 				 
-					if(selectSeNo2 != "undefined") { 
+					if(selectSeNo2 != undefined) { 
 						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
 						selectSeNo2Name = "bookingSeatNo" +selectSeNo2.id;
 						 	console.log(selectSeNo1Name);
 							console.log(selectSeNo2Name);
-							insertBooking("two");
+							insertBooking("two",selectSeNo1Name,selectSeNo2Name);
 					}
-					else if(selectSeNo2 == "undefined"){
+					else if(selectSeNo2 == undefined){
 						selectSeNo1Name = "bookingSeatNo" +selectSeNo1.id;
 						console.log("좌석이 하나만 일때: " + selectSeNo1Name);
-						insertBooking("one");
+						insertBooking("one",selectSeNo1Name);
 					} 
 					 
 					 /* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
@@ -265,9 +276,17 @@ var choiceSeNo = (document.getElementsByClassName('choice'));
 					console.log(clickMovie + " " + clickDate + " " + clickTown + " " + clickTime );
 			 		
 			});
-			
-		function insertBooking(seatCount)  {
-			console.log("insertBooking ::::" + seatCount)
+		// 선택된 좌석 수에 따른 예매 진행	
+		function insertBooking(seatCount,selectSeNo1Name,selectSeNo2Name)  {
+			console.log("insertBooking ::::" + seatCount);
+			console.log(selectSeNo1Name);
+			console.log(selectSeNo2Name);
+			if(seatCount == "one")  { 
+				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name},'json','insertBook');
+			}
+			else if(seatCount == "two")  { 
+				listMethod('/movie/insertBooking.do',{day :clickDate,town:clickTown,movie:clickMovie ,time:clickTime,seat1 :selectSeNo1Name ,seat2:selectSeNowName},'json','insertBook');
+			}
 		}
 	
 

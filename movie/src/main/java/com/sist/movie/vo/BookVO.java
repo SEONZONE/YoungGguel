@@ -33,11 +33,12 @@ public class BookVO {
 	   private String bookingMovieNo;
 	   private String bookingTimeNo;
 	   private String bookingMovieCD;
+	   private String bookingUserId;
 	   
 		/* ¼ºÁ¾ ÁÂ¼® VO */
-	   private String bookingSeatNo3;
 	   private String bookingSeatNo1;
 	   private String bookingSeatNo2;
+	   private String bookingSeatNo3;
 	   private String bookingSeatNo4;
 	   private String bookingSeatNo5;
 	   private String bookingSeatNo6;
