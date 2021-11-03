@@ -243,12 +243,15 @@
 
 							$("span#movieNameList").click(function () {
 								clickMovie = $(this).text();
+								$("#dayClick").removeClass("barclick");
+								$("#movieClick").addClass("barclick");
 								console.log(clickMovie);
 
 							});
 
 							$("span#dayList").click(function () {
-								clickDate = $(this).text();
+								clickDate = $(this).text();	
+								$("#dayClick").addClass("barclick");
 								console.log(clickDate);
 
 							});
@@ -256,15 +259,20 @@
 							$("span#townNameList").click(function () {
 								clickTown = $(this).text();
 								console.log(clickTown);
+								$("#movieClick").removeClass("barclick");
+								$("#teatherClick").addClass("barclick");
 								allClickEvent();
 							});
-
+							
 							$(".time_btn").click(function () {
 								clickTime = $(this).find("#bookingTimeNo").text();
 								//clickTown = $(this).text();
 								console.log(clickTime);
 								$(".booking_selecter").addClass("hidden");
 								$(".seat_selecter").removeClass("hidden");
+								
+								$("#teatherClick").removeClass("barclick");
+								$("#timeClick").addClass("barclick");
 
 								allClickEvent();
 							});
@@ -272,6 +280,9 @@
 							/*좌석 선택은 3가지 상태가 존쟈
 							  선택 전(common) 선택 중(choice) 선택 끝  */
 							$("button.seat_number").click(function () {
+								
+								$("#timeClick").removeClass("barclick");
+								$("#seatClick").addClass("barclick");
 
 								//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
 								console.log(choiceSeNo);
@@ -347,6 +358,7 @@
 
 						$("span#dayList").click(function () {
 							clickDate = $(this).text();
+							
 							console.log(clickDate);
 
 						});
@@ -354,6 +366,7 @@
 						$("span#townNameList").click(function () {
 							clickTown = $(this).text();
 							console.log(clickTown);
+							
 							allClickEvent();
 						});
 
@@ -410,37 +423,36 @@
 				<div id="my_Bookmodal">
 					<!-- 상단 선택되면 불들어오는곳 -->
 					<div class="select_check">
-						<span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						<span id="dayClick"class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-								<path
-									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+								<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 날짜선택
-						</span> <span class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id="movieClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 영화선택
-						</span> <span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id ="teatherClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 극장선택
-						</span> <span class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id="timeClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 시간선택
-						</span> <span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id ="seatClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 좌석선택
-						</span> <span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path

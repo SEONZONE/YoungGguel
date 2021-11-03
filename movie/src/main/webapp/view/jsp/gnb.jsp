@@ -130,6 +130,7 @@ var UUid = sessionStorage.getItem('Uid');
 													$(".modal_close_btn").trigger('click');
 													
 												});
+												location.reload();
 												
 											}
 											// 일반 회원일 때
@@ -152,6 +153,7 @@ var UUid = sessionStorage.getItem('Uid');
 												});
 
 											}
+											location.reload();	
 										},
 										error : function(e) {
 											alert('로그인 에러' + e);
