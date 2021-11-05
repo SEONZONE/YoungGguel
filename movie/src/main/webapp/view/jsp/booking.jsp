@@ -248,7 +248,7 @@
 
 							$("span#movieNameList").click(function () {
 								clickMovie = $(this).text();
-								$("#dayClick").removeClass("barclick");
+								
 								$("#movieClick").addClass("barclick");
 								console.log(clickMovie);
 
@@ -264,7 +264,7 @@
 							$("span#townNameList").click(function () {
 								clickTown = $(this).text();
 								console.log(clickTown);
-								$("#movieClick").removeClass("barclick");
+								
 								$("#teatherClick").addClass("barclick");
 								allClickEvent();
 							});
@@ -276,7 +276,7 @@
 								$(".booking_selecter").addClass("hidden");
 								$(".seat_selecter").removeClass("hidden");
 								
-								$("#teatherClick").removeClass("barclick");
+								
 								$("#timeClick").addClass("barclick");
 
 								allClickEvent();
@@ -286,7 +286,7 @@
 							  선택 전(common) 선택 중(choice) 선택 끝  */
 							$("button.seat_number").click(function () {
 								
-								$("#timeClick").removeClass("barclick");
+								
 								$("#seatClick").addClass("barclick");
 
 								//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
