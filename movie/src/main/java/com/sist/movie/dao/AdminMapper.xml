@@ -3,7 +3,19 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.movie.dao.AdminMapper"><!-- 매퍼네임스페이스랑 config의 매퍼이름일치시킬것 -->
-<!-- 영화관련 -->
+<!-- 유저관련 -->
+<select id="AdminselectAllUser">
+SELECT USERID,USERPW,USERNAME,USERTEL,USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY FROM USER_INFO;
+</select>
+<!-- 유저 정보 변경 PW-->
+<update id="AdminupdateUser">
+UPDATE USER_INFO SET USERPW=#{VALUE}
+
+</update>
+<!-- 해당 유저 삭제 -->
+<delete id="AdmindeleteUser">
+DROP FROM USER_INFO WHERE=#{VALUE}
+</delete>
 <!-- 글 작성시에 글번호NO 증가시켜주는 SQL -->
 <select id="getSequence" resultType="java.lang.Integer">
     SELECT MOVIE_INFO_SEQ.NEXTVAL FROM DUAL
