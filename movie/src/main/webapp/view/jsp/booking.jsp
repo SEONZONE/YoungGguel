@@ -183,7 +183,7 @@
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
 										if (dom["bookingSeatNo" + i] == "t") {
-											//선택된 좌석은 검정색으로 class추가?
+											//선택된 좌석은 검정색으로 class추가
 											var seatSelect = "finish";
 										}
 										//선택 안된 좌석은 선택가능한 모습으로 
