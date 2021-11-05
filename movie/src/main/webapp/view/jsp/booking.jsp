@@ -21,6 +21,14 @@
 					var clickTime = "";
 
 					var selectSeNo = "";
+					
+					//좌석 선택 후 오른쪽 정보 
+					var summaryName ="";
+					var summaryPoster = "";
+					var summaryDate = "";
+					var summaryTheater ="";
+					var summaryTotalPrice ="";
+					
 					//선택된 좌석의 갯수를 저장하고 있는 변수
 					var choiceSeNo = (document.getElementsByClassName('choice'));
 
@@ -49,15 +57,9 @@
 
 					// 요일, 영화 눌리면 값 저장 
 					$(function () {
-						listMethod('/movie/nameList.do', {
-							select: 'movieList'
-						}, 'json', 'moiveName');
-						listMethod('/movie/nameList.do', {
-							select: 'cityList'
-						}, 'json', 'cityName');
-						listMethod('/movie/nameList.do', {
-							select: 'townList'
-						}, 'json', 'townName');
+						listMethod('/movie/nameList.do', {select: 'movieList'}, 'json', 'moiveName');
+						listMethod('/movie/nameList.do', {select: 'cityList'}, 'json', 'cityName');
+						listMethod('/movie/nameList.do', {select: 'townList'}, 'json', 'townName');
 						function listMethod(url, data, datatype, methodName) {
 							$.ajax({
 								url: url,
@@ -82,6 +84,7 @@
 										for (var i = 1; i <= 10; i++) {
 											seatNameList(v, i);
 										}
+											seatMovieList(v);
 
 									}
 
@@ -102,10 +105,7 @@
 						function movieNameList(v) {
 							var temp = "";
 
-							$
-								.each(
-									v,
-									function (index, dom) {
+							$.each(v,function (index, dom) {
 										temp += "<li>";
 										temp += "<button type=\"button\" class=\"btn\" >";
 										temp += "<span ><img src=\"/movie/view/img/" + dom.watchGradeNm + ".png\"></span> <span id=\"movieNameList\">"
@@ -150,20 +150,6 @@
 							evtbind();
 						}
 
-						/* 클릭시 값 저장 */
-						/* bind function */
-						function evtbind() {
-
-
-
-							$("span#movieNameList").click(function () {
-								clickMovie = $(this).text();
-								console.log(clickMovie);
-
-							});
-
-							evtbind();
-						}
 
 						/*  시간표 불러오기 */
 						function timeNameList(v) {
@@ -172,15 +158,14 @@
 							$.each(v, function (index, dom) {
 								tempTime += "<li >";
 								tempTime += "<button type=\"button\" class=\"time_btn\">";
-								tempTime += "<span id=\"bookingTimeNo\" hidden>"
-									+ dom.bookingTimeNo + "</span>";
-								tempTime += "<span class=\"time\">" + dom.bookingTimeStart
-									+ "</span> <span class=\"theater\">" + dom.bookingGwan
-									+ "</span> <span class=\"possible_now\">"
+								tempTime += "<span id=\"bookingTimeNo\" hidden>"+ dom.bookingTimeNo + "</span>";
+								tempTime += "<span class=\"time\">" + dom.bookingTimeStart	+ "</span> <span class=\"theater\">" + dom.bookingGwan
+								+ "</span> <span class=\"possible_now\">"
 									+ dom.bookingTheaterroomseat
 									+ "</span> <span class=\"all\">/ 20</span>";
 								tempTime += "</button>";
 								tempTime += "</li>";
+							
 
 							});
 							$("ul#selectTime").html(tempTime);
@@ -235,6 +220,26 @@
 									});
 							$(".seat_row_wrapping").html(tempSeat);
 							evtbind();
+						}
+						
+						// 좌석에서 영화정보 불러오기
+						function seatMovieList(v) { 
+						    var sideInfoTemp = "";
+						    var sidePoster ="";
+							$.each(v,function(index, dom) {   
+								sidePoster += "<img src=\"/movie/view/img/"+ dom.bookingMovieNo+".jpg\" style=\"width: 170px; margin-left: 20px; margin-top: 20px;\">";
+								sideInfoTemp += "<div style=\"border-bottom: 0.1mm solid #d0d0d0; padding: 10px 10px 20px 0px; color: #ffffff; font-size: 15pt;\">";
+								sideInfoTemp += "<img src=\"/movie/view/img/"+ dom.bookingWatchgradenm+".png\" style=\"width: 15px; margin-right: 5px;\">" + dom.bookingMovieName + " </div>";
+								sideInfoTemp += "<div style=\"padding-top: 20px; color: #bdbec4; font-size: 13pt;\">상영일시: " + dom.bookingDate+ "</div>";
+								sideInfoTemp += "<div style=\"color: #bdbec4; font-size: 13pt;\">시작시간: "+ dom.bookingTimeStart+"</div>";
+								sideInfoTemp += "<div style=\"color: #bdbec4; font-size: 13pt;\"> 상영관: "+dom.bookingTown +" </div>";
+								sideInfoTemp += "<div style=\"padding-bottom: 30px; color: #bdbec4; font-size: 13pt;\">성인</div>";
+								sideInfoTemp += "<span style=\"color: #bdbec4; font-size: 13pt\">최종결제금액</span> ";
+								sideInfoTemp += "<span style=\"color: #49addc; font-size: 13pt; font-weight: bold;\"> 20000원</span>"; 
+							});
+							$(".show_box_right").html(sideInfoTemp);
+							$(".show_box_left").html(sidePoster);
+						
 						}
 
 						/* 클릭시 값 저장 */
@@ -389,8 +394,7 @@
 
 						/*시간표 앞3가지 요소들이 선택이 되었는지확인하는 함수*/
 						function allClickEvent() {
-							if (clickMovie != null && clickDate != null && clickTown != null
-								&& clickTime == "") {
+							if (clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
 
 								listMethod('/movie/selectBookList.do', {
 									day: clickDate,
@@ -398,8 +402,7 @@
 									movie: clickMovie
 								}, 'json', 'selectName');
 
-							} else if (clickMovie != null && clickDate != null
-								&& clickTown != null && clickTime != "") {
+							} else if (clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
 								console.log("clickTime = Notnull");
 								listMethod('/movie/selectSeatList.do', {
 									day: clickDate,
@@ -588,25 +591,26 @@
 							<span class="seat_info" style="margin-left: 20px;">정보</span>
 							<div class="show_box">
 								<div class="show_box_left">
-									<img src="/movie/view/img/pos1.png"
-										style="width: 170px; margin-left: 20px; margin-top: 20px;">
+									
 								</div>
 								<div class="show_box_right">
-									<div
+									<%-- <div
 										style="border-bottom: 0.1mm solid #d0d0d0; padding: 10px 10px 20px 0px; color: #ffffff; font-size: 15pt;">
-										<img src="/movie/view/img/19.png" style="width: 15px; margin-right: 5px;">모가디슈
+										<img src="/movie/view/img/19.png" style="width: 15px; margin-right: 5px;">${clickMovie}
 									</div>
-									<div style="padding-top: 20px; color: #bdbec4; font-size: 13pt;">2021.08.23(금)</div>
-									<div style="color: #bdbec4; font-size: 13pt;">10:20~11:50</div>
-									<div style="color: #bdbec4; font-size: 13pt;">월계 3관 / C1,C2</div>
+									<div style="padding-top: 20px; color: #bdbec4; font-size: 13pt;">2021.08.23(금)${clickDate }</div>
+									<div style="color: #bdbec4; font-size: 13pt;">${clickTime}</div>
+									<div style="color: #bdbec4; font-size: 13pt;">${clickTown } / C1,C2</div>
 									<div style="padding-bottom: 30px; color: #bdbec4; font-size: 13pt;">성인 2인</div>
 									<span style="color: #bdbec4; font-size: 13pt;">최종결제금액</span> <span
-										style="color: #49addc; font-size: 13pt; font-weight: bold;"> 20000원</span>
+										style="color: #49addc; font-size: 13pt; font-weight: bold;"> 20000원</span> --%>
 								</div>
 								<div id="pay_btn">결제하기</div>
 								<div id="rollback_btn">이전</div>
 							</div>
 						</div>
+						
+					
 					</div>
 				</div>
 			</body>

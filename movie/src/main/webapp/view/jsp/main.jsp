@@ -60,6 +60,7 @@
     			  }
     		  });	
       }
+    -
     
     /* 메인 호버 컨텐츠 */
     function ajaxMainList(v){

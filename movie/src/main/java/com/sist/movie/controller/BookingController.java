@@ -33,11 +33,10 @@ public class BookingController {
 	@Autowired
 	private BookDao bdao;
 
-
 	@ResponseBody
 	@RequestMapping(value = "nameList.do")
 	public List<?> movieListAction(String select, String city) {
-	
+
 		if (select.equals("movieList")) {
 			return mdao.movieList();
 		}
@@ -54,63 +53,57 @@ public class BookingController {
 		return mdao.movieList();
 
 	}
-  
+
 	@ResponseBody
 	@RequestMapping(value = "selectBookList.do")
-	public List<BookVO> movieSelectAction(String town, String day, String movie,String page) {
+	public List<BookVO> movieSelectAction(String town, String day, String movie, String page) {
 		String temp = "";
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-			if (movie != null) {
-				map.put("movie", movie);
-				if (town != null) {
-					map.put("town", town);
-					if (day != null) {
-						map.put("day", day);
-						
 
-					}
-
+		if (movie != null) {
+			map.put("movie", movie);
+			if (town != null) {
+				map.put("town", town);
+				if (day != null) {
+					map.put("day", day);
 				}
 			}
-		
-		
-		
-		
+		}
 		return bdao.movieSelectAction(map);
 
 	}
-	
 
 	@ResponseBody
 	@RequestMapping(value = "selectSeatList.do")
-	public List<BookVO> seatSelectAction(String town, String day, String movie ,String time) { 
+	public List<BookVO> seatSelectAction(String town, String day, String movie, String time) {
 		System.out.println(town + " " + day + "  " + movie + " " + time);
 		HashMap<String, Object> mapSeat = new HashMap<String, Object>();
-		mapSeat.put("town",town);
-		mapSeat.put("day",day);
-		mapSeat.put("movie",movie);
-		mapSeat.put("time",time);
+		mapSeat.put("town", town);
+		mapSeat.put("day", day);
+		mapSeat.put("movie", movie);
+		mapSeat.put("time", time);
+		System.out.println(" ======== BOOKVO Î¶¨Ïä§Ìä∏ ======== ");
+		bdao.seatSelectAction(mapSeat);
+		
+		
 		System.out.println(bdao.seatSelectAction(mapSeat));
 		return bdao.seatSelectAction(mapSeat);
 	}
 
 	@ResponseBody
-	@RequestMapping( value = "insertBooking.do")
-	public String insertBooking(String time,String seat1,String seat2,String userId) { 
-		System.out.println( time +  " " + seat1 + " " + seat2 + " " + userId);
+	@RequestMapping(value = "insertBooking.do")
+	public String insertBooking(String time, String seat1, String seat2, String userId) {
+		System.out.println(time + " " + seat1 + " " + seat2 + " " + userId);
 		BookVO vo = new BookVO();
 		int numberTime = Integer.parseInt(time);
 		vo.setBookingTimeNo(numberTime);
 		vo.setBookingUserId(userId);
-		System.out.println("Ω√∞£«•≥—πˆ:" +vo.getBookingTimeNo());
-		System.out.println("¿Ø¿˙æ∆¿Ãµ:" +  vo.getBookingUserId());
-		
+		System.out.println("ÏãúÍ∞ÑÌëú ÎÑòÎ≤Ñ:" + vo.getBookingTimeNo());
+		System.out.println("Ïú†Ï†ÄÏù¥Î¶Ñ:" + vo.getBookingUserId());
+
 		bdao.insertBooking(vo);
 		return "success!";
-		
-		
-	}
 
+	}
 
 }
