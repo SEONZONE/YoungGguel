@@ -19,9 +19,9 @@
 					var clickTown = "";
 					var clickMovie = "";
 					var clickTime = "";
-
 					var selectSeNo = "";
-					//선택된 좌석의 갯수를 저장하고 있는 변수
+					var bookingSeat =""; //선택한 영화시간표의 좌석 SE_NO
+ 					//선택된 좌석의 갯수를 저장하고 있는 변수
 					var choiceSeNo = (document.getElementsByClassName('choice'));
 
 					//시계
@@ -49,22 +49,15 @@
 
 					// 요일, 영화 눌리면 값 저장 
 					$(function () {
-						listMethod('/movie/nameList.do', {
-							select: 'movieList'
-						}, 'json', 'moiveName');
-						listMethod('/movie/nameList.do', {
-							select: 'cityList'
-						}, 'json', 'cityName');
-						listMethod('/movie/nameList.do', {
-							select: 'townList'
-						}, 'json', 'townName');
+						listMethod('/movie/nameList.do', {select: 'movieList'}, 'json', 'moiveName');
+						listMethod('/movie/nameList.do', {select: 'cityList'}, 'json', 'cityName');
+						listMethod('/movie/nameList.do', {select: 'townList'}, 'json', 'townName');
 						function listMethod(url, data, datatype, methodName) {
 							$.ajax({
 								url: url,
 								type: 'POST',
 								data: data,
 								dataType: datatype,
-
 								success: function (v) {
 									if (methodName == "moiveName") {
 										movieNameList(v);
@@ -82,12 +75,20 @@
 										for (var i = 1; i <= 10; i++) {
 											seatNameList(v, i);
 										}
+											seatMovieList(v);
 
 									}
 
 									else if (methodName == "insertBook") {
 										alert("예매가 성공되었습니다!!");
-										alert(v);
+										
+										//여태 저장했던 시간, 좌석, 영화, 영화관 정보들 초기화
+									    clickDate = "";
+										clickTown = "";
+										clickMovie = "";
+										clickTime = "";
+										selectSeNo = "";
+										bookingSeat =""; 
 									}
 
 								},
@@ -102,10 +103,7 @@
 						function movieNameList(v) {
 							var temp = "";
 
-							$
-								.each(
-									v,
-									function (index, dom) {
+							$.each(v,function (index, dom) {
 										temp += "<li>";
 										temp += "<button type=\"button\" class=\"btn\" >";
 										temp += "<span ><img src=\"/movie/view/img/" + dom.watchGradeNm + ".png\"></span> <span id=\"movieNameList\">"
@@ -150,20 +148,6 @@
 							evtbind();
 						}
 
-						/* 클릭시 값 저장 */
-						/* bind function */
-						function evtbind() {
-
-
-
-							$("span#movieNameList").click(function () {
-								clickMovie = $(this).text();
-								console.log(clickMovie);
-
-							});
-
-							evtbind();
-						}
 
 						/*  시간표 불러오기 */
 						function timeNameList(v) {
@@ -172,15 +156,14 @@
 							$.each(v, function (index, dom) {
 								tempTime += "<li >";
 								tempTime += "<button type=\"button\" class=\"time_btn\">";
-								tempTime += "<span id=\"bookingTimeNo\" hidden>"
-									+ dom.bookingTimeNo + "</span>";
-								tempTime += "<span class=\"time\">" + dom.bookingTimeStart
-									+ "</span> <span class=\"theater\">" + dom.bookingGwan
-									+ "</span> <span class=\"possible_now\">"
+								tempTime += "<span id=\"bookingTimeNo\" hidden>"+ dom.bookingTimeNo + "</span>";
+								tempTime += "<span class=\"time\">" + dom.bookingTimeStart	+ "</span> <span class=\"theater\">" + dom.bookingGwan
+								+ "</span> <span class=\"possible_now\">"
 									+ dom.bookingTheaterroomseat
 									+ "</span> <span class=\"all\">/ 20</span>";
 								tempTime += "</button>";
 								tempTime += "</li>";
+							
 
 							});
 							$("ul#selectTime").html(tempTime);
@@ -198,7 +181,7 @@
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
 										if (dom["bookingSeatNo" + i] == "t") {
-											//선택된 좌석은 검정색으로 class추가?
+											//선택된 좌석은 검정색으로 class추가
 											var seatSelect = "finish";
 										}
 										//선택 안된 좌석은 선택가능한 모습으로 
@@ -219,7 +202,7 @@
 						var k = 350;
 						/* 좌석 불러오기 (뿌려지는것)*/
 						function seatNameList(v, i) {
-
+							
 							$.each(v,function (index, dom) {
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
@@ -236,6 +219,30 @@
 							$(".seat_row_wrapping").html(tempSeat);
 							evtbind();
 						}
+						
+						// 좌석에서 영화정보 불러오기
+						function seatMovieList(v) { 
+							
+						    var sideInfoTemp = ""; //예매 시 오른쪽 정보
+						    var sidePoster =""; //예매 시 오른쪽 정보에 관한 포스터
+							$.each(v,function(index, dom) {   
+								bookingSeat = dom.bookingSeat; //해당 영화에 관한 좌석 SE_NO를 담는다.
+								sidePoster += "<img src=\"/movie/view/img/"+ dom.bookingMovieNo+".jpg\" style=\"width: 170px; margin-left: 20px; margin-top: 20px;\">";
+								sideInfoTemp += "<div style=\"border-bottom: 0.1mm solid #d0d0d0; padding: 10px 10px 20px 0px; color: #ffffff; font-size: 15pt;\">";
+								sideInfoTemp += "<img src=\"/movie/view/img/"+ dom.bookingWatchgradenm+".png\" style=\"width: 15px; margin-right: 5px;\">" + dom.bookingMovieName + " </div>";
+								sideInfoTemp += "<div style=\"padding-top: 20px; color: #bdbec4; font-size: 13pt;\">상영일시: " + dom.bookingDate+ "</div>";
+								sideInfoTemp += "<div style=\"color: #bdbec4; font-size: 13pt;\">시작시간: "+ dom.bookingTimeStart+"</div>";
+								sideInfoTemp += "<div style=\"color: #bdbec4; font-size: 13pt;\"> 상영관: "+dom.bookingTown +" </div>";
+								sideInfoTemp += "<div style=\"padding-bottom: 30px; color: #bdbec4; font-size: 13pt;\">성인</div>";
+								sideInfoTemp += "<span style=\"color: #bdbec4; font-size: 13pt\">최종결제금액</span> ";
+								sideInfoTemp += "<span style=\"color: #49addc; font-size: 13pt; font-weight: bold;\"> 20000원</span>"; 
+							});
+							$(".show_box_right").html(sideInfoTemp);
+							$(".show_box_left").html(sidePoster);
+							
+						
+						
+						}
 
 						/* 클릭시 값 저장 */
 						/* bind function */
@@ -243,12 +250,15 @@
 
 							$("span#movieNameList").click(function () {
 								clickMovie = $(this).text();
+								
+								$("#movieClick").addClass("barclick");
 								console.log(clickMovie);
 
 							});
 
 							$("span#dayList").click(function () {
-								clickDate = $(this).text();
+								clickDate = $(this).text();	
+								$("#dayClick").addClass("barclick");
 								console.log(clickDate);
 
 							});
@@ -256,22 +266,30 @@
 							$("span#townNameList").click(function () {
 								clickTown = $(this).text();
 								console.log(clickTown);
+								
+								$("#teatherClick").addClass("barclick");
 								allClickEvent();
 							});
-
+							
 							$(".time_btn").click(function () {
 								clickTime = $(this).find("#bookingTimeNo").text();
 								//clickTown = $(this).text();
 								console.log(clickTime);
 								$(".booking_selecter").addClass("hidden");
 								$(".seat_selecter").removeClass("hidden");
+								
+								
+								$("#timeClick").addClass("barclick");
 
 								allClickEvent();
 							});
 
-							/*좌석 선택은 3가지 상태가 존쟈
+							/*좌석 선택은 3가지 상태가 존재
 							  선택 전(common) 선택 중(choice) 선택 끝  */
 							$("button.seat_number").click(function () {
+								
+								
+								$("#seatClick").addClass("barclick");
 
 								//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
 								console.log(choiceSeNo);
@@ -314,13 +332,13 @@
 								console.log("id2값" + selectSeNo2.id);
 								console.log(selectSeNo1Name);
 								console.log(selectSeNo2Name);
-								insertBooking("two", selectSeNo1Name, selectSeNo2Name);
+								insertBooking("two", selectSeNo1Name, selectSeNo2Name,bookingSeat);
 							}
 							//하나 선택하면 2번째꺼가 언디파인드
 							else if (selectSeNo2 == undefined) {
 								selectSeNo1Name = "bookingSeatNo" + selectSeNo1.id;
 								console.log("좌석이 하나만 일때: " + selectSeNo1Name);
-								insertBooking("one", selectSeNo1Name);
+								insertBooking("one", selectSeNo1Name,bookingSeat);
 							}
 
 							/* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
@@ -331,22 +349,26 @@
 
 						});
 						// 선택된 좌석 수에 따른 예매 진행	
-						function insertBooking(seatCount, selectSeNo1Name, selectSeNo2Name) {
+						function insertBooking(seatCount, selectSeNo1Name, selectSeNo2Name,seatNo) {
 							var userId = "${id}";
 							console.log("insertBooking ::::" + seatCount);
-							console.log(selectSeNo1Name);
-							console.log(selectSeNo2Name);
+							console.log("selectSeNo1Name : " +  selectSeNo1Name);
+							console.log("selectSeNo2Name : "  + selectSeNo2Name);
+							
 
 							if (seatCount == "one") {
-								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, userId: userId }, 'json', 'insertBook');
+								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, userId: userId ,seatNo :selectSeNo2Name }, 'text', 'insertBook');
 							}
 							else if (seatCount == "two") {
-								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, seat2: selectSeNo2Name, userId: userId }, 'json', 'insertBook');
+								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, seat2: selectSeNo2Name, userId: userId ,seatNo :seatNo}, 'text', 'insertBook');
 							}
+							
+							
 						}
 
 						$("span#dayList").click(function () {
 							clickDate = $(this).text();
+							
 							console.log(clickDate);
 
 						});
@@ -354,6 +376,7 @@
 						$("span#townNameList").click(function () {
 							clickTown = $(this).text();
 							console.log(clickTown);
+							
 							allClickEvent();
 						});
 
@@ -376,8 +399,7 @@
 
 						/*시간표 앞3가지 요소들이 선택이 되었는지확인하는 함수*/
 						function allClickEvent() {
-							if (clickMovie != null && clickDate != null && clickTown != null
-								&& clickTime == "") {
+							if (clickMovie != null && clickDate != null && clickTown != null && clickTime == "") {
 
 								listMethod('/movie/selectBookList.do', {
 									day: clickDate,
@@ -385,8 +407,7 @@
 									movie: clickMovie
 								}, 'json', 'selectName');
 
-							} else if (clickMovie != null && clickDate != null
-								&& clickTown != null && clickTime != "") {
+							} else if (clickMovie != null && clickDate != null && clickTown != null && clickTime != "") {
 								console.log("clickTime = Notnull");
 								listMethod('/movie/selectSeatList.do', {
 									day: clickDate,
@@ -410,37 +431,36 @@
 				<div id="my_Bookmodal">
 					<!-- 상단 선택되면 불들어오는곳 -->
 					<div class="select_check">
-						<span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						<span id="dayClick"class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-								<path
-									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+								<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 날짜선택
-						</span> <span class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id="movieClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 영화선택
-						</span> <span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id ="teatherClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 극장선택
-						</span> <span class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id="timeClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 시간선택
-						</span> <span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span id ="seatClick" class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
 									d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
 							</svg> 좌석선택
-						</span> <span class="click"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						</span> <span class=""> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
 								<path
@@ -576,25 +596,26 @@
 							<span class="seat_info" style="margin-left: 20px;">정보</span>
 							<div class="show_box">
 								<div class="show_box_left">
-									<img src="/movie/view/img/pos1.png"
-										style="width: 170px; margin-left: 20px; margin-top: 20px;">
+									
 								</div>
 								<div class="show_box_right">
-									<div
+									<%-- <div
 										style="border-bottom: 0.1mm solid #d0d0d0; padding: 10px 10px 20px 0px; color: #ffffff; font-size: 15pt;">
-										<img src="/movie/view/img/19.png" style="width: 15px; margin-right: 5px;">모가디슈
+										<img src="/movie/view/img/19.png" style="width: 15px; margin-right: 5px;">${clickMovie}
 									</div>
-									<div style="padding-top: 20px; color: #bdbec4; font-size: 13pt;">2021.08.23(금)</div>
-									<div style="color: #bdbec4; font-size: 13pt;">10:20~11:50</div>
-									<div style="color: #bdbec4; font-size: 13pt;">월계 3관 / C1,C2</div>
+									<div style="padding-top: 20px; color: #bdbec4; font-size: 13pt;">2021.08.23(금)${clickDate }</div>
+									<div style="color: #bdbec4; font-size: 13pt;">${clickTime}</div>
+									<div style="color: #bdbec4; font-size: 13pt;">${clickTown } / C1,C2</div>
 									<div style="padding-bottom: 30px; color: #bdbec4; font-size: 13pt;">성인 2인</div>
 									<span style="color: #bdbec4; font-size: 13pt;">최종결제금액</span> <span
-										style="color: #49addc; font-size: 13pt; font-weight: bold;"> 20000원</span>
+										style="color: #49addc; font-size: 13pt; font-weight: bold;"> 20000원</span> --%>
 								</div>
 								<div id="pay_btn">결제하기</div>
 								<div id="rollback_btn">이전</div>
 							</div>
 						</div>
+						
+					
 					</div>
 				</div>
 			</body>

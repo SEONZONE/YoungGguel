@@ -23,7 +23,7 @@ public class BookVO {
 	   private String bookingSeat2;
 	 
 	   
-		/* 쩌쨘횁쩐횄횩째징쨔철�체 */
+		/* 성종 추가  */
 	   private String bookingTheaterroomseat;
 	   private String bookingGwan;
 	   private String bookingSeat;
@@ -34,8 +34,11 @@ public class BookVO {
 	   private int bookingTimeNo;
 	   private String bookingMovieCD;
 	   private String bookingUserId;
+	   private String bookingWatchgradenm;
 	   
-		/* 쩌쨘횁쩐 횁횂쩌짰 VO */
+	   
+		/* 좌석  VO */
+
 	   private String bookingSeatNo1;
 	   private String bookingSeatNo2;
 	   private String bookingSeatNo3;

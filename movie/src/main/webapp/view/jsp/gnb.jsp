@@ -104,9 +104,7 @@ var UUid = sessionStorage.getItem('Uid');
 										},
 										success : function(e) {
 											if (e == 'Fail') {
-												$("span#check")
-														.html(
-																"<font color = 'red'> 아이디 또는 비밀번호를 확인해 주세요</font>");
+												$("span#check").html("<font color = 'red'> 아이디 또는 비밀번호를 확인해 주세요</font>");
 												$("input#id").val('');
 												$("input#password").val('');
 
@@ -130,6 +128,7 @@ var UUid = sessionStorage.getItem('Uid');
 													$(".modal_close_btn").trigger('click');
 													
 												});
+												location.reload();
 												
 											}
 											// 일반 회원일 때
@@ -151,6 +150,7 @@ var UUid = sessionStorage.getItem('Uid');
 													
 												});
 
+											location.reload();	
 											}
 										},
 										error : function(e) {

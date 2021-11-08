@@ -3,7 +3,6 @@ package com.sist.movie.dao;
 import java.util.HashMap;
 import java.util.List;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +31,9 @@ public class BookDao extends SqlSessionDaoSupport {
 	public void insertBooking(BookVO vo) {
 		this.getSqlSession().insert("insertBooking", vo);
 	}
+
+	public void updateSeat(HashMap<String, Object> map) {
+		this.getSqlSession().update("updateSeat",map);
+	}
+
 }
-	
