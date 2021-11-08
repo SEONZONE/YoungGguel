@@ -11,7 +11,9 @@
 				<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 				<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17c69d1759be8f9c5557600113021042"></script>
 				<script type="text/javascript" src="/movie/resources/js/MovieJs.js"></script>
+				<script src="/movie/src/main/webapp/resources/loc.json" type="text/javascript"></script>
 
 				<script type="text/javascript">
 
@@ -23,6 +25,8 @@
 					var bookingSeat =""; //선택한 영화시간표의 좌석 SE_NO
  					//선택된 좌석의 갯수를 저장하고 있는 변수
 					var choiceSeNo = (document.getElementsByClassName('choice'));
+					var watchGram = ""; //관람등급
+				    var poster =""; // 포스터
 
 					//시계
 
@@ -81,14 +85,8 @@
 
 									else if (methodName == "insertBook") {
 										alert("예매가 성공되었습니다!!");
+										resultMovie(v);
 										
-										//여태 저장했던 시간, 좌석, 영화, 영화관 정보들 초기화
-									    clickDate = "";
-										clickTown = "";
-										clickMovie = "";
-										clickTime = "";
-										selectSeNo = "";
-										bookingSeat =""; 
 									}
 
 								},
@@ -226,6 +224,9 @@
 						    var sideInfoTemp = ""; //예매 시 오른쪽 정보
 						    var sidePoster =""; //예매 시 오른쪽 정보에 관한 포스터
 							$.each(v,function(index, dom) {   
+								watchGram =  dom.bookingWatchgradenm; //전역변수에 영화등급 저장 
+							    poster = dom.bookingMovieNo; //전역변수에 포스터 저장 
+
 								bookingSeat = dom.bookingSeat; //해당 영화에 관한 좌석 SE_NO를 담는다.
 								sidePoster += "<img src=\"/movie/view/img/"+ dom.bookingMovieNo+".jpg\" style=\"width: 170px; margin-left: 20px; margin-top: 20px;\">";
 								sideInfoTemp += "<div style=\"border-bottom: 0.1mm solid #d0d0d0; padding: 10px 10px 20px 0px; color: #ffffff; font-size: 15pt;\">";
@@ -242,6 +243,46 @@
 							
 						
 						
+						}
+						//영화 예매 결과화면 뿌려주기 좌석 화면 지우고 본 화면에 다시 뿌려주기
+						function resultMovie(v) { 
+							
+							var resultTemp = "";
+							$(".choice_seat").addClass("hidden");
+							$(".choice_person").addClass("hidden");
+							$("#pay_btn").addClass("hidden");
+							$("#rollback_btn").addClass("hidden");							
+							$(".seat_info").addClass("hidden");					
+							$(".kakaomap").removeClass("hidden");
+							
+							
+							
+							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+							mapOption = {
+								center : new kakao.maps.LatLng(37.56699614163593, 127.00760988334412), // 지도의 중심좌표
+								level : 3
+							// 지도의 확대 레벨
+							};
+							var markerPosition  = new kakao.maps.LatLng(37.56699614163593, 127.00760988334412); 
+							var marker = new kakao.maps.Marker({
+							    position: markerPosition
+							});
+							marker.setMap(map);
+
+							//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+							var map = new kakao.maps.Map(mapContainer, mapOption);
+							
+							//여태 저장했던 시간, 좌석, 영화, 영화관 정보들 초기화
+						    clickDate = "";
+							clickTown = "";
+							clickMovie = "";
+							clickTime = "";
+							selectSeNo = "";
+							bookingSeat =""; 
+							choiceSeNo = "";
+							watchGram = ""; //관람등급
+						    poster =""; // 포스터
+
 						}
 
 						/* 클릭시 값 저장 */
@@ -560,6 +601,7 @@
 							<!-- 2번 좌측 -->
 							<span class="seat_info">좌석선택</span>
 							<div class="choice_box">
+			
 								<div class="choice_person">
 									<div class="choice_old">성인</div>
 									<div class="count">
@@ -590,6 +632,8 @@
 									</div>
 
 								</div>
+								<div class="kakaomap hidden " id="map" style="width: 100%; height: 100%; "></div>
+								
 							</div>
 							<!-- 2번 좌측끝-->
 							<!-- 2번 우측-->
