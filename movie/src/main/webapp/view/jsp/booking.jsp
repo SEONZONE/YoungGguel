@@ -19,17 +19,9 @@
 					var clickTown = "";
 					var clickMovie = "";
 					var clickTime = "";
-
 					var selectSeNo = "";
-					
-					//좌석 선택 후 오른쪽 정보 
-					var summaryName ="";
-					var summaryPoster = "";
-					var summaryDate = "";
-					var summaryTheater ="";
-					var summaryTotalPrice ="";
-					
-					//선택된 좌석의 갯수를 저장하고 있는 변수
+					var bookingSeat =""; //선택한 영화시간표의 좌석 SE_NO
+ 					//선택된 좌석의 갯수를 저장하고 있는 변수
 					var choiceSeNo = (document.getElementsByClassName('choice'));
 
 					//시계
@@ -66,7 +58,6 @@
 								type: 'POST',
 								data: data,
 								dataType: datatype,
-
 								success: function (v) {
 									if (methodName == "moiveName") {
 										movieNameList(v);
@@ -90,7 +81,14 @@
 
 									else if (methodName == "insertBook") {
 										alert("예매가 성공되었습니다!!");
-										alert(v);
+										
+										//여태 저장했던 시간, 좌석, 영화, 영화관 정보들 초기화
+									    clickDate = "";
+										clickTown = "";
+										clickMovie = "";
+										clickTime = "";
+										selectSeNo = "";
+										bookingSeat =""; 
 									}
 
 								},
@@ -204,7 +202,7 @@
 						var k = 350;
 						/* 좌석 불러오기 (뿌려지는것)*/
 						function seatNameList(v, i) {
-
+							
 							$.each(v,function (index, dom) {
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
@@ -224,9 +222,11 @@
 						
 						// 좌석에서 영화정보 불러오기
 						function seatMovieList(v) { 
-						    var sideInfoTemp = "";
-						    var sidePoster ="";
+							
+						    var sideInfoTemp = ""; //예매 시 오른쪽 정보
+						    var sidePoster =""; //예매 시 오른쪽 정보에 관한 포스터
 							$.each(v,function(index, dom) {   
+								bookingSeat = dom.bookingSeat; //해당 영화에 관한 좌석 SE_NO를 담는다.
 								sidePoster += "<img src=\"/movie/view/img/"+ dom.bookingMovieNo+".jpg\" style=\"width: 170px; margin-left: 20px; margin-top: 20px;\">";
 								sideInfoTemp += "<div style=\"border-bottom: 0.1mm solid #d0d0d0; padding: 10px 10px 20px 0px; color: #ffffff; font-size: 15pt;\">";
 								sideInfoTemp += "<img src=\"/movie/view/img/"+ dom.bookingWatchgradenm+".png\" style=\"width: 15px; margin-right: 5px;\">" + dom.bookingMovieName + " </div>";
@@ -239,6 +239,8 @@
 							});
 							$(".show_box_right").html(sideInfoTemp);
 							$(".show_box_left").html(sidePoster);
+							
+						
 						
 						}
 
@@ -282,7 +284,7 @@
 								allClickEvent();
 							});
 
-							/*좌석 선택은 3가지 상태가 존쟈
+							/*좌석 선택은 3가지 상태가 존재
 							  선택 전(common) 선택 중(choice) 선택 끝  */
 							$("button.seat_number").click(function () {
 								
@@ -330,13 +332,13 @@
 								console.log("id2값" + selectSeNo2.id);
 								console.log(selectSeNo1Name);
 								console.log(selectSeNo2Name);
-								insertBooking("two", selectSeNo1Name, selectSeNo2Name);
+								insertBooking("two", selectSeNo1Name, selectSeNo2Name,bookingSeat);
 							}
 							//하나 선택하면 2번째꺼가 언디파인드
 							else if (selectSeNo2 == undefined) {
 								selectSeNo1Name = "bookingSeatNo" + selectSeNo1.id;
 								console.log("좌석이 하나만 일때: " + selectSeNo1Name);
-								insertBooking("one", selectSeNo1Name);
+								insertBooking("one", selectSeNo1Name,bookingSeat);
 							}
 
 							/* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
@@ -347,18 +349,21 @@
 
 						});
 						// 선택된 좌석 수에 따른 예매 진행	
-						function insertBooking(seatCount, selectSeNo1Name, selectSeNo2Name) {
+						function insertBooking(seatCount, selectSeNo1Name, selectSeNo2Name,seatNo) {
 							var userId = "${id}";
 							console.log("insertBooking ::::" + seatCount);
-							console.log(selectSeNo1Name);
-							console.log(selectSeNo2Name);
+							console.log("selectSeNo1Name : " +  selectSeNo1Name);
+							console.log("selectSeNo2Name : "  + selectSeNo2Name);
+							
 
 							if (seatCount == "one") {
-								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, userId: userId }, 'json', 'insertBook');
+								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, userId: userId ,seatNo :selectSeNo2Name }, 'text', 'insertBook');
 							}
 							else if (seatCount == "two") {
-								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, seat2: selectSeNo2Name, userId: userId }, 'json', 'insertBook');
+								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, seat2: selectSeNo2Name, userId: userId ,seatNo :seatNo}, 'text', 'insertBook');
 							}
+							
+							
 						}
 
 						$("span#dayList").click(function () {

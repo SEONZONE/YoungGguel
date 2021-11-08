@@ -38,6 +38,7 @@ public class BookVO {
 	   
 	   
 		/* 좌석  VO */
+
 	   private String bookingSeatNo1;
 	   private String bookingSeatNo2;
 	   private String bookingSeatNo3;
