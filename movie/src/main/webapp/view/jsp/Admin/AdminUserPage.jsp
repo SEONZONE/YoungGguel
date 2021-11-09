@@ -60,7 +60,7 @@
             <li><a href="#">유저관리</a></li>
             <li><a href="#">영화관리</a></li>
             <li><a href="#">시간표관리</a></li>
-            <li><a href="#">예매관리</a></li>
+            <li><a href="/movie/bookingControll.do">예매관리</a></li>
             <li><a href="#">문의하기</a></li>
             <li id="submenu-active"><a href="#">예비 html</a> <!-- Active -->
                <ul>
