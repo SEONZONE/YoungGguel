@@ -17,7 +17,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
        <typeAlias type="com.sist.movie.vo.ReviewVO" alias="review"/>
        <typeAlias type="com.sist.movie.vo.ActorVO" alias="actor"/>
        <typeAlias type="com.sist.movie.vo.ProductVO" alias="Product"/>
-
+       <typeAlias type="com.sist.movie.vo.HeartVO" alias="Heart"/>
+       
     </typeAliases>
    
     
@@ -31,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="com/sist/movie/dao/StoreMapper.xml"/>
       <mapper resource="com/sist/movie/dao/TheaterMapper.xml"/>
       <mapper resource="com/sist/movie/dao/UserMapper.xml"/>
-
+      <mapper resource="com/sist/movie/dao/HeartMapper.xml"/> 
       
     </mappers>
 </configuration>
