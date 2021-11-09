@@ -17,7 +17,9 @@ public class MovieVO {
    private String movieNmEn;
    private int showTm;
    private String openDt;
+   private String endDt;
    private String contents;
+   private String contents_s;
    private String prdtStatNm;
    private String nations;
    private String genre;

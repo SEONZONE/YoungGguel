@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="EUC-KR">
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="/movie/view/css/adminPage.css">
@@ -51,31 +50,7 @@
   --> 
 <div class="wrapper">
   <div class="one">
-<h1>영화테이블넣기</h1>
-<form action="/movie/insert_movie.do"method="GET" id="movie_form">
-<span><!-- <input type="hidden" placeholder="영화번호를 입력하시오" name="movie_no"> --></span>
-<!-- <span><input type="text" placeholder="제목을 입력하시오" name="movie_no"></span>
- --><div><input type="text" placeholder="제목을 입력하시오" name="moviecd"></div>
-<div><input type="text" placeholder="제목를 고르세요" name="movieNm"></div>
-<div><input type="text" placeholder="영어제목을 입력하시오" name="movieNmEn"></div>
-<div><input type="text" placeholder="러닝타임을 입력하시오" name="showTm"></div>
-<div><input type="date" placeholder="개봉일을 입력하시오" name="openDt"></div>
 
-<div><input type="text" placeholder="줄거리을 입력하시오" name="contents"></div>
-<div><input type="text" placeholder="개봉상태을 입력하시오" name="prdtStatNm"></div>
-<div><input type="text" placeholder="국가을 입력하시오" name="nations"></div>
-<div><input type="text" placeholder="장르를 입력하시오" name="genre"></div>
-<div><input type="text" placeholder="감독명을 입력하시오" name="directors"></div>
-
-<div><input type="text" placeholder="배우을 입력하시오" name="actors"></div>
-<div><input type="text" placeholder="제한연령을 입력하시오" name="watchGradeNm"></div>
-<div><input type="text" placeholder="회사를 입력하시오" name="companys"></div>
-
-<button id="insert_movie">영화 넣기</button>
-</form>
-
-<div> </div>
-<!--  form1 끝 -->
 </div>
   <div class="two">
 
@@ -144,10 +119,78 @@
  </form>	
  <!-- form7 끝 --></div>
 </div>
+<button id="selectUser"><a href="/movie/selectUser.do">유저 테이블 가져오기</a></button>
 
 
+<table class="nostyle">
 
- 
-<jsp:include page="../footer.jsp" ></jsp:include> -
+				<tr>
+					<th>번호</th>
+					<th>체크</th>
+				    <th>유저 ID</th>
+				    <th>유저 비밀번호</th>
+				    <th>이름</th>
+				    <th>핸드폰 번호</th>
+				    <th>유저 생일</th>
+				    <th>유저 이메일</th>
+				    <th>성별</th>
+				    <th>수정</th>
+				    <th>삭제<th>
+				</tr>
+				<c:forEach var="i" items="${AllUserList}" varStatus="cnt">
+				<tr>
+					<td><c:out value="${cnt.count }"/></td>
+					<td><input type="radio" VALUE="${i.USERID }"></td>
+				    <td>${i. USERID}</td>
+				    <td>${i. USERPW}</td>
+				    <td>${i. USERNAME}</td>
+				    <td>${i. USERTEL}</td>
+				    <td>${i. USERBIRTH}</td>
+				    <td>${i. USEREMAIL}</td>
+				    <td>${i. USERGENDER}</td>
+				    <td><input type="button" value="수정"></td>
+				    <td><input type="button" value="삭제"></td>
+				  
+				</tr>
+			</c:forEach>
+			</table>
+
+			
+<button id="selectStore"><a href="/movie/SelectAllProduct.do">상품 테이블 가져오기</a></button>
+ <table class="nostyle">
+
+				<tr>
+					<th>번호</th>
+					<th>체크</th>
+					<th>상품코드</th>
+					<th>제품명</th>
+					<th>제품 구성품</th>
+				    <th>가격</th>
+				    <th>카테고리</th>
+				    <th>이미지</th>
+				    <th>판매율</th>
+				    <th>수정<th>
+				    <th>삭제<th>
+				</tr>
+
+				<c:forEach var="i" items="${AllProductList }" varStatus="cnt">
+				<tr>
+					<td><c:out value="${cnt.count }"/></td>
+					<td><input type="radio" VALUE="${i.PNO}"></td>
+				    <td>${i. PNO}</td>
+				    <td>${i. PNAME}</td>
+				    <td>${i. PCONTENTS}</td>
+				    <td>${i. PPRICE}</td>
+				    <td>${i. PCATEGORY}</td>
+				    <td>${i. PIMG}</td>
+				    <td>${i. PSALESRATE}</td>
+				    
+				    <td><input type="button" value="수정"></td>
+				    <td><input type="button" value="삭제"></td>
+				  
+				</tr>
+			</c:forEach>
+			</table> 
+<jsp:include page="../footer.jsp" ></jsp:include> 
 </body>
 </html>

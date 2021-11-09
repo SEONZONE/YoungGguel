@@ -4,18 +4,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.movie.dao.AdminMapper"><!-- 매퍼네임스페이스랑 config의 매퍼이름일치시킬것 -->
 <!-- 유저관련 -->
-<select id="AdminselectAllUser">
-SELECT USERID,USERPW,USERNAME,USERTEL,USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY FROM USER_INFO;
+
+<!-- 전체 유저 정보 조회 -->
+<select id="AdminSelectAllUser" resultType="user">
+SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY FROM USER_INFO
 </select>
-<!-- 유저 정보 변경 PW-->
-<update id="AdminupdateUser">
-UPDATE USER_INFO SET USERPW=#{VALUE}
+<!-- 선택한 1명의 유저 정보 조회 -->
+<select id="selectOneUser" resultType="user" parameterType="String">
+SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY 
+FROM USER_INFO
+WHERE USERID=#{VALUE}
+</select>
+<!-- 선택한 1명의 유저 정보 삭제 -->
+<select id="deleteUser" parameterType="String">
+DELETE FROM USER_INFO WHERE USERID=#{VALUE}
+</select>
+
+<!-- 어드민에서 유저 정보 변경 -->
+<update id="AdminupdateUser" parameterType="user">
+UPDATE USER_INFO SET USERPW=#{USERPW}, USERNAME=#{USERNAME}, USERTEL=#{USERTEL}, USERBIRTH=#{USERBIRTH}, USEREMAIL=#{USEREMAIL}, USERGENDER=#{USERGENDER}
+WHERE USERID=#{USERID}
 
 </update>
+
 <!-- 해당 유저 삭제 -->
 <delete id="AdmindeleteUser">
 DROP FROM USER_INFO WHERE=#{VALUE}
 </delete>
+<!-- 유저관련 끝-->
+
+<!-- 영화관련 -->
+<!--  영화 테이블 전체 조회 -->
+<select id="SelectAllMovie" resultType="movieList">
+SELECT MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,
+TO_CHAR(OPENDT,'YYYY/MM/DD') AS OPENDT,
+TO_CHAR(ENDDT,'YYYY/MM/DD') AS ENDDT,
+SUBSTR(CONTENTS,1,10) as CONTENTS_s,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS
+FROM MOVIE
+</select>
+<!-- 영화 테이블 업데이트 -->
+<!-- <update id="updateMovie">
+UPDATE MOVIE SET MOVIECD=#{},,,,,
+WHERE MOVIECD=#{}
+</update> -->
+<!-- 영화 인포넣는법 -->
+<insert id="insertMovie_info" parameterType="movieList">
+ INSERT INTO MOVIE (MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,OPENDT,ENDDT,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS)
+ VALUES(MOVIE_INFO_SEQ.NEXTVAL,#{movieNm},#{movieNmEn},#{showTm},#{openDt},#{endDt},#{contents},#{prdtStatNm},#{nations},#{genre},#{directors},#{actors},#{watchGradeNm},#{companys})
+ </insert>
+ 
+ <!-- 상품 테이블 관련 -->
+<!--  전체 제품 테이블  조회 -->
+<select id="SelectAllProduct" resultType="Product">
+SELECT PNO,PNAME,PCONTENTS,PPRICE,PCATEGORY,PIMG,PSALESRATE 
+FROM PRODUCT
+</select>
+
 <!-- 글 작성시에 글번호NO 증가시켜주는 SQL -->
 <select id="getSequence" resultType="java.lang.Integer">
     SELECT MOVIE_INFO_SEQ.NEXTVAL FROM DUAL
@@ -24,11 +68,7 @@ DROP FROM USER_INFO WHERE=#{VALUE}
      SELECT ASK_NO_SEQ.NEXTVAL FROM DUAL
 </select> 
 
-<!-- 영화 인포넣는법 -->
-<insert id="insertMovie_info" parameterType="movieList">
- INSERT INTO MOVIE (MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,OPENDT,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS)
- VALUES(MOVIE_INFO_SEQ.NEXTVAL,#{movieNm},#{movieNmEn},#{showTm},#{openDt},#{contents},#{prdtStatNm},#{nations},#{genre},#{directors},#{actors},#{watchGradeNm},#{companys})
- </insert>
+
  
  
 

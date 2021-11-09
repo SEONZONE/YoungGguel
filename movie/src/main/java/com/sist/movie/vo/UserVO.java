@@ -20,5 +20,5 @@ public class UserVO {
    private int USERTEL;
    private String USERBIRTH;
    private String USEREMAIL;
-
+   private String USERVERIFY;  
 }
