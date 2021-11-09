@@ -105,22 +105,29 @@ public class BookingController {
 			changeSeat.put("seat1", seat1);
 			changeSeat.put("seat2", seat2);
 
-		}
-		else changeSeat.put("seat1", seat1);
+		} else
+			changeSeat.put("seat1", seat1);
 
 		System.out.println(" ======== Map 리스트 ======== ");
 		System.out.println("Map리스트: " + changeSeat);
-
 
 		System.out.println("시간표 넘버:" + vo.getBookingTimeNo());
 		System.out.println("유저이름:" + vo.getBookingUserId());
 
 		bdao.updateSeat(changeSeat);
 		bdao.insertBooking(vo);
-		
-		
+
 		return "success!";
 
+	}
+
+	// 위치 위도, 경도 불러오기 
+	@ResponseBody
+	@RequestMapping(value = "selectLocation.do")
+	public List<BookVO> selectLocation(String location) {
+		System.out.println(" 타운이름 : "+location);
+		System.out.println(bdao.selectLocation(location));
+		return bdao.selectLocation(location);
 	}
 
 }

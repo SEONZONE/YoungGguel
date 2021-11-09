@@ -13,9 +13,12 @@
 <script type="text/javascript">
 	$(function() {
 
-		alert(loc);
+		
+		location();
 		
 	});
+	
+
 </script>
 </head>
 <body>

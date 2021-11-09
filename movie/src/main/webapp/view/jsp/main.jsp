@@ -77,6 +77,7 @@
             hover+="<div class=\"main_hover_btn\">예매하기</div>";
              hover+="<div class=\"main_hover_like\">🤍</div>";
              hover+="<div class=\"main_hover_like_on hidden\">🧡</div>";
+             
              hover+="</div>";
              hover+="</div>";           
                hover+="</div>";

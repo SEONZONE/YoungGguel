@@ -99,14 +99,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="updateSeat" parameterType="java.util.HashMap">
 		<if test="seat2 != null">
-			UPDATE SEAT SET ${seat1} ='t',${seat2} ='t' WHERE SE_NO = #{seatNo}
+			UPDATE SEAT SET ${seat1} ='t',${seat2} ='t' WHERE SE_NO =
+			#{seatNo}
 		</if>
-		
-			UPDATE SEAT SET ${seat1} ='t' WHERE SE_NO = #{seatNo}
-		
 
-
+		UPDATE SEAT SET ${seat1} ='t' WHERE SE_NO = #{seatNo}
 	</update>
+
+	<select id="selectLocation" parameterType="String" resultType="booking">
+		SELECT LOC_NAME as locName, LOC_LAT as locLat,LOC_LNG as locLng FROM LOC
+		WHERE LOC_NAME = #{locName}
+	</select>
+
 </mapper>
 
 

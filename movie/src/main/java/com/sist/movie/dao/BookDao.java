@@ -35,5 +35,9 @@ public class BookDao extends SqlSessionDaoSupport {
 	public void updateSeat(HashMap<String, Object> map) {
 		this.getSqlSession().update("updateSeat",map);
 	}
+	
+	public List<BookVO> selectLocation(String locName) { 
+		return this.getSqlSession().selectList("selectLocation",locName);
+	}
 
 }

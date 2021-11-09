@@ -59,6 +59,11 @@ public class BookVO {
 	   private String bookingSeatNo18;
 	   private String bookingSeatNo19;
 	   private String bookingSeatNo20;
+	   
+		/* 위치 경도/위도 */
+	   private String locName;
+	   private String locLat;
+	   private String locLng;
 	  
 	   
 	}

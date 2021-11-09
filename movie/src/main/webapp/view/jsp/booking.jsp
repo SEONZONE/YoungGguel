@@ -88,6 +88,13 @@
 										resultMovie(v);
 										
 									}
+									else if (methodName == "location") {
+										console.log("위도/경도를 불러왔습니다.")
+										resultLocation(v);
+										
+									}
+									
+									
 
 								},
 								error: function (e) {
@@ -247,6 +254,7 @@
 						//영화 예매 결과화면 뿌려주기 좌석 화면 지우고 본 화면에 다시 뿌려주기
 						function resultMovie(v) { 
 							
+							listMethod('/movie/selectLocation.do', {location: clickTown }, 'json', 'location');
 							var resultTemp = "";
 							$(".choice_seat").addClass("hidden");
 							$(".choice_person").addClass("hidden");
@@ -255,23 +263,7 @@
 							$(".seat_info").addClass("hidden");					
 							$(".kakaomap").removeClass("hidden");
 							
-							
-							
-							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-							mapOption = {
-								center : new kakao.maps.LatLng(37.56699614163593, 127.00760988334412), // 지도의 중심좌표
-								level : 3
-							// 지도의 확대 레벨
-							};
-							var markerPosition  = new kakao.maps.LatLng(37.56699614163593, 127.00760988334412); 
-							var marker = new kakao.maps.Marker({
-							    position: markerPosition
-							});
-							marker.setMap(map);
-
-							//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-							var map = new kakao.maps.Map(mapContainer, mapOption);
-							
+						
 							//여태 저장했던 시간, 좌석, 영화, 영화관 정보들 초기화
 						    clickDate = "";
 							clickTown = "";
@@ -283,6 +275,34 @@
 							watchGram = ""; //관람등급
 						    poster =""; // 포스터
 
+						}
+						
+						// 위도/경도 가져와서 지도에 뿌리기
+						function resultLocation(v) { 
+							
+							$.each(v,function(index,dom) { 
+								/* alert(dom.locName);
+								alert(dom.locLat);
+								alert(dom.locLng);
+								 */							
+								var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+								mapOption = {
+								center : new kakao.maps.LatLng(dom.locLat, dom.locLng), // 지도의 중심좌표
+								level : 3
+								// 지도의 확대 레벨
+								};
+						
+
+						//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+								var map = new kakao.maps.Map(mapContainer, mapOption);
+						
+						
+								var markerPosition  = new kakao.maps.LatLng(dom.locLat,dom.locLng); 
+								var marker = new kakao.maps.Marker({
+						  		  position: markerPosition
+								});
+								marker.setMap(map);
+							});
 						}
 
 						/* 클릭시 값 저장 */
