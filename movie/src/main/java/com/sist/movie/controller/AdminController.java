@@ -1,6 +1,7 @@
 package com.sist.movie.controller;
 
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,18 +43,48 @@ public class AdminController {
 	@RequestMapping(value="admin/selectOneUser.do")
 	@ResponseBody
 	public List<UserVO> selectOneUserInfo(Model model,String userId) {
-		System.out.println(userId);
 		model.addAttribute("OneUserInfo", Adao.selectOneUser(userId));
-		System.out.println(Adao.selectOneUser(userId));
 		return Adao.selectOneUser(userId);
 	}
 	//유저 정보 변경
+	@ResponseBody
 	@RequestMapping(value="admin/UpdateUser.do")
-	public String UpdateUserAction(HashMap<String,Object> map,UserVO vo) {
-		 Adao.updateUser(vo);
+	//public String UpdateUserAction(HashMap<String, Object> map) {
+	public String UpdateUserAction(String UID,String UPW,String UTEL,String UNAME,String UEMAIL,String UBIRTH,String UGENDER) {
+		System.out.println(UID + " "  +UPW + " "  +  UTEL + " "  +  UNAME + " "  +  UEMAIL+ " "  +   UBIRTH+ " "  + UGENDER);
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("USERID", UID);
+		map.put("USERPW", UPW);
+		map.put("USERTEL", UTEL);
+		map.put("USERNAME", UNAME);
+		map.put("USERBIRTH", UBIRTH);
+		map.put("USEREMAIL", UEMAIL);
+		map.put("USERGENDER", UGENDER);
+		
+//		System.out.println(map); 
+		Adao.updateUser(map);
 		return "view/jsp/Admin/AdminUserPage";
 	}
-	//유저 삭제
+
+	/*
+	 * @RequestMapping(value="admin/UpdateUser.do") public String
+	 * UpdateUserAction(@RequestParam("USERID_sub") String
+	 * USERID,@RequestParam("USERPW_sub") String
+	 * USERPW,@RequestParam("USERNAME_sub") String
+	 * USERNAME,@RequestParam("USERTEL_sub") String
+	 * USERTEL,@RequestParam("USERBIRTH_sub") String USERBIRTH,
+	 * 
+	 * @RequestParam("USEREMAIL_sub") String
+	 * USEREMAIL,@RequestParam("USERGENDER_sub") String USERGENDER) {
+	 * //@RequestParam("USERID") String USERID\ System.out.println("asd");
+	 * HashMap<String,Object> map=new HashMap<String,Object>(); map.put("USERID",
+	 * USERID); map.put("USERPW", USERPW); map.put("USERTEL", USERNAME);
+	 * map.put("USERBIRTH", USERTEL); map.put("USEREMAIL", USERBIRTH);
+	 * map.put("USERGENDER", USERGENDER);
+	 * 
+	 * System.out.println(map); //Adao.updateUser(map); return
+	 * "view/jsp/Admin/AdminUserPage"; }
+	 */	//유저 삭제
 	@RequestMapping(value="admin/deleteUser.do")
 	public String DeleteUserAction(String userId) {
 		Adao.deleteUser(userId);

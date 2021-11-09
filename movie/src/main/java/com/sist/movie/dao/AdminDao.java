@@ -56,8 +56,8 @@ public class AdminDao extends SqlSessionDaoSupport {
 		this.getSqlSession().insert("insertMovie_info",vo);
 	}
 	//유저 정보 변경(업데이트)
-	public void updateUser(UserVO vo) {
-		this.getSqlSession().update("AdminupdateUser",vo);
+	public void updateUser(HashMap<String,Object> map) {
+		this.getSqlSession().update("AdminupdateUser",map);
 	}
 	// 占쏙옙占싸울옙占쏙옙 占썰변占싼곤옙 占쏙옙호占신깍옙占�
 	public Integer getAdminAskSequence() {

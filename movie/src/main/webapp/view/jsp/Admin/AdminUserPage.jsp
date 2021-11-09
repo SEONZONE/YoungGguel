@@ -30,7 +30,13 @@
 <title>영끌 관리자</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-
+var USERID="";
+var USERPW="";
+var USERTEL="";
+var USERNAME="";
+var USERBIRTH="";
+var USEREMAIL="";
+var USERGENDER="";
 	  //버튼 클릭시 해당하는 아이디 받아오기
   $(function(){
 	  
@@ -39,54 +45,108 @@
 			  imsi=$("input#ckbtn").val();
 			  alert(imsi);
 			});   */
-		     
-
+			
+			
+			
+		// 수정 버튼
 			 $(document).on('click', '#modifyUser', function(){
-				 imsi=$("input[name=USERID").val();
-				 alert(imsi);
-				   UserList('/movie/admin/selectOneUser.do',{userId:imsi},'json');
+				 
+				 $("input[name='ckbtn1']:checked").each(function(){
+						imsi="";
+						 var imsi = $(this).val();
+						 alert(imsi);
+					
+				   UserList('/movie/admin/selectOneUser.do',{userId:imsi},'json','modify');
+				 });
 
 			  });
-		//수정 완료 버튼 (폼 제출)
+		
+		
+				//수정 완료 버튼 (폼 제출)
+		 $(document).on('click', '#commitmodifyMovie', function(){
+			 
+			 //var user_list;
+			 
+			 userid=$("input[name=USERID_sub]").val();
+			  userpw=$("input[name=USERPW_sub]").val();
+			    usertel=$("input[name=USERTEL_sub]").val();
+			    username=$("input[name=USERNAME_sub]").val();
+			    userbirth=$("input[name=USERBIRTH_sub]").val();
+			   useremail=$("input[name=USEREMAIL_sub]").val();
+			    usergender=$("input[name=USERGENDER_sub]").val();
+			    
+			    /* user_list.push(userid);
+			    user_list.push(userpw);
+			     user_list.push(usertel);
+			    user_list.push(username);
+			    user_list.push(userbirth);
+			    user_list.push(useremail);
+			    user_list.push(usergender); */
+			    
+			    alert(userid);
+			   
+ 			// UserList('/movie/admin/UpdateUser.do',{USERID:userid,USERPW:userpw,USERTEL:usertel,USERNAME:username,USERBIRTH:userbirth,USEREMAIL:useremail,USERGENDER:usergender},'json');
+ 			 UserList('/movie/admin/UpdateUser.do',
+ 					{
+ 					UID:userid,
+ 					UPW:userpw,
+ 					UTEL:usertel,
+ 					UNAME:username,
+ 					UBIRTH:userbirth,
+ 					UEMAIL:useremail,
+ 					UGENDER:usergender
+					},
+ 					 'json','commitmodi');
+			alert(UID);
 			
+		 });
+		
+		//삭제 버튼
 			  $(document).on('click', '#deleteUser', function(){
 				  var imsi2="";
-				  imsi2=$("input#ckbtn").val();
-				   console.log(imsi);
-				   UserList('/movie/admin/deleteUser.do',{userId:imsi},'json');
+				  
+				  imsi=$("input#ckbtn:checked").val();
+				   console.log(imsi2);		   
+				   
+				   UserList('/movie/admin/deleteUser.do',{},'json');
 			  });
-	   function UserList(url,data,dataType){
+		
+	   function UserList(url,data,dataType,methodName){
 		      $.ajax({
 					  url:url,
 		    		  type:'POST',
 		    		  data:data,
 		   			  dataType:dataType,				  
 		   			  success:function(v){
+		   				  if(methodName=="modify"){
 		   				showModifyData(v);
+		   				  }else if(methodName=="commitmodi"){
+		   					  alert('성공');
+		   				  }
 		   			  },
 		   			  error:function(e){
 		   				  console.log(e);
 	    			  }	    		  
 		   			  });	
 		      }
+	   
   	//버튼누르면 들어갈 AJAX 함수
 	    function showModifyData(v){
 		   var temp="";
     		var id;
-    		$.each(v,function(index,dom){ 
+    		$.each(v,function(index,dom){ //안녕하세요
     			var id = dom.userid;
-    			temp+=" <form>";
-    			temp+=" <td><input type=\"checkbox\" id=\"ckbtn\" value="+dom.userid+"></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERID\" value="+dom.userid+" ></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERPW\" value="+dom.userpw+" ></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERNAME\" value="+dom.username+" ></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERTEL\" value="+dom.usertel+"\"${i. USERTEL}\"></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERBIRTH\" value="+dom.userbirth+"></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USEREMAIL\" value="+dom.useremail+"></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERGENDER\" value="+dom.usergender+"></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"button\" id=\"commitmodifyMovie\" value=\"수정완료\"></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"button\" id=\"deleteMovie\"  value=\"삭제\"></td>";
-    			temp+=" </form>";
+    			temp+=" <td><img src=\"/movie/view/img/답변화살표.png\"></td>";
+    			/* temp+=" <td><input type=\"checkbox\" id=\"ckbtn\" value="+dom.userid+"></td>";*/
+    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERID_sub\" value="+dom.userid+" ></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERPW_sub\" value="+dom.userpw+" ></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERNAME_sub\" value="+dom.username+" ></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERTEL_sub\" value="+dom.usertel+"></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERBIRTH_sub\" value="+dom.userbirth+"></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USEREMAIL_sub\" value="+dom.useremail+"></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERGENDER_sub\" value="+dom.usergender+"></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"submit\" id=\"commitmodifyMovie\" value=\"수정완료\"></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"button\" id=\"deleteMovie\"  value=\"취소\"></td>";
     		$('tr[id="'+id+'"]').html(temp);
     		});
   } 
@@ -174,8 +234,8 @@
 				<c:forEach var="i" items="${AllUserList}" varStatus="cnt">
 				<tr>
 					<td><c:out value="${cnt.count }"/></td>
-					<td id="userForm_td"><input type="checkbox" VALUE="${i.USERID }" id="ckbtn1"></td>
-				    <td id="userForm_td">${i. USERID}</td>
+					<td id="userForm_td"><input type="checkbox" VALUE="${i.USERID }" name="ckbtn1"></td>
+				    <td id="userForm_td" name="USERID">${i. USERID}</td>
 				    <td id="userForm_td">${i. USERPW}</td>
 				    <td id="userForm_td">${i. USERNAME}</td>
 				    <td id="userForm_td">${i. USERTEL}</td>
@@ -185,10 +245,27 @@
 				    <td id="userForm_td"><input type="button" value="수정" id="modifyUser"></td>
 				    <td id="userForm_td"><input type="button" value="삭제" id="deleteUser"></td>
 				</tr>
-				<tr id="${i.USERID}">
-					<td>asd</td>
-				</tr>
+			
+					<tr id="${i.USERID}">
+					
+					</tr>
+				<%-- <form>
+					<input type="text" name="USERID" value="${i. USERID}" >
+				   <input type="text" name="USERPW" value="${i. USERPW}" >
+				    <input type="text" name="USERNAME" value="${i. USERNAME}" >
+				    <input type="text" name="USERTEL" value="${i. USERTEL}">
+				    <input type="text" name="USERBIRTH" value="${i. USERBIRTH}">
+				    <input type="text" name="USEREMAIL" value="${i. USEREMAIL}">
+				    <input type="text" name="USERGENDER" value="${i. USERGENDER}">
+				    <input type="button" id="commitmodifyMovie" value="수정완료">
+				    <input type="button"id="deleteMovie"  value="삭제">
+				    
+				</form> --%>
+		
+			
 				</c:forEach>
+				</table>
+				
 				<%-- 	 <td><c:out value="${cnt.count }"/></td>
 					 <td><input type="checkbox" id="ckbtn" VALUE="${i.USERID}"></td>
 				    <td id="userForm_td"><input type="text" name="USERID" value="${i. USERID}" ></td>
@@ -203,7 +280,7 @@
 				    
 				
 			
-			</table>
+			
 			<!-- Form -->
 			<h3 class="tit">Form</h3>
 			<fieldset>
