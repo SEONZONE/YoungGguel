@@ -11,7 +11,9 @@
 				<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 				<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17c69d1759be8f9c5557600113021042"></script>
 				<script type="text/javascript" src="/movie/resources/js/MovieJs.js"></script>
+				<script src="/movie/src/main/webapp/resources/loc.json" type="text/javascript"></script>
 
 				<script type="text/javascript">
 
@@ -19,18 +21,12 @@
 					var clickTown = "";
 					var clickMovie = "";
 					var clickTime = "";
-
 					var selectSeNo = "";
-					
-					//좌석 선택 후 오른쪽 정보 
-					var summaryName ="";
-					var summaryPoster = "";
-					var summaryDate = "";
-					var summaryTheater ="";
-					var summaryTotalPrice ="";
-					
-					//선택된 좌석의 갯수를 저장하고 있는 변수
+					var bookingSeat =""; //선택한 영화시간표의 좌석 SE_NO
+ 					//선택된 좌석의 갯수를 저장하고 있는 변수
 					var choiceSeNo = (document.getElementsByClassName('choice'));
+					var watchGram = ""; //관람등급
+				    var poster =""; // 포스터
 
 					//시계
 
@@ -66,7 +62,6 @@
 								type: 'POST',
 								data: data,
 								dataType: datatype,
-
 								success: function (v) {
 									if (methodName == "moiveName") {
 										movieNameList(v);
@@ -90,8 +85,16 @@
 
 									else if (methodName == "insertBook") {
 										alert("예매가 성공되었습니다!!");
-										alert(v);
+										resultMovie(v);
+										
 									}
+									else if (methodName == "location") {
+										console.log("위도/경도를 불러왔습니다.")
+										resultLocation(v);
+										
+									}
+									
+									
 
 								},
 								error: function (e) {
@@ -183,7 +186,7 @@
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
 										if (dom["bookingSeatNo" + i] == "t") {
-											//선택된 좌석은 검정색으로 class추가?
+											//선택된 좌석은 검정색으로 class추가
 											var seatSelect = "finish";
 										}
 										//선택 안된 좌석은 선택가능한 모습으로 
@@ -204,7 +207,7 @@
 						var k = 350;
 						/* 좌석 불러오기 (뿌려지는것)*/
 						function seatNameList(v, i) {
-
+							
 							$.each(v,function (index, dom) {
 										console.log(dom["bookingSeatNo" + i]);
 										var seatSelect = "";
@@ -224,9 +227,14 @@
 						
 						// 좌석에서 영화정보 불러오기
 						function seatMovieList(v) { 
-						    var sideInfoTemp = "";
-						    var sidePoster ="";
+							
+						    var sideInfoTemp = ""; //예매 시 오른쪽 정보
+						    var sidePoster =""; //예매 시 오른쪽 정보에 관한 포스터
 							$.each(v,function(index, dom) {   
+								watchGram =  dom.bookingWatchgradenm; //전역변수에 영화등급 저장 
+							    poster = dom.bookingMovieNo; //전역변수에 포스터 저장 
+
+								bookingSeat = dom.bookingSeat; //해당 영화에 관한 좌석 SE_NO를 담는다.
 								sidePoster += "<img src=\"/movie/view/img/"+ dom.bookingMovieNo+".jpg\" style=\"width: 170px; margin-left: 20px; margin-top: 20px;\">";
 								sideInfoTemp += "<div style=\"border-bottom: 0.1mm solid #d0d0d0; padding: 10px 10px 20px 0px; color: #ffffff; font-size: 15pt;\">";
 								sideInfoTemp += "<img src=\"/movie/view/img/"+ dom.bookingWatchgradenm+".png\" style=\"width: 15px; margin-right: 5px;\">" + dom.bookingMovieName + " </div>";
@@ -239,7 +247,62 @@
 							});
 							$(".show_box_right").html(sideInfoTemp);
 							$(".show_box_left").html(sidePoster);
+							
 						
+						
+						}
+						//영화 예매 결과화면 뿌려주기 좌석 화면 지우고 본 화면에 다시 뿌려주기
+						function resultMovie(v) { 
+							
+							listMethod('/movie/selectLocation.do', {location: clickTown }, 'json', 'location');
+							var resultTemp = "";
+							$(".choice_seat").addClass("hidden");
+							$(".choice_person").addClass("hidden");
+							$("#pay_btn").addClass("hidden");
+							$("#rollback_btn").addClass("hidden");							
+							$(".seat_info").addClass("hidden");					
+							$(".kakaomap").removeClass("hidden");
+							
+						
+							//여태 저장했던 시간, 좌석, 영화, 영화관 정보들 초기화
+						    clickDate = "";
+							clickTown = "";
+							clickMovie = "";
+							clickTime = "";
+							selectSeNo = "";
+							bookingSeat =""; 
+							choiceSeNo = "";
+							watchGram = ""; //관람등급
+						    poster =""; // 포스터
+
+						}
+						
+						// 위도/경도 가져와서 지도에 뿌리기
+						function resultLocation(v) { 
+							
+							$.each(v,function(index,dom) { 
+								/* alert(dom.locName);
+								alert(dom.locLat);
+								alert(dom.locLng);
+								 */							
+								var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+								mapOption = {
+								center : new kakao.maps.LatLng(dom.locLat, dom.locLng), // 지도의 중심좌표
+								level : 3
+								// 지도의 확대 레벨
+								};
+						
+
+						//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+								var map = new kakao.maps.Map(mapContainer, mapOption);
+						
+						
+								var markerPosition  = new kakao.maps.LatLng(dom.locLat,dom.locLng); 
+								var marker = new kakao.maps.Marker({
+						  		  position: markerPosition
+								});
+								marker.setMap(map);
+							});
 						}
 
 						/* 클릭시 값 저장 */
@@ -248,7 +311,7 @@
 
 							$("span#movieNameList").click(function () {
 								clickMovie = $(this).text();
-								$("#dayClick").removeClass("barclick");
+								
 								$("#movieClick").addClass("barclick");
 								console.log(clickMovie);
 
@@ -264,7 +327,7 @@
 							$("span#townNameList").click(function () {
 								clickTown = $(this).text();
 								console.log(clickTown);
-								$("#movieClick").removeClass("barclick");
+								
 								$("#teatherClick").addClass("barclick");
 								allClickEvent();
 							});
@@ -276,17 +339,17 @@
 								$(".booking_selecter").addClass("hidden");
 								$(".seat_selecter").removeClass("hidden");
 								
-								$("#teatherClick").removeClass("barclick");
+								
 								$("#timeClick").addClass("barclick");
 
 								allClickEvent();
 							});
 
-							/*좌석 선택은 3가지 상태가 존쟈
+							/*좌석 선택은 3가지 상태가 존재
 							  선택 전(common) 선택 중(choice) 선택 끝  */
 							$("button.seat_number").click(function () {
 								
-								$("#timeClick").removeClass("barclick");
+								
 								$("#seatClick").addClass("barclick");
 
 								//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
@@ -330,13 +393,13 @@
 								console.log("id2값" + selectSeNo2.id);
 								console.log(selectSeNo1Name);
 								console.log(selectSeNo2Name);
-								insertBooking("two", selectSeNo1Name, selectSeNo2Name);
+								insertBooking("two", selectSeNo1Name, selectSeNo2Name,bookingSeat);
 							}
 							//하나 선택하면 2번째꺼가 언디파인드
 							else if (selectSeNo2 == undefined) {
 								selectSeNo1Name = "bookingSeatNo" + selectSeNo1.id;
 								console.log("좌석이 하나만 일때: " + selectSeNo1Name);
-								insertBooking("one", selectSeNo1Name);
+								insertBooking("one", selectSeNo1Name,bookingSeat);
 							}
 
 							/* var selectSeNo1 = "bookingSeatNo"+choiceSeNo[0].id;
@@ -347,18 +410,21 @@
 
 						});
 						// 선택된 좌석 수에 따른 예매 진행	
-						function insertBooking(seatCount, selectSeNo1Name, selectSeNo2Name) {
+						function insertBooking(seatCount, selectSeNo1Name, selectSeNo2Name,seatNo) {
 							var userId = "${id}";
 							console.log("insertBooking ::::" + seatCount);
-							console.log(selectSeNo1Name);
-							console.log(selectSeNo2Name);
+							console.log("selectSeNo1Name : " +  selectSeNo1Name);
+							console.log("selectSeNo2Name : "  + selectSeNo2Name);
+							
 
 							if (seatCount == "one") {
-								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, userId: userId }, 'json', 'insertBook');
+								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, userId: userId ,seatNo :selectSeNo2Name }, 'text', 'insertBook');
 							}
 							else if (seatCount == "two") {
-								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, seat2: selectSeNo2Name, userId: userId }, 'json', 'insertBook');
+								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, seat2: selectSeNo2Name, userId: userId ,seatNo :seatNo}, 'text', 'insertBook');
 							}
+							
+							
 						}
 
 						$("span#dayList").click(function () {
@@ -555,6 +621,7 @@
 							<!-- 2번 좌측 -->
 							<span class="seat_info">좌석선택</span>
 							<div class="choice_box">
+			
 								<div class="choice_person">
 									<div class="choice_old">성인</div>
 									<div class="count">
@@ -585,6 +652,8 @@
 									</div>
 
 								</div>
+								<div class="kakaomap hidden " id="map" style="width: 100%; height: 100%; "></div>
+								
 							</div>
 							<!-- 2번 좌측끝-->
 							<!-- 2번 우측-->

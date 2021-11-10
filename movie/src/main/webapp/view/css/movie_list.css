@@ -204,3 +204,10 @@ a:hover { text-decoration: none;}
 .tit-area, .detail-area, .genre, .release {
    margin-bottom: 5px;   
 }
+.inner-wrap .movie_like {
+	width: 25px;
+	height: 25px;
+}
+.heart {
+	display: inline-block;
+}

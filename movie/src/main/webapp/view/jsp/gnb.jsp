@@ -104,9 +104,7 @@ var UUid = sessionStorage.getItem('Uid');
 										},
 										success : function(e) {
 											if (e == 'Fail') {
-												$("span#check")
-														.html(
-																"<font color = 'red'> 아이디 또는 비밀번호를 확인해 주세요</font>");
+												$("span#check").html("<font color = 'red'> 아이디 또는 비밀번호를 확인해 주세요</font>");
 												$("input#id").val('');
 												$("input#password").val('');
 
@@ -152,8 +150,8 @@ var UUid = sessionStorage.getItem('Uid');
 													
 												});
 
-											}
 											location.reload();	
+											}
 										},
 										error : function(e) {
 											alert('로그인 에러' + e);
