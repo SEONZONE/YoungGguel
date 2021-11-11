@@ -1,4 +1,4 @@
-package com.sist.paging;
+package com.sist.moviecrolling;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 public class OutputMain {
 	public static void main(String[] args) {
-		Article article=new Article(1,"2020-12-12/12:12:12","Á¦¸ñ","³»¿ë");
+		Article article=new Article(1,"2020-12-12/12:12:12","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½");
 		
 		String articleJson=article.toJson();
 		String fileName=article.getId()+".txt";
@@ -17,7 +17,7 @@ public class OutputMain {
 		try {
 			OutputStream output =new FileOutputStream("1.txt");
 			output.write(articleJson.getBytes());
-			//String srt="¿À´ÃÀº ³¯¾¾°¡ ÁÁ³×¿©";
+			//String srt="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×¿ï¿½";
 			
 		} catch (Exception e) {
 			// TODO: handle exception

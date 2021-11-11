@@ -1,16 +1,16 @@
-package com.sist.paging;
+package com.sist.moviecrolling;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-//ÆÄÀÏ ³Ö´Â°Í
+//ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â°ï¿½
 public class InputMain {
 	 public static void main(String[] args) {
 	        try{
-	        //ÆÄÀÏ °´Ã¼ »ý¼º
+	        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	        File file = new File("C:\\Users\\izp10\\1.txt");
-	         //ÀÔ·Â ½ºÆ®¸² »ý¼º
+	         //ï¿½Ô·ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	         FileReader file_reader = new FileReader(file);
 	         int cur = 0;
 	         while((cur = file_reader.read()) != -1){

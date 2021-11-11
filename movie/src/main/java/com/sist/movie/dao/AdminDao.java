@@ -29,15 +29,16 @@ public class AdminDao extends SqlSessionDaoSupport {
 	}
 	//선택한 유저 1명 분만 정보 조회
 	public List<UserVO> selectOneUser(String userId) {
-		System.out.println(userId);
 		System.out.println(this.getSqlSession().selectList("selectOneUser",userId));
 		return this.getSqlSession().selectList("selectOneUser",userId);
 	}
+	//유저 Id로 검색하기
+	public List<UserVO> SearchUserID(String userId){
+		return this.getSqlSession().selectList("SearchUserID",userId);
+	}
 	//선택한 유저 삭제
 	public void deleteUser(String userId) {
-		System.out.println(userId);
-		System.out.println(this.getSqlSession().selectList("deleteUser",userId));
-		this.getSqlSession().delete("deleteUser",userId);
+		this.getSqlSession().delete("AdmindeleteUser",userId);
 	}
 	//전체 영화 조회
 	public List<MovieVO> selectAllMovie() {

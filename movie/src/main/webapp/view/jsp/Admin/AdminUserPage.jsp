@@ -39,15 +39,13 @@ var USEREMAIL="";
 var USERGENDER="";
 	  //버튼 클릭시 해당하는 아이디 받아오기
   $(function(){
-	  
-	  /* 
-		      $('input#ckbtn').click(function(){
-			  imsi=$("input#ckbtn").val();
-			  alert(imsi);
-			});   */
-			
-			
-			
+	  //검색 버튼
+	  $('input#searchIdsubmit').click(function(){
+		  var searchId=$("input#searchUserId").val();
+			alert(searchId);
+		  //document.location.href='/movie/admin/SearchUserId.do?userId='+searchId;
+		  UserList('/movie/admin/SearchUserId.do',{userId:searchId},'json','searchuserID');
+	  });
 		// 수정 버튼
 			 $(document).on('click', '#modifyUser', function(){
 				 
@@ -62,10 +60,9 @@ var USERGENDER="";
 			  });
 		
 		
-				//수정 완료 버튼 (폼 제출)
+			//수정 완료 버튼 (폼 제출)
 		 $(document).on('click', '#commitmodifyMovie', function(){
 			 
-			 //var user_list;
 			 
 			 userid=$("input[name=USERID_sub]").val();
 			  userpw=$("input[name=USERPW_sub]").val();
@@ -75,17 +72,6 @@ var USERGENDER="";
 			   useremail=$("input[name=USEREMAIL_sub]").val();
 			    usergender=$("input[name=USERGENDER_sub]").val();
 			    
-			    /* user_list.push(userid);
-			    user_list.push(userpw);
-			     user_list.push(usertel);
-			    user_list.push(username);
-			    user_list.push(userbirth);
-			    user_list.push(useremail);
-			    user_list.push(usergender); */
-			    
-			    alert(userid);
-			   
- 			// UserList('/movie/admin/UpdateUser.do',{USERID:userid,USERPW:userpw,USERTEL:usertel,USERNAME:username,USERBIRTH:userbirth,USEREMAIL:useremail,USERGENDER:usergender},'json');
  			 UserList('/movie/admin/UpdateUser.do',
  					{
  					UID:userid,
@@ -97,20 +83,27 @@ var USERGENDER="";
  					UGENDER:usergender
 					},
  					 'json','commitmodi');
-			alert(UID);
-			
+			alert('변경 성공');
+			location.reload(true);
 		 });
 		
 		//삭제 버튼
 			  $(document).on('click', '#deleteUser', function(){
-				  var imsi2="";
 				  
-				  imsi=$("input#ckbtn:checked").val();
-				   console.log(imsi2);		   
-				   
-				   UserList('/movie/admin/deleteUser.do',{},'json');
+				  $("input[name='ckbtn1']:checked").each(function(){
+						delUser="";
+						 var delUser = $(this).val();
+						 alert(delUser);
+					
+						  UserList('/movie/admin/deleteUser.do',{userId:delUser},'json','deleteUser','deleteUser',);
+						  alert('삭제 성공');
+							location.reload(true);
+				 });
+				 
 			  });
 		
+			
+	 	
 	   function UserList(url,data,dataType,methodName){
 		      $.ajax({
 					  url:url,
@@ -119,13 +112,17 @@ var USERGENDER="";
 		   			  dataType:dataType,				  
 		   			  success:function(v){
 		   				  if(methodName=="modify"){
-		   				showModifyData(v);
+		   					showModifyData(v);
 		   				  }else if(methodName=="commitmodi"){
-		   					  alert('성공');
+		   					console.log(v);
+		   				  }else if(methodName=="deleteUser"){
+		   					console.log(v);
+		   				  }else if(methodName=="searchuserID"){
+		   					  showSearchData(v);
 		   				  }
 		   			  },
 		   			  error:function(e){
-		   				  console.log(e);
+		   				 console.log('에러');
 	    			  }	    		  
 		   			  });	
 		      }
@@ -136,8 +133,8 @@ var USERGENDER="";
     		var id;
     		$.each(v,function(index,dom){ //안녕하세요
     			var id = dom.userid;
+    			 temp+=" <td>"+index+"</td>";
     			temp+=" <td><img src=\"/movie/view/img/답변화살표.png\"></td>";
-    			/* temp+=" <td><input type=\"checkbox\" id=\"ckbtn\" value="+dom.userid+"></td>";*/
     			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERID_sub\" value="+dom.userid+" ></td>";
     			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERPW_sub\" value="+dom.userpw+" ></td>";
     			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERNAME_sub\" value="+dom.username+" ></td>";
@@ -146,32 +143,65 @@ var USERGENDER="";
     			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USEREMAIL_sub\" value="+dom.useremail+"></td>";
     			temp+=" <td id=\"userForm_td\"><input type=\"text\" name=\"USERGENDER_sub\" value="+dom.usergender+"></td>";
     			temp+=" <td id=\"userForm_td\"><input type=\"submit\" id=\"commitmodifyMovie\" value=\"수정완료\"></td>";
-    			temp+=" <td id=\"userForm_td\"><input type=\"button\" id=\"deleteMovie\"  value=\"취소\"></td>";
+    			temp+=" <td id=\"userForm_td\"><input type=\"button\" id=\"cancle\" onclick=\"history.back()\" value=\"취소\" ></td>";
     		$('tr[id="'+id+'"]').html(temp);
     		});
-  } 
-    
+  }; 
+  
+  	function showSearchData(v){
+  		console.log(v);
+  		var temp2="";
+  		var temp3="";
+  		/* $.each(function(){
+  		
 		
+  		}) */
+  		temp3+="<tr id=\"asd123333\">";
+  		temp3+="<th id=\"userForm_th2\">번호</th>";
+	  		temp3+="<th id=\"userForm_td\">체크</th>";
+	  		temp3+="<th id=\"userForm_td\">유저 ID</th>";
+	  		temp3+="<th id=\"userForm_td\">유저 비밀번호</th>";
+	  		temp3+="<th id=\"userForm_td\">이름</th>";
+	  		temp3+="<th id=\"userForm_td\">핸드폰 번호</th>";
+	  		temp3+="<th id=\"userForm_td\">유저 생일</th>";
+	  		temp3+="<th id=\"userForm_td\">유저 이메일</th>";
+	  		temp3+="<th id=\"userForm_td\">성별</th>";
+	  		temp3+="<th id=\"userForm_td\">수정</th>";
+	  		temp3+="<th class=\"delete_th\" id=\"userForm_td\">삭제</th>";
+	  		temp3+="</tr>";
+	  	 
+	  		$("#FormWrapper").html(temp3); 
+	  	
+	  	$.each(v,function(index,dom){
+				
+  			temp2+=" <tr>";
+  			temp2+=" <td>"+index+"</td>";
+ 			temp2+=" <td id=\"userForm_td\"><input type=\"checkbox\" VALUE="+dom.userid+" name=\"ckbtn1\"> </td>";
+ 			temp2+=" <td id=\"userForm_td\">"+dom.userid+" </td>";
+ 			temp2+=" <td id=\"userForm_td\">"+dom.userpw+" </td>";
+ 			temp2+=" <td id=\"userForm_td\">"+dom.username+"</td>";
+ 			temp2+=" <td id=\"userForm_td\">"+dom.usertel+"</td>";
+ 			temp2+=" <td id=\"userForm_td\">"+dom.userbirth+"</td>";
+ 			temp2+=" <td id=\"userForm_td\">"+dom.useremail+"</td>";
+ 			temp2+=" <td id=\"userForm_td\">"+dom.usergender+"</td>";
+ 			temp2+=" <td id=\"userForm_td\"><input type=\"button\" id=\"modifyUser\" value=\"수정\"></td>";
+ 			temp2+=" <td id=\"userForm_td\"><input type=\"button\" id=\"deleteUser\" value=\"삭제\" ></td>";
+  			temp2+=" </tr>";
+ 			
+  			
+ 			$("#asd123333").html(temp2);
+ 		});
+}; 
+	    
 		
+  
   });
+  function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="boardList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}	
  	  
  
-//수정하기 누르면 해당 ajax문 수행되는 것
-  /*  $('#modifyUser').click(function(){
-	    alert('s');
-	  //document.location.href="/movie/admin/selectOneUser.do?userId=imsi";
-		}); */ 
-/*  $('input#DeleteUser').click(function(){
-		document.location.href="/movie/admin/deleteUser.do?userId=imsi";
-		});  */
-  /* $(document).on('click', '#commitmodifyMovie', function(){
-	   document.location.href="/movie/admin/UpdateUser.do?userId=imsi";
-  }); */
-	//삭제 버튼
-/*   $(document).on('click', '#deleteUser', function(){
-	 movieList('/movie/admin/DeleteUser.do',$("form#movieForm").serialize(),'json');	  
-  });   */
-	
 </script>  
 </head>
 <body>
@@ -198,7 +228,7 @@ var USERGENDER="";
 				<p id="logo"><a href="#"><img src="/movie/view/jsp/Admin/tmp/logo.jpg" alt="Our logo" title="Visit Site" /></a></p>
 			</div> <!-- /padding -->
 			<ul class="box">
-				<li><a href="/movie/admin/selectAllUser.do">유저관리</a></li>
+				<li><a href="/movie/boardList.do">유저관리</a></li>
 				<li><a href="#">영화관리</a></li>
 				<li><a href="#">시간표관리</a></li>
 				<li><a href="#">예매관리</a></li>
@@ -215,25 +245,49 @@ var USERGENDER="";
 		<!-- Content (Right Column) -->
 		<div id="content" class="box">
 			<!-- Table (TABLE) -->
-			<h3 class="tit">유저 리스트<a href="/movie/admin/selectAllUser.do">유저조회</a></h3>
+			<h3 class="tit">유저 리스트<a href="/movie/boardList.do">유저조회</a></h3>
+			<div style="overflow:scroll; height:600px;">
+			<table id="FormWrapper" >
 			
-			<table id="FormWrapper">
-				<tr>
-				   <th id="userForm_td">번호</th>
-					<th id="userForm_td">체크</th>
-					<th id="userForm_td">유저 ID</th>
-				    <th id="userForm_td">유저 비밀번호</th>
-				    <th id="userForm_td">이름</th>
-				    <th id="userForm_td">핸드폰 번호</th>
-				    <th id="userForm_td">유저 생일</th>
-					<th id="userForm_td">유저 이메일</th>
-				    <th id="userForm_td">성별</th>
-				    <th id="userForm_td">수정</th>
-				    <th id="userForm_td">삭제<th>
-				</tr>
-				<c:forEach var="i" items="${AllUserList}" varStatus="cnt">
-				<tr>
-					<td><c:out value="${cnt.count }"/></td>
+			<!--  한번에 몇개씩 출력할지 정하기  -->
+						<select id="cntPerPage" name="sel" onchange="selChange()">
+							<option value="5"
+								<c:if test="${paging.cntPerPage == 5}">selected</c:if>>
+								5줄 보기</option>
+							<option value="10"
+								<c:if test="${paging.cntPerPage == 10}">selected</c:if>>
+								10줄	보기</option>
+							<option value="15"
+								<c:if test="${paging.cntPerPage == 15}">selected</c:if>>
+								15줄	보기</option>				
+							<option value="20"
+								<c:if test="${paging.cntPerPage == 20}">selected</c:if>>
+								20줄	보기</option>
+						</select>
+						
+						<!-- 검색 기능 -->
+					<input type="text" placeholder="ID검색" id="searchUserId"/>
+						<input type="submit" value="검색" id="searchIdsubmit" />
+
+						<tr id="userForm_tr">
+							<th id="userForm_td">번호</th>
+							<th id="userForm_td">체크</th>
+							<th id="userForm_td">유저 ID</th>
+							<th id="userForm_td">유저 비밀번호</th>
+							<th id="userForm_td">이름</th>
+							<th id="userForm_td">핸드폰 번호</th>
+							<th id="userForm_td">유저 생일</th>
+							<th id="userForm_td">유저 이메일</th>
+							<th id="userForm_td">성별</th>
+							<th id="userForm_td">수정</th>
+							<th id="userForm_td">삭제</th>
+						</tr>
+						
+						
+						
+						<c:forEach var="i" items="${viewAll}" varStatus="cnt">
+				<tr class="userForm_tr">
+					<td id="userForm_td"><c:out value="${cnt.count }"/></td>
 					<td id="userForm_td"><input type="checkbox" VALUE="${i.USERID }" name="ckbtn1"></td>
 				    <td id="userForm_td" name="USERID">${i. USERID}</td>
 				    <td id="userForm_td">${i. USERPW}</td>
@@ -249,37 +303,39 @@ var USERGENDER="";
 					<tr id="${i.USERID}">
 					
 					</tr>
-				<%-- <form>
-					<input type="text" name="USERID" value="${i. USERID}" >
-				   <input type="text" name="USERPW" value="${i. USERPW}" >
-				    <input type="text" name="USERNAME" value="${i. USERNAME}" >
-				    <input type="text" name="USERTEL" value="${i. USERTEL}">
-				    <input type="text" name="USERBIRTH" value="${i. USERBIRTH}">
-				    <input type="text" name="USEREMAIL" value="${i. USEREMAIL}">
-				    <input type="text" name="USERGENDER" value="${i. USERGENDER}">
-				    <input type="button" id="commitmodifyMovie" value="수정완료">
-				    <input type="button"id="deleteMovie"  value="삭제">
-				    
-				</form> --%>
-		
-			
+	
+
+
+
 				</c:forEach>
+				
 				</table>
 				
-				<%-- 	 <td><c:out value="${cnt.count }"/></td>
-					 <td><input type="checkbox" id="ckbtn" VALUE="${i.USERID}"></td>
-				    <td id="userForm_td"><input type="text" name="USERID" value="${i. USERID}" ></td>
-				    <td id="userForm_td"><input type="text" name="USERPW" value="${i. USERPW}" ></td>
-				    <td id="userForm_td"><input type="text" name="USERNAME" value="${i. USERNAME}" ></td>
-				    <td id="userForm_td"><input type="text" name="USERTEL" value="${i. USERTEL}"></td>
-				    <td id="userForm_td"><input type="text" name="USERBIRTH" value="${i. USERBIRTH}"></td>
-				    <td id="userForm_td"><input type="text" name="USEREMAIL" value="${i. USEREMAIL}"></td>
-				    <td id="userForm_td"><input type="text" name="USERGENDER" value="${i. USERGENDER}"></td>
-				    <td id="userForm_td"><input type="button" id="commitmodifyMovie" value="수정완료"></td>
-				    <td id="userForm_td"><input type="button"id="deleteMovie"  value="삭제"></td> --%>
-				    
 				
-			
+				
+				<!-- 페이징 처리 부분 -->
+				<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/movie/boardList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/movie/boardList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/movie/boardList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</div>
+	<!-- 페이징 처리 부분 끝 -->
+				
+				
+				</div>
 			
 			<!-- Form -->
 			<h3 class="tit">Form</h3>

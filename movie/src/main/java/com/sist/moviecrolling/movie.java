@@ -1,4 +1,4 @@
-package com.sist.paging;
+package com.sist.moviecrolling;
 
 import java.io.IOException;
 import java.util.Iterator;

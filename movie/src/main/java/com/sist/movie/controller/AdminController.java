@@ -61,30 +61,19 @@ public class AdminController {
 		map.put("USEREMAIL", UEMAIL);
 		map.put("USERGENDER", UGENDER);
 		
-//		System.out.println(map); 
 		Adao.updateUser(map);
 		return "view/jsp/Admin/AdminUserPage";
 	}
 
-	/*
-	 * @RequestMapping(value="admin/UpdateUser.do") public String
-	 * UpdateUserAction(@RequestParam("USERID_sub") String
-	 * USERID,@RequestParam("USERPW_sub") String
-	 * USERPW,@RequestParam("USERNAME_sub") String
-	 * USERNAME,@RequestParam("USERTEL_sub") String
-	 * USERTEL,@RequestParam("USERBIRTH_sub") String USERBIRTH,
-	 * 
-	 * @RequestParam("USEREMAIL_sub") String
-	 * USEREMAIL,@RequestParam("USERGENDER_sub") String USERGENDER) {
-	 * //@RequestParam("USERID") String USERID\ System.out.println("asd");
-	 * HashMap<String,Object> map=new HashMap<String,Object>(); map.put("USERID",
-	 * USERID); map.put("USERPW", USERPW); map.put("USERTEL", USERNAME);
-	 * map.put("USERBIRTH", USERTEL); map.put("USEREMAIL", USERBIRTH);
-	 * map.put("USERGENDER", USERGENDER);
-	 * 
-	 * System.out.println(map); //Adao.updateUser(map); return
-	 * "view/jsp/Admin/AdminUserPage"; }
-	 */	//유저 삭제
+	//유저 ID로 검색하기
+	@ResponseBody
+	@RequestMapping(value="admin/SearchUserId.do")
+	public List<UserVO> SearchIDAction(String userId) {
+		System.out.println(userId);
+		System.out.println(Adao.SearchUserID(userId));
+		return Adao.SearchUserID(userId);
+	}
+	//유저 삭제하기
 	@RequestMapping(value="admin/deleteUser.do")
 	public String DeleteUserAction(String userId) {
 		Adao.deleteUser(userId);

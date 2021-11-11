@@ -4,7 +4,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.movie.dao.AdminMapper"><!-- 매퍼네임스페이스랑 config의 매퍼이름일치시킬것 -->
 <!-- 유저관련 -->
-
+<!--  유저 전체 회원 수 조회 -->
+<select id="countUser" resultType="int">
+	SELECT COUNT(*) FROM USER_INFO
+</select>
+<!-- 페이징 처리 후 유저 조회 -->
+<select id="selectUserBoard" resultType="user">
+	SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY  
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT ROWNUM,B.* 
+						FROM USER_INFO B
+						ORDER BY ROWNUM DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+	ORDER BY USERBIRTH DESC 
+</select>
 <!-- 전체 유저 정보 조회 -->
 <select id="AdminSelectAllUser" resultType="user">
 SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY FROM USER_INFO
@@ -15,11 +32,12 @@ SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS USERBIR
 FROM USER_INFO
 WHERE USERID=#{VALUE}
 </select>
-<!-- 선택한 1명의 유저 정보 삭제 -->
-<select id="deleteUser" parameterType="String">
-DELETE FROM USER_INFO WHERE USERID=#{VALUE}
+<!--  유저 ID 검색하기 -->
+<select id="SearchUserID" resultType="user" parameterType="String">
+SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY 
+FROM USER_INFO
+WHERE USERID LIKE '%'||#{VALUE}||'%'
 </select>
-
 <!-- 어드민에서 유저 정보 변경 -->
 <update id="AdminupdateUser" parameterType="java.util.HashMap">
 UPDATE USER_INFO SET USERPW=#{USERPW}, 
@@ -30,9 +48,9 @@ WHERE USERID=#{USERID}
 
 </update>
 
-<!-- 해당 유저 삭제 -->
-<delete id="AdmindeleteUser">
-DROP FROM USER_INFO WHERE=#{VALUE}
+<!-- 선택한 1명의 유저 정보 삭제 -->
+<delete id="AdmindeleteUser" parameterType="String">
+DELETE FROM USER_INFO WHERE USERID=#{VALUE}
 </delete>
 <!-- 유저관련 끝-->
 

@@ -1,4 +1,4 @@
-package com.sist.paging;
+package com.sist.moviecrolling;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -6,19 +6,19 @@ import lombok.Setter;
 @Setter
 public class Criteria {
 
-	/** ÇöÀç ÆäÀÌÁö ¹øÈ£ */
+	/** ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ */
 	private int currentPageNo;
 
-	/** ÆäÀÌÁö´ç Ãâ·ÂÇÒ µ¥ÀÌÅÍ °³¼ö */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	private int recordsPerPage;
 
-	/** È­¸é ÇÏ´Ü¿¡ Ãâ·ÂÇÒ ÆäÀÌÁö »çÀÌÁî */
+	/** È­ï¿½ï¿½ ï¿½Ï´Ü¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private int pageSize;
 
-	/** °Ë»ö Å°¿öµå */
+	/** ï¿½Ë»ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ */
 	private String searchKeyword;
 
-	/** °Ë»ö À¯Çü */
+	/** ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	private String searchType;
 
 	public Criteria() {

@@ -1,4 +1,4 @@
-package com.sist.movie.vo;
+package com.sist.paging;
 
 import lombok.Data;
 
