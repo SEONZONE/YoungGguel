@@ -39,5 +39,16 @@ public class BookDao extends SqlSessionDaoSupport {
 	public List<BookVO> selectLocation(String locName) { 
 		return this.getSqlSession().selectList("selectLocation",locName);
 	}
+	
+	// 예매내역 전체 조회 
+	public List<BookVO>allListBooking() { 
+		return this.getSqlSession().selectList("allListBooking");
+	}
+	
+	// 예매목록 삭제 
+	public String bookingDelete(String deleteOne) { 
+		 this.getSqlSession().delete("bookingDelete",deleteOne);
+		 return "Delete Success";
+	}
 
 }

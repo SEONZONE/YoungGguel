@@ -9,18 +9,21 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sist.movie.dao.AdminDao;
+import com.sist.movie.dao.BookDao;
 import com.sist.movie.dao.MovieDao;
 import com.sist.movie.dao.MyPageDao;
 import com.sist.movie.dao.UserDao;
 import com.sist.movie.vo.ActorVO;
 import com.sist.movie.vo.AnswerVO;
 import com.sist.movie.vo.AskVO;
+import com.sist.movie.vo.BookVO;
 import com.sist.movie.vo.BookingDemoVO;
 import com.sist.movie.vo.MovieVO;
 import com.sist.movie.vo.UserVO;
@@ -32,6 +35,12 @@ public class AdminController {
    private MovieDao dao;
    @Inject
    private AdminDao Adao;
+   
+   //성종 예매내역 조회
+   @Inject
+   private BookDao bDao;
+   
+  
    //유저 전체 리스트 가져오기
    @RequestMapping(value="admin/selectAllUser.do")
    public String selectUserList(HashMap<String,Object> map) {
@@ -50,7 +59,7 @@ public class AdminController {
    //유저 정보 변경
    @RequestMapping(value="admin/UpdateUser.do")
    public String UpdateUserAction(HashMap<String,Object> map,UserVO vo) {
-       Adao.updateUser(vo);
+       //Adao.updateUser(vo);
       return "view/jsp/Admin/AdminUserPage";
    }
    //유저 삭제
@@ -73,7 +82,7 @@ public class AdminController {
       vo.setMovieNmEn(vo.getMovieNmEn());
       vo.setShowTm(vo.getShowTm());
       vo.setOpenDt(vo.getOpenDt());
-      vo.setEndDt(vo.getEndDt());
+      //vo.setEndDt(vo.getEndDt());
       vo.setContents(vo.getContents());
       vo.setPrdtStatNm(vo.getPrdtStatNm());
       vo.setNations(vo.getNations());
@@ -184,4 +193,20 @@ public class AdminController {
             Adao.insertAskAnswer(bean);
             return "redirect:/view/jsp/Admin/askadmin.jsp";
          }
+      
+		/* 성종 예매관리 */
+      //전체 리스트 출력
+      @PostMapping(value = "allList.do")
+      @ResponseBody
+      public List<BookVO> allListBooking(String allSelect) { 
+    	  return bDao.allListBooking();
+      }
+      //예매목록 삭제 
+      @PostMapping(value = "deletList.do") 
+      @ResponseBody
+      public String bookingDelete(String deleteOne) { 
+    	  bDao.bookingDelete(deleteOne);
+    	  return"삭제성공";
+      }
+      
 }

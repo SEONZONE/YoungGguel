@@ -3,80 +3,134 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.movie.dao.AdminMapper"><!-- 매퍼네임스페이스랑 config의 매퍼이름일치시킬것 -->
-<!-- 영화관련 -->
-<!-- 글 작성시에 글번호NO 증가시켜주는 SQL -->
-<select id="getSequence" resultType="java.lang.Integer">
-    SELECT MOVIE_INFO_SEQ.NEXTVAL FROM DUAL
-</select> 
-<select id="getAdminAskSequence" resultType="java.lang.Integer">
-     SELECT ASK_NO_SEQ.NEXTVAL FROM DUAL
-</select> 
+	<!-- 유저관련 -->
 
-<!-- 영화 인포넣는법 -->
-<insert id="insertMovie_info" parameterType="movieList">
- INSERT INTO MOVIE (MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,OPENDT,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS)
- VALUES(MOVIE_INFO_SEQ.NEXTVAL,#{movieNm},#{movieNmEn},#{showTm},#{openDt},#{contents},#{prdtStatNm},#{nations},#{genre},#{directors},#{actors},#{watchGradeNm},#{companys})
- </insert>
- 
- 
+	<!-- 전체 유저 정보 조회 -->
+	<select id="AdminSelectAllUser" resultType="user">
+		SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS
+		USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY FROM USER_INFO
+	</select>
+	<!-- 선택한 1명의 유저 정보 조회 -->
+	<select id="selectOneUser" resultType="user"
+		parameterType="String">
+		SELECT USERID,USERPW,USERNAME,USERTEL,TO_CHAR(USERBIRTH,'YYYY/MM/DD') AS
+		USERBIRTH,USEREMAIL,USERGENDER,USERVERIFY
+		FROM USER_INFO
+		WHERE USERID=#{VALUE}
+	</select>
+	<!-- 선택한 1명의 유저 정보 삭제 -->
+	<select id="deleteUser" parameterType="String">
+		DELETE FROM USER_INFO WHERE USERID=#{VALUE}
+	</select>
 
-<insert id="insertActor" parameterType="actor">
-INSERT INTO ACTOR (ACTOR_NO,ACTOR_NAME) VALUES (ACTOR_SEQ.NEXTVAL,#{actor_name})
-</insert>
+	<!-- 어드민에서 유저 정보 변경 -->
+	<update id="AdminupdateUser" parameterType="user">
+		UPDATE USER_INFO SET USERPW=#{USERPW},
+		USERNAME=#{USERNAME}, USERTEL=#{USERTEL},
+		USERBIRTH=#{USERBIRTH}, USEREMAIL=#{USEREMAIL},
+		USERGENDER=#{USERGENDER}
+		WHERE USERID=#{USERID}
 
- 
- <!-- 마이페이지에서 영화 리스트 가져오기 -->
-<select id="selcetReserveMovieList" resultType="movieDemo">
-select TO_CHAR(RESERVE_DATE,'YYYY/MM/DD') RESERVE_DATE,
-RESERVE_NO,
-MOVIE_TITLE,
-RESERVE_INFO,
-PAY_TOTAL,
-TO_CHAR(PAY_DATE,'YYYY/MM/DD/HH:MM') PAY_DATE
-FROM MOVIEDEMO
-</select>
- <!-- 영화관련 끝-->
- <!-- 어드민에서 문의내역읽어오기 -->
- <select id="AskAnswerList" resultType="ask">
-SELECT ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK
-FROM ASK
-ORDER BY ASK_REGDATE ASC
- </select>
- <!-- 어드민에서 선택한문의내역읽어오기 -->
- <select id="readselecectedAsk" resultType="ask" parameterType="java.util.HashMap">
-SELECT ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK
- FROM ASK
- WHERE USER_ID=#{user_id} AND ASK_NO=#{ask_no}
- </select>
-<!-- 어드민에서 문의 답변달아주기 -->
-<!-- <insert id="insertAskAnswer1" parameterType="askanswer">
-INSERT INTO ASK_ANSWER(ANSWER_NO,ANSWER_TITLE,ANSWER_CONTENTS,ANSWER_PNUM,ANSWER_FILE) 
-VALUES(#{ask_no},#{answer_title},#{answer_contents},#{ANSWER_PNUM},#{answer_file})
-</insert> -->
-<!-- 어드민에서 문의 답변달아주기 -->
-<insert id="insertAskAnswer" parameterType="ask">
-	INSERT INTO ASK(ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK) 
-	VALUES(#{ask_no},#{ask_title},#{ask_contents},#{ask_fileName},SYSDATE,#{pnum},#{ref},#{user_id},#{answer_ck})
-</insert>	
- <!-- <update id="updateReply" parameterType="java.util.HashMap">
-    UPDATE BOARDMVC SET
-    <choose>
-      <when test="job eq 'reply'">
-       REPLY=REPLY+1
-      </when>
-      <otherwise>
-        REPLY=REPLY-1
-      </otherwise>      
-    </choose>
-    WHERE NO=#{pnum}
- </update> -->
-<update id="updateAskstate" parameterType="Integer">
-UPDATE ASK 
-SET ANSWER_CK='답변완료' 
-WHERE ASK_NO=#{VALUE}
-</update>
- 
- 
+	</update>
 
- 
- </mapper>
+	<!-- 해당 유저 삭제 -->
+	<delete id="AdmindeleteUser">
+		DROP FROM USER_INFO WHERE=#{VALUE}
+	</delete>
+	<!-- 유저관련 끝 -->
+
+	<!-- 영화관련 -->
+	<!-- 영화 테이블 전체 조회 -->
+	<select id="SelectAllMovie" resultType="movieList">
+		SELECT MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,
+		TO_CHAR(OPENDT,'YYYY/MM/DD') AS OPENDT,
+		TO_CHAR(ENDDT,'YYYY/MM/DD') AS ENDDT,
+		SUBSTR(CONTENTS,1,10) as
+		CONTENTS_s,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS
+		FROM MOVIE
+	</select>
+	<!-- 영화 테이블 업데이트 -->
+	<!-- <update id="updateMovie"> UPDATE MOVIE SET MOVIECD=#{},,,,, WHERE MOVIECD=#{} 
+		</update> -->
+	<!-- 영화 인포넣는법 -->
+	<insert id="insertMovie_info" parameterType="movieList">
+		INSERT INTO MOVIE
+		(MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,OPENDT,ENDDT,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS)
+		VALUES(MOVIE_INFO_SEQ.NEXTVAL,#{movieNm},#{movieNmEn},#{showTm},#{openDt},#{endDt},#{contents},#{prdtStatNm},#{nations},#{genre},#{directors},#{actors},#{watchGradeNm},#{companys})
+	</insert>
+
+	<!-- 상품 테이블 관련 -->
+	<!-- 전체 제품 테이블 조회 -->
+	<select id="SelectAllProduct" resultType="Product">
+		SELECT PNO,PNAME,PCONTENTS,PPRICE,PCATEGORY,PIMG,PSALESRATE
+		FROM PRODUCT
+	</select>
+
+	<!-- 글 작성시에 글번호NO 증가시켜주는 SQL -->
+	<select id="getSequence" resultType="java.lang.Integer">
+		SELECT MOVIE_INFO_SEQ.NEXTVAL FROM DUAL
+	</select>
+	<select id="getAdminAskSequence" resultType="java.lang.Integer">
+		SELECT ASK_NO_SEQ.NEXTVAL FROM DUAL
+	</select>
+
+
+
+
+
+	<insert id="insertActor" parameterType="actor">
+		INSERT INTO ACTOR (ACTOR_NO,ACTOR_NAME) VALUES
+		(ACTOR_SEQ.NEXTVAL,#{actor_name})
+	</insert>
+
+
+	<!-- 마이페이지에서 영화 리스트 가져오기 -->
+	<select id="selcetReserveMovieList" resultType="movieDemo">
+		select TO_CHAR(RESERVE_DATE,'YYYY/MM/DD') RESERVE_DATE,
+		RESERVE_NO,
+		MOVIE_TITLE,
+		RESERVE_INFO,
+		PAY_TOTAL,
+		TO_CHAR(PAY_DATE,'YYYY/MM/DD/HH:MM') PAY_DATE
+		FROM MOVIEDEMO
+	</select>
+	<!-- 영화관련 끝 -->
+	<!-- 어드민에서 문의내역읽어오기 -->
+	<select id="AskAnswerList" resultType="ask">
+		SELECT
+		ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK
+		FROM ASK
+		ORDER BY ASK_REGDATE ASC
+	</select>
+	<!-- 어드민에서 선택한문의내역읽어오기 -->
+	<select id="readselecectedAsk" resultType="ask"
+		parameterType="java.util.HashMap">
+		SELECT
+		ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK
+		FROM ASK
+		WHERE USER_ID=#{user_id} AND ASK_NO=#{ask_no}
+	</select>
+	<!-- 어드민에서 문의 답변달아주기 -->
+	<!-- <insert id="insertAskAnswer1" parameterType="askanswer"> INSERT INTO 
+		ASK_ANSWER(ANSWER_NO,ANSWER_TITLE,ANSWER_CONTENTS,ANSWER_PNUM,ANSWER_FILE) 
+		VALUES(#{ask_no},#{answer_title},#{answer_contents},#{ANSWER_PNUM},#{answer_file}) 
+		</insert> -->
+	<!-- 어드민에서 문의 답변달아주기 -->
+	<insert id="insertAskAnswer" parameterType="ask">
+		INSERT INTO
+		ASK(ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK)
+		VALUES(#{ask_no},#{ask_title},#{ask_contents},#{ask_fileName},SYSDATE,#{pnum},#{ref},#{user_id},#{answer_ck})
+	</insert>
+	<!-- <update id="updateReply" parameterType="java.util.HashMap"> UPDATE 
+		BOARDMVC SET <choose> <when test="job eq 'reply'"> REPLY=REPLY+1 </when> 
+		<otherwise> REPLY=REPLY-1 </otherwise> </choose> WHERE NO=#{pnum} </update> -->
+	<update id="updateAskstate" parameterType="Integer">
+		UPDATE ASK
+		SET ANSWER_CK='답변완료'
+		WHERE ASK_NO=#{VALUE}
+	</update>
+
+
+
+
+</mapper>

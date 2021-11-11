@@ -99,17 +99,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="updateSeat" parameterType="java.util.HashMap">
 		<if test="seat2 != null">
-			UPDATE SEAT SET ${seat1} ='t',${seat2} ='t' WHERE SE_NO =
-			#{seatNo}
+			UPDATE SEAT SET ${seat1} ='t',${seat2} ='t' WHERE SE_NO =#{seatNo}
 		</if>
 
 		UPDATE SEAT SET ${seat1} ='t' WHERE SE_NO = #{seatNo}
 	</update>
 
-	<select id="selectLocation" parameterType="String" resultType="booking">
-		SELECT LOC_NAME as locName, LOC_LAT as locLat,LOC_LNG as locLng FROM LOC
+	<select id="selectLocation" parameterType="String"
+		resultType="booking">
+		SELECT LOC_NAME as locName, LOC_LAT as locLat,LOC_LNG as
+		locLng FROM LOC
 		WHERE LOC_NAME = #{locName}
 	</select>
+
+	<!-- 관리자페이지 전체 예매내역 조회 -->
+	<select id="allListBooking" parameterType="java.util.HashMap"
+		resultType="booking">
+		SELECT B.BOOKING_NO as bookingNo ,U.USERID as bookingUserId,
+		M.MOVIENM as bookingMovieName,THEATER.THEATERTOWN as bookingTown,
+		TIME.TIME_START as bookingTimeStart,TIME.TIME_DATE as bookingDate
+		FROM MOVIE M,BOOKING B, TIMETABLE TIME, THEATER THEATER,USER_INFO U
+		WHERE B.TIME_NO = TIME.TIME_NO AND TIME.MOVIE_NO = M.MOVIECD AND
+		TIME.THEATER_NO = THEATER.THEATERNO AND B.USER_ID = U.USERID
+
+	</select>
+	
+	<!-- 관리자페이지 선택한 예매내역 삭제 -->
+	<delete id="bookingDelete" parameterType="String">
+	DELETE FROM BOOKING WHERE BOOKING_NO = #{bookingNo}
+	</delete>
 
 </mapper>
 
