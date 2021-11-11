@@ -12,8 +12,8 @@
 				<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17c69d1759be8f9c5557600113021042"></script>
-				<script type="text/javascript" src="/movie/resources/js/MovieJs.js"></script>
-				<script src="/movie/src/main/webapp/resources/loc.json" type="text/javascript"></script>
+			
+				
 
 				<script type="text/javascript">
 
@@ -33,16 +33,9 @@
 					function printTime() {
 
 						var clock = document.getElementById("clock2");
-
 						var now = new Date();
-
-						clock.innerHTML = now.getFullYear() + "년  " + (now.getMonth() + 1)
-							+ "월  " + now.getDate() + "일  " + now.getHours() + "시  "
-
-							+ now.getMinutes() + "분  " + now.getSeconds() + "초  ";
-
+						clock.innerHTML = now.getFullYear() + "년  " + (now.getMonth() + 1) + "월  " + now.getDate() + "일  " + now.getHours() + "시  " + now.getMinutes() + "분  " + now.getSeconds() + "초  ";
 						// setTimeout함수를 통해 원하는 함수를 1초간격으로 출력해줌
-
 						setTimeout("printTime()", 1000);
 
 					}
@@ -110,8 +103,8 @@
 
 							$.each(v,function (index, dom) {
 										temp += "<li>";
-										temp += "<button type=\"button\" class=\"btn\" >";
-										temp += "<span ><img src=\"/movie/view/img/" + dom.watchGradeNm + ".png\"></span> <span id=\"movieNameList\">"
+										temp += "<button type=\"button\" class=\"btn\" id =\"movieNameList\">";
+										temp += "<span ><img src=\"/movie/view/img/" + dom.watchGradeNm + ".png\"></span> <span id=\"movieNameList1\">"
 											+ dom.movieNm + "</span>";
 										temp += "</button>";
 										temp += "</li>";
@@ -142,9 +135,8 @@
 							var tempTown = "";
 							$.each(v, function (index, dom) {
 								tempTown += "<li>";
-								tempTown += "<button type=\"button\" class=\"btn\">";
-								tempTown += "<span id=\"townNameList\">" + dom.theaterTown
-									+ "</span>";
+								tempTown += "<button type=\"button\" class=\"btn\" id=\"townNameList\">";
+								tempTown += "<span id=\"townNameList1\">" + dom.theaterTown + "</span>";
 								tempTown += "</button>";
 								tempTown += "</li>";
 							});
@@ -271,7 +263,7 @@
 							clickTime = "";
 							selectSeNo = "";
 							bookingSeat =""; 
-							choiceSeNo = "";
+							//choiceSeNo = "";
 							watchGram = ""; //관람등급
 						    poster =""; // 포스터
 
@@ -309,26 +301,26 @@
 						/* bind function */
 						function evtbind() {
 
-							$("span#movieNameList").click(function () {
-								clickMovie = $(this).text();
+							$("button#movieNameList").click(function () {
+								clickMovie = $(this).find("#movieNameList1").text();
 								
 								$("#movieClick").addClass("barclick");
 								console.log(clickMovie);
 
 							});
 
-							$("span#dayList").click(function () {
-								clickDate = $(this).text();	
+							$("button#dayButton1").click(function () {
+								clickDate = $(this).find("#dayList").text();	
 								$("#dayClick").addClass("barclick");
 								console.log(clickDate);
 
 							});
 
-							$("span#townNameList").click(function () {
-								clickTown = $(this).text();
-								console.log(clickTown);
+							$("button#townNameList").click(function () {
+								clickTown = $(this).find("#townNameList1").text();
 								
 								$("#teatherClick").addClass("barclick");
+								console.log(clickTown);
 								allClickEvent();
 							});
 							
@@ -344,7 +336,7 @@
 
 								allClickEvent();
 							});
-
+							
 							/*좌석 선택은 3가지 상태가 존재
 							  선택 전(common) 선택 중(choice) 선택 끝  */
 							$("button.seat_number").click(function () {
@@ -353,7 +345,7 @@
 								$("#seatClick").addClass("barclick");
 
 								//hasClass는 현재 클래스가 뭐있는지 알려주는 클래스
-								console.log(choiceSeNo);
+							
 								if ($(this).hasClass("common")) {
 									$(this).removeClass("common");
 									$(this).addClass("choice");
@@ -370,9 +362,12 @@
 								}
 
 							});
-
-
 						}
+
+							
+
+
+						
 						/* 결제하기 눌렀을 때 */
 						$("div#pay_btn").click(function () {
 
@@ -424,37 +419,36 @@
 								listMethod('/movie/insertBooking.do', { time: clickTime, seat1: selectSeNo1Name, seat2: selectSeNo2Name, userId: userId ,seatNo :seatNo}, 'text', 'insertBook');
 							}
 							
-							
+						
 						}
-
-						$("span#dayList").click(function () {
-							clickDate = $(this).text();
-							
-							console.log(clickDate);
-
-						});
-
-						$("span#townNameList").click(function () {
-							clickTown = $(this).text();
-							console.log(clickTown);
-							
-							allClickEvent();
-						});
-
-						$(".time_btn").click(function () {
-							clickTime = $(this).find("#bookingTimeNo").text();
-							//clickTown = $(this).text();
-							console.log(clickTime);
-							$(".booking_selecter").addClass("hidden");
-							$(".seat_selecter").removeClass("hidden");
-
-							allClickEvent();
-						});
-
+					
 						$(".seat_number choice").click(function () {
 							console.log("button.seat_number choice");
 							$(".seat_number choice").removeClass("choice");
 							$(".seat_number ").addClass("finish");
+
+						});
+						//팝업창을 닫았을때 
+						$("#close_pop").click(function () {
+							
+							console.log("팝업창 클릭!!");
+							clickDate = "";
+							clickTown = "";
+							clickMovie = "";
+							clickTime = "";
+							selectSeNo = "";
+							bookingSeat =""; //선택한 영화시간표의 좌석 SE_NO
+		 					//선택된 좌석의 갯수를 저장하고 있는 변수
+							//choiceSeNo = "";
+							watchGram = ""; //관람등급
+						    poster =""; // 포스터
+						    
+						    $("#movieClick").removeClass("barclick");
+						    $("#dayClick").removeClass("barclick");
+						    $("#teatherClick").removeClass("barclick");
+						    $("#timeClick").removeClass("barclick");
+						    $("#seatClick").removeClass("barclick");
+						   
 
 						});
 
