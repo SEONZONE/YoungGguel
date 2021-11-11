@@ -12,14 +12,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 스케줄러 영화관 셀럭트 -->
 	<select id="selecttheaterList" parameterType="String" resultType="theaterList">
-		select theatertown from THEATER
-		where theatercity=#{VALUE}
-		group by theatertown
+		select THEATERTOWN  from THEATER
+		where THEATERCITY =#{VALUE}
+		group by THEATERTOWN 
 	</select>
 	
 	<!-- 대분류 셀렉트 -->
 	<select id="selecttheatercity" resultType="theaterList">
-		select DISTINCT THEATERCITY from THEATER
+		select DISTINCT THEATERCITY as theaterCity from THEATER
 	</select>
 	
 	
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       T.TIME_DATE as bookingDate,
       T.TIME_START as bookingTimeStart, T.TIME_END as bookingTimeEnd, T.SE_NO as bookingSeat,
        S.THEATERTOWN as bookingTown, S.THEATERGWAN as bookingGwan, S.THEATERROOMSEAT as bookingTheaterroomseat,
-      A.SE_NO1 as bookingSeatNo1, A.SE_NO2 as bookingSeatNo2, A.SE_NO3 as bookingSeatNo3, A.SE_NO4 as bookingSeatNo4
+      A.bookingSeatNo1, A.bookingSeatNo2, A.bookingSeatNo3, A.bookingSeatNo4
       FROM TIMETABLE T , MOVIE M, THEATER S, SEAT A
       WHERE T.MOVIE_NO = M.MOVIECD
       AND T.THEATER_NO = S.THEATERNO

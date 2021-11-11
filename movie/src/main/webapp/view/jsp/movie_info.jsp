@@ -71,7 +71,7 @@
     			  temp+="<div id=\"review_text\" class="+dom.userId+" name="+dom.reviewNo+">"
     			  /* 3. 리뷰 수정 시 submit할 form, {movieCd,reviewNo,comments} */
     			  temp+="<form id=\"updateForm\">";
-    			  temp+="<input type=\"text\" id="+dom.reviewNo+" name=\"comments\" value="+dom.comments+" maxlength=\"200\" disabled >";
+    			  temp+="<input type=\"text\" id="+dom.reviewNo+" name=\"comments\" value='"+dom.comments+"' maxlength=\"200\" disabled >";
     			  temp+="<input type=\"hidden\" name=\"reviewNo\" value="+dom.reviewNo+">";
     			  temp+="<input type=\"hidden\" name=\"movieCd\" value="+dom.movieCd+">";
     			  temp+="</form>";

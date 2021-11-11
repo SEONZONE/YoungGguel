@@ -27,5 +27,6 @@ public class MovieVO {
    private String actors;
    private String watchGradeNm;
    private String companys;
+   
 
 }

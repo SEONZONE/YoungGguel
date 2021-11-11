@@ -11,48 +11,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="movieSelectAction" parameterType="java.util.HashMap"
 		resultType="booking">
 		SELECT
-		T.TIME_START as bookingTimeStart,
-		S.THEATERGWAN as bookingGwan, S.THEATERROOMSEAT as bookingTheaterroomseat, T.TIME_NO as bookingTimeNo
+		T.TIME_START as bookingTimeStart,T.TIME_END as
+		bookingTimeEnd,
+		S.THEATERGWAN as bookingGwan, S.THEATERROOMSEAT as
+		bookingTheaterroomseat, T.TIME_NO as bookingTimeNo
 		FROM
-		TIMETABLE T , MOVIE M, THEATER S, SEAT A
+		TIMETABLE T ,
+		MOVIE M, THEATER S, SEAT A
 		WHERE T.MOVIE_NO = M.MOVIECD
-		AND T.THEATER_NO = S.THEATERNO
+		AND T.THEATER_NO
+		= S.THEATERNO
 		AND T.SE_NO = A.SE_NO
 		AND M.MOVIENM = #{movie}
-		AND S.THEATERTOWN = #{town}
+		AND
+		S.THEATERTOWN = #{town}
 		AND T.TIME_DATE = #{day}
 
 	</select>
-	
+
 	<select id="seatSelectAction" parameterType="java.util.HashMap"
 		resultType="booking">
-	
-	  SELECT
-		T.SE_NO as  bookingSeat, A.SE_NO1 as bookingSeatNo1, A.SE_NO2  as bookingSeatNo2, A.SE_NO3  as bookingSeatNo3, A.SE_NO4  as bookingSeatNo4,
-		 A.SE_NO5  as bookingSeatNo5
-        , A.SE_NO6 as bookingSeatNo6 , A.SE_NO7  as bookingSeatNo7, A.SE_NO8 as bookingSeatNo8 , A.SE_NO9  as bookingSeatNo9, A.SE_NO10 as bookingSeatNo10 ,
-         A.SE_NO11  as bookingSeatNo11
-        , A.SE_NO12  as bookingSeatNo12 , A.SE_NO13  as bookingSeatNo13, A.SE_NO14  as bookingSeatNo14, A.SE_NO15 as bookingSeatNo15 , A.SE_NO16 as bookingSeatNo16 ,
-         A.SE_NO17 as bookingSeatNo17 , A.SE_NO18  as bookingSeatNo18, A.SE_NO19  as bookingSeatNo19, A.SE_NO20 as bookingSeatNo20,
-         
-          T.TIME_NO as bookingTimeNo, T.MOVIE_NO as bookingMovieNo, M.MOVIENM 
-		as bookingMovieName, T.THEATER_NO as bookingTheaterNo, T.TIME_DATE as bookingDate, 
-		T.TIME_START as bookingTimeStart, T.TIME_END as bookingTimeEnd,  S.THEATERTOWN as bookingTown, S.THEATERGWAN
-         
-         
-         
-		FROM
-		TIMETABLE T , MOVIE M, THEATER S, SEAT A
+
+		SELECT
+		T.SE_NO AS BOOKINGSEAT, A.BOOKINGSEATNO1,
+		A.BOOKINGSEATNO2, A.BOOKINGSEATNO3, A.BOOKINGSEATNO4,
+		A.BOOKINGSEATNO5
+		, A.BOOKINGSEATNO6 , A.BOOKINGSEATNO7, A.BOOKINGSEATNO8 ,
+		A.BOOKINGSEATNO9, A.BOOKINGSEATNO10 ,
+		A.SE_NO11 as bookingSeatNo11
+		,
+		A.SE_NO12 as bookingSeatNo12 , A.SE_NO13 as bookingSeatNo13,
+		A.SE_NO14
+		as bookingSeatNo14, A.SE_NO15 as bookingSeatNo15 , A.SE_NO16
+		as
+		bookingSeatNo16 ,
+		A.SE_NO17 as bookingSeatNo17 , A.SE_NO18 as
+		bookingSeatNo18, A.SE_NO19 as
+		bookingSeatNo19, A.SE_NO20 as
+		bookingSeatNo20,
+
+		T.TIME_NO as bookingTimeNo, T.MOVIE_NO as
+		bookingMovieNo,M.WATCHGRADENM as
+		bookingWatchgradenm,
+		M.MOVIENM as
+		bookingMovieName, T.THEATER_NO as bookingTheaterNo,
+		TO_CHAR(T.TIME_DATE ,'YYYY/MM/DD') as bookingDate,
+		T.TIME_START as
+		bookingTimeStart, T.TIME_END as bookingTimeEnd, S.THEATERTOWN as
+		bookingTown, S.THEATERGWAN
+
+
+
+		FROM TIMETABLE T , MOVIE M, THEATER S, SEAT
+		A
 		WHERE T.MOVIE_NO = M.MOVIECD
 		AND T.THEATER_NO = S.THEATERNO
-		AND T.SE_NO = A.SE_NO
-	
-        AND T.TIME_NO = #{time}
-			AND M.MOVIENM = #{movie}
-		AND S.THEATERTOWN = #{town}
-		AND T.TIME_DATE = #{day}
-		
-		</select>
+		AND T.SE_NO
+		= A.SE_NO
+
+		AND T.TIME_NO = #{time}
+		AND M.MOVIENM = #{movie}
+		AND
+		S.THEATERTOWN = #{town}
+		AND T.TIME_DATE =
+		#{day}
+
+	</select>
 
 	<!-- <select id="movieSelectAction" parameterType="java.util.HashMap" resultType="booking"> 
 		SELECT T.TIME_NO as bookingTimeNo, T.MOVIE_NO as bookingMovieNo, M.MOVIENM 
@@ -66,6 +90,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND S.THEATERTOWN = #{town} AND T.TIME_DATE = #{day} </select> -->
 
 
+	<insert id="insertBooking" parameterType="booking">
+		INSERT INTO BOOKING
+		(BOOKING_NO,PAYMENT_NO,USER_ID,BK_DATE,TIME_NO)
+		VALUES
+		(BOOKING_NO_SEQ.NEXTVAL,2,#{bookingUserId},SYSDATE,#{bookingTimeNo})
+	</insert>
+
+	<update id="updateSeat" parameterType="java.util.HashMap">
+		<if test="seat2 != null">
+			UPDATE SEAT SET ${seat1} ='t',${seat2} ='t' WHERE SE_NO =#{seatNo}
+		</if>
+
+		UPDATE SEAT SET ${seat1} ='t' WHERE SE_NO = #{seatNo}
+	</update>
+
+	<select id="selectLocation" parameterType="String"
+		resultType="booking">
+		SELECT LOC_NAME as locName, LOC_LAT as locLat,LOC_LNG as
+		locLng FROM LOC
+		WHERE LOC_NAME = #{locName}
+	</select>
+
+	<!-- 관리자페이지 전체 예매내역 조회 -->
+	<select id="allListBooking" parameterType="java.util.HashMap"
+		resultType="booking">
+		SELECT B.BOOKING_NO as bookingNo ,U.USERID as bookingUserId,
+		M.MOVIENM as bookingMovieName,THEATER.THEATERTOWN as bookingTown,
+		TIME.TIME_START as bookingTimeStart,TIME.TIME_DATE as bookingDate
+		FROM MOVIE M,BOOKING B, TIMETABLE TIME, THEATER THEATER,USER_INFO U
+		WHERE B.TIME_NO = TIME.TIME_NO AND TIME.MOVIE_NO = M.MOVIECD AND
+		TIME.THEATER_NO = THEATER.THEATERNO AND B.USER_ID = U.USERID
+
+	</select>
+	
+	<!-- 관리자페이지 선택한 예매내역 삭제 -->
+	<delete id="bookingDelete" parameterType="String">
+	DELETE FROM BOOKING WHERE BOOKING_NO = #{bookingNo}
+	</delete>
 
 </mapper>
 

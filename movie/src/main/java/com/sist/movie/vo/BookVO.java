@@ -23,7 +23,7 @@ public class BookVO {
 	   private String bookingSeat2;
 	 
 	   
-		/* ¼ºÁ¾Ãß°¡¹öÀü */
+		/* 성종 추가  */
 	   private String bookingTheaterroomseat;
 	   private String bookingGwan;
 	   private String bookingSeat;
@@ -31,11 +31,14 @@ public class BookVO {
 	   private String bookingTimeEnd;
 	   private String bookingTheaterNo;
 	   private String bookingMovieNo;
-	   private String bookingTimeNo;
+	   private int bookingTimeNo;
 	   private String bookingMovieCD;
 	   private String bookingUserId;
+	   private String bookingWatchgradenm;
 	   
-		/* ¼ºÁ¾ ÁÂ¼® VO */
+	   
+		/* 좌석  VO */
+
 	   private String bookingSeatNo1;
 	   private String bookingSeatNo2;
 	   private String bookingSeatNo3;
@@ -56,6 +59,11 @@ public class BookVO {
 	   private String bookingSeatNo18;
 	   private String bookingSeatNo19;
 	   private String bookingSeatNo20;
+	   
+		/* 위치 경도/위도 */
+	   private String locName;
+	   private String locLat;
+	   private String locLng;
 	  
 	   
 	}

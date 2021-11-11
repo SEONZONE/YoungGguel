@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.movie.vo.HeartVO">
+
+<insert id="heartInsert" parameterType="Heart">
+INSERT INTO HEARTLIST(HEARTNO,MOVIECD,USER_ID) VALUES(SEQ_HEARTLIST.NEXTVAL,#{movieCd},#{userId})
+</insert>
+
+<select id="heartSum" resultType="Heart">
+SELECT MOVIECD, COUNT(*) HEARTSUM FROM HEARTLIST GROUP BY MOVIECD
+</select>
+
+<select id="heartCount" resultType="int" parameterType="int">
+SELECT COUNT(*) FROM HEARTLIST WHERE MOVIECD=#{movieCd}
+</select>
+
+<delete id="heartDelete" parameterType="Heart">
+DELETE FROM HEARTLIST WHERE USER_ID=#{userId} AND MOVIECD=#{movieCd}
+</delete>
+
+<select id="heartFind" parameterType="String">
+SELECT MOVIECD FROM HEARTLIST WHERE USER_ID=${userId}
+</select>
+
+</mapper>

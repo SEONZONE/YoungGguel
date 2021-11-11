@@ -330,7 +330,7 @@ function evtBind(){
                         	<div class="movietop hidden">전체영화</div>
                            <c:forEach var="i" items="${city}" varStatus="cnt">
                             <div class="theatertop hidden btnoff">
-                          	 	${i.THEATERCITY}
+                          	 	${i.theaterCity}
                             </div>
                             </c:forEach>
                         </div>

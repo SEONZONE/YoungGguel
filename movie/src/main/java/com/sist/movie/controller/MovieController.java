@@ -8,21 +8,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sist.movie.dao.HeartDao;
 import com.sist.movie.dao.MovieDao;
 
 @Controller
 public class MovieController {
-    //get,post¸¦ ½á¾ßÇÔ
-	//get µ¥ÀÌÅÍ ºÎ¸¦¶§ selectÇØ¼­ º¸¿©ÁÙ¶§
-	//post È¸¿ø°¡ÀÔ µî·Ï
-	//put È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®, µô¸®Æ® 
+    //get,postï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+	//get ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½ selectï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+	//post È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	//put È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®, ï¿½ï¿½ï¿½ï¿½Æ® 
 	@Autowired
 	private MovieDao dao;
 
+	@Autowired
+	private HeartDao heart;
+	
 	@RequestMapping("movieList.do")
-	public String movieListAction(Model model, String view) {
+	public String movieListAction(Model model, Model heartList, String view) {
 		if (view.equals("poster")) {
 			model.addAttribute("movieList", dao.movieList());
+			heartList.addAttribute("heartList", heart.heartSum());
 			return "view/jsp/list-poster";
 		}else if(view.equals("current")){
 			model.addAttribute("movieList", dao.currentMovieList());

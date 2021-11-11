@@ -65,7 +65,63 @@ $(function(){
        }
     });
     
+	/* 좋아요 */
+	$(".movie_like").click(function(){	
+		/* 세션에서 아이디 가져오기 */
+		var id = sessionStorage.getItem('Uid');  
+		/* 영화코드 가져오기 */
+		var movieCd = this.id;
+	
+		/* 아이디가 없을 때 */
+		if(id==null){
+			alert('로그인 후 이용가능합니다.');
+		}else {
+			if($('img[id="'+movieCd+'"]').attr("src") == "/movie/view/img/heart.png"){
+	    		heartInsert(id, movieCd);			
+			}else{
+	    		heartDelete(id, movieCd);
+			}
+		} 
+	});	
+	
   }); 
+
+
+function heartInsert(id, movieCd){
+	$.ajax({
+		url:'/movie/heart.do?heart=insert',
+	  		type:'POST',
+	  		data: { userId:id , 
+	  			movieCd:movieCd},				  
+	  		success:function(heartSum){
+	  			console.log(movieCd);
+	  			alert('좋아요 리스트에 담았습니다.');
+	  			$('img[id="'+movieCd+'"]').attr("src","/movie/view/img/heartClick.png");
+	  			$('div[class="'+movieCd+'"]').text(heartSum);
+	  		},
+	  		error:function(e){
+		  	alert(e);
+	 		}
+	});	 	
+}
+
+function heartDelete(id, movieCd){
+	$.ajax({
+		url:'/movie/heart.do?heart=delete',
+	  		type:'POST',
+	  		data: { userId:id , 
+	  			movieCd:movieCd },				  
+	  		success:function(heartSum){
+	  			console.log(movieCd);
+	  			alert('좋아요 리스트에서 삭제되었습니다.');
+	  			$('img[id="'+movieCd+'"]').attr("src","/movie/view/img/heart.png");
+	  			$('div[class="'+movieCd+'"]').text(heartSum);
+	  		},
+	  		error:function(e){
+		  	alert(e);
+	 		}
+	});	
+}
 
 
 /* 영화 리스트 함수 */
@@ -200,9 +256,15 @@ function ajaxMovieList(v){
               <br>
               <br>
               <button>예매하기</button>
-              <span class="movie_like">🤍</span>
-             <!--  <img src="/movie/view/img/like.png" class="like" id="like" onclick="like()" /> -->
-            </div>
+               <div class="heart">
+                <c:forEach var="j" items="${heartList}" varStatus="cnt">
+                  <c:if test="${j.movieCd eq i.movieCd}">
+                                <div class="${i.movieCd}">${j.heartSum}</div>               
+                  </c:if>
+                </c:forEach>
+                <img class="movie_like" id="${i.movieCd}" src="/movie/view/img/heart.png">
+                </div>
+                </div>
            </c:forEach>
          </div> 
         </div>

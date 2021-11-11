@@ -34,36 +34,36 @@ ol, ul {
 }
 /* HTML5 display-role reset for older browsers */
 
-/* GNB logo �쁺�뿭*/
+/* GNB logo 占쎌겫占쎈열*/
 .wrapping{
     margin: 0 auto;
     max-width: 1200px;
     text-align: center;
-} /*�옪�븨 : 以묎컙�젙�젹 / 理쒕��룺 1200px / 媛��슫�뜲�젙�젹 */
+} 
 .gnb{
     height: 160px;
     background-color:#ffffff;
     border-bottom: 1px solid #ebebeb;
     box-sizing: content-box;
-} /*gnb : �쁺�뿭 160px / 諛깃렇�씪�슫�뱶 而щ윭 �씛�깋 / 諛묒쨪 1px 而щ윭吏��젙 / �쁺�뿭留욎떠�꽌 �뀒�몢由ъ쟻�슜 */
+} /*gnb : 占쎌겫占쎈열 160px / 獄쏄퉫�젃占쎌뵬占쎌뒲占쎈굡 �뚎됱쑎 占쎌뵛占쎄퉳 / 獄쏅쵐夷� 1px �뚎됱쑎筌욑옙占쎌젟 / 占쎌겫占쎈열筌띿쉸�뼚占쎄퐣 占쎈�믭옙紐®뵳�딆읅占쎌뒠 */
 .gnblogo {
     padding-top: 37px;
-    /* position: relative;  �씪�떒蹂대쪟 */
-} /*gnblogo : �뙣�뵫�깙 37px  */
+    /* position: relative;  占쎌뵬占쎈뼊癰귣�履� */
+} /*gnblogo : 占쎈솭占쎈뎃占쎄튃 37px  */
 .gnblogo ul{
     position: absolute;
     top: 40px;
     right: 19%;
-} /*gnblogo ul : �젅���쁺�뿭吏��젙 / top�뿉�꽌 40px�씠�룞 / �삤瑜몄そ�뿉 遺숈씠湲� */
+} /*gnblogo ul : 占쎌쟿占쏙옙占쎌겫占쎈열筌욑옙占쎌젟 / top占쎈퓠占쎄퐣 40px占쎌뵠占쎈짗 / 占쎌궎�몴紐꾠걹占쎈퓠 �겫�늿�뵠疫뀐옙 */
 .gnblogo ul li{
     display: inline-block;
-} /*gnblogo ul li : 以꾨컮轅� �뾾�븷湲� */
+} /*gnblogo ul li : 餓κ쑬而�饔낉옙 占쎈씨占쎈막疫뀐옙 */
 .gnblogo > ul > li > img{
     cursor: pointer;
 } 
-/* GNB logo �쁺�뿭�걹*/
+/* GNB logo 占쎌겫占쎈열占쎄국*/
 
-/* GNB 硫붾돱�쁺�뿭*/
+/* GNB 筌롫뗀�뤀占쎌겫占쎈열*/
 .menu > ul li {
     display: inline-block;
     font-size: 20px;
@@ -73,21 +73,22 @@ ol, ul {
     position: relative;
     top: 20.5px; 
     cursor: pointer;
-}/* 媛�濡쒕굹�뿴 / �룿�듃�궗�씠利덉“�젅 / 蹂쇰뱶 / �룿�듃 / 湲��뵪媛꾧꺽 / �쐞移섏“�젅 */
+}/* 揶쏉옙嚥≪뮆援뱄옙肉� / 占쎈？占쎈뱜占쎄텢占쎌뵠筌앸뜆�쒙옙�쟿 / 癰귥눖諭� / 占쎈？占쎈뱜 / 疫뀐옙占쎈뎁揶쏄쑨爰� / 占쎌맄燁살꼷�쒙옙�쟿 */
 .menu > ul li:nth-child(3) img {
     position: relative;
     bottom: -9px; 
-} /* �씠誘몄� �쐞移� 留욎텛湲� */
+} /* 占쎌뵠沃섎챷占� 占쎌맄燁삼옙 筌띿쉸�뀤疫뀐옙 */
 .menu > ul li:nth-child(1),.menu > ul li:nth-child(4) {
     margin-right: 90px;
-} /* 媛꾧꺽 留욎텛湲� */
+} /* 揶쏄쑨爰� 筌띿쉸�뀤疫뀐옙 */
 .menu > ul li:nth-child(3) {
     margin: 0 63px;
-} /* 媛꾧꺽 留욎텛湲� */
+} /* 揶쏄쑨爰� 筌띿쉸�뀤疫뀐옙 */
 
-/* 紐⑤떖 湲곕뒫  */
+/* 筌뤴뫀�뼎 疫꿸퀡�뮟  */
 #my_modal {
 	display: none;
+
 	width: 520px;
 	height: 633px;
 	padding: 20px 60px;
@@ -110,7 +111,7 @@ ol, ul {
 	bottom : 10px;
 }
 
-/* GNB 硫붾돱�쁺�뿭�걹*/
+/* GNB 筌롫뗀�뤀占쎌겫占쎈열占쎄국*/
 
 
 

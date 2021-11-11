@@ -33,12 +33,10 @@ public class BookingController {
 	@Autowired
 	private BookDao bdao;
 
-
 	@ResponseBody
 	@RequestMapping(value = "nameList.do")
 	public List<?> movieListAction(String select, String city) {
-		System.out.println("select : " + select);
-		System.out.println("city : " + city);
+
 		if (select.equals("movieList")) {
 			return mdao.movieList();
 		}
@@ -55,54 +53,81 @@ public class BookingController {
 		return mdao.movieList();
 
 	}
-  
+
 	@ResponseBody
 	@RequestMapping(value = "selectBookList.do")
-	public List<BookVO> movieSelectAction(String town, String day, String movie,String page) {
+	public List<BookVO> movieSelectAction(String town, String day, String movie, String page) {
 		String temp = "";
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-			if (movie != null) {
-				map.put("movie", movie);
-				if (town != null) {
-					map.put("town", town);
-					if (day != null) {
-						map.put("day", day);
-						System.out.println("movie: " + movie + "town : " + town + "day : " + day);
 
-					}
-
+		if (movie != null) {
+			map.put("movie", movie);
+			if (town != null) {
+				map.put("town", town);
+				if (day != null) {
+					map.put("day", day);
 				}
 			}
-		
-		
-		
-		System.out.println(bdao.movieSelectAction(map));
+		}
 		return bdao.movieSelectAction(map);
 
 	}
-	
 
 	@ResponseBody
 	@RequestMapping(value = "selectSeatList.do")
-	public List<BookVO> seatSelectAction(String town, String day, String movie ,String time) { 
+	public List<BookVO> seatSelectAction(String town, String day, String movie, String time) {
 		System.out.println(town + " " + day + "  " + movie + " " + time);
 		HashMap<String, Object> mapSeat = new HashMap<String, Object>();
-		mapSeat.put("town",town);
-		mapSeat.put("day",day);
-		mapSeat.put("movie",movie);
-		mapSeat.put("time",time);
+		mapSeat.put("town", town);
+		mapSeat.put("day", day);
+		mapSeat.put("movie", movie);
+		mapSeat.put("time", time);
+		System.out.println(" ======== BOOKVO 리스트 ======== ");
+		bdao.seatSelectAction(mapSeat);
+
 		System.out.println(bdao.seatSelectAction(mapSeat));
 		return bdao.seatSelectAction(mapSeat);
 	}
 
 	@ResponseBody
-	@RequestMapping( value = "insertBooking.do")
-	public void insertBooking(String town, String day, String movie ,String time,String seat1,String seat2) { 
+	@PostMapping(value = "insertBooking.do")
+	public String insertBooking(String time, String seat1, String seat2, String userId, String seatNo) {
+		System.out.println(time + " " + seat1 + " " + seat2 + " " + userId + " " + seatNo);
+		HashMap<String, Object> changeSeat = new HashMap<String, Object>();
 		BookVO vo = new BookVO();
-		
-		
+		int numberTime = Integer.parseInt(time);
+		int seatNo1 = Integer.parseInt(seatNo);
+		vo.setBookingTimeNo(numberTime);
+		vo.setBookingUserId(userId);
+		changeSeat.put("seatNo", seatNo1);
+		if (seat2 != null) {
+
+			changeSeat.put("seat1", seat1);
+			changeSeat.put("seat2", seat2);
+
+		} else
+			changeSeat.put("seat1", seat1);
+
+		System.out.println(" ======== Map 리스트 ======== ");
+		System.out.println("Map리스트: " + changeSeat);
+
+		System.out.println("시간표 넘버:" + vo.getBookingTimeNo());
+		System.out.println("유저이름:" + vo.getBookingUserId());
+
+		bdao.updateSeat(changeSeat);
+		bdao.insertBooking(vo);
+
+		return "success!";
+
 	}
 
+	// 위치 위도, 경도 불러오기 
+	@ResponseBody
+	@RequestMapping(value = "selectLocation.do")
+	public List<BookVO> selectLocation(String location) {
+		System.out.println(" 타운이름 : "+location);
+		System.out.println(bdao.selectLocation(location));
+		return bdao.selectLocation(location);
+	}
 
 }

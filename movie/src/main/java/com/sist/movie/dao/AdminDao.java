@@ -71,7 +71,7 @@ public class AdminDao extends SqlSessionDaoSupport {
 		}
 	// 占쏙옙占싸울옙占쏙옙 占쏙옙占실놂옙占쏙옙 占썰변占쌨몌옙 占썰변占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙
 	public int updateAskstateAction(int no) {
-		return this.getSqlSession().update("updateAskstate",no);
+		return this.getSqlSession().update("updateAskstate", no);
 	}
 
 	// 占쏙옙占싸울옙占쏙옙 占쏙옙占실놂옙占쏙옙 占싻억옙占쏙옙占�(占쏙옙체 占쏙옙占실놂옙占쏙옙)
@@ -89,5 +89,4 @@ public class AdminDao extends SqlSessionDaoSupport {
 		this.getSqlSession().insert("asd",map);
 	}
 
-	
 }

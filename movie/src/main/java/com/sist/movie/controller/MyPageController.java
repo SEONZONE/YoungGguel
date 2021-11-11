@@ -34,7 +34,7 @@ public class MyPageController{
 	private MovieDao mdao;
 	
 
-	//마이페이1에서 기간별 조회하흔ㄴ거
+	//마이페이지에서 기간별 조회하는거
 	@PostMapping(value="myPage1Test.do")
 	public String test(HashMap<String,Object> map,String from, String to) {
 		System.out.println(from+  to);

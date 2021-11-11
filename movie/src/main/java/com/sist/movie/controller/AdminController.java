@@ -10,18 +10,21 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sist.movie.dao.AdminDao;
+import com.sist.movie.dao.BookDao;
 import com.sist.movie.dao.MovieDao;
 import com.sist.movie.dao.MyPageDao;
 import com.sist.movie.dao.UserDao;
 import com.sist.movie.vo.ActorVO;
 import com.sist.movie.vo.AnswerVO;
 import com.sist.movie.vo.AskVO;
+import com.sist.movie.vo.BookVO;
 import com.sist.movie.vo.BookingDemoVO;
 import com.sist.movie.vo.MovieVO;
 import com.sist.movie.vo.UserVO;
@@ -29,10 +32,15 @@ import com.sist.movie.vo.UserVO;
 @Controller
 public class AdminController {
 
+
 	@Autowired
 	private MovieDao dao;
 	@Inject
 	private AdminDao Adao;
+	   //성종 예매내역 조회
+	   @Inject
+	   private BookDao bDao;
+	   
 	//유저 전체 리스트 가져오기
 	@RequestMapping(value="admin/selectAllUser.do")
 	public String selectUserList(HashMap<String,Object> map) {
@@ -208,4 +216,24 @@ public class AdminController {
 //				占쌓뤄옙占쏙옙 占쏙옙占쏙옙占쏙옙 @PARAM占쏙옙占쏙옙 占쏙옙占쏙옙 NO占쏙옙占쏙옙占쏙옙占쏙옙풩占쏙옙占� 占쏙옙占쏙옙占쌔븝옙占쏙옙
 				return "redirect:/view/jsp/Admin/askadmin.jsp";
 			}
+
+
+ 
+      
+		/* 성종 예매관리 */
+      //전체 리스트 출력
+      @PostMapping(value = "allList.do")
+      @ResponseBody
+      public List<BookVO> allListBooking(String allSelect) { 
+    	  return bDao.allListBooking();
+      }
+      //예매목록 삭제 
+      @PostMapping(value = "deletList.do") 
+      @ResponseBody
+      public String bookingDelete(String deleteOne) { 
+    	  bDao.bookingDelete(deleteOne);
+    	  return"삭제성공";
+      }
+      
 }
+
