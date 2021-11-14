@@ -43,12 +43,12 @@
 				success : function(v) {
 					if (methodName == "allList") {
 						allList(v);
-						
 
-					}
-					else if(methodName == "deleteList") { 
+					} else if (methodName == "deleteList") {
 						alert("삭제완료");
-						listAjax('/movie/allList.do', {allSelect : 'allSelect'}, 'json', 'allList');
+						listAjax('/movie/allList.do', {
+							allSelect : 'allSelect'
+						}, 'json', 'allList');
 					}
 				},
 				error : function(e) {
@@ -61,41 +61,56 @@
 
 		function allList(v) {
 			var tempAllList = ""
-			$.each(v,
-					function(index, dom) {
-						tempAllList += "<tr>";
-						tempAllList += "<th class =\"deleteButtonNo\" id=\"listBar\">" + dom.bookingNo+ " </th>";
-						tempAllList += "<th id=\"listBar\">"+ dom.bookingUserId + "</th>";
-						tempAllList += "<th id=\"listBar\">"+ dom.bookingMovieName + "</th>";
-						tempAllList += "<th id=\"listBar\">" + dom.bookingTown+ "</th>";
-						tempAllList += "<th id=\"listBar\">"+ dom.bookingTimeStart + "</th>";
-						tempAllList += "<th id=\"listBar\">" + dom.bookingDate+ " </th>";
-						tempAllList += "<th id=\"listBar\"><button >수정</button></th>";
-						tempAllList += "<th id=\"listBar\"><button class=\"deleteButton\">삭제</button></th>";
-						tempAllList += "</tr>";
-						
-					});
+			$
+					.each(
+							v,
+							function(index, dom) {
+								tempAllList += "<tr>";
+								tempAllList += "<th class =\"deleteButtonNo\" id=\"listBar\">"
+										+ dom.bookingNo + " </th>";
+								tempAllList += "<th id=\"listBar\">"
+										+ dom.bookingUserId + "</th>";
+								tempAllList += "<th id=\"listBar\">"
+										+ dom.bookingMovieName + "</th>";
+								tempAllList += "<th id=\"listBar\">"
+										+ dom.bookingTown + "</th>";
+								tempAllList += "<th id=\"listBar\">"
+										+ dom.bookingTimeStart + "</th>";
+								tempAllList += "<th id=\"listBar\">"
+										+ dom.bookingDate + " </th>";
+								tempAllList += "<th id=\"listBar\"><button >수정</button></th>";
+								tempAllList += "<th id=\"listBar\"><button class=\"deleteButton\">삭제</button></th>";
+								tempAllList += "</tr>";
+
+							});
 			$(".bookingList").html(tempAllList);
 			evtbind();
 		}
-		
+
 		var clickDelete = "";
-		function evtbind() { 
-			
+		function evtbind() {
+
 			//삭제 이벤트
-			$("button.deleteButton").click(function () {
-				clickDelete = $(this).parents().children("th[class='deleteButtonNo']").text();
-				var returnValue = confirm("예매번호:"+ clickDelete +"를 삭제하시겠습니까?");
-				if(returnValue == true) {  
-					listAjax('/movie/deletList.do',{deleteOne : clickDelete},'text','deleteList');
-				} 
-			});
+			$("button.deleteButton").click(
+					function() {
+						clickDelete = $(this).parents().children(
+								"th[class='deleteButtonNo']").text();
+						var returnValue = confirm("예매번호:" + clickDelete
+								+ "를 삭제하시겠습니까?");
+						if (returnValue == true) {
+							listAjax('/movie/deletList.do', {
+								deleteOne : clickDelete
+							}, 'text', 'deleteList');
+						}
+					});
 		}
 
 		/* 메인에서 검색 */
 		$(".glyphicon.glyphicon-search").click(function() {
 			if ($("input#textbox").val().length == 0) {
-				listAjax('/movie/allList.do', {allSelect : 'allSelect'}, 'json', 'allList');
+				listAjax('/movie/allList.do', {
+					allSelect : 'allSelect'
+				}, 'json', 'allList');
 			} else {
 
 			}
@@ -163,13 +178,13 @@
 						<th>영화관</th>
 						<th>상영시간</th>
 						<th>상영날짜</th>
-					
+
 					</tr>
-					
+
 
 				</table>
 				<table class="bookingList">
-					
+
 				</table>
 
 
