@@ -32,6 +32,12 @@
 <title>영끌 관리자</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+var clickSeatNo = ""; //삭제 버튼을 눌렀을 때 좌석번호
+var clickDelete = ""; //삭제 버튼에 해당하는 예매번호
+var clickSeat1 = ""; //삭제 버튼을 눌렀을 때 좌석번호1	
+var clickSeat2 = ""; //삭제 버튼을 눌렀을 때 좌석번호2
+
 	$(function() {
 
 		function listAjax(url, data, dataType, methodName) {
@@ -63,6 +69,7 @@
 			var tempAllList = ""
 			$.each(v,
 					function(index, dom) {
+						
 						tempAllList += "<tr>";
 						tempAllList += "<th class =\"deleteButtonNo\" id=\"listBar\">" + dom.bookingNo+ " </th>";
 						tempAllList += "<th id=\"listBar\">"+ dom.bookingUserId + "</th>";
@@ -70,24 +77,29 @@
 						tempAllList += "<th id=\"listBar\">" + dom.bookingTown+ "</th>";
 						tempAllList += "<th id=\"listBar\">"+ dom.bookingTimeStart + "</th>";
 						tempAllList += "<th id=\"listBar\">" + dom.bookingDate+ " </th>";
+						tempAllList += "<th class =\"deleteSeatNo\" id=\"listBar\">" + dom.bookingSeat+ " </th>";
+						tempAllList += "<th  class =\"deleteSeat1\" id=\"listBar\">" + dom.bookingSeat1+ " </th>";
+						tempAllList += "<th  class =\"deleteSeat2\" id=\"listBar\">" + dom.bookingSeat2+ " </th>";
 						tempAllList += "<th id=\"listBar\"><button >수정</button></th>";
-						tempAllList += "<th id=\"listBar\"><button class=\"deleteButton\">삭제</button></th>";
+						tempAllList += "<th id=\"listBar\"><button class=\"deleteButton\">삭제</button></th>"; 
 						tempAllList += "</tr>";
 						
 					});
 			$(".bookingList").html(tempAllList);
 			evtbind();
 		}
-		
-		var clickDelete = "";
+	
 		function evtbind() { 
 			
 			//삭제 이벤트
 			$("button.deleteButton").click(function () {
 				clickDelete = $(this).parents().children("th[class='deleteButtonNo']").text();
+				clickSeat1 = $(this).parents().children("th[class='deleteSeat1']").text();
+				clickSeat2 = $(this).parents().children("th[class='deleteSeat2']").text();
+				clickSeatNo = $(this).parents().children("th[class='deleteSeatNo']").text();
 				var returnValue = confirm("예매번호:"+ clickDelete +"를 삭제하시겠습니까?");
 				if(returnValue == true) {  
-					listAjax('/movie/deletList.do',{deleteOne : clickDelete},'text','deleteList');
+					listAjax('/movie/deletList.do',{deleteOne : clickDelete,deleteSeat1 : clickSeat1, deleteSeat2 : clickSeat2, deleteSeatNo : clickSeatNo},'text','deleteList');
 				} 
 			});
 		}
@@ -130,7 +142,7 @@
 					</p>
 				</div>
 				<!-- /padding -->
-				<ul class="box">
+				<ul class="box">	
 					<li><a href="#">유저관리</a></li>
 					<li><a href="#">영화관리</a></li>
 					<li><a href="#">시간표관리</a></li>
@@ -163,6 +175,8 @@
 						<th>영화관</th>
 						<th>상영시간</th>
 						<th>상영날짜</th>
+						<th>좌석넘버1</th>
+						<th>좌석넘버2</th>
 					
 					</tr>
 					
