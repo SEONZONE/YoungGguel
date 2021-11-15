@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sist.movie.dao.AdminMovieDao;
@@ -63,7 +64,7 @@ public class AdminMovieController {
 		}
 		return "view/jsp/Admin/AdminMoviePage";
 	}
-	
+	@ResponseBody
 	@PostMapping(value = "UpdateMovie.do")
 	public void updateMovie(MovieVO vo) {
 		System.out.println(vo);
