@@ -101,18 +101,24 @@ public class BookingController {
 		vo.setBookingUserId(userId);
 		changeSeat.put("seatNo", seatNo1);
 		if (seat2 != null) {
-
+			vo.setBookingSeat1(seat1);
+			vo.setBookingSeat2(seat2);
 			changeSeat.put("seat1", seat1);
 			changeSeat.put("seat2", seat2);
 
-		} else
+		} else {
+			vo.setBookingSeat1(seat1);
+			vo.setBookingSeat2(null);
 			changeSeat.put("seat1", seat1);
+		}
 
 		System.out.println(" ======== Map 리스트 ======== ");
 		System.out.println("Map리스트: " + changeSeat);
 
 		System.out.println("시간표 넘버:" + vo.getBookingTimeNo());
 		System.out.println("유저이름:" + vo.getBookingUserId());
+		System.out.println("좌석1 : " + vo.getBookingSeat1());
+		System.out.println("좌석2 : " + vo.getBookingSeat2());
 
 		bdao.updateSeat(changeSeat);
 		bdao.insertBooking(vo);
@@ -125,7 +131,7 @@ public class BookingController {
 	@ResponseBody
 	@RequestMapping(value = "selectLocation.do")
 	public List<BookVO> selectLocation(String location) {
-		System.out.println(" 타운이름 : "+location);
+		System.out.println(" 타운이름 : " + location);
 		System.out.println(bdao.selectLocation(location));
 		return bdao.selectLocation(location);
 	}
