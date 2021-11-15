@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.movie.dao.AdminMovieMapper">
+
+<!-- 영화 인포넣는법 -->
+<insert id="insertMovie" parameterType="movielist">
+ INSERT INTO MOVIE (MOVIECD,MOVIENM,MOVIENMEN,SHOWTM,OPENDT,ENDDT,CONTENTS,PRDTSTATNM,NATIONS,GENRE,DIRECTORS,ACTORS,WATCHGRADENM,COMPANYS)
+ VALUES(#{movieCd},#{movieNm},#{movieNmEn},#{showTm},#{openDt},#{endDt},#{contents},'개봉예정',#{nations},#{genre},#{directors},#{actors},#{watchGradeNm},#{companys})
+</insert>
+ 
+ <delete id="deleteMovie" parameterType="int">
+ DELETE FROM MOVIE WHERE MOVIECD=#{movieCd}
+ </delete>
+ 
+<update id="updateMovie" parameterType="movielist">
+UPDATE MOVIE SET MOVIENM=#{movieNm}, MOVIENMEN=#{movieNmEn}, SHOWTM=#{showTm}, 
+OPENDT=#{openDt}, ENDDT=#{endDt}, CONTENTS=#{contents}, PRDTSTATNM=#{prdtStatNm}, NATIONS=#{nations},
+GENRE=#{genre}, DIRECTORS=#{directors}, ACTORS=#{actors}, WATCHGRADENM=#{watchGradeNm}, COMPANYS=#{companys} WHERE MOVIECD=#{movieCd}
+</update>
+ 
+ </mapper>
