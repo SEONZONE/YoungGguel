@@ -50,5 +50,10 @@ public class BookDao extends SqlSessionDaoSupport {
 		 this.getSqlSession().delete("bookingDelete",deleteOne);
 		 return "Delete Success";
 	}
+	//관리자 페이지에서 예매 취소했을경우, 좌석 T에서 F로 변환
+	public void updateSeatFalse(HashMap<String, Object> map) {
+		this.getSqlSession().update("updateSeatFalse",map);
+	}
+	
 
 }

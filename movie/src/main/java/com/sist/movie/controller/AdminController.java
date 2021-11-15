@@ -32,7 +32,6 @@ import com.sist.movie.vo.UserVO;
 @Controller
 public class AdminController {
 
-
 	@Autowired
 	private MovieDao dao;
 	@Inject
@@ -141,6 +140,7 @@ public class AdminController {
 		Adao.movieInsertAction(vo);
 		return "view/jsp/Admin/AdminMoviePage";
 	}
+
 	
 		@RequestMapping(value="selectMovielist.do")
 		public String selectMovielistAction(HashMap<String,Object> map) {
@@ -219,21 +219,42 @@ public class AdminController {
 
 
  
-      
-		/* 성종 예매관리 */
-      //전체 리스트 출력
-      @PostMapping(value = "allList.do")
-      @ResponseBody
-      public List<BookVO> allListBooking(String allSelect) { 
-    	  return bDao.allListBooking();
-      }
-      //예매목록 삭제 
-      @PostMapping(value = "deletList.do") 
-      @ResponseBody
-      public String bookingDelete(String deleteOne) { 
-    	  bDao.bookingDelete(deleteOne);
-    	  return"삭제성공";
-      }
-      
+
+
+
+
+	/* 성종 예매관리 */
+
+	//전체 리스트 출력
+	@PostMapping(value = "allList.do")
+	@ResponseBody
+	public List<BookVO> allListBooking(String allSelect) {
+		return bDao.allListBooking();
+	}
+
+	//예매목록 삭제 
+	@PostMapping(value = "deletList.do")
+	@ResponseBody
+	public String bookingDelete(String deleteOne, String deleteSeat1, String deleteSeat2, String deleteSeatNo) {
+		HashMap<String, Object> bookingDeleteMap = new HashMap<String, Object>();
+		System.out.println("deleteOne: " + deleteOne + "\n deleteSeatNo: " + deleteSeatNo + "\n deleteSeat1:" + deleteSeat1 + "\n deleteSeat2:" + deleteSeat2);
+		if(deleteSeat2 == null ) { 
+			bookingDeleteMap.put("deleteSeat2", deleteSeat2);
+			bookingDeleteMap.put("deleteSeat1", deleteSeat1);
+		}
+		else { 
+			bookingDeleteMap.put("deleteSeat2", "no");
+			bookingDeleteMap.put("deleteSeat1", deleteSeat1);
+		}
+	
+		bookingDeleteMap.put("deleteSeatNo", deleteSeatNo);
+		bookingDeleteMap.put("deleteOne", deleteOne);
+		
+		System.out.println(bookingDeleteMap);
+		bDao.updateSeatFalse(bookingDeleteMap);
+		bDao.bookingDelete(deleteOne);
+		return "삭제성공";
+	}
+
 }
 
