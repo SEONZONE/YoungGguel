@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import com.sist.movie.vo.AnswerVO;
 import com.sist.movie.vo.AskVO;
+import com.sist.movie.vo.BookVO;
 import com.sist.movie.vo.MovieVO;
 import com.sist.movie.vo.ProductVO;
+import com.sist.movie.vo.TheaterVO;
 import com.sist.movie.vo.UserVO;
 
 @Repository
@@ -88,5 +90,30 @@ public class AdminDao extends SqlSessionDaoSupport {
 	public void insertMovieAction(HashMap<String,Object> map){
 		this.getSqlSession().insert("asd",map);
 	}
+	//워누님 파일 시작
+	public List<MovieVO> selectMovieList() {
+		return this.getSqlSession().selectList("selectMovieList");
+	}
+	
+	public List<BookVO> selectTimetable(){
+		return this.getSqlSession().selectList("selectTimetable");
+	}
+	public List<TheaterVO> selectTheaterList(){
+		return this.getSqlSession().selectList("selectTheaterList");
+	}
+	public int seatNoselect() {
+		 this.getSqlSession().insert("seatInsert");
+		 return this.getSqlSession().selectOne("seatNoselect");
+	}
+	public void timetableInsert(HashMap<String, Object> map) {
+		this.getSqlSession().insert("timetableInsert", map);
+	}
+	public void timetableDelete(String id) {
+		this.getSqlSession().delete("timetableDelete", id);
+	}
+	public void timetableModify(HashMap<String, Object> map) {
+		this.getSqlSession().update("timetableModify", map);
+	}
+	//워누님 파일 끝
 
 }

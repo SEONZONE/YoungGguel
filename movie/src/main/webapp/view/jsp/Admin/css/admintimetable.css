@@ -1,0 +1,12 @@
+@charset "EUC-KR";
+#content table th{
+	width: 220px;
+    text-align: center;
+}
+button{
+	width: 80px;
+}
+input{
+	background-color: white;
+    width: 300px;
+}

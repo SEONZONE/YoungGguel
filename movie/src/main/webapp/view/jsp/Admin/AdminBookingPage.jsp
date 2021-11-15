@@ -145,11 +145,12 @@ var clickSeat2 = ""; //삭제 버튼을 눌렀을 때 좌석번호2
 				</div>
 				<!-- /padding -->
 				<ul class="box">	
-					<li><a href="#">유저관리</a></li>
-					<li><a href="#">영화관리</a></li>
-					<li><a href="#">시간표관리</a></li>
-					<li><a href="#">예매관리</a></li>
-					<li><a href="#">문의하기</a></li>
+				 <li><a href="/movie/boardList.do">유저관리</a></li>
+				<li><a href="/movie/SelectAllMovie.do">영화관리</a></li>
+				<li><a href="/movie/adminTimetable.do">시간표관리</a></li>
+				<li><a href="/view/jsp/Admin/AdminBookingPage.jsp">예매관리</a></li>
+				<li><a href="#">문의하기</a></li>
+				<li><a href="/movie/SelectAllProduct.do">상품관리하기</a></li>
 					<li id="submenu-active"><a href="#">예비 html</a> <!-- Active -->
 						<ul>
 							<li><a href="#">예비</a></li>

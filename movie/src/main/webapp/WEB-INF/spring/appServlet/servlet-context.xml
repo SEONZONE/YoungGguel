@@ -30,7 +30,7 @@
 		<beans:property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<beans:property name="url"
 
-			value="jdbc:oracle:thin:@db202109031726_high?TNS_ADMIN=C://Users//seonzone//Documents//Wallet_DB202109031726" />
+			value="jdbc:oracle:thin:@db202109031726_high?TNS_ADMIN=C://Users//izp10//Documents//Wallet_DB202109031726" />
 
 		<beans:property name="username" value="admin"></beans:property>
 		<beans:property name="password" value="Qkrtjdwhd031"></beans:property>

@@ -27,6 +27,7 @@ import com.sist.movie.vo.AskVO;
 import com.sist.movie.vo.BookVO;
 import com.sist.movie.vo.BookingDemoVO;
 import com.sist.movie.vo.MovieVO;
+import com.sist.movie.vo.TheaterVO;
 import com.sist.movie.vo.UserVO;
 
 @Controller
@@ -155,14 +156,14 @@ public class AdminController {
 		return "view/jsp/Admin/selectMovie";
 	}
 
-	//占싹댐옙 占쏙옙占싸울옙占쏙옙 占쏙옙占실놂옙占쏙옙 占싻억옙占쏙옙占�
+	//문의하기 js로 가져오기
 	@ResponseBody
 	@RequestMapping(value = "selectAskAnswerList.do")
 	public List<AskVO> AnswerListAction() {
 		return Adao.selectAskAnswerList();
 	}
 
-	//占쏙옙占싸울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占실놂옙占쏙옙占쏙옙 占싻억옙占쏙옙占�
+	//문의하기 읽어오기
 	@RequestMapping(value = "AnswerList.do")
 	public String askListAction(HashMap<String, Object> map, String user_id, int ask_no, Model model) {
 		map.put("user_id", user_id);
@@ -171,7 +172,7 @@ public class AdminController {
 		return "view/jsp/Admin/AnswerAsk";
 	}
 
-	//占쏙옙占쏙옙占쌘울옙占쏙옙 占쏙옙占실놂옙占쏙옙 占썰변占쌨깍옙
+	//문의하기 등록하기
 	@RequestMapping(value = "insertAskAnswer.do")
 	public String InsertAskAnswerAction(AskVO bean, @RequestParam(value = "file", required = false) MultipartFile file) {
 		String location = "C:\\Users\\izp10\\Desktop\\Spring\\movie\\src\\main\\webapp\\resources\\FromAdminToUser\\";
@@ -254,5 +255,74 @@ public class AdminController {
 		bDao.bookingDelete(deleteOne);
 		return "삭제성공";
 	}
+	//워누님 파일시작
+	@RequestMapping(value="adminTimetable.do")
+	public String selectMovieAction(Model model) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		List<BookVO> timetableList = Adao.selectTimetable();
+		List<MovieVO> movie = Adao.selectMovieList();
+		List<TheaterVO> theater = Adao.selectTheaterList();
+		model.addAttribute("timetableList", timetableList);
+		model.addAttribute("movieList", movie);
+		model.addAttribute("theaterList", theater);
+		return "view/jsp/Admin/AdminTimetablePage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="adminTimetableInsert.do")
+	public int timetableInsert(String moviecd, String theaterno, String bookingdate,String bookingtimestart,String bookingtimeend) {
+		int success;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String bookingdate2 = bookingdate.replace("-", "/");
+		map.put("moviecd", moviecd);
+		map.put("theaterno", theaterno);
+		map.put("bookingdate", bookingdate2);
+		map.put("bookingtimestart", bookingtimestart);
+		map.put("bookingtimeend", bookingtimeend);
+		map.put("seno", Adao.seatNoselect());
+		try {
+			Adao.timetableInsert(map);
+			success = 1; 
+		} catch (Exception e) {
+			success = -1;
+			// TODO: handle exception
+		}
+		return success;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="adminTimetableDelete.do")
+	public int timetableDelete(String id) {
+		System.out.println(id);
+		int success;
+		try {
+			Adao.timetableDelete(id);
+			success = 1; 
+		} catch (Exception e) {
+			// TODO: handle exception
+			success = -1;
+		}
+		return success; 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="adminTimetableModify.do")
+	public int timetableModify(String id,String bookingdate,String bookingtimestart,String bookingtimeend) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int success;
+		map.put("id", id);
+		map.put("bookingdate", bookingdate);
+		map.put("bookingtimestart", bookingtimestart);
+		map.put("bookingtimeend", bookingtimeend);
+		try {
+			Adao.timetableModify(map);
+			success = 1; 
+		} catch (Exception e) {
+			// TODO: handle exception
+			success = -1;
+		}
+		return success; 
+	}
+	//워누님 파일끝
 
 }

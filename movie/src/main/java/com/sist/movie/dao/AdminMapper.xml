@@ -131,25 +131,60 @@ VALUES(#{ask_no},#{answer_title},#{answer_contents},#{ANSWER_PNUM},#{answer_file
 	INSERT INTO ASK(ASK_NO,ASK_TITLE,ASK_CONTENTS,ASK_FILENAME,ASK_REGDATE,PNUM,REF,USER_ID,ANSWER_CK) 
 	VALUES(#{ask_no},#{ask_title},#{ask_contents},#{ask_fileName},SYSDATE,#{pnum},#{ref},#{user_id},#{answer_ck})
 </insert>	
- <!-- <update id="updateReply" parameterType="java.util.HashMap">
-    UPDATE BOARDMVC SET
-    <choose>
-      <when test="job eq 'reply'">
-       REPLY=REPLY+1
-      </when>
-      <otherwise>
-        REPLY=REPLY-1
-      </otherwise>      
-    </choose>
-    WHERE NO=#{pnum}
- </update> -->
+
 <update id="updateAskstate" parameterType="Integer">
 UPDATE ASK 
 SET ANSWER_CK='답변완료' 
 WHERE ASK_NO=#{VALUE}
 </update>
  
+ <!-- 원우님 파일 -->
+<!-- 시간표관련 -->
+	<select id="selectMovieList" resultType="HashMap">
+		SELECT MOVIECD,MOVIENM
+		FROM MOVIE
+		WHERE OPENDT <![CDATA[ <= ]]> SYSDATE
+		AND ENDDT <![CDATA[ >= ]]> SYSDATE
+	</select>
  
+	<select id="selectTimetable" resultType="HashMap">
+		 SELECT T.TIME_NO as bookingTimeNo, T.MOVIE_NO||' / '||M.MOVIENM as bookingMovieName, T.THEATER_NO||' / '||S.THEATERTOWN||' / '||S.THEATERGWAN as bookingTheaterNo, 
+	    TO_CHAR(T.TIME_DATE,'YY/MM/DD') as bookingDate,
+	    T.TIME_START as bookingTimeStart, T.TIME_END as bookingTimeEnd
+	    FROM TIMETABLE T , MOVIE M, THEATER S
+	    WHERE T.MOVIE_NO = M.MOVIECD
+	    AND T.THEATER_NO = S.THEATERNO
+	    order by BOOKINGDATE asc, BOOKINGTIMESTART asc
+	</select>
+ 	
+ 	<select id="selectTheaterList" resultType="HashMap">
+ 		SELECT theaterno, theatertown, theatergwan
+ 		FROM theater 	
+ 	</select>
+ 	
+ 	<insert id="seatInsert">
+	 	insert into seat(SE_NO, BOOKINGSEATNO1, BOOKINGSEATNO2, BOOKINGSEATNO3, BOOKINGSEATNO4, BOOKINGSEATNO5, BOOKINGSEATNO6, BOOKINGSEATNO7, BOOKINGSEATNO8,
+	 	BOOKINGSEATNO9, BOOKINGSEATNO10,SE_NO11, SE_NO12, SE_NO13, SE_NO14, SE_NO15, SE_NO16, SE_NO17, SE_NO18, SE_NO19, SE_NO20)
+	 	VALUES(SEQ_SENO.NEXTVAL,'f','f','f','f','f','f','f','f','f','f','f','f','f','f','f','f','f','f','f','f')
+ 	</insert>
+ 	
+ 	<select id="seatNoselect" resultType="int">
+	 	SELECT MAX(se_no) FROM seat
+ 	</select>
+ 	
+ 	<insert id="timetableInsert" parameterType="HashMap" >
+ 		INSERT INTO TIMETABLE(TIME_NO, MOVIE_NO, THEATER_NO, TIME_DATE, TIME_START, TIME_END, SE_NO)
+		VALUES(SEQ_TIME_NO.NEXTVAL,#{moviecd}, #{theaterno}, #{bookingdate}, #{bookingtimestart}, #{bookingtimeend}, #{seno})
+ 	</insert>
+ 		
+ 	<delete id="timetableDelete" parameterType="String">
+ 		delete timetable where time_no=#{value}
+ 	</delete>
+ 	
+ 	<update id="timetableModify" parameterType="HashMap">
+ 		UPDATE timetable SET TIME_DATE=#{bookingdate},TIME_START=#{bookingtimestart} ,TIME_END=#{bookingtimeend} WHERE TIME_NO = #{id}
 
+<!--  워누님 파일 끝 -->
+ 	</update>
  
  </mapper>
