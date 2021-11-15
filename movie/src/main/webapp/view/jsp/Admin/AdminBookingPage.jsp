@@ -64,7 +64,7 @@ var clickSeat2 = ""; //삭제 버튼을 눌렀을 때 좌석번호2
 			});
 
 		}
-
+		//예매내역 출력
 		function allList(v) {
 			var tempAllList = ""
 			$.each(v,
@@ -175,6 +175,7 @@ var clickSeat2 = ""; //삭제 버튼을 눌렀을 때 좌석번호2
 						<th>영화관</th>
 						<th>상영시간</th>
 						<th>상영날짜</th>
+						<th>SE_NO</th>
 						<th>좌석넘버1</th>
 						<th>좌석넘버2</th>
 					

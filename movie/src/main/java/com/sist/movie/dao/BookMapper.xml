@@ -93,36 +93,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertBooking" parameterType="booking">
 		INSERT INTO BOOKING
 		<if test="bookingSeat2 != null">
-		(BOOKING_NO,PAYMENT_NO,USER_ID,BK_DATE,TIME_NO,BK_SEAT1,BK_SEAT2)
-		VALUES
-		(BOOKING_NO_SEQ.NEXTVAL,2,#{bookingUserId},SYSDATE,#{bookingTimeNo},#{bookingSeat1},#{bookingSeat2})
-		
+			(BOOKING_NO,PAYMENT_NO,USER_ID,BK_DATE,TIME_NO,BK_SEAT1,BK_SEAT2)
+			VALUES
+			(BOOKING_NO_SEQ.NEXTVAL,2,#{bookingUserId},SYSDATE,#{bookingTimeNo},#{bookingSeat1},#{bookingSeat2})
+
 		</if>
-		
+
 		<if test="bookingSeat2 == null">
-		(BOOKING_NO,PAYMENT_NO,USER_ID,BK_DATE,TIME_NO,BK_SEAT1)
-		VALUES
-		(BOOKING_NO_SEQ.NEXTVAL,2,#{bookingUserId},SYSDATE,#{bookingTimeNo},#{bookingSeat1})
+			(BOOKING_NO,PAYMENT_NO,USER_ID,BK_DATE,TIME_NO,BK_SEAT1)
+			VALUES
+			(BOOKING_NO_SEQ.NEXTVAL,2,#{bookingUserId},SYSDATE,#{bookingTimeNo},#{bookingSeat1})
 		</if>
 	</insert>
 
 	<update id="updateSeat" parameterType="java.util.HashMap">
 		<if test="seat2 != null">
-			UPDATE SEAT SET ${seat1} ='t',${seat2} ='t'  
+			UPDATE SEAT SET ${seat1} ='t',${seat2} ='t'
 		</if>
 		<if test="seat2 == null">
-		UPDATE SEAT SET ${seat1} ='t'
+			UPDATE SEAT SET ${seat1} ='t'
 		</if>
-		 WHERE SE_NO = #{seatNo}
+		WHERE SE_NO = #{seatNo}
 	</update>
+
 	<update id="updateSeatFalse" parameterType="java.util.HashMap">
-		<if test="deleteSeat2 != null">
-			UPDATE SEAT SET ${deleteSeat1} ='f',${deleteSeat2} ='f'  
+
+		<if test="deleteSeat2 != 'no' "> UPDATE SEAT SET ${deleteSeat1} ='f',
+			${deleteSeat2} ='f'
 		</if>
-		<if test="deleteSeat2 == null">
-		UPDATE SEAT SET ${deleteSeat1} ='f'
-		</if>
-		 WHERE SE_NO = #{deleteSeatNo}
+		<if test="deleteSeat2 == 'no' "> UPDATE SEAT SET ${deleteSeat1} ='f' </if>
+
+		WHERE SE_NO = #{deleteSeatNo}
 	</update>
 
 	<select id="selectLocation" parameterType="String"
@@ -135,20 +136,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 관리자페이지 전체 예매내역 조회 -->
 	<select id="allListBooking" parameterType="java.util.HashMap"
 		resultType="booking">
-		SELECT B.BOOKING_NO as bookingNo ,U.USERID as bookingUserId,
-		M.MOVIENM as bookingMovieName,THEATER.THEATERTOWN as bookingTown,
-		TIME.TIME_START as bookingTimeStart,TIME.TIME_DATE as bookingDate,
+		SELECT B.BOOKING_NO as bookingNo ,U.USERID as
+		bookingUserId,
+		M.MOVIENM as bookingMovieName,THEATER.THEATERTOWN as
+		bookingTown,
+		TIME.TIME_START as bookingTimeStart,TIME.TIME_DATE as
+		bookingDate,
 		TIME.SE_NO as bookingSeat,
-		B.BK_SEAT1 as bookingSeat1, B.BK_SEAT2 as bookingSeat2
-		FROM MOVIE M,BOOKING B, TIMETABLE TIME, THEATER THEATER,USER_INFO U
-		WHERE B.TIME_NO = TIME.TIME_NO AND TIME.MOVIE_NO = M.MOVIECD AND
-		TIME.THEATER_NO = THEATER.THEATERNO AND B.USER_ID = U.USERID
+		B.BK_SEAT1 as bookingSeat1,
+		B.BK_SEAT2 as bookingSeat2
+		FROM MOVIE M,BOOKING B, TIMETABLE TIME,
+		THEATER THEATER,USER_INFO U
+		WHERE B.TIME_NO = TIME.TIME_NO AND
+		TIME.MOVIE_NO = M.MOVIECD AND
+		TIME.THEATER_NO = THEATER.THEATERNO AND
+		B.USER_ID = U.USERID
 
 	</select>
-	
+
 	<!-- 관리자페이지 선택한 예매내역 삭제 -->
 	<delete id="bookingDelete" parameterType="String">
-	DELETE FROM BOOKING WHERE BOOKING_NO = #{bookingNo}
+		DELETE FROM BOOKING
+		WHERE BOOKING_NO = #{bookingNo}
 	</delete>
 
 </mapper>
