@@ -80,7 +80,7 @@ var clickSeat2 = ""; //삭제 버튼을 눌렀을 때 좌석번호2
 						tempAllList += "<th class =\"deleteSeatNo\" id=\"listBar\">" + dom.bookingSeat+ " </th>";
 						tempAllList += "<th  class =\"deleteSeat1\" id=\"listBar\">" + dom.bookingSeat1+ " </th>";
 						tempAllList += "<th  class =\"deleteSeat2\" id=\"listBar\">" + dom.bookingSeat2+ " </th>";
-						tempAllList += "<th id=\"listBar\"><button >수정</button></th>";
+						tempAllList += "<th id=\"listBar\"><button >좌석 수정</button></th>";
 						tempAllList += "<th id=\"listBar\"><button class=\"deleteButton\">삭제</button></th>"; 
 						tempAllList += "</tr>";
 						
