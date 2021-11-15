@@ -73,14 +73,14 @@ public class AdminController {
 	}
 
 	//전체 영화 조회
-	@RequestMapping(value = "SelectAllMovie.do")
+	/*@RequestMapping(value = "SelectAllMovie.do")
 	public String SelectAllMovieAction(HashMap<String, Object> map) {
 		map.put("AllMovieList", Adao.selectAllMovie());
 		return "view/jsp/Admin/AdminMoviePage";
-	}
+	}*/
 
 	//영화 정보 수정
-	@RequestMapping(value = "admin/UpdateMovie.do")
+	/*@RequestMapping(value = "admin/UpdateMovie.do")
 	public String UpdateMovieAction(HashMap<String, Object> map, MovieVO vo, String movieNo) {
 		vo.setMovieNm(movieNo);
 		vo.setMovieNmEn(vo.getMovieNmEn());
@@ -98,7 +98,7 @@ public class AdminController {
 		System.out.println(vo);
 		Adao.updateMovie(vo);
 		return "view/jsp/Admin/AdminMoviePage";
-	}
+	}*/
 
 	//전체 스토어제품 조회
 	@RequestMapping(value = "SelectAllProduct.do")
@@ -108,7 +108,7 @@ public class AdminController {
 	}
 
 	//어드민에서 영화정보 넣기
-	@RequestMapping(value = "insertMovie.do")
+	/*@RequestMapping(value = "insertMovie.do")
 	public String InsertMovieAction(MovieVO vo) {
 		//vo.setMovieCd(vo.getMovieCd());
 		vo.setMovieNm(vo.getMovieNm());
@@ -127,14 +127,14 @@ public class AdminController {
 		System.out.println(vo);
 		Adao.movieInsertAction(vo);
 		return "view/jsp/Admin/AdminMoviePage";
-	}
+	}*/
 
-	@RequestMapping(value = "selectMovielist.do")
+	/*@RequestMapping(value = "selectMovielist.do")
 	public String selectMovielistAction(HashMap<String, Object> map) {
 		map.put("moviesList", dao.selcetReserveMovieList());
 
 		return "view/jsp/Admin/selectMovie";
-	}
+	}*/
 
 	@ResponseBody
 	@RequestMapping(value = "selectAskAnswerList.do")

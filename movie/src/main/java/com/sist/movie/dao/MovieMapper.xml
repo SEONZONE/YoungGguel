@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
 </select>
 <!-- 이거는 인효부분 끝-->
+
 <!-- 이거는 소연부분 끝-->
 	<!-- 기본 sql -->
 <!-- 기본 sql -->
@@ -25,6 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  FROM MOVIE
 </sql>
 <!-- 영화 리스트 -->
+
+<select id="selectAllMovie" resultType="movieList">
+ SELECT
+ MOVIECD, MOVIENM, MOVIENMEN, SHOWTM, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, TO_CHAR(OPENDT,'YYYY/MM/DD')ENDDT, CONTENTS, PRDTSTATNM,
+ NATIONS, GENRE, DIRECTORS, ACTORS, WATCHGRADENM, COMPANYS
+ FROM MOVIE
+</select>
 
 <select id="movieList" resultType="movielist">
     SELECT MOVIECD, MOVIENM, GENRE, TO_CHAR(OPENDT,'YYYY/MM/DD')OPENDT, CONTENTS, SHOWTM, WATCHGRADENM,CONTENTS FROM MOVIE
