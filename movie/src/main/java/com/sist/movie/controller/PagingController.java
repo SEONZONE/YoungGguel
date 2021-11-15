@@ -27,6 +27,8 @@ public class PagingController {
 		} else if (cntPerPage == null) { 
 			cntPerPage = "5";
 		}
+		//페이징 계산하는 생성자
+		//
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
 		model.addAttribute("viewAll", dao.selectBoard(vo));

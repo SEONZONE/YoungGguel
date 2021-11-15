@@ -196,6 +196,7 @@ var USERGENDER="";
 		
   
   });
+	  //한 페이지에 보여줄 게시글 메소드!
   function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
 		location.href="boardList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;

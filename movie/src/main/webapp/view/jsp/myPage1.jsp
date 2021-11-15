@@ -19,7 +19,7 @@
 	  });
 	  $('img#checkReserveimg').click(function(){
 		  document.location.href='/movie/view/jsp/myPage1.jsp';
-	  });
+	  });	
 	  $('img#questionimg').click(function(){
 		  document.location.href='/movie/mypage2.do';
 	  });
